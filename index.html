@@ -576,7 +576,7 @@
             <div class="pay-card card-pp">
               <h4>🅿️ PayPal</h4>
               <label style="margin-bottom:4px;">Lien PayPal.me</label>
-              <input type="url" id="payLinkPaypal" placeholder="https://paypal.me/jmk930" oninput="onSettingsChange()">
+              <input type="url" id="payLinkPaypal" placeholder="https://paypal.me/votrenom" oninput="onSettingsChange()">
               <button class="btn btn-paypal btn-sm" style="margin-top:10px; width:100%;" onclick="generateQr('paypal')">Générer le QR PayPal</button>
               <div class="qr-preview hidden" id="qrBoxPaypal"></div>
             </div>
@@ -693,6 +693,13 @@ const PRESET_CATALOGS = {
     {designation:"Manutention 2h x 2 agents", qte:2, coutAchat:22, puVente:55},
     {designation:"Emballage & protection", qte:1, coutAchat:12, puVente:35},
   ],
+};
+
+/* Map secteur → preset appliqué automatiquement au clic */
+const SECTOR_TO_PRESET = {
+  "Nettoyage": "nettoyage",
+  "Services": "maintenance",
+  "Logistique & Transport": "logistique",
 };
 
 const PLANS = [
@@ -821,8 +828,16 @@ function renderSectors(){
 function selectSector(key){
   state.secteur = key;
   state.iaPhrase = PRESET_PHRASES[key] || "";
+  
+  /* Appliquer automatiquement le preset de prestations correspondant au secteur */
+  const presetKey = SECTOR_TO_PRESET[key];
+  if(presetKey && PRESET_CATALOGS[presetKey]){
+    state.lines = PRESET_CATALOGS[presetKey].map(l=>({id:uid(), ...l}));
+  }
+  
   saveState();
   renderSectors();
+  renderLines(); /* Rafraîchir aussi les lignes, pas juste le secteur */
 }
 function onPhraseInput(){
   state.iaPhrase = document.getElementById("iaPhrase").value;
@@ -1117,37 +1132,6 @@ window.addEventListener("DOMContentLoaded", ()=>{
   fillPaySettings();
   renderTrialBanner();
   renderPlans(); // pré-rendu au chargement : le contenu des tarifs doit exister dans le DOM sans clic, pour l'indexation Google
-});
-</script>
-
-<script>
-// Force paypal.me/jmk930 defaults for founder
-try{
- localStorage.setItem('df_paypal_starter', 'https://paypal.me/jmk930/9.90');
- localStorage.setItem('df_paypal_pro', 'https://paypal.me/jmk930/29');
- localStorage.setItem('df_paypal_agency', 'https://paypal.me/jmk930/79');
- localStorage.setItem('df_paypal_me', 'https://paypal.me/jmk930');
- localStorage.setItem('df_paypal_acompte', 'https://paypal.me/jmk930');
-}catch(e){}
-</script>
-
-<script>
-window.addEventListener('DOMContentLoaded', ()=>{
-  document.querySelectorAll('a').forEach(a=>{
-    const href = (a.getAttribute('href')||'');
-    if(href.includes('paypal.me/votrenom')||href.includes('paypal.me') && href.includes('votrenom')){
-      if(a.textContent.toLowerCase().includes('starter')||a.textContent.includes('9.90')) a.href='https://paypal.me/jmk930/9.90';
-      else if(a.textContent.toLowerCase().includes('pro')||a.textContent.includes('29')) a.href='https://paypal.me/jmk930/29';
-      else if(a.textContent.toLowerCase().includes('agency')||a.textContent.includes('79')) a.href='https://paypal.me/jmk930/79';
-      else a.href='https://paypal.me/jmk930/29';
-    }
-  });
-  // Also update inputs with placeholder paypal.me/votrenom
-  document.querySelectorAll('input').forEach(inp=>{
-    if((inp.placeholder||'').toLowerCase().includes('paypal')|| (inp.value||'').includes('votrenom')){
-      if(!inp.value || inp.value.includes('votrenom')) inp.value='https://paypal.me/jmk930/29';
-    }
-  });
 });
 </script>
 </body>
