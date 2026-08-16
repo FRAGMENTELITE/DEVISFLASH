@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <title>Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP</title>
 <meta name="description" content="Devis Flash génère vos devis pro en 10 secondes : calcul de marge automatique, presets par métier (peinture, plomberie, électricité, nettoyage...), encaissement par carte ou PayPal. Essai gratuit 14 jours, sans carte bancaire.">
 <meta name="robots" content="index, follow">
@@ -41,6 +41,8 @@
     {"@type":"Offer","name":"Pro","price":"39","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"39","priceCurrency":"EUR","billingDuration":"P1M"}}
   ]
 }
+
+
 </script>
 <script type="application/ld+json">
 {
@@ -54,6 +56,8 @@
     {"@type":"Question","name":"Puis-je annuler mon essai gratuit à tout moment ?","acceptedAnswer":{"@type":"Answer","text":"Oui, l'essai gratuit de 14 jours ne nécessite aucune carte bancaire et peut être arrêté à tout moment sans engagement."}}
   ]
 }
+
+
 </script>
 <style>
   :root{
@@ -395,6 +399,267 @@
     background:linear-gradient(135deg,#0F172A,#1E293B); color:#fff;
   }
   .landing-cta h2{color:#fff; margin-bottom:22px;}
+
+  /* ===== MOBILE OPTIMIZATION ===== */
+  @media (max-width: 768px) {
+    body { font-size: 14px; padding: 0; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+    #app { margin-top: 70px; padding-bottom: 80px; }
+    .tabs { flex-wrap: nowrap; overflow-x: auto; }
+    .view { padding: 16px 12px; }
+    input, select, textarea { font-size: 16px; padding: 12px; }
+    button { padding: 12px 16px; font-size: 14px; min-height: 44px; }
+    .btn { min-height: 48px; }
+    .toolbar { flex-direction: column; gap: 10px; }
+    .toolbar input, .toolbar select { width: 100%; }
+    .plan-card { padding: 18px 14px; }
+    .pprice { font-size: 28px; }
+    table { font-size: 12px; }
+    .line-row { flex-direction: column; gap: 8px; }
+    .line-row input { width: 100%; }
+    .devis-list { gap: 10px; }
+    .method-note { padding: 12px; font-size: 12px; }
+  }
+  
+  @media (max-width: 480px) {
+    body { font-size: 13px; }
+    .view { padding: 12px 8px; }
+    input, select { font-size: 16px; padding: 10px; }
+    button { padding: 10px 12px; min-height: 44px; }
+    .pprice { font-size: 24px; }
+    .plan-card { padding: 14px 10px; }
+    .btn-small { padding: 8px 10px; font-size: 12px; }
+    header .brand { font-size: 16px; }
+    .tabs { gap: 4px; }
+    .tab-btn { padding: 8px 10px; font-size: 12px; }
+  }
+  
+  /* Touch-friendly improvements */
+  @media (hover: none) {
+    button:active { opacity: 0.8; }
+    input:focus { outline: 2px solid var(--brand); outline-offset: 2px; }
+    .tab-btn { padding: 12px 14px; }
+  }
+
+
+  /* Mobile tabs optimization */
+  @media (max-width: 768px) {
+    .tabs { gap: 4px; overflow-x: auto; padding: 0; }
+    .tab-btn { 
+      padding: 10px 12px; 
+      font-size: 11px; 
+      white-space: nowrap;
+      border: none;
+      background: transparent;
+      color: var(--ink-soft);
+      border-bottom: 2px solid transparent;
+      transition: none;
+    }
+    .tab-btn.active { 
+      color: var(--brand); 
+      border-bottom-color: var(--brand);
+      background: transparent;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .tabs { gap: 2px; }
+    .tab-btn { 
+      padding: 8px 10px; 
+      font-size: 10px; 
+    }
+  }
+
+
+  /* Mobile form optimization */
+  @media (max-width: 768px) {
+    input[type="text"],
+    input[type="url"],
+    input[type="number"],
+    select,
+    textarea {
+      font-size: 16px; /* Prevents auto-zoom on iOS */
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+    }
+    
+    .form-group,
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+    
+    .line-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 12px;
+      background: #fafbff;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .line-row input {
+      width: 100%;
+      min-height: 44px;
+    }
+    
+    .line-row .btn-icon {
+      width: 100%;
+      min-height: 44px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    input[type="text"],
+    input[type="url"],
+    input[type="number"],
+    select {
+      font-size: 16px;
+      padding: 10px;
+    }
+    
+    .line-row {
+      padding: 10px;
+    }
+    
+    .line-row input {
+      min-height: 40px;
+    }
+  }
+  
+  /* Safe area for notch/dynamic island */
+  @supports (padding: max(0px)) {
+    body {
+      padding-left: max(0px, env(safe-area-inset-left));
+      padding-right: max(0px, env(safe-area-inset-right));
+      padding-top: max(0px, env(safe-area-inset-top));
+      padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+  }
+
+
+  /* Mobile grid optimization */
+  @media (max-width: 768px) {
+    #plansGrid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    
+    .plan-card {
+      padding: 16px 12px;
+    }
+    
+    .plan-card .btn {
+      width: 100%;
+    }
+    
+    /* Table mobile - stack columns */
+    table {
+      display: block;
+      width: 100%;
+    }
+    
+    table thead {
+      display: none;
+    }
+    
+    table tbody,
+    table tr,
+    table td {
+      display: block;
+      width: 100%;
+    }
+    
+    table tr {
+      border-bottom: 2px solid var(--line);
+      margin-bottom: 12px;
+      padding: 0 12px;
+    }
+    
+    table td {
+      padding: 8px 0;
+      text-align: left;
+    }
+    
+    table td::before {
+      content: attr(data-label);
+      font-weight: 700;
+      display: block;
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+    
+    /* Dashboard cards */
+    .stat-card {
+      padding: 14px;
+    }
+    
+    .stat-card .stat-value {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #plansGrid {
+      gap: 10px;
+    }
+    
+    .plan-card {
+      padding: 12px 10px;
+    }
+    
+    .pprice {
+      font-size: 22px;
+    }
+    
+    .pname {
+      font-size: 16px;
+    }
+  }
+  
+  /* Hero section mobile */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 40px 16px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    
+    .hero-badge {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+    
+    .landing-features {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    
+    .feature-card {
+      padding: 14px;
+    }
+    
+    .feature-card h3 {
+      font-size: 14px;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -576,7 +841,7 @@
             <div class="pay-card card-pp">
               <h4>🅿️ PayPal</h4>
               <label style="margin-bottom:4px;">Lien PayPal.me</label>
-              <input type="url" id="payLinkPaypal" placeholder="https://paypal.me/votrenom" oninput="onSettingsChange()">
+              <input type="url" id="payLinkPaypal" placeholder="https://paypal.me/jmk930" oninput="onSettingsChange()">
               <button class="btn btn-paypal btn-sm" style="margin-top:10px; width:100%;" onclick="generateQr('paypal')">Générer le QR PayPal</button>
               <div class="qr-preview hidden" id="qrBoxPaypal"></div>
             </div>
@@ -695,20 +960,19 @@ const PRESET_CATALOGS = {
   ],
 };
 
-/* Map secteur → preset appliqué automatiquement au clic */
-const SECTOR_TO_PRESET = {
-  "Nettoyage": "nettoyage",
-  "Services": "maintenance",
-  "Logistique & Transport": "logistique",
-};
-
 const PLANS = [
-  {id:"gratuit", name:"Gratuit", price:"0€", per:"", trial:false, highlight:false,
+  {id:"gratuit", name:"Gratuit", price:"0€", per:"", trial:false, highlight:false, payLink:"", payLinkPaypal:"", payLinkStripe:"",
    feats:["3 devis / mois","Calcul de marge","Export PDF","QR paiement"], cta:"Utiliser gratuitement"},
-  {id:"artisan", name:"Artisan", price:"19€", per:"/mois", trial:true, highlight:true,
-   feats:["Devis illimités","Dashboard complet","Marge en temps réel","Paiement CB + PayPal distincts","Presets chantiers","Support e-mail"], cta:"Démarrer l'essai gratuit"},
-  {id:"pro", name:"Pro", price:"39€", per:"/mois", trial:true, highlight:false,
-   feats:["Tout Artisan, plus :","Multi-utilisateurs","Logo personnalisé sur PDF","Modèles avancés","Export comptable"], cta:"Démarrer l'essai gratuit"},
+  {id:"artisan", name:"Starter", price:"9,90€", per:"/mois", trial:true, highlight:false, 
+   payLink:"https://pay.sumup.com/b2c/QISWWJY3", 
+   payLinkPaypal:"https://paypal.me/jmk930/9.90",
+   payLinkStripe:"https://buy.stripe.com/7sY9AT4FE9x629I3sie3e00", // prod_V5FyXTacdgVVlb -> 9,90€ abonnement
+   feats:["Devis illimités","Dashboard complet","Marge en temps réel","CB + PayPal + Stripe","Presets chantiers","Support e-mail"], cta:"Starter - 9,90€"},
+  {id:"pro", name:"Pro", price:"29€", per:"/mois", trial:true, highlight:true, 
+   payLink:"https://pay.sumup.com/b2c/QK9G7UQ8", 
+   payLinkPaypal:"https://paypal.me/jmk930/29",
+   payLinkStripe:"https://buy.stripe.com/00w8wPc86bFe01A2oee3e01", // prod_V5FzNZVMoCu7Ib -> 29€ abonnement
+   feats:["Tout Starter, plus :","QR code encaissement instantané","Logo personnalisé sur PDF","Export comptable","Priorité support"], cta:"Pro - 29€"},
 ];
 
 const STORAGE_KEY = "devisFlash_v2";
@@ -828,16 +1092,8 @@ function renderSectors(){
 function selectSector(key){
   state.secteur = key;
   state.iaPhrase = PRESET_PHRASES[key] || "";
-  
-  /* Appliquer automatiquement le preset de prestations correspondant au secteur */
-  const presetKey = SECTOR_TO_PRESET[key];
-  if(presetKey && PRESET_CATALOGS[presetKey]){
-    state.lines = PRESET_CATALOGS[presetKey].map(l=>({id:uid(), ...l}));
-  }
-  
   saveState();
   renderSectors();
-  renderLines(); /* Rafraîchir aussi les lignes, pas juste le secteur */
 }
 function onPhraseInput(){
   state.iaPhrase = document.getElementById("iaPhrase").value;
@@ -1048,11 +1304,43 @@ function renderTrialBanner(){
 }
 function startTrial(planId){
   const plan = PLANS.find(p=>p.id===planId);
-  if(!plan.trial){ toast("Plan gratuit activé"); return; }
-  trial = {plan:planId, start:new Date().toISOString().slice(0,10)};
-  saveTrial(trial);
-  renderTrialBanner();
-  toast(`Essai gratuit de 14 jours démarré — ${plan.name}`);
+  if(!plan) return;
+  if(!plan.payLink && !plan.payLinkPaypal && !plan.payLinkStripe){
+    toast("Plan gratuit activé");
+    trial = {plan:planId, start:new Date().toISOString().slice(0,10)};
+    saveTrial(trial); renderTrialBanner();
+    return;
+  }
+  // Par défaut SumUp
+  if(plan.payLink){
+    window.open(plan.payLink, '_blank');
+    toast(`Paiement CB SumUp ${plan.price} - s'ouvre...`);
+    trial = {plan:planId, start:new Date().toISOString().slice(0,10), paid:true, method:'sumup'};
+    saveTrial(trial); renderTrialBanner();
+  }
+}
+function payWith(method, planId){
+  const plan = PLANS.find(p=>p.id===planId);
+  if(!plan) return;
+  let link = "";
+  if(method==='paypal') link = plan.payLinkPaypal;
+  else if(method==='stripe') link = plan.payLinkStripe;
+  else link = plan.payLink;
+  if(!link || link.includes('buy.stripe.com')===false && method==='stripe' && link===""){
+    if(method==='stripe'){
+      toast("⚠️ Ajoute d'abord ton lien Stripe dans le code ! Va sur dashboard.stripe.com");
+      // ouvre tuto
+      window.open('https://dashboard.stripe.com/payment-links', '_blank');
+      return;
+    }
+    toast("Lien non configuré");
+    return;
+  }
+  window.open(link, '_blank');
+  const msg = method==='paypal' ? `Redirection PayPal ${plan.price}...` : method==='stripe' ? `Redirection Stripe abonnement ${plan.price}...` : `Redirection SumUp ${plan.price}...`;
+  toast(msg);
+  trial = {plan:planId, start:new Date().toISOString().slice(0,10), paid:true, method:method};
+  saveTrial(trial); renderTrialBanner();
 }
 function renderPlans(){
   const el = document.getElementById("plansGrid");
@@ -1061,9 +1349,19 @@ function renderPlans(){
       ${p.highlight?'<div class="badge-pop">Le plus choisi</div>':''}
       <div class="pname">${escapeHtml(p.name)}</div>
       <div class="pprice">${p.price}<span>${p.per}</span></div>
-      ${p.trial?'<div class="trial-tag">🎁 14 jours d’essai gratuit</div>':''}
+      ${p.trial?'<div class="trial-tag">🎁 14j essai + 3 moyens de paiement</div>':''}
       <ul>${p.feats.map(f=>`<li>${escapeHtml(f)}</li>`).join("")}</ul>
-      <button class="btn ${p.highlight?'btn-primary':'btn-secondary'} plan-cta" onclick="startTrial('${p.id}')">${escapeHtml(p.cta)}</button>
+      ${p.payLink || p.payLinkPaypal || p.payLinkStripe ? `
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
+          ${p.payLinkStripe?`<button class="btn plan-cta" onclick="payWith('stripe','${p.id}')" style="background:#635bff; color:white; border-color:#635bff;">🔵 Payer en abonnement Stripe - ${escapeHtml(p.price)}/mois</button>`
+          :`<button class="btn plan-cta" onclick="payWith('stripe','${p.id}')" style="background:#e0e0e0; color:#333; border:1px dashed #999;">+ Ajouter lien Stripe ${escapeHtml(p.price)}</button>`}
+          ${p.payLink?`<button class="btn plan-cta" onclick="payWith('sumup','${p.id}')" style="background:#1a1a1a; color:white; border-color:#1a1a1a;">💳 Payer par CB (SumUp) - ${escapeHtml(p.price)}</button>`:''}
+          ${p.payLinkPaypal?`<button class="btn btn-secondary plan-cta" onclick="payWith('paypal','${p.id}')" style="background:#0070ba; color:white; border-color:#0070ba;">🅿️ Payer avec PayPal - ${escapeHtml(p.price)}</button>`:''}
+        </div>
+        <div style="margin-top:8px; font-size:10px; color:var(--ink-soft); text-align:center; line-height:1.3;">
+          Stripe = prélèvement auto chaque mois 🔄<br>SumUp = paiement unique CB → IBAN direct<br>PayPal = paypal.me/jmk930
+        </div>
+      ` : `<button class="btn btn-secondary plan-cta" onclick="startTrial('${p.id}')">${escapeHtml(p.cta)}</button>`}
     </div>`).join("");
 }
 
@@ -1133,6 +1431,30 @@ window.addEventListener("DOMContentLoaded", ()=>{
   renderTrialBanner();
   renderPlans(); // pré-rendu au chargement : le contenu des tarifs doit exister dans le DOM sans clic, pour l'indexation Google
 });
+
+
 </script>
+
+<script>
+// Config paiement - PayPal + SumUp + Stripe (triple) - FINAL
+try{
+ localStorage.setItem('df_paypal_starter', 'https://paypal.me/jmk930/9.90');
+ localStorage.setItem('df_paypal_pro', 'https://paypal.me/jmk930/29');
+ localStorage.setItem('df_paypal_agency', 'https://paypal.me/jmk930/79');
+ localStorage.setItem('df_sumup_starter', 'https://pay.sumup.com/b2c/QISWWJY3');
+ localStorage.setItem('df_sumup_pro', 'https://pay.sumup.com/b2c/QK9G7UQ8');
+ localStorage.setItem('df_stripe_starter', 'https://buy.stripe.com/7sY9AT4FE9x629I3sie3e00');
+ localStorage.setItem('df_stripe_pro', 'https://buy.stripe.com/00w8wPc86bFe01A2oee3e01');
+ localStorage.setItem('df_paypal_me', 'https://paypal.me/jmk930');
+}catch(e){}
+
+
+</script>
+
+    </div>
+  <div style="display:flex; gap:6px; padding:12px; border-top:1px solid #e2e8f0;">
+          </div>
+</div>
+
 </body>
 </html>
