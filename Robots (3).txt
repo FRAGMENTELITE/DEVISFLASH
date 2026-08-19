@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://www.devis-flash.fr/sitemap.xml
+Sitemap: https://fragmentelite.github.io/DEVISFLASH/sitemap.xml
