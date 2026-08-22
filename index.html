@@ -37,7 +37,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 <meta name="description" content="Logiciel devis BTP gratuit artisan : modèle devis peinture, plomberie, électricité, maçonnerie. TVA 10%/20%/293B, statuts Vu/Accepté, PDF QR acompte. Conforme facturation électronique 2026. PRO devis illimités ♾️.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Devis Flash">
-<link rel="canonical" href="https://fragmentelite.github.io/DEVISFLASH/">
+<link rel="canonical" href="https://devis-flash.fr/">
 <!-- Remplacez le domaine ci-dessus par votre vrai nom de domaine une fois hébergé -->
 
 <!-- Open Graph / réseaux sociaux -->
@@ -45,7 +45,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 <meta property="og:site_name" content="Devis Flash">
 <meta property="og:title" content="Devis Flash - Logiciel Devis BTP Gratuit | Facturation 2026">
 <meta property="og:description" content="Générez un devis professionnel en 90 secondes, avec calcul de marge automatique et encaissement par carte ou PayPal. Essai gratuit 14 jours.">
-<meta property="og:url" content="https://fragmentelite.github.io/DEVISFLASH/">
+<meta property="og:url" content="https://devis-flash.fr/">
 <meta property="og:locale" content="fr_FR">
 
 <!-- Twitter Card -->
@@ -75,7 +75,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://fragmentelite.github.io/DEVISFLASH/"}]}
+ "@type": "BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://devis-flash.fr/"}]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Devis Flash","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"127"}}
@@ -1662,7 +1662,7 @@ function shareDevisHistorique(id){
  const d = state.devis.find(x=>x.id===id);
  if(!d) return;
  const ref = localStorage.getItem('df_aff_code')||'DEVISFLASH';
- const txt = `📄 Devis ${d.client} - ${d.secteur} - ${fmtEUR(d.venteTotal)} - ${fmtDate(d.date)} - Créé avec Devis Flash: https://fragmentelite.github.io/DEVISFLASH/?ref=${ref}`;
+ const txt = `📄 Devis ${d.client} - ${d.secteur} - ${fmtEUR(d.venteTotal)} - ${fmtDate(d.date)} - Créé avec Devis Flash: https://devis-flash.fr/?ref=${ref}`;
  window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');
 }
 function exportHistoriqueCSV(){
@@ -2438,20 +2438,20 @@ function getShareText(){
  const totEl = document.getElementById('total-devis') || document.getElementById('total');
  const tot = totEl ? totEl.textContent : '';
  const ref = affCode || localStorage.getItem('df_aff_code') || 'DEVISFLASH';
- return `⚡ Devis Flash - ${d.substring(0,80)} - ${tot} - https://fragmentelite.github.io/DEVISFLASH/?ref=${ref}`;
+ return `⚡ Devis Flash - ${d.substring(0,80)} - ${tot} - https://devis-flash.fr/?ref=${ref}`;
 }
 function shareWA(){ window.open('https://wa.me/?text='+encodeURIComponent(getShareText()),'_blank'); gtag&&gtag('event','share',{method:'whatsapp'}); }
-function shareLI(){ const url=encodeURIComponent('https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH')); window.open('https://www.linkedin.com/sharing/share-offsite/?url='+url,'_blank'); }
-function shareTG(){ window.open('https://t.me/share/url?url='+encodeURIComponent('https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH'))+'&text='+encodeURIComponent(getShareText()),'_blank'); }
-function shareFB(){ window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH')),'_blank'); }
+function shareLI(){ const url=encodeURIComponent('https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH')); window.open('https://www.linkedin.com/sharing/share-offsite/?url='+url,'_blank'); }
+function shareTG(){ window.open('https://t.me/share/url?url='+encodeURIComponent('https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH'))+'&text='+encodeURIComponent(getShareText()),'_blank'); }
+function shareFB(){ window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH')),'_blank'); }
 function shareX(){ window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(getShareText()),'_blank'); }
-function copyLink(){ navigator.clipboard.writeText('https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH')).then(()=>toast('🔗 Lien copié')); }
+function copyLink(){ navigator.clipboard.writeText('https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH')).then(()=>toast('🔗 Lien copié')); }
 
 // Affiliation devisflash93@gmail.com
 function genAff(){
  let code = (document.getElementById('aff-code')?.value.trim().toUpperCase()) || affCode || 'DF'+Math.floor(1000+Math.random()*9000);
  affCode = code; localStorage.setItem('df_aff_code', code);
- const link = 'https://fragmentelite.github.io/DEVISFLASH/?ref='+code;
+ const link = 'https://devis-flash.fr/?ref='+code;
  const linkEl = document.getElementById('aff-link'); if(linkEl) linkEl.value = link;
  const codeEl = document.getElementById('aff-code'); if(codeEl) codeEl.value = code;
  toast('✅ Lien affilié généré: '+link+' | Contact: devisflash93@gmail.com');
@@ -2459,7 +2459,7 @@ function genAff(){
 }
 function copyAff(){ const el=document.getElementById('aff-link'); if(el) navigator.clipboard.writeText(el.value).then(()=>toast('🔗 Lien affilié copié')); }
 function shareAff(){
- const link = document.getElementById('aff-link')?.value || 'https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH');
+ const link = document.getElementById('aff-link')?.value || 'https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH');
  const txt = `⚡ Je recommande Devis Flash - devis BTP en 10s avec vocale 7 langues + offline. Essai gratuit 14j: ${link} — affiliation 30% via devisflash93@gmail.com`;
  if(navigator.share){ navigator.share({title:'Devis Flash',text:txt,url:link}); } else { window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank'); }
 }
@@ -2533,7 +2533,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
      <label>Lien affilié</label><input id="aff-link" readonly style="margin-bottom:10px">
      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" onclick="genAff()">Générer</button><button class="btn" style="background:#fff;border:1px solid #E2E8F0" onclick="copyAff()">Copier</button><button class="btn" style="background:#fff;border:1px solid #E2E8F0" onclick="shareAff()">Partager</button></div>
      <div style="margin-top:12px;font-size:12px;background:#fff;border:1px dashed #E2E8F0;border-radius:8px;padding:10px">
-      1. Génère ton code → 2. Partage https://fragmentelite.github.io/DEVISFLASH/?ref=TONCODE → 3. Touche 30% via devisflash93@gmail.com<br>
+      1. Génère ton code → 2. Partage https://devis-flash.fr/?ref=TONCODE → 3. Touche 30% via devisflash93@gmail.com<br>
       Clics: <span id="aff-clicks">0</span> | Conversions: <span id="aff-conv">0</span> | Gains: <span id="aff-gain">0€</span>
      </div>
     `;
@@ -2542,7 +2542,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const saved = localStorage.getItem('df_aff_code');
     if(saved){
      const cEl=document.getElementById('aff-code'); if(cEl) cEl.value=saved;
-     const lEl=document.getElementById('aff-link'); if(lEl) lEl.value='https://fragmentelite.github.io/DEVISFLASH/?ref='+saved;
+     const lEl=document.getElementById('aff-link'); if(lEl) lEl.value='https://devis-flash.fr/?ref='+saved;
     }
    }
   }
@@ -2843,7 +2843,7 @@ generateBonIntervention = async function(id){
   if(it.signature){ try{ doc.addImage(it.signature,'PNG',14,y,70,28); }catch(e){ doc.rect(14,y,70,28); } } else { doc.rect(14,y,70,28); doc.setFontSize(8); doc.text('Non signee',16,y+15); doc.setFontSize(11); }
   doc.text('Signature technicien:',110,y-2); if(it.signatureTech){ try{ doc.addImage(it.signatureTech,'PNG',110,y,70,22); }catch(e){ doc.rect(110,y,70,22); } } else { doc.rect(110,y,70,22); }
   y+=36;
-  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE SIGNATURE ELECTRONIQUE (eIDAS art.26 - comme concurrents):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||'')+' | Niveau: '+it.eSignature.niveau,14,y); y+=4; doc.text('Verification: https://fragmentelite.github.io/DEVISFLASH/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
+  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE SIGNATURE ELECTRONIQUE (eIDAS art.26 - comme concurrents):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||'')+' | Niveau: '+it.eSignature.niveau,14,y); y+=4; doc.text('Verification: https://devis-flash.fr/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
   doc.setFontSize(7); doc.setFont('helvetica','italic'); doc.text('Devis Flash - Conforme eIDAS art.26 (avancee), RGS**, facturation electronique 2026 - Preuve opposable - devisflash93@gmail.com',14,285);
   doc.save('Bon-Intervention-eIDAS-'+(it.client||'client').replace(/\s+/g,'-')+'-'+it.id+'.pdf'); toast('📄 Bon eIDAS conforme genere');
  }catch(e){ console.error(e); toast('Erreur PDF eIDAS'); }
@@ -2909,7 +2909,7 @@ generateBonIntervention = async function(id){
   if(it.signature){ try{ doc.addImage(it.signature,'PNG',14,y,70,28); }catch(e){ doc.rect(14,y,70,28); } } else { doc.rect(14,y,70,28); doc.setFontSize(8); doc.text('Non signee',16,y+15); doc.setFontSize(11); }
   doc.text('Signature technicien:',110,y-2); if(it.signatureTech){ try{ doc.addImage(it.signatureTech,'PNG',110,y,70,22); }catch(e){ doc.rect(110,y,70,22); } } else { doc.rect(110,y,70,22); }
   y+=36;
-  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE SIGNATURE ELECTRONIQUE (eIDAS art.26 - niveau avancee - conforme RGS**):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||'')+' | Niveau: '+it.eSignature.niveau,14,y); y+=4; doc.text('Verification: https://fragmentelite.github.io/DEVISFLASH/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
+  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE SIGNATURE ELECTRONIQUE (eIDAS art.26 - niveau avancee - conforme RGS**):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||'')+' | Niveau: '+it.eSignature.niveau,14,y); y+=4; doc.text('Verification: https://devis-flash.fr/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
   doc.setFontSize(7); doc.setFont('helvetica','italic'); doc.text('Devis Flash - Conforme eIDAS art.26 (avancee), RGS**, facturation electronique 2026 - Preuve opposable - devisflash93@gmail.com',14,285);
   doc.save('Bon-Intervention-eIDAS-'+(it.client||'client').replace(/\s+/g,'-')+'-'+it.id+'.pdf'); toast('📄 Bon eIDAS conforme genere');
  }catch(e){ console.error(e); toast('Erreur PDF eIDAS'); }
@@ -2954,7 +2954,7 @@ function sendRemoteSignature(){
  // Save pending remote signature
  const pending={ id:tempId, email:email, devisId:devisId, client:client, date:date, description:document.getElementById('intDesc').value, createdAt:new Date().toISOString(), status:'En attente signature' };
  state.remoteSignatures=state.remoteSignatures||[]; state.remoteSignatures.push(pending); saveState();
- const signUrl=`https://fragmentelite.github.io/DEVISFLASH/?sign=${tempId}#signature`;
+ const signUrl=`https://devis-flash.fr/?sign=${tempId}#signature`;
  const linkDiv=document.getElementById('intRemoteLink');
  linkDiv.style.display='block';
  linkDiv.innerHTML=`✅ Lien généré: <a href="${signUrl}" target="_blank" style="color:#2563EB;word-break:break-all">${signUrl}</a><br><div style="margin-top:6px;display:flex;gap:6px"><button class="btn btn-secondary btn-sm" onclick="copyRemoteLink('${signUrl}')">📋 Copier lien</button><button class="btn btn-secondary btn-sm" onclick="sendRemoteEmail('${tempId}')">📧 Ouvrir email</button><button class="btn btn-secondary btn-sm" onclick="sendRemoteWhatsApp('${tempId}')">💬 WhatsApp</button></div><div style="margin-top:6px;font-size:10px;color:#059669">Le client clique, signe avec son doigt sur son téléphone, vous recevez la preuve eIDAS automatiquement.</div>`;
@@ -2965,12 +2965,12 @@ function sendRemoteSignature(){
 function copyRemoteLink(url){ navigator.clipboard.writeText(url).then(()=>toast('📋 Lien copié')); }
 function sendRemoteEmail(tempId){
  const p=(state.remoteSignatures||[]).find(x=>x.id===tempId); if(!p) return;
- const url=`https://fragmentelite.github.io/DEVISFLASH/?sign=${tempId}#signature`;
+ const url=`https://devis-flash.fr/?sign=${tempId}#signature`;
  window.open(`mailto:${p.email}?subject=${encodeURIComponent('Signature requise - Bon intervention')}&body=${encodeURIComponent('Bonjour '+p.client+',\n\nMerci de signer votre bon d\'intervention:\n'+url+'\n\nÀ signer électroniquement (conforme eIDAS).\n\nDevis Flash')}`,'_blank');
 }
 function sendRemoteWhatsApp(tempId){
  const p=(state.remoteSignatures||[]).find(x=>x.id===tempId); if(!p) return;
- const url=`https://fragmentelite.github.io/DEVISFLASH/?sign=${tempId}#signature`;
+ const url=`https://devis-flash.fr/?sign=${tempId}#signature`;
  window.open(`https://wa.me/?text=${encodeURIComponent('Bonjour '+p.client+', veuillez signer votre bon d\'intervention ici: '+url+' - Signature eIDAS conforme')}`,'_blank');
 }
 
@@ -3073,10 +3073,10 @@ generateBonIntervention = async function(id){
   if(it.signature){ try{ doc.addImage(it.signature,'PNG',14,y,70,28); }catch(e){ doc.rect(14,y,70,28); } } else { doc.rect(14,y,70,28); }
   doc.text('Signature technicien:',110,y-2); if(it.signatureTech){ try{ doc.addImage(it.signatureTech,'PNG',110,y,70,22); }catch(e){ doc.rect(110,y,70,22); } } else { doc.rect(110,y,70,22); }
   y+=36;
-  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE eIDAS (comme DocuSign/Tolteck):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||''),14,y); y+=4; doc.text('Verify: https://fragmentelite.github.io/DEVISFLASH/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
+  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE eIDAS (comme DocuSign/Tolteck):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||''),14,y); y+=4; doc.text('Verify: https://devis-flash.fr/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
   // QR Code vérification authenticité
   try{
-   const verifyUrl='https://fragmentelite.github.io/DEVISFLASH/?verify='+(it.eSignature?.preuve?.hash||it.id);
+   const verifyUrl='https://devis-flash.fr/?verify='+(it.eSignature?.preuve?.hash||it.id);
    const qrCanvas=document.createElement('canvas');
    await new Promise(res=>{
     QRCode.toCanvas(qrCanvas, verifyUrl, {width:120, margin:1}, (err)=>{ res(); });
@@ -3214,7 +3214,7 @@ function autoSendRemoteSignature(interventionId){
  const tempId='TMP-'+Date.now().toString(36).toUpperCase();
  const pending={ id:tempId, interventionId:interventionId, email:email, client:it.client, date:it.date, description:it.description, createdAt:new Date().toISOString(), status:'En attente signature auto', autoSent:true };
  state.remoteSignatures=state.remoteSignatures||[]; state.remoteSignatures.push(pending); saveState();
- const signUrl=`https://fragmentelite.github.io/DEVISFLASH/?sign=${tempId}#signature`;
+ const signUrl=`https://devis-flash.fr/?sign=${tempId}#signature`;
  autoLog(`📧 Lien signature auto envoyé à ${email} - ${signUrl.slice(0,40)}...`);
  // Open mailto automatically if auto mode
  if(isAutoEnabled('autoSignature')){
@@ -3301,7 +3301,7 @@ const _origAutoSendWA2 = autoSendRemoteSignature;
 autoSendRemoteSignature = function(interventionId){
  _origAutoSendWA2(interventionId);
  const pending=(state.remoteSignatures||[]).slice(-1)[0]; if(!pending) return;
- const signUrl=`https://fragmentelite.github.io/DEVISFLASH/?sign=${pending.id}#signature`;
+ const signUrl=`https://devis-flash.fr/?sign=${pending.id}#signature`;
  setTimeout(()=>{ autoSendWhatsApp(interventionId, signUrl); },900);
 };
 </script>
@@ -3375,11 +3375,22 @@ function applySubscriptionUI(){
 setTimeout(applySubscriptionUI, 500);
 setInterval(applySubscriptionUI, 2000);
 window.getMerciUrl = function(plan, period){
- return `https://fragmentelite.github.io/DEVISFLASH/merci.html?plan=${plan}&period=${period}&txn=SUMUP-${Date.now()}`;
+ return `https://devis-flash.fr/merci.html?plan=${plan}&period=${period}&txn=SUMUP-${Date.now()}`;
 };
 // Suppression overlay abonnement requis
 const oldOverlay=document.getElementById('subRequiredOverlay'); if(oldOverlay) oldOverlay.remove();
 </script>
+
+
+<footer style="background:#0F172A;color:#94A3B8;padding:40px 20px;text-align:center;margin-top:80px;font-family:Inter,sans-serif">
+  <div style="max-width:900px;margin:0 auto">
+    <p style="color:#fff;font-weight:700;margin-bottom:12px">Devis Flash - SIRET 10484045900010</p>
+    <p style="font-size:13px;line-height:1.6">Édité par votre entreprise digitale - SIRET 10484045900010 - Hébergement GitHub Pages + Cloudflare - Domaine devis-flash.fr<br>
+    Logiciel conforme facturation électronique 2026 - TVA 10%/20%/293B - eIDAS<br>
+    <a href="/mentions-legales.html" style="color:#60A5FA">Mentions légales</a> · <a href="/cgv.html" style="color:#60A5FA">CGV</a> · <a href="/confidentialite.html" style="color:#60A5FA">Confidentialité</a> · <a href="mailto:devisflash93@gmail.com" style="color:#60A5FA">Contact</a></p>
+    <p style="font-size:11px;margin-top:12px;opacity:0.6">© 2026 Devis Flash - Tous droits réservés - SIRET 10484045900010</p>
+  </div>
+</footer>
 
 </body>
 </html>
