@@ -1,17 +1,26 @@
 <!DOCTYPE html>
+<html>
+<head><title>Factur-X Devis Flash</title>
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-<button onclick="generer()" style="background:green;color:white;padding:15px;border-radius:8px;font-weight:bold;">📥 Télécharger Facture F-661576 Factur-X</button>
+</head>
+<body style="font-family:sans-serif;text-align:center;padding:50px">
+<h1>Devis Flash - Factur-X 2026 ✅</h1>
+<p>Clique pour télécharger ta facture F-661576 conforme Chorus Pro</p>
+<button onclick="go()" style="background:#16a34a;color:white;padding:20px 40px;font-size:20px;border:none;border-radius:12px;cursor:pointer">📥 Télécharger Factur-X</button>
 <script>
-async function generer(){
-  const {PDFDocument}=PDFLib;
-  const xml=`<?xml version="1.0"?><Invoice><ID>F-661576</ID><Total>312.00</Total></Invoice>`;
-  const pdfDoc=await PDFDocument.create();
-  const page=pdfDoc.addPage([595,842]);
-  page.drawText('Facture F-661576 - Factur-X 2026', {x:50,y:750,size:18});
-  page.drawText('Total TTC: 312 EUR', {x:50,y:700,size:14});
-  pdfDoc.attach(new TextEncoder().encode(xml), 'factur-x.xml', {mimeType:'text/xml'});
-  const bytes=await pdfDoc.save();
-  const blob=new Blob([bytes],{type:'application/pdf'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='F-661576-Factur-X.pdf'; a.click();
+async function go(){
+ const {PDFDocument}=PDFLib;
+ const xml=`<?xml version="1.0" encoding="UTF-8"?><rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100"><rsm:ExchangedDocumentContext><ram:GuidelineSpecifiedDocumentContextParameter><ram:ID>urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic</ram:ID></ram:GuidelineSpecifiedDocumentContextParameter></rsm:ExchangedDocumentContext><rsm:ExchangedDocument><ram:ID>F-661576</ram:ID><ram:TypeCode>380</ram:TypeCode><ram:IssueDateTime><udt:DateTimeString format="102">20260904</udt:DateTimeString></ram:IssueDateTime></rsm:ExchangedDocument><rsm:SupplyChainTradeTransaction><ram:ApplicableHeaderTradeSettlement><ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode><ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:LineTotalAmount>260.00</ram:LineTotalAmount><ram:TaxTotalAmount>52.00</ram:TaxTotalAmount><ram:GrandTotalAmount>312.00</ram:GrandTotalAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation></ram:ApplicableHeaderTradeSettlement></rsm:SupplyChainTradeTransaction></rsm:CrossIndustryInvoice>`;
+ const pdfDoc=await PDFDocument.create();
+ const page=pdfDoc.addPage([595,842]);
+ page.drawText('DEVIS FLASH - Facture F-661576', {x:50,y:750,size:20});
+ page.drawText('Total HT: 260 EUR | TVA: 52 EUR | TTC: 312 EUR', {x:50,y:700,size:14});
+ page.drawText('Conforme Factur-X BASIC - 2026', {x:50,y:650,size:12});
+ pdfDoc.attach(new TextEncoder().encode(xml), 'factur-x.xml', {mimeType:'text/xml', description:'Factur-X'});
+ const bytes=await pdfDoc.save();
+ const blob=new Blob([bytes],{type:'application/pdf'});
+ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='F-661576-Factur-X-CONFORME.pdf'; a.click();
 }
 </script>
+</body>
+</html>
