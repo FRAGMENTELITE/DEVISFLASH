@@ -1,26 +1,66 @@
 <!DOCTYPE html>
-<html>
-<head><title>Factur-X Devis Flash</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devis Flash - Factur-X Bouton Vert</title>
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<style>
+*{font-family:Inter,system-ui,sans-serif}
+body{max-width:440px;margin:0 auto;padding:24px;background:#fafafa}
+.card{background:white;border:1px solid #e5e5e5;border-radius:22px;padding:28px;box-shadow:0 20px 60px -24px rgba(0,0,0,.12)}
+input{width:100%;border:1px solid #e5e5e5;background:#fafaf9;border-radius:12px;padding:12px 14px;font-size:14px;font-weight:500;box-sizing:border-box}
+label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#71717a;display:block;margin-bottom:6px;margin-top:16px}
+#btn-facturx{width:100%;background:#16a34a;color:white;padding:16px;border-radius:14px;font-weight:700;font-size:13.5px;border:none;cursor:pointer;margin-top:24px;box-shadow:0 8px 20px -8px rgba(22,163,74,.6)}
+#btn-facturx:active{transform:scale(.98)}
+</style>
 </head>
-<body style="font-family:sans-serif;text-align:center;padding:50px">
-<h1>Devis Flash - Factur-X 2026 ✅</h1>
-<p>Clique pour télécharger ta facture F-661576 conforme Chorus Pro</p>
-<button onclick="go()" style="background:#16a34a;color:white;padding:20px 40px;font-size:20px;border:none;border-radius:12px;cursor:pointer">📥 Télécharger Factur-X</button>
+<body>
+<div class="card">
+<h1 style="font-size:22px;margin:0">Facture conforme 2026</h1>
+<p style="font-size:12.5px;color:#71717a">3 champs. 1 bouton vert. PDF avec <b>factur-x.xml</b> intégré.</p>
+
+<label>Nom client</label>
+<input id="client" value="Dupont BTP" placeholder="Entreprise Dupont">
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div><label>Numéro facture</label><input id="numero" value="F-661576"></div>
+<div><label>Total HT (€)</label><input id="ht" value="260" inputmode="decimal"></div>
+</div>
+
+<div style="margin-top:16px;background:#fafafa;border:1px solid #f4f4f5;border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;font-size:12px">
+<span style="color:#71717a">TVA 20% • TTC</span><span id="calc" style="font-weight:600">52.00 € • 312.00 €</span>
+</div>
+
+<button id="btn-facturx">📄 PDF FACTUR-X (Bouton Vert Conforme 2026)</button>
+<p style="text-align:center;font-size:11px;color:#a1a1aa;margin-top:12px">Un seul clic = PDF + factur-x.xml intégré • Profil BASIC</p>
+<div id="ok" style="display:none;margin-top:16px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:12px 14px;font-size:13px;color:#14532d"></div>
+</div>
+
 <script>
-async function go(){
+const htInput=document.getElementById('ht'),calc=document.getElementById('calc');
+function update(){const ht=parseFloat(htInput.value)||0;const tva=ht*0.2;const ttc=ht*1.2;calc.textContent=`${tva.toFixed(2)} € • ${ttc.toFixed(2)} €`}
+htInput.addEventListener('input',update);update();
+
+document.getElementById('btn-facturx').onclick=async()=>{
+ const client=document.getElementById('client').value||'Client';
+ const numero=document.getElementById('numero').value||'F-661576';
+ const ht=parseFloat(document.getElementById('ht').value)||260;
+ const tva=ht*0.2; const ttc=ht*1.2;
+ const xml=`<?xml version="1.0" encoding="UTF-8"?><rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100"><rsm:ExchangedDocumentContext><ram:GuidelineSpecifiedDocumentContextParameter><ram:ID>urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic</ram:ID></ram:GuidelineSpecifiedDocumentContextParameter></rsm:ExchangedDocumentContext><rsm:ExchangedDocument><ram:ID>${numero}</ram:ID><ram:TypeCode>380</ram:TypeCode><ram:IssueDateTime><udt:DateTimeString format="102">20260904</udt:DateTimeString></ram:IssueDateTime></rsm:ExchangedDocument><rsm:SupplyChainTradeTransaction><ram:ApplicableHeaderTradeAgreement><ram:BuyerTradeParty><ram:Name>${client}</ram:Name></ram:BuyerTradeParty></ram:ApplicableHeaderTradeAgreement><ram:ApplicableHeaderTradeSettlement><ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode><ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:LineTotalAmount>${ht.toFixed(2)}</ram:LineTotalAmount><ram:TaxTotalAmount currencyID="EUR">${tva.toFixed(2)}</ram:TaxTotalAmount><ram:GrandTotalAmount>${ttc.toFixed(2)}</ram:GrandTotalAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation></ram:ApplicableHeaderTradeSettlement></rsm:SupplyChainTradeTransaction></rsm:CrossIndustryInvoice>`;
  const {PDFDocument}=PDFLib;
- const xml=`<?xml version="1.0" encoding="UTF-8"?><rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100"><rsm:ExchangedDocumentContext><ram:GuidelineSpecifiedDocumentContextParameter><ram:ID>urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic</ram:ID></ram:GuidelineSpecifiedDocumentContextParameter></rsm:ExchangedDocumentContext><rsm:ExchangedDocument><ram:ID>F-661576</ram:ID><ram:TypeCode>380</ram:TypeCode><ram:IssueDateTime><udt:DateTimeString format="102">20260904</udt:DateTimeString></ram:IssueDateTime></rsm:ExchangedDocument><rsm:SupplyChainTradeTransaction><ram:ApplicableHeaderTradeSettlement><ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode><ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:LineTotalAmount>260.00</ram:LineTotalAmount><ram:TaxTotalAmount>52.00</ram:TaxTotalAmount><ram:GrandTotalAmount>312.00</ram:GrandTotalAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation></ram:ApplicableHeaderTradeSettlement></rsm:SupplyChainTradeTransaction></rsm:CrossIndustryInvoice>`;
  const pdfDoc=await PDFDocument.create();
  const page=pdfDoc.addPage([595,842]);
- page.drawText('DEVIS FLASH - Facture F-661576', {x:50,y:750,size:20});
- page.drawText('Total HT: 260 EUR | TVA: 52 EUR | TTC: 312 EUR', {x:50,y:700,size:14});
- page.drawText('Conforme Factur-X BASIC - 2026', {x:50,y:650,size:12});
- pdfDoc.attach(new TextEncoder().encode(xml), 'factur-x.xml', {mimeType:'text/xml', description:'Factur-X'});
+ page.drawText(`DEVIS FLASH - Facture ${numero}`,{x:50,y:750,size:18});
+ page.drawText(`Client: ${client}`,{x:50,y:720,size:12});
+ page.drawText(`HT: ${ht.toFixed(2)} EUR | TVA 20%: ${tva.toFixed(2)} | TTC: ${ttc.toFixed(2)} EUR`,{x:50,y:700,size:12});
+ page.drawText(`Factur-X BASIC - Conforme 2026 - Chorus Pro`,{x:50,y:660,size:10});
+ pdfDoc.attach(new TextEncoder().encode(xml),'factur-x.xml',{mimeType:'text/xml',description:'Factur-X'});
  const bytes=await pdfDoc.save();
  const blob=new Blob([bytes],{type:'application/pdf'});
- const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='F-661576-Factur-X-CONFORME.pdf'; a.click();
-}
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${numero}-Factur-X.pdf`;a.click();
+ const ok=document.getElementById('ok');ok.style.display='block';ok.textContent=`✅ ${numero}-Factur-X.pdf téléchargé - ${bytes.length} octets - XML BASIC intégré`;
+};
 </script>
 </body>
 </html>
