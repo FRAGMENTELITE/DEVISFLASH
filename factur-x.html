@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<button onclick="generer()" style="background:green;color:white;padding:15px;border-radius:8px;font-weight:bold;">📥 Télécharger Facture F-661576 Factur-X</button>
+<script>
+async function generer(){
+  const {PDFDocument}=PDFLib;
+  const xml=`<?xml version="1.0"?><Invoice><ID>F-661576</ID><Total>312.00</Total></Invoice>`;
+  const pdfDoc=await PDFDocument.create();
+  const page=pdfDoc.addPage([595,842]);
+  page.drawText('Facture F-661576 - Factur-X 2026', {x:50,y:750,size:18});
+  page.drawText('Total TTC: 312 EUR', {x:50,y:700,size:14});
+  pdfDoc.attach(new TextEncoder().encode(xml), 'factur-x.xml', {mimeType:'text/xml'});
+  const bytes=await pdfDoc.save();
+  const blob=new Blob([bytes],{type:'application/pdf'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='F-661576-Factur-X.pdf'; a.click();
+}
+</script>
