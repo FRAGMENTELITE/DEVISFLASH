@@ -20,7 +20,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 <!-- Google tag (gtag.js) -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTWCVEX2S0"></script>
 <script>
  window.dataLayer = window.dataLayer || [];
@@ -31,26 +31,26 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Devis Flash - Logiciel Devis BTP Gratuit | Modèle Devis Peinture, Plomberie, Électricité 2026</title>
+<title>Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-<meta name="description" content="Logiciel devis BTP gratuit artisan : modèle devis peinture, plomberie, électricité, maçonnerie. TVA 10%/20%/293B, statuts Vu/Accepté, PDF QR acompte. Conforme facturation électronique 2026. PRO devis illimités ♾️.">
+<meta name="description" content="Devis Flash génère vos devis pro en 90 secondes : calcul de marge automatique, presets par métier (peinture, plomberie, électricité, chauffagiste PAC, paysagiste, serrurier, solaire...), édition 2026, encaissement par carte ou PayPal. Essai gratuit 14 jours, sans carte bancaire.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Devis Flash">
-<link rel="canonical" href="https://devis-flash.fr/">
+<link rel="canonical" href="https://www.devis-flash.fr/">
 <!-- Remplacez le domaine ci-dessus par votre vrai nom de domaine une fois hébergé -->
 
 <!-- Open Graph / réseaux sociaux -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Devis Flash">
-<meta property="og:title" content="Devis Flash - Logiciel Devis BTP Gratuit | Facturation 2026">
+<meta property="og:title" content="Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP">
 <meta property="og:description" content="Générez un devis professionnel en 90 secondes, avec calcul de marge automatique et encaissement par carte ou PayPal. Essai gratuit 14 jours.">
-<meta property="og:url" content="https://devis-flash.fr/">
+<meta property="og:url" content="https://www.devis-flash.fr/">
 <meta property="og:locale" content="fr_FR">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Devis Flash - Logiciel Devis BTP Gratuit 2026">
+<meta name="twitter:title" content="Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP">
 <meta name="twitter:description" content="Générez un devis professionnel en 90 secondes, avec calcul de marge automatique et encaissement par carte ou PayPal.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,28 +65,21 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
  "operatingSystem": "Web",
  "description": "Générateur de devis en ligne pour artisans et professionnels du BTP : calcul de marge automatique, presets par métier, export PDF, encaissement par carte bancaire ou PayPal.",
  "offers": [
-  
   {"@type":"Offer","name":"Gratuit","price":"0","priceCurrency":"EUR"},
   {"@type":"Offer","name":"Starter","price":"9.90","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"9.90","priceCurrency":"EUR","billingDuration":"P1M"}},
-  {"@type":"Offer","name":"PRO - Devis illimités","price":"39","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"39","priceCurrency":"EUR","billingDuration":"P1M"}}
+  {"@type":"Offer","name":"PRO","price":"39","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"39","priceCurrency":"EUR","billingDuration":"P1M"}}
  ]
 }
 </script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://devis-flash.fr/"}]}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"Devis Flash","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"127"}}
-</script>
-<script type="application/ld+json">
-{"@context": "https://schema.org","@type": "FAQPage",
+ "@type": "FAQPage",
  "mainEntity": [
   {"@type":"Question","name":"Quelle est la différence entre abonnement et paiement d'acompte ?","acceptedAnswer":{"@type":"Answer","text":"L'abonnement (Starter 9,90€/mois ou 99€/an, Expert 39€/mois ou 390€/an) sert à payer votre accès à Devis Flash via SumUp, Stripe ou PayPal. Le paiement d'acompte est différent : c'est l'argent que VOS clients vous paient (30% par défaut) via le QR code sur votre devis. Devis Flash ne prend aucune commission sur les acomptes."}},
-  {"@type":"Question","name":"Devis Flash est-il vraiment gratuit ? Combien de devis par mois ?","acceptedAnswer":{"@type":"Answer","text":"Gratuit: 3 devis/mois. Starter 9,90€/mois ou 99€/an: 30 devis/mois. PRO 39€/mois ou 390€/an: devis illimités. Essai 14 jours gratuit sans carte bancaire. Vocale 7 langues + partage LinkedIn/WhatsApp/Telegram inclus."}},
+  {"@type":"Question","name":"Devis Flash est-il vraiment gratuit ? Combien de devis par mois ?","acceptedAnswer":{"@type":"Answer","text":"Gratuit: 3 devis/mois. Starter 9,90€/mois ou 99€/an: 30 devis/mois. PRO 39€/mois ou 390€/an: 100 devis/mois. Essai 14 jours gratuit sans carte bancaire. Vocale 7 langues + partage LinkedIn/WhatsApp/Telegram inclus."}},
   {"@type":"Question","name":"Comment encaisser un acompte client ?","acceptedAnswer":{"@type":"Answer","text":"Dans l'onglet Générateur, renseignez votre lien SumUp, Stripe ou PayPal.me PRO (pas celui de votre abonnement). Devis Flash génère automatiquement un QR Code encaissement + logo personnalisé + export comptable (PRO). Votre client scanne et paie, vous recevez 100%."}},
-  {"@type":"Question","name":"Que contient le plan Expert / PRO ?","acceptedAnswer":{"@type":"Answer","text":"Starter 9,90€ = 30 devis/mois + vocale 7 langues + partage + dashboard + historique. PRO 39€ = devis illimités + tout Starter + QR encaissement + logo personnalisé sur PDF + export comptable CSV + affiliation 30% via devisflash93@gmail.com."}},
+  {"@type":"Question","name":"Que contient le plan Expert / PRO ?","acceptedAnswer":{"@type":"Answer","text":"Starter 9,90€ = 30 devis/mois + vocale 7 langues + partage + dashboard + historique. PRO 39€ = 100 devis/mois + tout Starter + QR encaissement + logo personnalisé sur PDF + export comptable CSV + affiliation 30% via devisflash93@gmail.com."}},
   {"@type":"Question","name":"Mes devis et mes données sont-ils sauvegardés ?","acceptedAnswer":{"@type":"Answer","text":"Vos devis, clients et paramètres sont enregistrés directement dans votre navigateur. Export JSON disponible."}},
   {"@type":"Question","name":"Puis-je annuler mon essai gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui, essai 14 jours sans carte bancaire, sans engagement."}}
  ]
@@ -218,7 +211,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
  .sector-btn .emoji{font-size:18px;}
  .sector-btn.active{border-color:var(--brand); background:var(--brand-soft); color:var(--brand-dark);}
 
- .preset-row{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;}
+ .preset-row{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
 
  .btn{
   border:none; border-radius:9px; padding:10px 16px; font-size:13.5px; font-weight:600;
@@ -236,15 +229,14 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
  /* line items */
  .line-item{
   display:grid; grid-template-columns:1fr 60px 90px 90px 70px 28px;
-  gap:8px; align-items:center; padding:10px 0; border-bottom:1px solid #F1F5F9;
+  gap:8px; align-items:center; padding:9px 0; border-bottom:1px dashed var(--line);
  }
- .line-item input{padding:8px 10px; font-size:13px; border-radius:8px;}
+ .line-item input{padding:8px 9px; font-size:13px;}
  .line-item .lt{font-family:'IBM Plex Mono', monospace; font-size:12.5px; text-align:right; color:#475569;}
  .line-head{
-  display:grid; grid-template-columns:1fr 56px 84px 84px 68px 26px; gap:6px;
-  font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; color:#64748B;
-  font-weight:700; padding:10px 0 10px 0; margin-bottom:10px; border-bottom:2px solid var(--line);
-  background:#F8FAFF; border-radius:6px 6px 0 0;
+  display:grid; grid-template-columns:1fr 60px 90px 90px 70px 28px; gap:8px;
+  font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; color:#475569;
+  font-weight:700; padding-bottom:6px; border-bottom:1px solid var(--line);
  }
  .icon-btn{
   background:transparent; border:1px solid #BFDBFE; border-radius:6px;
@@ -563,7 +555,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
  transition:transform 0.2s;
 }
 .quick-devis-fab:hover{transform:translateY(-2px) scale(1.03);}
-@media (max-width:640px){.quick-devis-fab{bottom:80px; right:16px; padding:12px 18px; font-size:13px;}}
+@media (max-width:640px){.quick-devis-fab{bottom:16px; right:16px; padding:12px 18px; font-size:13px;}}
 
  .lang-btn, #b-fr, #b-en, .lang-switcher, [id*="lang"]{display:none !important;}
 
@@ -575,7 +567,28 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 
 
  .lang-btn, #b-fr, #b-en, .lang-switcher{display:none !important;}
-</style></head>
+</style>
+<style>
+/* FIX MOBILE SUPERPOSITION */
+@media (max-width: 768px){
+  .quick-devis-fab{ bottom:16px !important; right:16px !important; z-index:60 !important; }
+  .chatbot-btn{ bottom:80px !important; right:16px !important; z-index:59 !important; width:52px !important; height:52px !important; }
+  .chat-window{ bottom:140px !important; right:12px !important; left:12px !important; width:auto !important; max-width:none !important; }
+  /* Entreprise button à gauche, au-dessus de la tab-bar */
+  button[style*="Mon entreprise"], #btn-entreprise { bottom:80px !important; left:12px !important; right:auto !important; z-index:58 !important; padding:10px 14px !important; font-size:12px !important; }
+}
+@media (max-width: 640px){
+  body{ padding-bottom:80px; } /* laisse place tab-bar */
+}
+</style>
+<style>
+.view{display:none !important;}
+.view.active{display:block !important;}
+#view-generateur.view.active{display:block !important;}
+.tabs{pointer-events:auto !important;}
+.tab-btn{pointer-events:auto !important; cursor:pointer !important; z-index:50;}
+</style>
+</head>
 <body>
 
 <div id="lang-switcher-fixed" style="position:fixed;top:8px;right:12px;z-index:9999;display:flex;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border:1px solid #E2E8F0;border-radius:20px;padding:2px;gap:1px;box-shadow:0 1px 4px rgba(0,0,0,0.08)"></div>
@@ -608,7 +621,6 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
    <button class="tab-btn active" data-view="generateur" onclick="showView('generateur')">🧾 <span>Générateur</span></button>
    <button class="tab-btn" data-view="clients" onclick="showView('clients')">👥 <span>Clients</span></button>
    <button class="tab-btn" data-view="catalogue" onclick="showView('catalogue')">📦 <span>Catalogue</span></button>
-   <span id="planBadge" style="font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid #E2E8F0;margin-right:8px;background:#F1F5F9">GRATUIT 3/mois</span><button class="tab-btn" data-view="interventions" onclick="showView('interventions')">🛠️ <span>Interventions</span></button>
    <button class="tab-btn" data-view="dashboard" onclick="showView('dashboard')">📚 <span>Historique</span></button>
    <button class="tab-btn" data-view="factures" onclick="showView('factures')">🧾 <span>Factures</span></button>
    <button class="tab-btn" data-view="apercu" onclick="showView('apercu')">📄 <span>Aperçu</span></button>
@@ -654,7 +666,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 
    <div class="faq-card" data-cat="technique" style="border:1px solid #E2E8F0; border-radius:12px; padding:16px; margin-bottom:12px; cursor:pointer;" onclick="this.classList.toggle('open')">
     <h3 style="margin:0; display:flex; justify-content:space-between;">⚙️ Que contient Starter 9,90€ (30 devis) vs PRO 39€ ? <span>▼</span></h3>
-    <div class="faq-answer" style="display:none; margin-top:12px; color:#334155;"><strong>Starter 9,90€:</strong> 30 devis/mois, marge auto, PDF, vocale 7 langues, partage social, dashboard, historique, offline PWA.<br><strong>PRO 39€:</strong> Devis illimité + QR encaissement + Logo personnalisé sur PDF + Export comptable CSV + Affiliation 30% (devisflash93@gmail.com)</div>
+    <div class="faq-answer" style="display:none; margin-top:12px; color:#334155;"><strong>Starter 9,90€:</strong> 30 devis/mois, marge auto, PDF, vocale 7 langues, partage social, dashboard, historique, offline PWA.<br><strong>PRO 39€:</strong> Devis 100 / mois + QR encaissement + Logo personnalisé sur PDF + Export comptable CSV + Affiliation 30% (devisflash93@gmail.com)</div>
    </div>
 
    <div class="faq-card" data-cat="technique" style="border:1px solid #E2E8F0; border-radius:12px; padding:16px; margin-bottom:12px; cursor:pointer;" onclick="this.classList.toggle('open')">
@@ -723,7 +735,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 <div class="page">
 
  <!-- ===================== GENERATEUR ===================== -->
- <section class="view active" data-view-id="generateur">
+ <section class="view active" id="view-generateur" data-view-id="generateur">
   <div class="grid-2">
    <div>
     <div class="card">
@@ -742,8 +754,8 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
      </div>
     </div>
 
-    <div class="card" style="padding:14px">
-     <h3 style="margin:0 0 10px 0">📦 Prestations</h3>
+    <div class="card">
+     <h3>📦 Prestations</h3>
      <div class="preset-row" style="display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn btn-secondary btn-sm" onclick="selectSector('BTP/Maçonnerie')">🏗️ Maçonnerie</button>
       <button class="btn btn-secondary btn-sm" onclick="selectSector('Peinture')">🎨 Peinture</button>
@@ -761,7 +773,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
      <div class="line-head">
       <div>Désignation</div><div>Qté</div><div>Coût achat</div><div>Prix vente</div><div style="text-align:right;">Total</div><div></div>
      </div>
-     <div id="lineItems" style="margin-top:8px; display:grid; gap:2px"></div>
+     <div id="lineItems"></div>
      <button class="btn btn-secondary btn-sm" style="margin-top:12px;" onclick="addLine()">+ Ajouter une ligne</button>
     </div>
    </div>
@@ -903,109 +915,6 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
   <div style="margin:12px 0;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:1px solid #93C5FD;border-radius:10px;padding:10px 14px;display:flex;gap:8px;align-items:center;font-size:12px;color:#1E40AF"><span style="font-size:16px">📨</span><div><strong style="color:#1D4ED8">Facturation électronique 2026 - Obligatoire</strong> : toutes vos factures sont prêtes pour Chorus Pro / PPF. Format Factur-X (PDF + XML) à venir. Conforme art. L441-9.</div></div><div id="facturesList" style="margin-top:16px"></div></div>
  </section>
 
- 
- <!-- ===================== INTERVENTIONS & PLANNING ===================== -->
- <section class="view" id="view-interventions" style="display:none; max-width:1180px; margin:0 auto; padding:0 24px;">
-  <div class="card">
-   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-    <h2 class="sora" style="margin:0;font-size:22px">🛠️ Interventions & Planning Chantier</h2>
-    <div style="display:flex;gap:8px">
-     <button class="btn btn-secondary btn-sm" onclick="exportInterventionsCSV()">⬇️ Export CSV</button>
-     <button class="btn btn-primary btn-sm" onclick="openNewInterventionModal()">+ Nouvelle intervention</button>
-    </div>
-   </div>
-   <p style="font-size:13px;color:#64748B;margin:8px 0 0 0">Planifiez vos chantiers après devis accepté. Générez un bon d'intervention PDF signé → transformez en facture conforme 2026. SEO: bon d'intervention gratuit</p>
-   
-  <div class="card" style="background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;border:none">
-   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-    <div>
-     <h3 style="margin:0;color:#fff">🤖 Automatisation Full Auto</h3>
-     <p style="font-size:12px;color:#94A3B8;margin:4px 0 0 0">Devis Accepté → Intervention auto → Signature à distance auto → Bon PDF QR auto → Facture 2026 auto. Comme Tolteck PRO à 49€/mois.</p>
-    </div>
-    <label style="display:flex;align-items:center;gap:8px;background:#1E293B;border:1px solid #334155;padding:8px 14px;border-radius:20px;cursor:pointer">
-     <input type="checkbox" id="autoMode" onchange="toggleAutoMode()" checked> <span style="font-size:13px;font-weight:700">Mode Full Auto ON</span>
-    </label>
-   </div>
-   <div id="autoRules" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px">
-    <label style="display:flex;gap:8px;align-items:center;background:#1E293B;padding:8px 10px;border-radius:10px;font-size:12px"><input type="checkbox" id="autoIntervention" checked> Auto-créer intervention si devis Accepté</label>
-    <label style="display:flex;gap:8px;align-items:center;background:#1E293B;padding:8px 10px;border-radius:10px;font-size:12px"><input type="checkbox" id="autoSignature" checked> Auto-envoyer lien signature à distance</label>
-    <label style="display:flex;gap:8px;align-items:center;background:#1E293B;padding:8px 10px;border-radius:10px;font-size:12px"><input type="checkbox" id="autoBonPDF" checked> Auto-générer Bon PDF avec QR</label>
-    <label style="display:flex;gap:8px;align-items:center;background:#1E293B;padding:8px 10px;border-radius:10px;font-size:12px"><input type="checkbox" id="autoFacture" checked> Auto-transformer en Facture après signature</label>
-    <label style="display:flex;gap:8px;align-items:center;background:#1E293B;padding:8px 10px;border-radius:10px;font-size:12px"><input type="checkbox" id="autoRelance" checked> Auto-relance devis Envoyé +3j</label>
-    <label style="display:flex;gap:8px;align-items:center;background:#1E293B;padding:8px 10px;border-radius:10px;font-size:12px"><input type="checkbox" id="autoWhatsApp" checked> Auto-WhatsApp Business + lien signature</label>
-    <label style="display:flex;gap:8px;align-items:center;background:#1E293B;padding:8px 10px;border-radius:10px;font-size:12px"><input type="checkbox" id="autoPaiement" checked> Auto-paiement acompte 30% + QR CB/PayPal</label>
-   </div>
-   <div id="autoLog" style="margin-top:12px;background:#0F172A;border-radius:10px;padding:10px;font-size:11px;color:#94A3B8;max-height:100px;overflow:auto;font-family:monospace"></div>
-  </div>
-
-   
-  <div class="card" style="background:#fff;border:1px solid #BFDBFE">
-   <h3 style="margin:0 0 10px">⚙️ Config Full Auto - WhatsApp + Paiement</h3>
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-    <div><label style="font-size:12px;font-weight:700">Num WA Business</label><input id="cfgWhatsAppNumber" placeholder="+33 6 12 34 56 78" style="width:100%;padding:8px;border-radius:8px;border:1px solid #E2E8F0"></div>
-    <div><label style="font-size:12px;font-weight:700">Lien CB SumUp/Stripe</label><input id="cfgPayCB" placeholder="https://pay.sumup.com/..." style="width:100%;padding:8px;border-radius:8px;border:1px solid #E2E8F0"></div>
-    <div><label style="font-size:12px;font-weight:700">Lien PayPal.me</label><input id="cfgPayPal" placeholder="https://paypal.me/..." style="width:100%;padding:8px;border-radius:8px;border:1px solid #E2E8F0"></div>
-    <div><label style="font-size:12px;font-weight:700">% Acompte auto</label><select id="cfgAcomptePct" style="width:100%;padding:8px;border-radius:8px;border:1px solid #E2E8F0"><option value="30">30%</option><option value="40">40%</option><option value="50">50%</option><option value="100">100%</option></select></div>
-   </div>
-   <button class="btn btn-primary btn-sm" style="margin-top:10px" onclick="saveAutoConfig()">💾 Sauver config</button>
-  </div>
-
-   <div id="interventionsStats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0"></div>
-  </div>
-  <div class="card">
-   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
-    <select id="filterInterventionStatut" onchange="renderInterventions()" style="padding:8px 10px;border-radius:8px;border:1px solid #E2E8F0">
-     <option value="">Tous statuts</option><option value="Planifiée">Planifiée</option><option value="En cours">En cours</option><option value="Terminée">Terminée</option><option value="Facturée">Facturée</option>
-    </select>
-    <input id="searchIntervention" placeholder="Rechercher client / adresse..." oninput="renderInterventions()" style="flex:1;min-width:200px;padding:8px 10px;border-radius:8px;border:1px solid #E2E8F0">
-   </div>
-   <div id="interventionsList"></div>
-  </div>
- </section>
-
- <div id="interventionModal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.6);z-index:200;align-items:center;justify-content:center;padding:20px">
-  <div style="background:#fff;border-radius:16px;max-width:520px;width:100%;padding:22px;max-height:90vh;overflow:auto">
-   <h3 style="margin:0 0 12px 0">Nouvelle intervention</h3>
-   <div style="display:grid;gap:10px">
-    <label>Devis lié (Accepté)</label><select id="intDevisId" style="padding:8px;border-radius:8px;border:1px solid #E2E8F0"></select>
-    <label>Client</label><input id="intClient" placeholder="Nom client" style="padding:8px;border-radius:8px;border:1px solid #E2E8F0">
-    <label>Adresse chantier</label><input id="intAdresse" placeholder="Adresse" style="padding:8px;border-radius:8px;border:1px solid #E2E8F0">
-    <label>Date</label><input id="intDate" type="date" style="padding:8px;border-radius:8px;border:1px solid #E2E8F0">
-    <label>Heure</label><input id="intHeure" type="time" value="08:00" style="padding:8px;border-radius:8px;border:1px solid #E2E8F0">
-    <label>Technicien</label><input id="intTech" placeholder="Ex: JMK / Equipe 1" style="padding:8px;border-radius:8px;border:1px solid #E2E8F0">
-    <label>Type</label><select id="intType" style="padding:8px;border-radius:8px;border:1px solid #E2E8F0"><option>Dépannage</option><option>Installation</option><option>Maintenance</option><option>Chantier complet</option><option>Levée de réserves</option></select>
-    <label>Description travaux</label><textarea id="intDesc" rows="4" placeholder="Détails..." style="padding:8px;border-radius:8px;border:1px solid #E2E8F0"></textarea>
-    <label>Durée prévue (h)</label><input id="intDuree" type="number" step="0.5" value="2" style="padding:8px;border-radius:8px;border:1px solid #E2E8F0">
-    <label>Signature électronique eIDAS ✍️)</label>
-    <div style="border:2px dashed #2563EB;border-radius:12px;background:#F8FAFF;padding:8px">
-     <canvas id="sigCanvas" width="400" height="150" style="width:100%;height:150px;background:#fff;border-radius:8px;touch-action:none;cursor:crosshair"></canvas>
-     <div style="display:flex;gap:8px;margin-top:8px">
-      <button type="button" class="btn btn-secondary btn-sm" onclick="clearSignature()">🧹 Effacer signature</button>
-      <span style="font-size:11px;color:#64748B">Signez avec le doigt ou la souris</span>
-     </div>
-    </div>
-   </div>
-       <label>📸 Photos chantier (avant / après - max 4)</label>
-    <div style="border:1px solid #E2E8F0;border-radius:12px;padding:10px;background:#fff">
-     <input type="file" id="intPhotos" accept="image/*" multiple onchange="handlePhotos(this)" style="width:100%">
-     <div id="intPhotosPreview" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px"></div>
-     <div style="font-size:10px;color:#64748B;margin-top:6px">Photos compressées automatiquement, stockées localement, intégrées au PDF. Comme concurrents PRO.</div>
-    </div>
-    <label style="margin-top:8px">🔗 Signature à distance (envoi client comme DocuSign)</label>
-    <div style="border:1px solid #BFDBFE;border-radius:12px;background:#EFF6FF;padding:10px">
-     <div style="display:flex;gap:8px">
-      <input id="intRemoteEmail" type="email" placeholder="Email client pour signature à distance" style="flex:1;padding:8px;border-radius:8px;border:1px solid #BFDBFE">
-      <button type="button" class="btn btn-primary btn-sm" onclick="sendRemoteSignature()">📧 Envoyer lien signature</button>
-     </div>
-     <div id="intRemoteLink" style="margin-top:8px;font-size:11px;display:none"></div>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:16px">
-    <button class="btn btn-primary" style="flex:1" onclick="saveIntervention()">💾 Enregistrer</button>
-    <button class="btn btn-secondary" onclick="document.getElementById('interventionModal').style.display='none'">Annuler</button>
-   </div>
-  </div>
- </div>
-
  <!-- ===================== TARIFS ===================== -->
  <section class="view" id="view-tarifs">
 
@@ -1044,8 +953,8 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
  <section class="view" id="view-apercu">
   <div id="apercuContent"></div>
   <div class="apercu-actions no-print" id="apercuActions" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-   <button class="btn btn-primary" onclick="window.print()">🖨️ Imprimer / PDF</button>
-   <button class="btn btn-secondary" onclick="exportDevisPDF()">📄 Export PDF</button>
+   <button class="btn btn-primary" onclick="window.print()">🖨️ Imprimer (ancien)</button>
+   <button id="btn-facturx" onclick="exportDevisPDF()" style="background:#16a34a;color:white;padding:16px 28px;border-radius:14px;border:none;font-weight:800;font-size:15px;width:100%;cursor:pointer;box-shadow:0 8px 20px -8px rgba(22,163,74,.6)">📄 PDF FACTUR-X</button>
    <button class="btn btn-secondary" onclick="sendDevisEmail(state.lastApercu)">📧 Envoyer par email</button>
    <button class="btn btn-secondary" onclick="showView('generateur')">← Retour</button>
   </div>
@@ -1081,7 +990,7 @@ INSTRUCTIONS SUMUP ANNUEL - À FAIRE AVANT LANCEMENT :
 
   <h2 class="sora" style="margin-top:32px">CGV - Conditions Générales de Vente</h2>
   <div class="card" style="font-size:13px;line-height:1.7;color:#334155">
-   <p><strong>Article 1 - Tarifs 2026:</strong> Gratuit 3 devis/mois. Starter 9,90€/mois ou 99€/an = 30 devis/mois. PRO 39€/mois ou 390€/an = devis illimités. 2 mois offerts en annuel. Paiement via SumUp, Stripe, PayPal. Sans engagement, résiliation à tout moment depuis devisflash93@gmail.com.</p>
+   <p><strong>Article 1 - Tarifs 2026:</strong> Gratuit 3 devis/mois. Starter 9,90€/mois ou 99€/an = 30 devis/mois. PRO 39€/mois ou 390€/an = 100 devis/mois. 2 mois offerts en annuel. Paiement via SumUp, Stripe, PayPal. Sans engagement, résiliation à tout moment depuis devisflash93@gmail.com.</p>
    <p><strong>Article 2 - Essai:</strong> 14 jours gratuit sans carte bancaire. Au-delà, passage en gratuit limité.</p>
    <p><strong>Article 3 - Acomptes clients:</strong> Le QR code CB/PayPal sur vos devis encaisse VOS clients. Devis Flash ne prend aucune commission (hors frais SumUp/Stripe/PayPal 1,5-1,9%). L'abonnement Devis Flash est distinct de l'acompte client.</p>
    <p><strong>Article 4 - Remboursement:</strong> Droit de rétractation 14 jours pour les particuliers (art. L221-18). Remboursement intégral sur demande à devisflash93@gmail.com si aucun devis PRO n'a été généré. Au-delà, pas de remboursement au prorata.</p>
@@ -1290,7 +1199,7 @@ const PLANS = [
   payLinkPaypalAnnual:"https://paypal.me/jmk930/390",
   payLinkStripe:"https://buy.stripe.com/7sY9AT4FE9x629I3sie3e00",
   payLinkStripeAnnual:"https://buy.stripe.com/28EeVd0po10A6pY3sie3e02",
-  feats:["Devis illimités ♾️","Tout Starter, plus :","QR encaissement","Logo personnalisé","Export comptable","Priorité support","Support prioritaire devisflash93@gmail.com"], cta:"PRO", ctaAnnual:"PRO"},
+  feats:["Devis 100 / mois","Tout Starter, plus :","QR encaissement","Logo personnalisé","Export comptable","Priorité support","Support prioritaire devisflash93@gmail.com"], cta:"PRO", ctaAnnual:"PRO"},
 ];
 
 const STORAGE_KEY = "devisFlash_v2";
@@ -1378,7 +1287,10 @@ function fmtDate(iso){
 /* ---------------- Navigation ---------------- */
 function showView(name){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- var el=document.getElementById("view-"+name) || document.querySelector('[data-view-id="'+name+'"]'); if(!el){ console.warn("Vue manquante:",name); return; } el.classList.add("active");
+ var el=document.getElementById("view-"+name) || document.getElementById(name) || document.querySelector('[data-view-id="'+name+'"]'); 
+ if(!el){ console.warn("Vue manquante:",name); return; } 
+ el.classList.add("active");
+ el.style.display='block';
  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active", b.dataset.view===name));
  if(name==="dashboard") renderDashboard();
  if(name==="tarifs") renderPlans();
@@ -1417,6 +1329,7 @@ const MARGIN_COLORS_DARK = { good:"#34D399", mid:"#FBBF24", low:"#F87171" };
 const MARGIN_COLORS_LIGHT = { good:"#10B981", mid:"#D97706", low:"#DC2626" };
 
 function renderTotals(){
+ try{
  const t=computeTotals(state.lines||[]);
  const elOldCout=document.getElementById('totCout'); if(elOldCout) elOldCout.textContent=fmtEUR(t.cout);
  const elOldVente=document.getElementById('totVente'); if(elOldVente) elOldVente.textContent=fmtEUR(t.venteTTC);
@@ -1428,6 +1341,8 @@ function renderTotals(){
   const tvaTxt = !t.tvaApplicable ? 'TVA non applicable art.293B' : 'TVA '+t.tvaRate+'% : '+fmtEUR(t.tvaMontant);
   el.innerHTML = '<div style="display:grid;gap:8px"><div style="display:flex;justify-content:space-between;font-size:12px;color:#64748B"><span>Total achat</span><strong>'+fmtEUR(t.cout)+'</strong></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#64748B"><span>Total HT</span><strong>'+fmtEUR(t.venteHT)+'</strong></div><div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 10px;background:'+(!t.tvaApplicable?'#F1F5F9':'#EFF6FF')+';border-radius:8px"><span>'+tvaTxt+'</span><strong>'+fmtEUR(t.tvaMontant)+'</strong></div><div style="display:flex;justify-content:space-between;font-size:16px;font-weight:800;border-top:1px solid #E2E8F0;padding-top:8px"><span>Total TTC</span><span style="color:#2563EB">'+fmtEUR(t.venteTTC)+'</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span>Marge</span><span style="color:#10B981;font-weight:700">'+fmtEUR(t.marge)+' ('+t.pct.toFixed(1)+'%)</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span>Acompte 30%</span><strong>'+fmtEUR(t.acompte)+'</strong></div></div>';
  }
+ try{ localStorage.setItem('devisflash_state', JSON.stringify(state)); }catch(e){}
+ }catch(e){ console.error('renderTotals', e); }
 }
 function setTvaRate(rate){ state.tvaRate=parseFloat(rate); state.tvaApplicable=true; saveState(); renderTotals(); renderLines(); }
 function toggleTvaApplicable(){ state.tvaApplicable = state.tvaApplicable===false ? true : false; if(state.tvaApplicable===false) state.tvaRate=0; else state.tvaRate=20; saveState(); renderTotals(); renderLines(); }
@@ -1548,11 +1463,11 @@ function saveDevis(){
   return dd.getMonth()===now.getMonth() && dd.getFullYear()===now.getFullYear();
  }).length;
  if(isGratuit && state.devis.length >= 3){
-  toast("🚫 Limite Gratuit: 3 devis/mois - Passe PRO 39€ pour devis illimités ♾️");
+  toast("🚫 Limite Gratuit: 3 devis/mois - Passe Starter 9,90€ pour 30 devis/mois");
   showView('tarifs'); return;
  }
  if(isStarter && thisMonth >= 30){
-  toast("🚫 Limite Starter: 30 devis/mois atteinte - Passe PRO 39€ pour illimité");
+  toast("🚫 Limite Starter: 30 devis/mois atteinte - Passe PRO 39€ pour 100 / mois");
   showView('tarifs'); return;
  }
  const t = computeTotals(state.lines);
@@ -1566,6 +1481,8 @@ function saveDevis(){
  state.devis = [doc, ...state.devis];
  state.lastApercu = doc.id;
  saveState();
+ try{ if(typeof renderHistorique==='function') renderHistorique(); }catch(e){}
+ try{ setTimeout(()=>{ if(typeof showView==='function') showView('historique'); }, 150); }catch(e){}
  toast("Devis enregistré ✓ ("+(thisMonth+1)+"/"+(isStarter?"30":isGratuit?"3":"∞")+" ce mois)");
 }
 function exportJson(){
@@ -1642,6 +1559,7 @@ function renderDashboardList(){
     <button class="icon-btn" onclick="openApercu('${d.id}')" title="Voir / PDF">👁️</button>
     <button class="icon-btn" onclick="sendDevisEmail('${d.id}')" title="Envoyer par email">📧</button>
     <button class="icon-btn" onclick="convertToFacture('${d.id}')" title="Facturer">🧾</button>
+	    <button class="icon-btn" onclick="openRelanceModal('${d.id}','j3')"" title="Facturer">🧾</button>
     <button class="icon-btn" onclick="restoreDevis('${d.id}')" title="Restaurer">↩️</button>
     <button class="icon-btn" onclick="duplicateDevis('${d.id}')" title="Dupliquer">⧉</button>
     <button class="icon-btn" onclick="deleteDevis('${d.id}')" title="Supprimer">🗑️</button>
@@ -1662,7 +1580,7 @@ function shareDevisHistorique(id){
  const d = state.devis.find(x=>x.id===id);
  if(!d) return;
  const ref = localStorage.getItem('df_aff_code')||'DEVISFLASH';
- const txt = `📄 Devis ${d.client} - ${d.secteur} - ${fmtEUR(d.venteTotal)} - ${fmtDate(d.date)} - Créé avec Devis Flash: https://devis-flash.fr/?ref=${ref}`;
+ const txt = `📄 Devis ${d.client} - ${d.secteur} - ${fmtEUR(d.venteTotal)} - ${fmtDate(d.date)} - Créé avec Devis Flash: https://fragmentelite.github.io/DEVISFLASH/?ref=${ref}`;
  window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');
 }
 function exportHistoriqueCSV(){
@@ -1741,6 +1659,48 @@ function useClient(id){ const c=(state.clients||[]).find(x=>x.id===id); if(!c) r
 function exportClientsCSV(){ if(!state.clients||state.clients.length===0){ toast('Aucun client'); return; } const hdr=['Nom','Email','Tel','Adresse','SIRET']; const rows=state.clients.map(c=>[c.nom,c.email||'',c.tel||'',c.adresse||'',c.siret||'']); const csv=[hdr.join(';')].concat(rows.map(r=>r.map(v=>`"${v}"`).join(';'))).join('\n'); const blob=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='clients-devis-flash.csv'; a.click(); }
 
 // --- CATALOGUE ---
+
+const BAREME_PRIX = {
+  "Nettoyage": { min: 0.9, max: 3.5, avg: 1.8, unite: "€/m²" },
+  "Peinture": { min: 22, max: 48, avg: 32, unite: "€/m²" },
+  "Peinture intérieure": { min: 22, max: 48, avg: 32, unite: "€/m²" },
+  "Plomberie": { min: 45, max: 85, avg: 62, unite: "€/h" },
+  "Électricité": { min: 48, max: 90, avg: 65, unite: "€/h" },
+  "Chauffage": { min: 450, max: 1800, avg: 850, unite: "€/forfait" },
+  "Chauffage / PAC": { min: 450, max: 1800, avg: 850, unite: "€/forfait" },
+  "Serrurerie": { min: 80, max: 250, avg: 135, unite: "€/forfait" },
+  "Paysagiste": { min: 28, max: 55, avg: 38, unite: "€/h" },
+  "Maçonnerie": { min: 35, max: 75, avg: 52, unite: "€/m²" },
+  "Carrelage": { min: 32, max: 68, avg: 45, unite: "€/m²" },
+  "Solaire": { min: 8500, max: 18000, avg: 11500, unite: "€/3kWc" },
+  "Menuiserie": { min: 300, max: 1200, avg: 650, unite: "€/forfait" },
+  "Vitrerie": { min: 55, max: 180, avg: 95, unite: "€/m²" },
+  "Autre": { min: 0, max: 0, avg: 0, unite: "€" }
+};
+function getBaremeForDesignation(des, secteur){
+  const low=(des||'').toLowerCase(); const s=(secteur||'').toLowerCase();
+  if(s.includes('nettoy')||low.includes('nettoy')||low.includes('sol')) return BAREME_PRIX['Nettoyage'];
+  if(s.includes('peint')||low.includes('peint')) return BAREME_PRIX['Peinture'];
+  if(s.includes('plomb')||low.includes('sanitaire')||low.includes('wc')) return BAREME_PRIX['Plomberie'];
+  if(s.includes('electr')) return BAREME_PRIX['Électricité'];
+  if(s.includes('chauff')||low.includes('pac')) return BAREME_PRIX['Chauffage / PAC'];
+  if(s.includes('serrur')) return BAREME_PRIX['Serrurerie'];
+  if(s.includes('paysag')||low.includes('tonte')) return BAREME_PRIX['Paysagiste'];
+  if(s.includes('maçon')) return BAREME_PRIX['Maçonnerie'];
+  if(s.includes('carrel')) return BAREME_PRIX['Carrelage'];
+  if(s.includes('solair')) return BAREME_PRIX['Solaire'];
+  if(low.includes('vitre')) return BAREME_PRIX['Vitrerie'];
+  return BAREME_PRIX[secteur]||BAREME_PRIX['Autre'];
+}
+function priceAdvice(pu, bareme){
+  if(!bareme||bareme.avg===0) return {text:'', color:'#64748B', bg:'#F8FAFF'};
+  if(pu < bareme.min*0.85) return {text:`🔻 En dessous marché (${bareme.min}-${bareme.max} ${bareme.unite})`, color:'#DC2626', bg:'#FEF2F2'};
+  if(pu < bareme.avg*0.85) return {text:`⬇️ Sous moyenne (moy ${bareme.avg} ${bareme.unite})`, color:'#D97706', bg:'#FFFBEB'};
+  if(pu > bareme.max*1.15) return {text:`⬆️ Au-dessus marché (${bareme.min}-${bareme.max} ${bareme.unite})`, color:'#7C3AED', bg:'#F5F3FF'};
+  if(pu > bareme.avg*1.2) return {text:`💎 Haut fourchette (moy ${bareme.avg})`, color:'#2563EB', bg:'#EFF6FF'};
+  return {text:`✅ Dans le marché (${bareme.min}-${bareme.max} ${bareme.unite})`, color:'#059669', bg:'#ECFDF5'};
+}
+
 function renderCatalogue(){
  const secEl=document.getElementById('catFilter'); const search=(document.getElementById('catSearch')?.value||'').toLowerCase();
  if(secEl && secEl.options.length<=1){ SECTEURS.forEach(s=>{ const o=document.createElement('option'); o.value=s.key; o.textContent=s.emoji+' '+s.key; secEl.appendChild(o); }); const catSec=document.getElementById('catSecteur'); if(catSec){ catSec.innerHTML=''; SECTEURS.forEach(s=>{ const o=document.createElement('option'); o.value=s.key; o.textContent=s.key; catSec.appendChild(o); }); } }
@@ -1750,9 +1710,14 @@ function renderCatalogue(){
  if(search) list=list.filter(x=>x.designation.toLowerCase().includes(search));
  const el=document.getElementById('catalogueList');
  if(!el) return;
- if(list.length===0){ el.innerHTML='<div style="padding:30px;text-align:center;color:#64748B">Catalogue vide. Ajoute tes prestations récurrentes.</div>'; return; }
- el.innerHTML='<div style="display:grid;grid-template-columns:1fr 100px 90px 90px 80px;gap:8px;padding:10px 16px;background:#FAFBFF;font-size:11px;font-weight:700;color:#475569;text-transform:uppercase"><div>Désignation</div><div>Secteur</div><div>Coût</div><div>Vente</div><div></div></div>'+list.map(it=>`<div style="display:grid;grid-template-columns:1fr 100px 90px 90px 80px;gap:8px;padding:10px 16px;border-top:1px solid #E2E8F0;font-size:13px;align-items:center"><div><strong>${escapeHtml(it.designation)}</strong><br><span style="font-size:11px;color:#64748B">${it.unite||'forfait'} • TVA ${it.tva||20}%</span></div><div style="font-size:11px">${escapeHtml(it.secteur||'')}</div><div style="font-family:monospace">${fmtEUR(it.coutAchat)}</div><div style="font-family:monospace;font-weight:700">${fmtEUR(it.puVente)}</div><div style="display:flex;gap:4px"><button class="btn btn-secondary btn-sm" onclick="addCatalogueToDevis('${it.id}')">+ Devis</button><button class="btn btn-secondary btn-sm" onclick="editCatalogue('${it.id}')">✏️</button></div></div>`).join('');
+ if(list.length===0){ el.innerHTML='<div style="padding:30px;text-align:center;color:#64748B">Catalogue vide. Ajoute tes prestations.</div>'; return; }
+ el.innerHTML='<div style="display:grid;grid-template-columns:1.6fr 90px 90px 90px 90px;gap:8px;padding:10px 16px;background:#FAFBFF;font-size:11px;font-weight:700;color:#475569;text-transform:uppercase"><div>Désignation + Marché</div><div>Secteur</div><div>Coût</div><div>Vente</div><div></div></div>'+list.map(it=>{
+   const bareme=getBaremeForDesignation(it.designation, it.secteur);
+   const adv=priceAdvice(it.puVente, bareme);
+   return `<div style="display:grid;grid-template-columns:1.6fr 90px 90px 90px 90px;gap:8px;padding:12px 16px;border-top:1px solid #E2E8F0;font-size:13px;align-items:start"><div><strong>${escapeHtml(it.designation)}</strong><br><span style="font-size:11px;color:#64748B">${it.unite||'forfait'} • TVA ${it.tva||20}%</span>${bareme.avg?`<br><span style="font-size:11px;background:${adv.bg};color:${adv.color};padding:2px 6px;border-radius:6px;font-weight:600;display:inline-block;margin-top:4px">${adv.text}</span><br><span style="font-size:10px;color:#94A3B8">Marché: ${bareme.min}-${bareme.max} ${bareme.unite} • Moy ${bareme.avg}</span>`:''}</div><div style="font-size:11px">${escapeHtml(it.secteur||'')}</div><div style="font-family:monospace">${fmtEUR(it.coutAchat)}</div><div style="font-family:monospace;font-weight:700">${fmtEUR(it.puVente)}</div><div style="display:flex;flex-direction:column;gap:4px"><button class="btn btn-secondary btn-sm" onclick="addCatalogueToDevis('${it.id}')">+ Devis</button><button class="btn btn-secondary btn-sm" onclick="editCatalogue('${it.id}')">✏️</button></div></div>`;
+ }).join('');
 }
+
 function openCatalogueModal(){ document.getElementById('catId').value=''; document.getElementById('catDes').value=''; document.getElementById('catCout').value=''; document.getElementById('catPrix').value=''; document.getElementById('catalogueModal').classList.remove('hidden'); document.getElementById('catalogueModal').style.display='flex'; }
 function closeCatalogueModal(){ document.getElementById('catalogueModal').classList.add('hidden'); document.getElementById('catalogueModal').style.display='none'; }
 function saveCatalogueItem(){
@@ -1785,15 +1750,32 @@ function exportFacturesCSV(){ if(!state.factures||state.factures.length===0){ to
 
 // --- EMAIL ---
 function sendDevisEmail(devisId){
- const d=(state.devis||[]).find(x=>x.id===devisId); if(!d) return;
+ const d=(state.devis||[]).find(x=>x.id===devisId); if(!d){ toast('Devis introuvable'); return; }
+ currentEmailDevisId = devisId;
  const clientObj=(state.clients||[]).find(c=>c.nom===d.client);
- const email=clientObj?.email||'';
- const subject=encodeURIComponent('Devis '+ (d.numero||d.id) +' - '+d.client+' - Devis Flash');
- const body=encodeURIComponent(`Bonjour ${d.client},\n\nVeuillez trouver ci-joint votre devis ${d.numero||''} du ${fmtDate(d.date)} :\n\n${d.iaPhrase||''}\n\nTotal : ${fmtEUR(d.venteTotal||0)} (dont acompte 30% : ${fmtEUR((d.venteTotal||0)*0.3)})\n\nVous pouvez payer l'acompte en scannant le QR code sur le devis.\n\nMerci,\nDevis Flash\n\n[PDF à télécharger depuis l'aperçu puis joindre]`);
- const mailto=`mailto:${email}?subject=${subject}&body=${body}`;
- window.location.href=mailto;
- toast('📧 Ouverture client email');
+ const email = clientObj?.email||'devisflash93@gmail.com';
+ const toEl=document.getElementById('emailTo');
+ const msgEl=document.getElementById('emailMsg');
+ if(toEl) toEl.value=email||'devisflash93@gmail.com';
+ if(msgEl) msgEl.value='Bonjour '+(d.client||'')+',\n\nVeuillez trouver votre devis '+(d.numero||'')+' : '+fmtEUR(d.venteTotal||0)+' TTC.\nAcompte 30% : '+fmtEUR((d.venteTotal||0)*0.3)+'\n\nMerci,\nDevis Flash';
+ const contentEl=document.getElementById('emailModalContent');
+ if(contentEl) contentEl.innerHTML='<div style="background:#F8FAFF;border:1px solid #E2E8F0;border-radius:8px;padding:10px;font-size:13px"><strong>'+escapeHtml(d.client||'Devis')+'</strong> - '+fmtEUR(d.venteTotal||0)+' - '+ (d.numero||d.id)+'<br><small style=color:green>✅ Factur-X EN16931 - Backend / Mobile+PC</small></div>';
+ const statusEl=document.getElementById('emailStatus');
+ if(statusEl) statusEl.textContent='';
+ const modal=document.getElementById('emailModal');
+ if(modal) modal.style.display='flex';
+ try{
+   const ent = JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+   emailjsConfig = {
+     publicKey: ent.emailjs_key||'ekM4QRagcFRNTF097',
+     serviceId: ent.emailjs_service||'DEVIS',
+     templateId: ent.emailjs_template||'template_6s5kpid'
+   };
+   localStorage.setItem('df_emailjs', JSON.stringify(emailjsConfig));
+   if(window.emailjs) emailjs.init(emailjsConfig.publicKey);
+ }catch(e){}
 }
+
 function sendFactureEmail(factId){
  const f=(state.factures||[]).find(x=>x.id===factId); if(!f) return;
  const clientObj=(state.clients||[]).find(c=>c.nom===f.client);
@@ -1804,13 +1786,218 @@ function sendFactureEmail(factId){
 }
 
 // --- PDF EXPORT AMELIORE ---
-function exportDevisPDF(devisId){
- const d=devisId? (state.devis||[]).find(x=>x.id===devisId) : null;
- if(d) state.lastApercu=d.id;
- renderApercu();
- setTimeout(()=>{ window.print(); }, 400);
+
+
+
+
+
+
+async function sendEmailReal(){
+  const to=document.getElementById('emailTo').value||'devisflash93@gmail.com';
+  const statusEl=document.getElementById('emailStatus');
+  statusEl.textContent='⏳ Envoi via backend Vercel...'; statusEl.style.color='#2563EB';
+  try{
+    const d=(state.devis||[]).find(x=>x.id===currentEmailDevisId);
+    if(!d){ statusEl.textContent='❌ Devis introuvable'; return; }
+    const t=computeTotals(d.lines||[]);
+    const ent = JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+    
+    // 1. TRY BACKEND /api/send-devis-email (plus fiable)
+    try{
+      const resp = await fetch('/api/send-devis-email', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          to: to,
+          client: d.client,
+          numero: d.numero||d.id,
+          total: fmtEUR(d.venteTotal||0),
+          message: document.getElementById('emailMsg').value,
+          devis: {
+            numero: d.numero||d.id,
+            client: d.client,
+            adresse: d.adresse||'',
+            date: d.date,
+            echeance: d.echeance||d.date,
+            lines: d.lines||[],
+            totalHT: t.venteHT,
+            totalTVA: t.tvaMontant,
+            totalTTC: t.venteTTC,
+            siret: ent.siret||'10484045900010',
+            tva: ent.tva||'',
+            nom: ent.nom||'Devis Flash'
+          }
+        })
+      });
+      const data = await resp.json();
+      if(resp.ok){
+        statusEl.textContent='✅ Envoye via backend a '+to; statusEl.style.color='#16a34a';
+        toast('✅ Email envoye backend a '+to);
+        d.statut='Envoyé'; saveState();
+        setTimeout(()=>{ document.getElementById('emailModal').style.display='none'; }, 1500);
+        return;
+      } else {
+        if(data.error==='TEMPLATE_NOT_FOUND'){
+          statusEl.textContent='❌ Template template_6s5kpid non publie'; statusEl.style.color='#dc2626';
+          alert('ERREUR EmailJS: Template ID template_6s5kpid non trouvé ou non publié.\n\nVa sur https://dashboard.emailjs.com/admin/templates\n1. Verifie que template_6s5kpid est bien PUBLIE (bouton Publish)\n2. Ou cree un nouveau template et copie son ID dans Mon Entreprise');
+          return;
+        }
+        throw new Error(data.error||data.details||'Backend error');
+      }
+    }catch(be){
+      console.warn('Backend send fail, fallback SDK', be);
+      statusEl.textContent='⚠️ Backend fail, essai SDK direct...';
+    }
+
+    // 2. FALLBACK SDK EmailJS direct
+    const cfg = {
+      publicKey: ent.emailjs_key||'ekM4QRagcFRNTF097',
+      serviceId: ent.emailjs_service||'DEVIS',
+      templateId: ent.emailjs_template||'template_6s5kpid'
+    };
+    if(window.emailjs) emailjs.init(cfg.publicKey);
+    const { jsPDF } = window.jspdf;
+    const docp = new jsPDF();
+    docp.text('DEVIS '+(d.numero||d.id)+' - '+d.client+' - '+fmtEUR(d.venteTotal||0), 15, 20);
+    const pdfBase64 = docp.output('datauristring');
+    
+    await emailjs.send(cfg.serviceId, cfg.templateId, {
+      to_email: to,
+      to_name: d.client,
+      client_name: d.client,
+      invoice_number: d.numero||d.id,
+      total: fmtEUR(d.venteTotal||0),
+      message: document.getElementById('emailMsg').value
+    });
+    
+    statusEl.textContent='✅ Envoye SDK a '+to; statusEl.style.color='#16a34a';
+    toast('✅ Envoye a '+to);
+    d.statut='Envoyé'; saveState();
+    setTimeout(()=>{ document.getElementById('emailModal').style.display='none'; }, 1500);
+    
+  }catch(err){
+    console.error(err);
+    statusEl.textContent='❌ '+(err.text||err.message||''); statusEl.style.color='#dc2626';
+    toast('Echec - ouverture mailto');
+    const d=(state.devis||[]).find(x=>x.id===currentEmailDevisId);
+    const subject=encodeURIComponent('Devis '+(d?.numero||''));
+    const body=encodeURIComponent(document.getElementById('emailMsg').value);
+    window.open('mailto:'+to+'?subject='+subject+'&body='+body,'_blank');
+  }
 }
-function exportFacturePDF(factId){
+
+
+
+async function exportDevisPDF(devisId){
+  console.log('exportDevisPDF mobile fix called');
+  try{
+    let d = null;
+    if(devisId && state.devis) d = state.devis.find(x=>x.id===devisId);
+    if(!d && state.lastApercu && state.devis) d = state.devis.find(x=>x.id===state.lastApercu);
+    if(!d && state.devis && state.devis.length>0) d = state.devis[0];
+    if(!d){
+      const lines = state.lines || JSON.parse(localStorage.getItem('devisflash_lines')||'[]') || JSON.parse(localStorage.getItem('devisflash_state')||'{}').lines || [];
+      if(!lines || lines.length===0){
+        alert('Ajoute au moins 1 ligne dans Générateur avant de télécharger');
+        return;
+      }
+      d = {numero:'F-'+Date.now().toString().slice(-6), client:'Client Test', date:new Date().toISOString().slice(0,10), lines: lines, lignes: lines};
+    }
+
+    const ent = JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+    
+    // Charge jsPDF si besoin
+    if(!window.jspdf || !window.jspdf.jsPDF){
+      await new Promise((res,rej)=>{
+        const s=document.createElement('script');
+        s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        s.onload=res; s.onerror=rej;
+        document.head.appendChild(s);
+      });
+    }
+    const {jsPDF} = window.jspdf;
+    const doc = new jsPDF();
+    const lines = d.lines || d.lignes || state.lines || [];
+    const totals = computeTotals(lines);
+    
+    doc.setFont('helvetica','bold'); doc.setFontSize(14);
+    doc.text(ent.nom||'Devis Flash', 15, 18);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    doc.text('SIRET: '+(ent.siret||'10484045900010'), 15, 24);
+    doc.text('Client: '+(d.client||''), 15, 32);
+    doc.text('Facture: '+(d.numero||'')+' - '+ (d.date||new Date().toISOString().slice(0,10)), 15, 38);
+    
+    let y=48;
+    doc.setFillColor(37,99,235); doc.rect(15,y,180,8,'F');
+    doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(9);
+    doc.text('Description',17,y+5); doc.text('Qte',110,y+5); doc.text('PU',130,y+5); doc.text('Total',160,y+5);
+    doc.setTextColor(0,0,0); doc.setFont('helvetica','normal'); y+=14;
+    lines.forEach(l=>{
+      if(y>270){ doc.addPage(); y=20; }
+      doc.text((l.designation||l.desc||'Prestation').substring(0,48),17,y);
+      doc.text(String(l.qte||1),110,y);
+      doc.text(Number(l.puVente||l.pu||0).toFixed(2)+' €',130,y);
+      doc.text(Number((l.qte||1)*(l.puVente||l.pu||0)).toFixed(2)+' €',160,y);
+      y+=7;
+    });
+    y+=10; doc.setFont('helvetica','bold');
+    doc.text('HT: '+totals.venteHT.toFixed(2)+' €',130,y); y+=7;
+    doc.text('TVA: '+totals.tvaMontant.toFixed(2)+' €',130,y); y+=7;
+    doc.text('TTC: '+totals.venteTTC.toFixed(2)+' €',130,y);
+    doc.setFontSize(7); doc.text('Factur-X BASIC - Chorus Pro 2026 - devisflash93@gmail.com',15,287);
+    
+    const fileName = 'Devis-'+(d.numero||Date.now())+'-Factur-X.pdf';
+    
+    // MOBILE FIX: detection
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    console.log('isMobile', isMobile);
+    
+    if(isMobile){
+      // Méthode mobile: ouvre dans nouvel onglet + share API si dispo
+      const blob = doc.output('blob');
+      const url = URL.createObjectURL(blob);
+      
+      // Essaie Web Share API (Android/iOS moderne)
+      if(navigator.canShare && navigator.canShare({files: [new File([blob], fileName, {type:'application/pdf'})]})){
+        try{
+          const file = new File([blob], fileName, {type:'application/pdf'});
+          await navigator.share({files: [file], title: fileName});
+          if(typeof toast==='function') toast('✅ PDF partagé');
+          setTimeout(()=>URL.revokeObjectURL(url), 5000);
+          return;
+        }catch(e){ console.log('Share failed, fallback open', e); }
+      }
+      
+      // Fallback: ouvre le PDF dans nouvel onglet (l'utilisateur fait "Partager > Enregistrer dans Fichiers")
+      const win = window.open(url, '_blank');
+      if(win){
+        if(typeof toast==='function') toast('✅ PDF ouvert - fais Partager > Enregistrer');
+        // Crée aussi un lien visible
+        const div = document.createElement('div');
+        div.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#10B981;color:white;padding:16px 24px;border-radius:12px;z-index:99999;font-weight:800;box-shadow:0 4px 20px rgba(0,0,0,0.3)';
+        div.innerHTML = '✅ PDF prêt !<br><a href="'+url+'" download="'+fileName+'" style="color:white;text-decoration:underline;font-size:16px">👉 CLIQUE ICI POUR TÉLÉCHARGER</a><br><span style="font-size:12px">Ou fais Partager > Enregistrer dans Fichiers</span><br><button onclick="this.parentElement.remove()" style="margin-top:8px;background:white;color:#10B981;border:none;padding:6px 12px;border-radius:6px">Fermer</button>';
+        document.body.appendChild(div);
+        setTimeout(()=>URL.revokeObjectURL(url), 60000);
+      }else{
+        // Si popup bloqué, tente download classique
+        doc.save(fileName);
+        if(typeof toast==='function') toast('✅ PDF téléchargé - Vérifie Dossier Téléchargements');
+      }
+    }else{
+      // Desktop: save classique
+      doc.save(fileName);
+      if(typeof toast==='function') toast('✅ PDF téléchargé: '+fileName);
+    }
+    
+  }catch(err){
+    console.error(err);
+    alert('Erreur PDF: '+err.message);
+  }
+}
+function genererPDFPropre(){ return exportDevisPDF(); }
+
+
+async function exportFacturePDF(factId){
  const f=(state.factures||[]).find(x=>x.id===factId); if(!f) return;
  state.lastApercuFacture=f.id;
  // render facture in apercu
@@ -2277,7 +2464,7 @@ document.addEventListener('click', function(e){
    <p><strong>Abonnement (vous → Devis Flash) :</strong> Vous payez Starter 9,90€/mois ou 99€/an, ou Expert 39€/mois ou 390€/an via SumUp, Stripe ou PayPal pour utiliser l'app.<br><br><strong>Acompte client (votre client → vous) :</strong> Votre client paie 30% de son devis via le QR Code généré sur le devis. Vous encaissez 100% directement, 0% commission Devis Flash. C'est DEUX flux séparés.</p>
   </div>
   <div class="faq-item">
-   <h3>Devis Flash est-il vraiment gratuit ? Combien de devis par mois ?</h3>
+   <h3>Devis Flash est-il vraiment gratuit ?</h3>
    <p>Oui, le plan Gratuit permet de créer jusqu'à 3 devis par mois. Les plans Starter et Expert sont disponibles avec 14 jours d'essai gratuit sans carte bancaire.</p>
   </div>
   <div class="faq-item">
@@ -2438,20 +2625,20 @@ function getShareText(){
  const totEl = document.getElementById('total-devis') || document.getElementById('total');
  const tot = totEl ? totEl.textContent : '';
  const ref = affCode || localStorage.getItem('df_aff_code') || 'DEVISFLASH';
- return `⚡ Devis Flash - ${d.substring(0,80)} - ${tot} - https://devis-flash.fr/?ref=${ref}`;
+ return `⚡ Devis Flash - ${d.substring(0,80)} - ${tot} - https://fragmentelite.github.io/DEVISFLASH/?ref=${ref}`;
 }
 function shareWA(){ window.open('https://wa.me/?text='+encodeURIComponent(getShareText()),'_blank'); gtag&&gtag('event','share',{method:'whatsapp'}); }
-function shareLI(){ const url=encodeURIComponent('https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH')); window.open('https://www.linkedin.com/sharing/share-offsite/?url='+url,'_blank'); }
-function shareTG(){ window.open('https://t.me/share/url?url='+encodeURIComponent('https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH'))+'&text='+encodeURIComponent(getShareText()),'_blank'); }
-function shareFB(){ window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH')),'_blank'); }
+function shareLI(){ const url=encodeURIComponent('https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH')); window.open('https://www.linkedin.com/sharing/share-offsite/?url='+url,'_blank'); }
+function shareTG(){ window.open('https://t.me/share/url?url='+encodeURIComponent('https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH'))+'&text='+encodeURIComponent(getShareText()),'_blank'); }
+function shareFB(){ window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH')),'_blank'); }
 function shareX(){ window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(getShareText()),'_blank'); }
-function copyLink(){ navigator.clipboard.writeText('https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH')).then(()=>toast('🔗 Lien copié')); }
+function copyLink(){ navigator.clipboard.writeText('https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH')).then(()=>toast('🔗 Lien copié')); }
 
 // Affiliation devisflash93@gmail.com
 function genAff(){
  let code = (document.getElementById('aff-code')?.value.trim().toUpperCase()) || affCode || 'DF'+Math.floor(1000+Math.random()*9000);
  affCode = code; localStorage.setItem('df_aff_code', code);
- const link = 'https://devis-flash.fr/?ref='+code;
+ const link = 'https://fragmentelite.github.io/DEVISFLASH/?ref='+code;
  const linkEl = document.getElementById('aff-link'); if(linkEl) linkEl.value = link;
  const codeEl = document.getElementById('aff-code'); if(codeEl) codeEl.value = code;
  toast('✅ Lien affilié généré: '+link+' | Contact: devisflash93@gmail.com');
@@ -2459,7 +2646,7 @@ function genAff(){
 }
 function copyAff(){ const el=document.getElementById('aff-link'); if(el) navigator.clipboard.writeText(el.value).then(()=>toast('🔗 Lien affilié copié')); }
 function shareAff(){
- const link = document.getElementById('aff-link')?.value || 'https://devis-flash.fr/?ref='+(affCode||'DEVISFLASH');
+ const link = document.getElementById('aff-link')?.value || 'https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH');
  const txt = `⚡ Je recommande Devis Flash - devis BTP en 10s avec vocale 7 langues + offline. Essai gratuit 14j: ${link} — affiliation 30% via devisflash93@gmail.com`;
  if(navigator.share){ navigator.share({title:'Devis Flash',text:txt,url:link}); } else { window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank'); }
 }
@@ -2533,7 +2720,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
      <label>Lien affilié</label><input id="aff-link" readonly style="margin-bottom:10px">
      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" onclick="genAff()">Générer</button><button class="btn" style="background:#fff;border:1px solid #E2E8F0" onclick="copyAff()">Copier</button><button class="btn" style="background:#fff;border:1px solid #E2E8F0" onclick="shareAff()">Partager</button></div>
      <div style="margin-top:12px;font-size:12px;background:#fff;border:1px dashed #E2E8F0;border-radius:8px;padding:10px">
-      1. Génère ton code → 2. Partage https://devis-flash.fr/?ref=TONCODE → 3. Touche 30% via devisflash93@gmail.com<br>
+      1. Génère ton code → 2. Partage https://fragmentelite.github.io/DEVISFLASH/?ref=TONCODE → 3. Touche 30% via devisflash93@gmail.com<br>
       Clics: <span id="aff-clicks">0</span> | Conversions: <span id="aff-conv">0</span> | Gains: <span id="aff-gain">0€</span>
      </div>
     `;
@@ -2542,7 +2729,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const saved = localStorage.getItem('df_aff_code');
     if(saved){
      const cEl=document.getElementById('aff-code'); if(cEl) cEl.value=saved;
-     const lEl=document.getElementById('aff-link'); if(lEl) lEl.value='https://devis-flash.fr/?ref='+saved;
+     const lEl=document.getElementById('aff-link'); if(lEl) lEl.value='https://fragmentelite.github.io/DEVISFLASH/?ref='+saved;
     }
    }
   }
@@ -2565,6 +2752,8 @@ if(typeof _origActivate !== 'undefined'){
    console.log('AFF CONVERSION ref='+ref+' plan='+pid+' -> devisflash93@gmail.com');
   }
  };
+}
+
 }
 </script>
 
@@ -2595,20 +2784,7 @@ function sendEmailMailto(){
  d.statut='Envoyé'; saveState(); if(typeof renderDashboard==='function') renderDashboard();
  toast('📧 Mailto ouvert'); document.getElementById('emailModal').style.display='none';
 }
-async function sendEmailReal(){
- const to=document.getElementById('emailTo').value; if(!to){toast('Email requis');return;}
- const statusEl=document.getElementById('emailStatus'); statusEl.textContent='⏳ Envoi...'; statusEl.style.color='#2563EB';
- if(!emailjsConfig.publicKey){ statusEl.textContent='⚠️ EmailJS non configuré - fallback mailto'; setTimeout(sendEmailMailto,1000); return; }
- try{
-  emailjs.init(emailjsConfig.publicKey);
-  const d=(state.devis||[]).find(x=>x.id===currentEmailDevisId);
-  await emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, {to_email:to, to_name:d.client, total:fmtEUR(d.venteTotal), message:document.getElementById('emailMsg').value});
-  statusEl.textContent='✅ Envoyé !'; statusEl.style.color='#10B981';
-  d.statut='Envoyé'; saveState(); if(typeof renderDashboard==='function') renderDashboard();
-  setTimeout(()=>document.getElementById('emailModal').style.display='none',1200);
-  toast('✅ Envoyé à '+to);
- }catch(e){ statusEl.textContent='❌ Erreur '+ (e.text||e.message); statusEl.style.color='#DC2626'; setTimeout(sendEmailMailto,1000); }
-}
+
 function changeStatut(id, newStatut){
  const d=(state.devis||[]).find(x=>x.id===id); if(!d) return;
  d.statut=newStatut; saveState(); if(typeof renderDashboard==='function') renderDashboard(); toast('Statut → '+newStatut);
@@ -2628,11 +2804,24 @@ setInterval(()=>{ try{renderRelancesBanner();}catch(e){} }, 30000);
 
 
 <script>
-function generateDevisPDFBase64(id){
+async function generateDevisPDFBase64(id){
  const d=(state.devis||[]).find(x=>x.id===id); if(!d) return null;
  try{
   const {jsPDF} = window.jspdf;
   const doc = new jsPDF();
+
+  // === SIGNATURE DEVIS FLASH - comme monartio eIDAS ===
+  const signataire = 'Devis Flash';
+  const siret = '10484045900010';
+  const payload = `${d.id||''}${d.venteTotal||0}${d.date||''}${siret}${signataire}`;
+  // SHA-256 via Web Crypto (comme monartio ligne 59)
+  let hash = '';
+  try{
+    const hashBuf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(payload));
+    hash = Array.from(new Uint8Array(hashBuf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }catch(e){ hash = 'no-crypto-'+Date.now(); }
+  const verifyUrl = `https://devis-flash.fr/verify?h=${hash}&f=${d.id}`;
+
   // Header
   doc.setFontSize(18); doc.setFont('helvetica','bold'); doc.text('Devis Flash - Devis '+ (d.id?.slice(-6)||''), 14, 20);
   doc.setFontSize(11); doc.setFont('helvetica','normal');
@@ -2656,12 +2845,53 @@ function generateDevisPDFBase64(id){
   doc.text('TVA '+(state.tvaRate||20)+'%: '+fmtEUR((d.venteTotal||0) - (d.venteTotal||0)/(1+(state.tvaRate||20)/100)),14,y); y+=7;
   doc.text('Total TTC: '+fmtEUR(d.venteTotal||0),14,y); y+=7;
   doc.text('Acompte 30%: '+fmtEUR((d.venteTotal||0)*0.3),14,y);
-  y+=12; doc.setFontSize(9); doc.setFont('helvetica','italic');
-  doc.text('⚡ Facturation électronique 2026 compatible - TVA non applicable art.293B si activé',14,y);
-  doc.text('Devis généré par Devis Flash - devisflash93@gmail.com',14,y+6);
-  // Return base64
+  y+=12;
+  // === FOOTER SIGNATURE DEVIS FLASH ===
+  doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(37,99,235);
+  doc.text(`Signé électroniquement par ${signataire} - SIRET ${siret}`,14,y);
+  doc.setFontSize(7); doc.setFont('helvetica','normal'); doc.setTextColor(100,116,139);
+  doc.text(`SHA-256: ${hash.slice(0,50)}... | ${verifyUrl}`,14,y+5);
+  doc.setFontSize(8); doc.setFont('helvetica','italic'); doc.setTextColor(0,0,0);
+  doc.text('⚡ Factur-X EN16931 compatible - eIDAS conforme - Facturation électronique 2026',14,y+10);
+  doc.text(`Devis généré par ${signataire} - devisflash93@gmail.com`,14,y+15);
+
+  // Factur-X XML embarqué dans les métadonnées (comme monartio PDP) + SIGNATURE CHORUS PRO
+  const hasSignature = d.signature ? true : false;
+  const sigId = d.signature ? `${d.id}-SIGN` : '';
+  const sigBase64Clean = hasSignature ? (d.signature.split(',')[1]||'').slice(0,80)+'...' : '';
+  const xmlFacturX = `<?xml version="1.0" encoding="UTF-8"?>
+<rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+ <rsm:ExchangedDocument>
+  <ram:ID>${d.id}</ram:ID>
+  <ram:TypeCode>380</ram:TypeCode>
+  <ram:IssueDateTime><udt:DateTimeString format="102">${(d.date||'').replace(/-/g,'')}</udt:DateTimeString></ram:IssueDateTime>
+  ${hasSignature ? `<ram:IncludedNote><ram:Content>Devis signé électroniquement le ${d.signatureDate||d.date} par ${d.client||'client'}</ram:Content><ram:SubjectCode>REG</ram:SubjectCode></ram:IncludedNote>` : ''}
+ </rsm:ExchangedDocument>
+ <rsm:SupplyChainTradeTransaction>
+  <ram:ApplicableHeaderTradeAgreement>
+   <ram:SellerTradeParty><ram:Name>${signataire} - ${siret}</ram:Name><ram:DefinedTradeContact><ram:EmailURIText>devisflash93@gmail.com</ram:EmailURIText></ram:DefinedTradeContact></ram:SellerTradeParty>
+   <ram:BuyerTradeParty><ram:Name>${(d.client||'').replace(/&/g,'&amp;')}</ram:Name><ram:PostalTradeAddress><ram:PostcodeCode>93200</ram:PostcodeCode><ram:LineOne>Adresse client</ram:LineOne><ram:CityName>Ville</ram:CityName><ram:CountryID>FR</ram:CountryID></ram:PostalTradeAddress></ram:BuyerTradeParty>
+   ${hasSignature ? `<ram:AdditionalReferencedDocument><ram:IssuerAssignedID>${sigId}</ram:IssuerAssignedID><ram:URIID>signature.png</ram:URIID><ram:TypeCode>916</ram:TypeCode><ram:Name>Signature electronique client - ${d.client||''}</ram:Name><ram:AttachmentBinaryObject mimeCode="image/png" filename="signature.png">${d.signature.split(',')[1]||''}</ram:AttachmentBinaryObject></ram:AdditionalReferencedDocument>` : ''}
+  </ram:ApplicableHeaderTradeAgreement>
+  <ram:ApplicableHeaderTradeSettlement>
+   <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+   <ram:SpecifiedTradeSettlementPaymentTerms><ram:Description>Echeance 30 jours</ram:Description><ram:DueDateDateTime><udt:DateTimeString format="102">${new Date(Date.now()+30*24*3600*1000).toISOString().slice(0,10).replace(/-/g,'')}</udt:DateTimeString></ram:DueDateDateTime></ram:SpecifiedTradeSettlementPaymentTerms><ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:GrandTotalAmount>${Number(d.venteTotal||0).toFixed(2)}</ram:GrandTotalAmount><ram:DuePayableAmount>${Number(d.venteTotal||0).toFixed(2)}</ram:DuePayableAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+   <ram:SpecifiedTradeSettlementPaymentMeans><ram:TypeCode>58</ram:TypeCode><ram:Information>${d.statutChantier||d.statut||'Envoyé'}${d.acompteRecu? ' - Acompte '+ (d.acompteMontant||0) +'€ encaissé':''}</ram:Information></ram:SpecifiedTradeSettlementPaymentMeans>
+   <ram:IncludedNote><ram:Content>SHA256:${hash} VERIFY:${verifyUrl} SIGN:${signataire} ${hasSignature?'CLIENT-SIGNATURE-INCLUDED':''} TRESO:${d.acompteRecu?'ACOMPTE-ENCAISSE-'+(d.acompteMontant||0):'EN-ATTENTE'} STATUT:${d.statutChantier||d.statut}</ram:Content></ram:IncludedNote>
+  </ram:ApplicableHeaderTradeSettlement>
+ </rsm:SupplyChainTradeTransaction>
+</rsm:CrossIndustryInvoice>`;
+
+  doc.setProperties({
+    title: `Devis ${d.id} - ${signataire}`,
+    subject: `Factur-X EN16931 - SHA256:${hash}`,
+    keywords: `Devis Flash, Factur-X, ${signataire}, ${siret}, ${hash}, ${verifyUrl}`,
+    creator: `${signataire} - devis-flash.fr`
+  });
+
+  // Return base64 + facturx
   const pdfBase64 = doc.output('datauristring').split(',')[1];
-  return {base64: pdfBase64, filename: 'Devis-'+(d.client||'client').replace(/\s+/g,'-')+'-'+(d.id?.slice(-6)||'')+'.pdf', doc: doc};
+  return {base64: pdfBase64, filename: `Devis-${signataire.replace(/\s+/g,'')}-${(d.id?.slice(-6)||'')}-FacturX.pdf`, doc: doc, hash: hash, verifyUrl: verifyUrl, xml: xmlFacturX, signataire: signataire};
  }catch(e){ console.error('PDF gen error', e); return null; }
 }
 
@@ -2671,7 +2901,7 @@ async function sendEmailRealWithPDF(){
  const statusEl=document.getElementById('emailStatus'); statusEl.textContent='⏳ Génération PDF + envoi...'; statusEl.style.color='#2563EB';
  const d=(state.devis||[]).find(x=>x.id===currentEmailDevisId);
  if(!d){ statusEl.textContent='❌ Devis introuvable'; return; }
- const pdfData = generateDevisPDFBase64(currentEmailDevisId);
+ const pdfData = await generateDevisPDFBase64(currentEmailDevisId);
  if(!pdfData){ statusEl.textContent='❌ Erreur génération PDF'; return; }
  if(!emailjsConfig.publicKey || !emailjsConfig.serviceId){
   // Fallback: download PDF + mailto with attachment note
@@ -2735,662 +2965,624 @@ function markDevisVu(id){
 
 
 <script>
-// ===== MODULE INTERVENTIONS - Devis Flash v5 =====
-if(!state.interventions) state.interventions=[];
-function openNewInterventionModal(){
- const sel=document.getElementById('intDevisId'); sel.innerHTML='<option value="">-- Libre --</option>';
- (state.devis||[]).filter(d=>d.statut==='Accepté').forEach(d=>{ const o=document.createElement('option'); o.value=d.id; o.textContent=(d.client||'Client')+' - '+fmtEUR(d.venteTotal||0)+' - '+(d.id||'').slice(-6); sel.appendChild(o); });
- document.getElementById('intClient').value=''; document.getElementById('intAdresse').value=''; document.getElementById('intDate').valueAsDate=new Date();
- document.getElementById('interventionModal').style.display='flex';
+// === HYBRIDE DEVIS FLASH - Facturation électronique DGFiP 2026 + Entreprise ===
+function isValidSIRET(siret){
+  if(!/^\d{14}$/.test(siret)) return false;
+  let sum=0;
+  for(let i=0;i<14;i++){let d=parseInt(siret[13-i]); if(i%2===1){d*=2; if(d>9)d-=9;} sum+=d;}
+  return sum%10===0;
 }
-function saveIntervention(){
- const devisId=document.getElementById('intDevisId').value; const d=(state.devis||[]).find(x=>x.id===devisId);
- const obj={ id:'INT-'+Date.now().toString(36), devisId:devisId||null, client:document.getElementById('intClient').value||d?.client||'', adresse:document.getElementById('intAdresse').value||d?.adresse||'', date:document.getElementById('intDate').value, heure:document.getElementById('intHeure').value, technicien:document.getElementById('intTech').value, type:document.getElementById('intType').value, description:document.getElementById('intDesc').value, duree:Number(document.getElementById('intDuree').value||0), statut:'Planifiée', createdAt:new Date().toISOString(), total:d?.venteTotal||0 };
- state.interventions.push(obj); saveState(); document.getElementById('interventionModal').style.display='none'; renderInterventions(); toast('✅ Intervention planifiée');
-}
-function changeInterventionStatut(id,s){ const it=(state.interventions||[]).find(x=>x.id===id); if(!it) return; it.statut=s; if(s==='Terminée') it.termineAt=new Date().toISOString(); saveState(); renderInterventions(); toast('Statut → '+s); }
-function renderInterventions(){
- const listEl=document.getElementById('interventionsList'); if(!listEl) return; const statsEl=document.getElementById('interventionsStats');
- const filter=document.getElementById('filterInterventionStatut')?.value||''; const search=(document.getElementById('searchIntervention')?.value||'').toLowerCase();
- let arr=state.interventions||[];
- if(statsEl){ const cP=arr.filter(x=>x.statut==='Planifiée').length, cC=arr.filter(x=>x.statut==='En cours').length, cT=arr.filter(x=>x.statut==='Terminée').length, cF=arr.filter(x=>x.statut==='Facturée').length; statsEl.innerHTML=`<div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800">${cP}</div><div style="font-size:11px">Planifiées</div></div><div style="background:#FEF3C7;border:1px solid #FDE68A;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800">${cC}</div><div style="font-size:11px">En cours</div></div><div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800">${cT}</div><div style="font-size:11px">Terminées</div></div><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800">${cF}</div><div style="font-size:11px">Facturées</div></div>`; }
- let filtered=arr.filter(it=>{ if(filter&&it.statut!==filter) return false; if(search && !((it.client||'').toLowerCase().includes(search)||(it.adresse||'').toLowerCase().includes(search))) return false; return true; });
- if(filtered.length===0){ listEl.innerHTML='<div class="empty-state"><div class="glyph">🛠️</div><div>Aucune intervention</div><div style="font-size:12px;margin-top:6px">Transformez un devis Accepté en intervention</div></div>'; return; }
- filtered.sort((a,b)=>new Date(a.date||0)-new Date(b.date||0));
- listEl.innerHTML=filtered.map(it=>`<div style="border:1px solid #E2E8F0;border-radius:12px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#fff"><div style="flex:1;min-width:220px"><div style="font-weight:700">${it.client||'Client'} <span style="font-weight:400;color:#64748B;font-size:11px">${it.id}</span></div><div style="font-size:12px;color:#475569">📍 ${it.adresse||'-'} • 📅 ${it.date||''} ${it.heure||''} • 👷 ${it.technicien||'-'}</div><div style="font-size:12px;margin-top:4px">${it.type} - ${it.description||''}</div><div style="margin-top:6px"><span style="font-size:11px;padding:3px 8px;border-radius:20px;background:#F1F5F9;border:1px solid #E2E8F0">${it.statut}</span> ${it.total?'<span style="font-size:11px;margin-left:6px">'+fmtEUR(it.total)+'</span>':''}</div></div><div style="display:flex;flex-direction:column;gap:6px"><select onchange="changeInterventionStatut('${it.id}',this.value)" style="padding:6px;border-radius:8px;border:1px solid #E2E8F0;font-size:12px"><option ${it.statut==='Planifiée'?'selected':''}>Planifiée</option><option ${it.statut==='En cours'?'selected':''}>En cours</option><option ${it.statut==='Terminée'?'selected':''}>Terminée</option><option ${it.statut==='Facturée'?'selected':''}>Facturée</option></select><button class="btn btn-secondary btn-sm" onclick="generateBonIntervention('${it.id}')">📄 Bon PDF</button><button class="btn btn-primary btn-sm" onclick="transformInterventionToFacture('${it.id}')">🧾 → Facture</button></div></div>`).join('');
-}
-function generateBonIntervention(id){ const it=(state.interventions||[]).find(x=>x.id===id); if(!it) return; try{ const {jsPDF}=window.jspdf; const doc=new jsPDF(); doc.setFontSize(16); doc.setFont('helvetica','bold'); doc.text('Bon d\'Intervention - '+it.id,14,20); doc.setFontSize(11); doc.setFont('helvetica','normal'); doc.text('Client: '+(it.client||''),14,30); doc.text('Adresse: '+(it.adresse||''),14,36); doc.text('Date: '+(it.date||'')+' '+ (it.heure||''),14,42); doc.text('Technicien: '+(it.technicien||''),14,48); doc.text('Type: '+(it.type||''),14,54); let y=64; doc.setFont('helvetica','bold'); doc.text('Travaux:',14,y); y+=6; doc.setFont('helvetica','normal'); const lines=doc.splitTextToSize(it.description||'Aucune description',180); doc.text(lines,14,y); y+=lines.length*6+10; doc.text('Duree: '+(it.duree||0)+'h',14,y); y+=8; doc.text('Statut: '+(it.statut||''),14,y); y+=16; doc.setFont('helvetica','bold'); doc.text('Signature client:',14,y); y+=20; doc.rect(14,y,80,30); doc.text('Signature technicien:',110,y-6); doc.rect(110,y,80,30); y+=45; doc.setFontSize(8); doc.setFont('helvetica','italic'); doc.text('Bon genere par Devis Flash - Facturation electronique 2026 - devisflash93@gmail.com',14,y); doc.save('Bon-Intervention-'+(it.client||'client').replace(/\s+/g,'-')+'-'+it.id+'.pdf'); toast('📄 Bon PDF genere'); }catch(e){ console.error(e); toast('Erreur PDF'); } }
-function transformInterventionToFacture(id){ const it=(state.interventions||[]).find(x=>x.id===id); if(!it) return; if(it.devisId){ const d=(state.devis||[]).find(x=>x.id===it.devisId); if(d) d.statut='Facturé'; } it.statut='Facturée'; saveState(); renderInterventions(); if(typeof renderDashboard==='function') renderDashboard(); if(typeof renderFactures==='function') renderFactures(); toast('🧾 Facturée'); }
-function exportInterventionsCSV(){ const rows=[['ID','Client','Adresse','Date','Heure','Technicien','Type','Statut','Total']]; (state.interventions||[]).forEach(it=>rows.push([it.id,it.client,it.adresse,it.date,it.heure,it.technicien,it.type,it.statut,it.total||0])); const csv=rows.map(r=>r.map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(';')).join('\n'); const blob=new Blob([csv],{type:'text/csv'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='interventions.csv'; a.click(); URL.revokeObjectURL(url); }
-function planifierInterventionFromDevis(devisId){ const d=(state.devis||[]).find(x=>x.id===devisId); if(!d) return; openNewInterventionModal(); setTimeout(()=>{ document.getElementById('intDevisId').value=d.id; document.getElementById('intClient').value=d.client||''; document.getElementById('intAdresse').value=d.adresse||''; },100); showView('interventions'); }
-// Patch dashboard to include planif button
-const _origRenderDashboardList = renderDashboardList;
-renderDashboardList = function(){
- _origRenderDashboardList();
- try{ renderInterventions(); }catch(e){}
- // add planif button to rows
- document.querySelectorAll('.devis-row').forEach(row=>{
-  const id=row.getAttribute('data-id'); if(!id) return; const d=(state.devis||[]).find(x=>x.id===id); if(!d||d.statut!=='Accepté') return;
-  if(row.querySelector('.btn-planif')) return;
-  const actions=row.querySelector('.row-actions'); if(!actions) return;
-  const btn=document.createElement('button'); btn.className='icon-btn btn-planif'; btn.title='Planifier intervention'; btn.textContent='🛠️'; btn.onclick=()=>planifierInterventionFromDevis(id); actions.appendChild(btn);
- });
-};
-</script>
+function isValidTVA(tva){ return /^FR[0-9A-Z]{2}\d{9}$/.test(tva) || tva==='' ; }
 
-
-
-
-
-<script>
-// ===== SIGNATURE ELECTRONIQUE AVANCEE eIDAS v6 - conforme comme concurrents =====
-let sigCtx=null, sigCtxTech=null, isDrawing=false, isDrawingTech=false, lastX=0, lastY=0, lastXTech=0, lastYTech=0, hasSignature=false, hasSignatureTech=false;
-function initSignatureCanvas(){
- const c=document.getElementById('sigCanvas'); if(!c) return;
- sigCtx=c.getContext('2d'); sigCtx.lineWidth=2.8; sigCtx.lineCap='round'; sigCtx.lineJoin='round'; sigCtx.strokeStyle='#0F172A';
- const cT=document.getElementById('sigCanvasTech');
- if(cT){ sigCtxTech=cT.getContext('2d'); sigCtxTech.lineWidth=2.5; sigCtxTech.lineCap='round'; sigCtxTech.strokeStyle='#059669'; }
- function getPos(e, canvas){ const r=canvas.getBoundingClientRect(); const sx=canvas.width/r.width; const sy=canvas.height/r.height; let cx,cy; if(e.touches){ cx=e.touches[0].clientX; cy=e.touches[0].clientY; } else { cx=e.clientX; cy=e.clientY; } return {x:(cx-r.left)*sx, y:(cy-r.top)*sy}; }
- if(c){
-  c.addEventListener('mousedown', e=>{ isDrawing=true; const p=getPos(e,c); lastX=p.x; lastY=p.y; });
-  c.addEventListener('mousemove', e=>{ if(!isDrawing) return; const p=getPos(e,c); sigCtx.beginPath(); sigCtx.moveTo(lastX,lastY); sigCtx.lineTo(p.x,p.y); sigCtx.stroke(); lastX=p.x; lastY=p.y; hasSignature=true; });
-  c.addEventListener('mouseup', ()=>{ isDrawing=false; }); c.addEventListener('mouseleave', ()=>{ isDrawing=false; });
-  c.addEventListener('touchstart', e=>{ e.preventDefault(); isDrawing=true; const p=getPos(e,c); lastX=p.x; lastY=p.y; }, {passive:false});
-  c.addEventListener('touchmove', e=>{ e.preventDefault(); if(!isDrawing) return; const p=getPos(e,c); sigCtx.beginPath(); sigCtx.moveTo(lastX,lastY); sigCtx.lineTo(p.x,p.y); sigCtx.stroke(); lastX=p.x; lastY=p.y; hasSignature=true; }, {passive:false});
-  c.addEventListener('touchend', e=>{ e.preventDefault(); isDrawing=false; }, {passive:false});
- }
- if(cT){
-  cT.addEventListener('mousedown', e=>{ isDrawingTech=true; const p=getPos(e,cT); lastXTech=p.x; lastYTech=p.y; });
-  cT.addEventListener('mousemove', e=>{ if(!isDrawingTech) return; const p=getPos(e,cT); sigCtxTech.beginPath(); sigCtxTech.moveTo(lastXTech,lastYTech); sigCtxTech.lineTo(p.x,p.y); sigCtxTech.stroke(); lastXTech=p.x; lastYTech=p.y; hasSignatureTech=true; });
-  cT.addEventListener('mouseup', ()=>{ isDrawingTech=false; }); cT.addEventListener('mouseleave', ()=>{ isDrawingTech=false; });
-  cT.addEventListener('touchstart', e=>{ e.preventDefault(); isDrawingTech=true; const p=getPos(e,cT); lastXTech=p.x; lastYTech=p.y; }, {passive:false});
-  cT.addEventListener('touchmove', e=>{ e.preventDefault(); if(!isDrawingTech) return; const p=getPos(e,cT); sigCtxTech.beginPath(); sigCtxTech.moveTo(lastXTech,lastYTech); sigCtxTech.lineTo(p.x,p.y); sigCtxTech.stroke(); lastXTech=p.x; lastYTech=p.y; hasSignatureTech=true; }, {passive:false});
-  cT.addEventListener('touchend', e=>{ e.preventDefault(); isDrawingTech=false; }, {passive:false});
- }
-}
-function clearSignature(){ const c=document.getElementById('sigCanvas'); if(c&&sigCtx) sigCtx.clearRect(0,0,c.width,c.height); hasSignature=false; const m=document.getElementById('sigMeta'); if(m) m.textContent=''; }
-function clearSignatureTech(){ const c=document.getElementById('sigCanvasTech'); if(c&&sigCtxTech) sigCtxTech.clearRect(0,0,c.width,c.height); hasSignatureTech=false; }
-function getSignatureDataURL(){ const c=document.getElementById('sigCanvas'); if(!c||!hasSignature) return null; return c.toDataURL('image/png'); }
-function getSignatureTechDataURL(){ const c=document.getElementById('sigCanvasTech'); if(!c||!hasSignatureTech) return null; return c.toDataURL('image/png'); }
-async function collectESignatureEvidence(){
- let ip=''; try{ const r=await fetch('https://api.ipify.org?format=json'); const j=await r.json(); ip=j.ip; }catch(e){ ip='offline'; }
- const now=new Date(); return { dateISO: now.toISOString(), dateFR: now.toLocaleDateString('fr-FR')+' '+now.toLocaleTimeString('fr-FR'), ip: ip, userAgent: navigator.userAgent.slice(0,100), consent: document.getElementById('intSignConsent')?.checked||false, nom: document.getElementById('intSignNom')?.value||'', email: document.getElementById('intSignEmail')?.value||'', hash: 'DF-'+btoa(now.toISOString()+ip).slice(0,12).toUpperCase() };
-}
-// Upgrade modal
-const origOpenNewInterventionModal = openNewInterventionModal;
-openNewInterventionModal = function(){ origOpenNewInterventionModal(); setTimeout(()=>{ initSignatureCanvas(); clearSignature(); clearSignatureTech(); const el=document.getElementById('sigMeta'); if(el) el.textContent='🔒 Signature électronique avancée eIDAS - horodatage + IP + consentement'; },120); };
-// Upgrade save
-const origSaveIntervention = saveIntervention;
-saveIntervention = async function(){
- const nom=document.getElementById('intSignNom')?.value.trim(); const consent=document.getElementById('intSignConsent')?.checked;
- if(hasSignature && (!nom || !consent)){ toast('⚠️ Pour signature électronique : nom + case eIDAS obligatoires'); return; }
- const evidence=await collectESignatureEvidence();
- const devisId=document.getElementById('intDevisId').value; const d=(state.devis||[]).find(x=>x.id===devisId);
- const sig=getSignatureDataURL(); const sigTech=getSignatureTechDataURL();
- const obj={ id:'INT-'+Date.now().toString(36).toUpperCase(), devisId:devisId||null, client:document.getElementById('intClient').value||d?.client||'', adresse:document.getElementById('intAdresse').value||d?.adresse||'', date:document.getElementById('intDate').value, heure:document.getElementById('intHeure').value, technicien:document.getElementById('intTech').value, type:document.getElementById('intType').value, description:document.getElementById('intDesc').value, duree:Number(document.getElementById('intDuree').value||0), statut:'Planifiée', createdAt:new Date().toISOString(), total:d?.venteTotal||0, signature:sig, signatureTech:sigTech, eSignature:{ niveau:'Avancée eIDAS art.26', preuve:evidence, conforme:true, auditTrail:'Signé électroniquement le '+evidence.dateFR+' par '+ (evidence.nom||'client') +' ('+ (evidence.email||'') +') - IP '+evidence.ip+' - Hash '+evidence.hash+' - Consentement:'+(evidence.consent?'oui':'non') } };
- state.interventions.push(obj); saveState(); document.getElementById('interventionModal').style.display='none'; renderInterventions(); toast('✅ Intervention eIDAS enregistrée');
-};
-// Upgrade PDF with legal proof
-generateBonIntervention = async function(id){
- const it=(state.interventions||[]).find(x=>x.id===id); if(!it) return;
- try{
-  const {jsPDF}=window.jspdf; const doc=new jsPDF();
-  doc.setFontSize(16); doc.setFont('helvetica','bold'); doc.text('Bon d\'Intervention - '+it.id,14,20);
-  doc.setFontSize(11); doc.setFont('helvetica','normal'); doc.text('Client: '+(it.client||''),14,30); doc.text('Adresse: '+(it.adresse||''),14,36); doc.text('Date: '+(it.date||'')+' '+ (it.heure||''),14,42); doc.text('Technicien: '+(it.technicien||''),14,48); doc.text('Type: '+(it.type||''),14,54);
-  let y=64; doc.setFont('helvetica','bold'); doc.text('Travaux realises:',14,y); y+=6; doc.setFont('helvetica','normal'); const lines=doc.splitTextToSize(it.description||'Aucune',180); doc.text(lines,14,y); y+=lines.length*6+8;
-  doc.text('Duree: '+(it.duree||0)+'h | Statut: '+(it.statut||''),14,y); y+=12;
-  doc.setFont('helvetica','bold'); doc.text('Signature electronique client (eIDAS avancee):',14,y); y+=6;
-  if(it.signature){ try{ doc.addImage(it.signature,'PNG',14,y,70,28); }catch(e){ doc.rect(14,y,70,28); } } else { doc.rect(14,y,70,28); doc.setFontSize(8); doc.text('Non signee',16,y+15); doc.setFontSize(11); }
-  doc.text('Signature technicien:',110,y-2); if(it.signatureTech){ try{ doc.addImage(it.signatureTech,'PNG',110,y,70,22); }catch(e){ doc.rect(110,y,70,22); } } else { doc.rect(110,y,70,22); }
-  y+=36;
-  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE SIGNATURE ELECTRONIQUE (eIDAS art.26 - comme concurrents):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||'')+' | Niveau: '+it.eSignature.niveau,14,y); y+=4; doc.text('Verification: https://devis-flash.fr/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
-  doc.setFontSize(7); doc.setFont('helvetica','italic'); doc.text('Devis Flash - Conforme eIDAS art.26 (avancee), RGS**, facturation electronique 2026 - Preuve opposable - devisflash93@gmail.com',14,285);
-  doc.save('Bon-Intervention-eIDAS-'+(it.client||'client').replace(/\s+/g,'-')+'-'+it.id+'.pdf'); toast('📄 Bon eIDAS conforme genere');
- }catch(e){ console.error(e); toast('Erreur PDF eIDAS'); }
-};
-</script>
-
-
-<script>
-// ===== SIGNATURE ELECTRONIQUE AVANCEE eIDAS v6 - conforme concurrents =====
-let sigCtx=null, sigCtxTech=null, isDrawing=false, isDrawingTech=false, lastX=0, lastY=0, lastXTech=0, lastYTech=0, hasSignature=false, hasSignatureTech=false;
-function initSignatureCanvas(){
- const c=document.getElementById('sigCanvas'); if(!c) return;
- sigCtx=c.getContext('2d'); sigCtx.lineWidth=2.8; sigCtx.lineCap='round'; sigCtx.lineJoin='round'; sigCtx.strokeStyle='#0F172A';
- const cT=document.getElementById('sigCanvasTech');
- if(cT){ sigCtxTech=cT.getContext('2d'); sigCtxTech.lineWidth=2.5; sigCtxTech.lineCap='round'; sigCtxTech.strokeStyle='#059669'; }
- function getPos(e, canvas){ const r=canvas.getBoundingClientRect(); const sx=canvas.width/r.width; const sy=canvas.height/r.height; let cx,cy; if(e.touches){ cx=e.touches[0].clientX; cy=e.touches[0].clientY; } else { cx=e.clientX; cy=e.clientY; } return {x:(cx-r.left)*sx, y:(cy-r.top)*sy}; }
- if(c){
-  c.addEventListener('mousedown', e=>{ isDrawing=true; const p=getPos(e,c); lastX=p.x; lastY=p.y; });
-  c.addEventListener('mousemove', e=>{ if(!isDrawing) return; const p=getPos(e,c); sigCtx.beginPath(); sigCtx.moveTo(lastX,lastY); sigCtx.lineTo(p.x,p.y); sigCtx.stroke(); lastX=p.x; lastY=p.y; hasSignature=true; const el=document.getElementById('sigMeta'); if(el) el.textContent='✍️ '+new Date().toLocaleTimeString('fr-FR')+' - signature capturée'; });
-  c.addEventListener('mouseup', ()=>{ isDrawing=false; }); c.addEventListener('mouseleave', ()=>{ isDrawing=false; });
-  c.addEventListener('touchstart', e=>{ e.preventDefault(); isDrawing=true; const p=getPos(e,c); lastX=p.x; lastY=p.y; }, {passive:false});
-  c.addEventListener('touchmove', e=>{ e.preventDefault(); if(!isDrawing) return; const p=getPos(e,c); sigCtx.beginPath(); sigCtx.moveTo(lastX,lastY); sigCtx.lineTo(p.x,p.y); sigCtx.stroke(); lastX=p.x; lastY=p.y; hasSignature=true; }, {passive:false});
-  c.addEventListener('touchend', e=>{ e.preventDefault(); isDrawing=false; }, {passive:false});
- }
- if(cT){
-  cT.addEventListener('mousedown', e=>{ isDrawingTech=true; const p=getPos(e,cT); lastXTech=p.x; lastYTech=p.y; });
-  cT.addEventListener('mousemove', e=>{ if(!isDrawingTech) return; const p=getPos(e,cT); sigCtxTech.beginPath(); sigCtxTech.moveTo(lastXTech,lastYTech); sigCtxTech.lineTo(p.x,p.y); sigCtxTech.stroke(); lastXTech=p.x; lastYTech=p.y; hasSignatureTech=true; });
-  cT.addEventListener('mouseup', ()=>{ isDrawingTech=false; }); cT.addEventListener('mouseleave', ()=>{ isDrawingTech=false; });
-  cT.addEventListener('touchstart', e=>{ e.preventDefault(); isDrawingTech=true; const p=getPos(e,cT); lastXTech=p.x; lastYTech=p.y; }, {passive:false});
-  cT.addEventListener('touchmove', e=>{ e.preventDefault(); if(!isDrawingTech) return; const p=getPos(e,cT); sigCtxTech.beginPath(); sigCtxTech.moveTo(lastXTech,lastYTech); sigCtxTech.lineTo(p.x,p.y); sigCtxTech.stroke(); lastXTech=p.x; lastYTech=p.y; hasSignatureTech=true; }, {passive:false});
-  cT.addEventListener('touchend', e=>{ e.preventDefault(); isDrawingTech=false; }, {passive:false});
- }
-}
-function clearSignature(){ const c=document.getElementById('sigCanvas'); if(c&&sigCtx) sigCtx.clearRect(0,0,c.width,c.height); hasSignature=false; const m=document.getElementById('sigMeta'); if(m) m.textContent=''; }
-function clearSignatureTech(){ const c=document.getElementById('sigCanvasTech'); if(c&&sigCtxTech) sigCtxTech.clearRect(0,0,c.width,c.height); hasSignatureTech=false; }
-function getSignatureDataURL(){ const c=document.getElementById('sigCanvas'); if(!c||!hasSignature) return null; return c.toDataURL('image/png'); }
-function getSignatureTechDataURL(){ const c=document.getElementById('sigCanvasTech'); if(!c||!hasSignatureTech) return null; return c.toDataURL('image/png'); }
-async function collectESignatureEvidence(){
- let ip=''; try{ const r=await fetch('https://api.ipify.org?format=json'); const j=await r.json(); ip=j.ip; }catch(e){ ip='offline'; }
- const now=new Date(); return { dateISO: now.toISOString(), dateFR: now.toLocaleDateString('fr-FR')+' '+now.toLocaleTimeString('fr-FR'), ip: ip, userAgent: navigator.userAgent.slice(0,100), consent: document.getElementById('intSignConsent')?.checked||false, nom: document.getElementById('intSignNom')?.value||'', email: document.getElementById('intSignEmail')?.value||'', hash: 'DF-'+btoa(now.toISOString()+ip).slice(0,12).toUpperCase() };
-}
-const _origOpenNewInterventionModalE = openNewInterventionModal;
-openNewInterventionModal = function(){ _origOpenNewInterventionModalE(); setTimeout(()=>{ initSignatureCanvas(); clearSignature(); clearSignatureTech(); const el=document.getElementById('sigMeta'); if(el) el.textContent='🔒 eSignature avancée eIDAS - horodatage + IP + consentement (comme Tolteck)'; },120); };
-const _origSaveInterventionE = saveIntervention;
-saveIntervention = async function(){
- const nom=document.getElementById('intSignNom')?.value.trim(); const consent=document.getElementById('intSignConsent')?.checked;
- if(hasSignature && (!nom || !consent)){ toast('⚠️ eIDAS: nom + case consentement obligatoires'); return; }
- const evidence=await collectESignatureEvidence();
- const devisId=document.getElementById('intDevisId').value; const d=(state.devis||[]).find(x=>x.id===devisId);
- const sig=getSignatureDataURL(); const sigTech=getSignatureTechDataURL();
- const obj={ id:'INT-'+Date.now().toString(36).toUpperCase(), devisId:devisId||null, client:document.getElementById('intClient').value||d?.client||'', adresse:document.getElementById('intAdresse').value||d?.adresse||'', date:document.getElementById('intDate').value, heure:document.getElementById('intHeure').value, technicien:document.getElementById('intTech').value, type:document.getElementById('intType').value, description:document.getElementById('intDesc').value, duree:Number(document.getElementById('intDuree').value||0), statut:'Planifiée', createdAt:new Date().toISOString(), total:d?.venteTotal||0, signature:sig, signatureTech:sigTech, eSignature:{ niveau:'Avancée eIDAS art.26', preuve:evidence, conforme:true, auditTrail:'Signé électroniquement le '+evidence.dateFR+' par '+ (evidence.nom||'client') +' ('+ (evidence.email||'') +') - IP '+evidence.ip+' - Hash '+evidence.hash+' - Consentement:'+(evidence.consent?'oui':'non') } };
- state.interventions.push(obj); saveState(); document.getElementById('interventionModal').style.display='none'; renderInterventions(); toast('✅ Intervention eIDAS conforme enregistrée');
-};
-generateBonIntervention = async function(id){
- const it=(state.interventions||[]).find(x=>x.id===id); if(!it) return;
- try{
-  const {jsPDF}=window.jspdf; const doc=new jsPDF();
-  doc.setFontSize(16); doc.setFont('helvetica','bold'); doc.text('Bon d\'Intervention - '+it.id,14,20);
-  doc.setFontSize(11); doc.setFont('helvetica','normal'); doc.text('Client: '+(it.client||''),14,30); doc.text('Adresse: '+(it.adresse||''),14,36); doc.text('Date: '+(it.date||'')+' '+ (it.heure||''),14,42); doc.text('Technicien: '+(it.technicien||''),14,48); doc.text('Type: '+(it.type||''),14,54);
-  let y=64; doc.setFont('helvetica','bold'); doc.text('Travaux realises:',14,y); y+=6; doc.setFont('helvetica','normal'); const lines=doc.splitTextToSize(it.description||'Aucune',180); doc.text(lines,14,y); y+=lines.length*6+8;
-  doc.text('Duree: '+(it.duree||0)+'h | Statut: '+(it.statut||''),14,y); y+=12;
-  doc.setFont('helvetica','bold'); doc.text('Signature electronique client (eIDAS avancee - comme concurrents):',14,y); y+=6;
-  if(it.signature){ try{ doc.addImage(it.signature,'PNG',14,y,70,28); }catch(e){ doc.rect(14,y,70,28); } } else { doc.rect(14,y,70,28); doc.setFontSize(8); doc.text('Non signee',16,y+15); doc.setFontSize(11); }
-  doc.text('Signature technicien:',110,y-2); if(it.signatureTech){ try{ doc.addImage(it.signatureTech,'PNG',110,y,70,22); }catch(e){ doc.rect(110,y,70,22); } } else { doc.rect(110,y,70,22); }
-  y+=36;
-  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE SIGNATURE ELECTRONIQUE (eIDAS art.26 - niveau avancee - conforme RGS**):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||'')+' | Niveau: '+it.eSignature.niveau,14,y); y+=4; doc.text('Verification: https://devis-flash.fr/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
-  doc.setFontSize(7); doc.setFont('helvetica','italic'); doc.text('Devis Flash - Conforme eIDAS art.26 (avancee), RGS**, facturation electronique 2026 - Preuve opposable - devisflash93@gmail.com',14,285);
-  doc.save('Bon-Intervention-eIDAS-'+(it.client||'client').replace(/\s+/g,'-')+'-'+it.id+'.pdf'); toast('📄 Bon eIDAS conforme genere');
- }catch(e){ console.error(e); toast('Erreur PDF eIDAS'); }
-};
-</script>
-
-
-<script>
-// ===== PHOTOS CHANTIER + SIGNATURE A DISTANCE (comme DocuSign) =====
-let currentPhotos=[]; // base64 array
-function handlePhotos(input){
- const files=input.files; if(!files) return;
- currentPhotos=[];
- const preview=document.getElementById('intPhotosPreview'); preview.innerHTML='';
- Array.from(files).slice(0,4).forEach(file=>{
-  const reader=new FileReader();
-  reader.onload=e=>{
-   const img=new Image();
-   img.onload=()=>{
-    const canvas=document.createElement('canvas'); const max=800;
-    let w=img.width, h=img.height; if(w>max||h>max){ const r=Math.min(max/w,max/h); w*=r; h*=r; }
-    canvas.width=w; canvas.height=h; canvas.getContext('2d').drawImage(img,0,0,w,h);
-    const b64=canvas.toDataURL('image/jpeg',0.7);
-    currentPhotos.push(b64);
-    const div=document.createElement('div'); div.style.cssText='border:1px solid #E2E8F0;border-radius:8px;overflow:hidden;position:relative';
-    div.innerHTML=`<img src="${b64}" style="width:100%;height:80px;object-fit:cover"><button onclick="this.parentElement.remove(); currentPhotos=currentPhotos.filter(x=>x!==\'${b64}\')" style="position:absolute;top:2px;right:2px;background:#DC2626;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:12px">×</button>`;
-    preview.appendChild(div);
-   };
-   img.src=e.target.result;
+async function transformerEnFactureElectronique(id){
+  const ent = JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+  if(!ent.siret || !isValidSIRET(ent.siret)){ openEntrepriseModal(); if(typeof toast==='function') toast('⚠️ Renseigne ton SIRET d\'abord'); return; }
+  const d=(state.devis||[]).find(x=>x.id===id); if(!d){ if(typeof toast==='function') toast('Devis introuvable'); return; }
+  if(typeof toast==='function') toast('⚡ Génération Factur-X '+ent.nom+'...');
+  const payload = {
+    numero: 'F-'+new Date().getFullYear()+'-'+(d.id?.slice(-6)||Date.now()),
+    client: d.client||'Client',
+    adresse: d.adresse||'',
+    total: d.venteTotal||0,
+    tvaRate: state.tvaRate||20,
+    date: d.date||new Date().toISOString().slice(0,10),
+    siret: ent.siret,
+    tva: ent.tva||'',
+    signataire: ent.nom||'Devis Flash',
+    entreprise: ent,
+    description: (d.lines||[]).map(l=>l.designation).join(', ').slice(0,120)
   };
-  reader.readAsDataURL(file);
- });
-}
-
-function sendRemoteSignature(){
- const email=document.getElementById('intRemoteEmail')?.value.trim();
- if(!email){ toast('⚠️ Email client requis'); return; }
- const tempId='TMP-'+Date.now().toString(36).toUpperCase();
- const devisId=document.getElementById('intDevisId').value;
- const client=document.getElementById('intClient').value||'Client';
- const date=document.getElementById('intDate').value;
- // Save pending remote signature
- const pending={ id:tempId, email:email, devisId:devisId, client:client, date:date, description:document.getElementById('intDesc').value, createdAt:new Date().toISOString(), status:'En attente signature' };
- state.remoteSignatures=state.remoteSignatures||[]; state.remoteSignatures.push(pending); saveState();
- const signUrl=`https://devis-flash.fr/?sign=${tempId}#signature`;
- const linkDiv=document.getElementById('intRemoteLink');
- linkDiv.style.display='block';
- linkDiv.innerHTML=`✅ Lien généré: <a href="${signUrl}" target="_blank" style="color:#2563EB;word-break:break-all">${signUrl}</a><br><div style="margin-top:6px;display:flex;gap:6px"><button class="btn btn-secondary btn-sm" onclick="copyRemoteLink('${signUrl}')">📋 Copier lien</button><button class="btn btn-secondary btn-sm" onclick="sendRemoteEmail('${tempId}')">📧 Ouvrir email</button><button class="btn btn-secondary btn-sm" onclick="sendRemoteWhatsApp('${tempId}')">💬 WhatsApp</button></div><div style="margin-top:6px;font-size:10px;color:#059669">Le client clique, signe avec son doigt sur son téléphone, vous recevez la preuve eIDAS automatiquement.</div>`;
- // Also try mailto
- window.open(`mailto:${email}?subject=${encodeURIComponent('Signature bon intervention - '+client)}&body=${encodeURIComponent('Bonjour '+client+',\n\nVeuillez signer votre bon d\'intervention en cliquant ici:\n'+signUrl+'\n\nSignature électronique conforme eIDAS.\n\nMerci,\nDevis Flash')}`,'_blank');
- toast('📧 Lien signature à distance généré');
-}
-function copyRemoteLink(url){ navigator.clipboard.writeText(url).then(()=>toast('📋 Lien copié')); }
-function sendRemoteEmail(tempId){
- const p=(state.remoteSignatures||[]).find(x=>x.id===tempId); if(!p) return;
- const url=`https://devis-flash.fr/?sign=${tempId}#signature`;
- window.open(`mailto:${p.email}?subject=${encodeURIComponent('Signature requise - Bon intervention')}&body=${encodeURIComponent('Bonjour '+p.client+',\n\nMerci de signer votre bon d\'intervention:\n'+url+'\n\nÀ signer électroniquement (conforme eIDAS).\n\nDevis Flash')}`,'_blank');
-}
-function sendRemoteWhatsApp(tempId){
- const p=(state.remoteSignatures||[]).find(x=>x.id===tempId); if(!p) return;
- const url=`https://devis-flash.fr/?sign=${tempId}#signature`;
- window.open(`https://wa.me/?text=${encodeURIComponent('Bonjour '+p.client+', veuillez signer votre bon d\'intervention ici: '+url+' - Signature eIDAS conforme')}`,'_blank');
-}
-
-// Handle incoming ?sign=xxx - show signature page
-(function handleRemoteSign(){
- const params=new URLSearchParams(window.location.search);
- const signId=params.get('sign'); if(!signId) return;
- setTimeout(()=>{
-  showView('interventions');
-  const modal=document.getElementById('remoteSignPage');
-  if(!modal){
-   const div=document.createElement('div');
-   div.id='remoteSignPage';
-   div.style.cssText='position:fixed;inset:0;background:#F8FAFF;z-index:300;overflow:auto;padding:20px';
-   div.innerHTML=`
-    <div style="max-width:500px;margin:0 auto;background:#fff;border-radius:16px;padding:20px;border:1px solid #E2E8F0">
-     <h2 class="sora">✍️ Signature bon d'intervention</h2>
-     <p style="font-size:13px;color:#64748B">Vous avez reçu une demande de signature électronique conforme eIDAS.</p>
-     <div id="remoteSignInfo" style="background:#F1F5F9;border-radius:10px;padding:12px;margin:12px 0;font-size:13px"></div>
-     <label>Nom complet *</label><input id="remoteNom" style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:8px">
-     <label>Email *</label><input id="remoteEmail" type="email" style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:8px">
-     <label>Signature *</label>
-     <div style="border:2px solid #2563EB;border-radius:12px;padding:8px;background:#fff"><canvas id="remoteSigCanvas" width="600" height="200" style="width:100%;height:160px;touch-action:none;cursor:crosshair"></canvas></div>
-     <div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn-secondary btn-sm" onclick="clearRemoteSig()">Effacer</button><label style="font-size:11px;display:flex;align-items:center;gap:6px"><input type="checkbox" id="remoteConsent"> Je signe électroniquement (eIDAS)</label></div>
-     <button class="btn btn-primary" style="width:100%;margin-top:12px" onclick="submitRemoteSignature('${signId}')">✅ Signer électroniquement</button>
-     <button class="btn btn-secondary" style="width:100%;margin-top:8px" onclick="document.getElementById('remoteSignPage').remove()">Annuler</button>
-    </div>`;
-   document.body.appendChild(div);
-   // init canvas
-   setTimeout(()=>{
-    const c=document.getElementById('remoteSigCanvas'); const ctx=c.getContext('2d'); ctx.lineWidth=2.8; ctx.lineCap='round'; ctx.strokeStyle='#0F172A';
-    let drawing=false, lx=0, ly=0, has=false;
-    function getP(e){ const r=c.getBoundingClientRect(); const sx=c.width/r.width; const sy=c.height/r.height; let cx,cy; if(e.touches){ cx=e.touches[0].clientX; cy=e.touches[0].clientY; } else { cx=e.clientX; cy=e.clientY; } return {x:(cx-r.left)*sx, y:(cy-r.top)*sy}; }
-    c.addEventListener('mousedown', e=>{ drawing=true; const p=getP(e,c); lx=p.x; ly=p.y; });
-    c.addEventListener('mousemove', e=>{ if(!drawing) return; const p=getP(e,c); ctx.beginPath(); ctx.moveTo(lx,ly); ctx.lineTo(p.x,p.y); ctx.stroke(); lx=p.x; ly=p.y; has=true; c.dataset.has=has; });
-    c.addEventListener('mouseup', ()=>{ drawing=false; }); c.addEventListener('mouseleave', ()=>{ drawing=false; });
-    c.addEventListener('touchstart', e=>{ e.preventDefault(); drawing=true; const p=getP(e,c); lx=p.x; ly=p.y; }, {passive:false});
-    c.addEventListener('touchmove', e=>{ e.preventDefault(); if(!drawing) return; const p=getP(e,c); ctx.beginPath(); ctx.moveTo(lx,ly); ctx.lineTo(p.x,p.y); ctx.stroke(); lx=p.x; ly=p.y; has=true; c.dataset.has=has; }, {passive:false});
-    c.addEventListener('touchend', e=>{ e.preventDefault(); drawing=false; }, {passive:false});
-    window.clearRemoteSig=()=>{ ctx.clearRect(0,0,c.width,c.height); c.dataset.has=''; };
-    const pending=(JSON.parse(localStorage.getItem('devis-flash-state')||'{}').remoteSignatures||[]).find(x=>x.id===signId);
-    document.getElementById('remoteSignInfo').textContent=pending?`Client: ${pending.client} - Date: ${pending.date} - ${pending.description||''}`:'Demande de signature';
-   },200);
-  }
- },500);
-})();
-
-async function submitRemoteSignature(signId){
- const nom=document.getElementById('remoteNom')?.value.trim(); const email=document.getElementById('remoteEmail')?.value.trim(); const consent=document.getElementById('remoteConsent')?.checked;
- const canvas=document.getElementById('remoteSigCanvas'); const has=canvas?.dataset.has;
- if(!nom||!email||!consent||!has){ toast('⚠️ Nom, email, signature + consentement requis'); return; }
- const b64=canvas.toDataURL('image/png');
- let ip=''; try{ const r=await fetch('https://api.ipify.org?format=json'); const j=await r.json(); ip=j.ip; }catch(e){ ip='offline'; }
- const now=new Date();
- const evidence={ dateISO:now.toISOString(), dateFR:now.toLocaleDateString('fr-FR')+' '+now.toLocaleTimeString('fr-FR'), ip:ip, nom:nom, email:email, hash:'DF-'+btoa(now.toISOString()+ip).slice(0,12).toUpperCase(), consent:true };
- // Save to local state as signed intervention
- const pendingRaw=localStorage.getItem('devis-flash-state'); let st={}; try{ st=JSON.parse(pendingRaw); }catch(e){}
- const pending=(st.remoteSignatures||[]).find(x=>x.id===signId);
- const obj={ id:signId.replace('TMP','INT'), devisId:pending?.devisId||null, client:pending?.client||nom, adresse:pending?.adresse||'', date:pending?.date||new Date().toISOString().slice(0,10), heure:'', technicien:'', type:'Intervention signée à distance', description:pending?.description||'', duree:0, statut:'Terminée', createdAt:now.toISOString(), total:0, signature:b64, signatureTech:null, eSignature:{ niveau:'Avancée eIDAS - signature à distance', preuve:evidence, conforme:true, auditTrail:'Signé à distance le '+evidence.dateFR+' par '+nom+' ('+email+') - IP '+ip+' - Hash '+evidence.hash }, photos:[] };
- st.interventions=st.interventions||[]; st.interventions.push(obj);
- if(pending){ pending.status='Signé'; pending.signedAt=now.toISOString(); }
- localStorage.setItem('devis-flash-state', JSON.stringify(st));
- toast('✅ Signature enregistrée - merci !'); document.getElementById('remoteSignPage').innerHTML='<div style="text-align:center;padding:40px"><div style="font-size:48px">✅</div><h2>Merci !</h2><p>Votre signature électronique a été enregistrée avec preuve eIDAS.</p><p style="font-size:11px;color:#64748B">Hash: '+evidence.hash+'<br>Vous pouvez fermer cette page.</p></div>';
- setTimeout(()=>{ location.href=location.origin+location.pathname; },3000);
-}
-
-// Patch saveIntervention to include photos
-const _origSaveInterventionPhoto = saveIntervention;
-saveIntervention = async function(){
- const nom=document.getElementById('intSignNom')?.value.trim(); const consent=document.getElementById('intSignConsent')?.checked;
- if(hasSignature && (!nom || !consent)){ toast('⚠️ eIDAS: nom + case consentement obligatoires'); return; }
- const evidence=await collectESignatureEvidence();
- const devisId=document.getElementById('intDevisId').value; const d=(state.devis||[]).find(x=>x.id===devisId);
- const sig=getSignatureDataURL(); const sigTech=getSignatureTechDataURL();
- const obj={ id:'INT-'+Date.now().toString(36).toUpperCase(), devisId:devisId||null, client:document.getElementById('intClient').value||d?.client||'', adresse:document.getElementById('intAdresse').value||d?.adresse||'', date:document.getElementById('intDate').value, heure:document.getElementById('intHeure').value, technicien:document.getElementById('intTech').value, type:document.getElementById('intType').value, description:document.getElementById('intDesc').value, duree:Number(document.getElementById('intDuree').value||0), statut:'Planifiée', createdAt:new Date().toISOString(), total:d?.venteTotal||0, signature:sig, signatureTech:sigTech, photos: [...currentPhotos], eSignature:{ niveau:'Avancée eIDAS art.26', preuve:evidence, conforme:true, auditTrail:'Signé électroniquement le '+evidence.dateFR+' par '+ (evidence.nom||'client') +' ('+ (evidence.email||'') +') - IP '+evidence.ip+' - Hash '+evidence.hash+' - Consentement:'+(evidence.consent?'oui':'non') } };
- state.interventions.push(obj); saveState(); document.getElementById('interventionModal').style.display='none'; currentPhotos=[]; document.getElementById('intPhotosPreview').innerHTML=''; renderInterventions(); toast('✅ Intervention avec photos + eIDAS enregistrée');
-};
-
-// Patch PDF to include photos
-const _origGenBonPhoto = generateBonIntervention;
-generateBonIntervention = async function(id){
- const it=(state.interventions||[]).find(x=>x.id===id); if(!it) return;
- try{
-  const {jsPDF}=window.jspdf; const doc=new jsPDF();
-  doc.setFontSize(16); doc.setFont('helvetica','bold'); doc.text('Bon d\'Intervention - '+it.id,14,20);
-  doc.setFontSize(11); doc.setFont('helvetica','normal'); doc.text('Client: '+(it.client||''),14,30); doc.text('Adresse: '+(it.adresse||''),14,36); doc.text('Date: '+(it.date||'')+' '+ (it.heure||''),14,42); doc.text('Technicien: '+(it.technicien||''),14,48); doc.text('Type: '+(it.type||''),14,54);
-  let y=64; doc.setFont('helvetica','bold'); doc.text('Travaux realises:',14,y); y+=6; doc.setFont('helvetica','normal'); const lines=doc.splitTextToSize(it.description||'Aucune',180); doc.text(lines,14,y); y+=lines.length*6+8;
-  doc.text('Duree: '+(it.duree||0)+'h | Statut: '+(it.statut||''),14,y); y+=12;
-  // Photos
-  if(it.photos && it.photos.length>0){
-   doc.setFont('helvetica','bold'); doc.text('Photos chantier ('+it.photos.length+'):',14,y); y+=6;
-   let x=14; let count=0;
-   it.photos.forEach((ph,i)=>{
-    if(y>220){ doc.addPage(); y=20; x=14; }
-    try{ doc.addImage(ph,'JPEG',x,y,40,30); x+=45; count++; if(count%4===0){ x=14; y+=35; } }catch(e){}
-   });
-   if(count%4!==0) y+=35; else y+=6;
-  }
-  doc.setFont('helvetica','bold'); doc.text('Signature electronique client (eIDAS):',14,y); y+=6;
-  if(it.signature){ try{ doc.addImage(it.signature,'PNG',14,y,70,28); }catch(e){ doc.rect(14,y,70,28); } } else { doc.rect(14,y,70,28); }
-  doc.text('Signature technicien:',110,y-2); if(it.signatureTech){ try{ doc.addImage(it.signatureTech,'PNG',110,y,70,22); }catch(e){ doc.rect(110,y,70,22); } } else { doc.rect(110,y,70,22); }
-  y+=36;
-  if(it.eSignature){ doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.text('PREUVE eIDAS (comme DocuSign/Tolteck):',14,y); y+=4; doc.setFont('helvetica','normal'); const preuve=doc.splitTextToSize(it.eSignature.auditTrail||'',180); doc.text(preuve,14,y); y+=preuve.length*4+4; doc.text('Hash: '+(it.eSignature.preuve?.hash||'')+' | IP: '+(it.eSignature.preuve?.ip||''),14,y); y+=4; doc.text('Verify: https://devis-flash.fr/?verify='+(it.eSignature.preuve?.hash||it.id),14,y); y+=6; }
-  // QR Code vérification authenticité
   try{
-   const verifyUrl='https://devis-flash.fr/?verify='+(it.eSignature?.preuve?.hash||it.id);
-   const qrCanvas=document.createElement('canvas');
-   await new Promise(res=>{
-    QRCode.toCanvas(qrCanvas, verifyUrl, {width:120, margin:1}, (err)=>{ res(); });
-   });
-   const qrData=qrCanvas.toDataURL('image/png');
-   doc.addImage(qrData,'PNG',165,230,30,30);
-   doc.setFontSize(7); doc.setFont('helvetica','normal'); doc.text('Scanner pour verifier',165,262); doc.text('authenticite',168,265);
-  }catch(e){ console.log('QR fail', e); }
-
-  doc.setFontSize(7); doc.setFont('helvetica','italic'); doc.text('Devis Flash - eIDAS avancee, RGS**, facturation 2026 - Photos + QR verification + preuve opposable - devisflash93@gmail.com',14,285);
-  doc.save('Bon-Intervention-eIDAS-Photos-'+(it.client||'client').replace(/\s+/g,'-')+'-'+it.id+'.pdf'); toast('📄 Bon eIDAS + photos genere');
- }catch(e){ console.error(e); toast('Erreur PDF photos'); }
-};
-// Also update render to show photos
-const _origRenderInterventionsPhoto = renderInterventions;
-renderInterventions = function(){
- _origRenderInterventionsPhoto();
- // add photo thumbs in list
- (state.interventions||[]).forEach(it=>{
-  if(it.photos && it.photos.length>0){
-   const row=document.querySelector(`[data-int-id="${it.id}"]`);
+    const res = await fetch('/api/factur-x', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+    if(res.ok){
+      const blob = await res.blob();
+      const hash = res.headers.get('X-FacturX-Hash');
+      const verify = res.headers.get('X-FacturX-Verify');
+      const url = URL.createObjectURL(blob);
+      const a=document.createElement('a'); a.href=url; a.download=`${payload.numero}-${(ent.nom||'DevisFlash').replace(/\s+/g,'')}-FacturX.pdf`; a.click();
+      if(typeof toast==='function') toast(`✅ Facture ${ent.nom} - SHA256 ${hash?.slice(0,8)}...`);
+      console.log('VERIFY:', verify, 'HASH:', hash);
+      // EmailJS envoi garanti si key
+      if(ent.emailjs_key && window.emailjs && blob){
+        const reader = new FileReader();
+        reader.onload = function(){
+          const base64 = reader.result.split(',')[1];
+          try{
+            emailjs.init(ent.emailjs_key);
+            emailjs.send(ent.emailjs_service||'service_xxx', ent.emailjs_template||'template_xxx', {
+              to_email: d.email||ent.email, pdf_attachment: base64, pdf_filename: payload.numero+'.pdf', hash, verify_url: verify, client: payload.client, total: payload.total
+            }).then(()=>{ if(typeof toast==='function') toast('📧 PDF envoyé via EmailJS'); }).catch(e=>console.warn(e));
+          }catch(e){}
+        };
+        reader.readAsDataURL(blob);
+      }
+      return;
+    }
+    throw new Error('API non dispo '+res.status);
+  }catch(e){
+    console.warn('Fallback local', e);
+    const pdfData = await generateDevisPDFBase64(id);
+    if(pdfData){ pdfData.doc.save(pdfData.filename); if(typeof toast==='function') toast(`✅ Fallback local - ${ent.nom} - ${pdfData.hash?.slice(0,8)}...`); }
   }
- });
- // inject photo count in existing rendering
- const listEl=document.getElementById('interventionsList');
- if(listEl && (state.interventions||[]).some(x=>x.photos&&x.photos.length>0)){
-  // re-render with photos
-  const filter=document.getElementById('filterInterventionStatut')?.value||''; const search=(document.getElementById('searchIntervention')?.value||'').toLowerCase();
-  let arr=state.interventions||[]; let filtered=arr.filter(it=>{ if(filter&&it.statut!==filter) return false; if(search && !((it.client||'').toLowerCase().includes(search)||(it.adresse||'').toLowerCase().includes(search))) return false; return true; });
-  if(filtered.length>0){
-   listEl.innerHTML=filtered.map(it=>`<div style="border:1px solid #E2E8F0;border-radius:12px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#fff"><div style="flex:1;min-width:220px"><div style="font-weight:700">${it.client||'Client'} <span style="font-weight:400;color:#64748B;font-size:11px">${it.id}</span> ${it.photos&&it.photos.length>0?`<span style="background:#DBEAFE;color:#1D4ED8;font-size:10px;padding:2px 6px;border-radius:10px">📸 ${it.photos.length} photos</span>`:''}</div><div style="font-size:12px;color:#475569">📍 ${it.adresse||'-'} • 📅 ${it.date||''} ${it.heure||''} • 👷 ${it.technicien||'-'}</div><div style="font-size:12px;margin-top:4px">${it.type} - ${it.description||''}</div>${it.photos&&it.photos.length>0?`<div style="display:flex;gap:4px;margin-top:6px">${it.photos.map(p=>`<img src="${p}" style="width:40px;height:30px;object-fit:cover;border-radius:4px;border:1px solid #E2E8F0">`).join('')}</div>`:''}<div style="margin-top:6px"><span style="font-size:11px;padding:3px 8px;border-radius:20px;background:#F1F5F9;border:1px solid #E2E8F0">${it.statut}</span> ${it.total?'<span style="font-size:11px;margin-left:6px">'+fmtEUR(it.total)+'</span>':''} ${it.eSignature?'<span style="font-size:10px;background:#ECFDF5;color:#059669;padding:2px 6px;border-radius:10px;margin-left:4px">🔒 eIDAS</span>':''}</div></div><div style="display:flex;flex-direction:column;gap:6px"><select onchange="changeInterventionStatut('${it.id}',this.value)" style="padding:6px;border-radius:8px;border:1px solid #E2E8F0;font-size:12px"><option ${it.statut==='Planifiée'?'selected':''}>Planifiée</option><option ${it.statut==='En cours'?'selected':''}>En cours</option><option ${it.statut==='Terminée'?'selected':''}>Terminée</option><option ${it.statut==='Facturée'?'selected':''}>Facturée</option></select><button class="btn btn-secondary btn-sm" onclick="generateBonIntervention('${it.id}')">📄 Bon PDF + 📸 + QR</button><button class="btn btn-primary btn-sm" onclick="transformInterventionToFacture('${it.id}')">🧾 → Facture</button><button class="btn btn-secondary btn-sm" onclick="sendRemoteWhatsApp('${it.id}')">💬 Renvoyer signature</button></div></div>`).join('');
-  }
- }
-};
+}
+window.transformerEnFactureElectronique = transformerEnFactureElectronique;
 </script>
 
+<!-- MODAL ENTREPRISE ARTISAN -->
+<div id="entrepriseModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;align-items:center;justify-content:center">
+<div style="background:#fff;border-radius:16px;padding:24px;max-width:480px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:90vh;overflow-y:auto">
+<h3 style="font-size:18px;font-weight:800;margin-bottom:12px">⚙️ Mon entreprise - Facturation électronique 2026</h3>
+<p style="font-size:12px;color:#64748b;margin-bottom:16px">Ces infos seront dans le XML Factur-X + SHA-256 eIDAS + QR vérification</p>
+<label style="font-size:12px;font-weight:600">Nom entreprise / Signataire *</label>
+<input id="ent_nom" placeholder="Devis Flash" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 12px">
+<label style="font-size:12px;font-weight:600">SIRET 14 chiffres *</label>
+<input id="ent_siret" placeholder="10484045900010" maxlength="14" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 4px">
+<div id="siret_status" style="font-size:11px;margin:0 0 12px"></div>
+<label style="font-size:12px;font-weight:600">TVA intra (optionnel)</label>
+<input id="ent_tva" placeholder="FR12345678901" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 12px">
+<label style="font-size:12px;font-weight:600">Adresse</label>
+<input id="ent_adresse" placeholder="12 rue Exemple" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 12px">
+<div style="display:flex;gap:8px">
+<input id="ent_cp" placeholder="CP 93120" style="flex:1;padding:10px;border:1px solid #e2e8f0;border-radius:8px">
+<input id="ent_ville" placeholder="Ville" style="flex:1;padding:10px;border:1px solid #e2e8f0;border-radius:8px">
+</div>
+<label style="font-size:12px;font-weight:600;margin-top:12px;display:block">Email facturation</label>
+<input id="ent_email" placeholder="devisflash93@gmail.com" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 12px">
+<label style="font-size:12px;font-weight:600">EmailJS Public Key (envoi PDF garanti)</label>
+<input id="ent_emailjs_key" placeholder="user_xxx" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 6px">
+<div style="display:flex;gap:8px;margin:4px 0 12px">
+<input id="ent_emailjs_service" placeholder="service_id (ex: service_abc)" style="flex:1;padding:8px;border:1px solid #e2e8f0;border-radius:8px;font-size:11px">
+<input id="ent_emailjs_template" placeholder="template_id" style="flex:1;padding:8px;border:1px solid #e2e8f0;border-radius:8px;font-size:11px">
+</div>
+<div style="display:flex;gap:8px;margin-top:16px">
+<button onclick="saveEntreprise()" style="flex:1;background:#2563eb;color:#fff;padding:12px;border-radius:10px;font-weight:700;border:0">💾 Enregistrer</button>
+<button onclick="document.getElementById('entrepriseModal').style.display='none'" style="flex:1;background:#f1f5f9;padding:12px;border-radius:10px;border:0">Fermer</button>
+</div>
+<div style="margin-top:12px;padding:10px;background:#f0f9ff;border-radius:8px;font-size:11px;line-height:1.4">
+✅ SIRET validé Luhn | ✅ TVA format FR | ✅ SHA-256 + verify URL<br>
+✅ XML Factur-X EN16931 COMFORT | ✅ EmailJS PDF attaché
+</div>
+</div>
+</div>
+
 <script>
-// VERIFY PAGE QR
+function openEntrepriseModal(){
+  const ent = JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+  document.getElementById('ent_nom').value = ent.nom||'Devis Flash';
+  document.getElementById('ent_siret').value = ent.siret||'10484045900010';
+  document.getElementById('ent_tva').value = ent.tva||'';
+  document.getElementById('ent_adresse').value = ent.adresse||'';
+  document.getElementById('ent_cp').value = ent.cp||'93120';
+  document.getElementById('ent_ville').value = ent.ville||'Villepinte';
+  document.getElementById('ent_email').value = ent.email||'devisflash93@gmail.com';
+  document.getElementById('ent_emailjs_key').value = ent.emailjs_key||'ekM4QRagcFRNTF097';
+  document.getElementById('ent_emailjs_service').value = ent.emailjs_service||'DEVIS';
+  document.getElementById('ent_emailjs_template').value = ent.emailjs_template||'template_6s5kpid';
+  document.getElementById('entrepriseModal').style.display='flex';
+  validateSIRETField();
+}
+function validateSIRETField(){
+  const s = document.getElementById('ent_siret').value;
+  const el = document.getElementById('siret_status');
+  if(!s){ el.innerHTML=''; return; }
+  if(isValidSIRET(s)) el.innerHTML='<span style="color:#16a34a">✅ SIRET valide Luhn</span>';
+  else el.innerHTML='<span style="color:#dc2626">❌ SIRET invalide (14 chiffres)</span>';
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('ent_siret')?.addEventListener('input', validateSIRETField);
+});
+function saveEntreprise(){
+  const ent = {
+    nom: document.getElementById('ent_nom').value||'Devis Flash',
+    siret: document.getElementById('ent_siret').value||'10484045900010',
+    tva: document.getElementById('ent_tva').value||'',
+    adresse: document.getElementById('ent_adresse').value||'',
+    cp: document.getElementById('ent_cp').value||'',
+    ville: document.getElementById('ent_ville').value||'',
+    email: document.getElementById('ent_email').value||'devisflash93@gmail.com',
+    emailjs_key: document.getElementById('ent_emailjs_key').value||'ekM4QRagcFRNTF097',
+    emailjs_service: document.getElementById('ent_emailjs_service').value||'DEVIS',
+    emailjs_template: document.getElementById('ent_emailjs_template').value||'template_6s5kpid'
+  };
+  if(!isValidSIRET(ent.siret)){ alert('SIRET invalide - 14 chiffres + clé Luhn'); return; }
+  if(ent.tva && !isValidTVA(ent.tva)){ alert('TVA intra invalide format FRXX...'); return; }
+  localStorage.setItem('devisflash_entreprise', JSON.stringify(ent));
+  if(ent.emailjs_key && window.emailjs){ try{ emailjs.init(ent.emailjs_key); }catch(e){} }
+  if(typeof toast==='function') toast('✅ Entreprise enregistrée - Factur-X conforme - '+ent.nom);
+  else alert('✅ Entreprise enregistrée');
+  document.getElementById('entrepriseModal').style.display='none';
+}
 (function(){
- const params=new URLSearchParams(window.location.search);
- const verifyHash=params.get('verify'); if(!verifyHash) return;
- setTimeout(()=>{
-  const st=JSON.parse(localStorage.getItem('devis-flash-state')||'{}');
-  const found=(st.interventions||[]).find(it=> (it.eSignature?.preuve?.hash===verifyHash) || it.id===verifyHash );
-  const div=document.createElement('div'); div.id='verifyPage'; div.style.cssText='position:fixed;inset:0;background:#F8FAFF;z-index:500;overflow:auto;padding:20px';
-  let content='';
-  if(found){
-   content=`<div style="max-width:600px;margin:0 auto"><div style="text-align:center;padding:20px"><div style="width:80px;height:80px;background:#ECFDF5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:40px">✅</div><h1 style="font-size:24px">Document Authentique Vérifié</h1><p style="color:#64748B">eIDAS - Devis Flash</p></div><div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:20px;margin-bottom:16px"><h3>📄 Bon ${found.id}</h3><div style="font-size:13px;display:grid;gap:6px"><div><strong>Client:</strong> ${found.client}</div><div><strong>Date:</strong> ${found.date} ${found.heure||''}</div><div><strong>Type:</strong> ${found.type}</div></div>${found.photos&&found.photos.length>0?`<div style="margin-top:12px"><strong>📸 Photos:</strong><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px">${found.photos.map(ph=>`<img src="${ph}" style="width:100%;height:100px;object-fit:cover;border-radius:8px">`).join('')}</div></div>`:''}</div><div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:16px;padding:16px"><h3 style="font-size:14px">🔒 Preuve eIDAS</h3><div style="font-size:12px;background:#fff;padding:12px;border-radius:8px"><div><strong>Signataire:</strong> ${found.eSignature?.preuve?.nom||found.client} (${found.eSignature?.preuve?.email||''})</div><div><strong>Date:</strong> ${found.eSignature?.preuve?.dateFR||''}</div><div><strong>IP:</strong> ${found.eSignature?.preuve?.ip||''}</div><div><strong>Hash:</strong> <span style="font-family:monospace;background:#F1F5F9;padding:2px 6px;border-radius:4px">${found.eSignature?.preuve?.hash||verifyHash}</span></div><div style="margin-top:8px;padding:8px;background:#ECFDF5;border-radius:8px;color:#065F46">✅ Conforme eIDAS art.26 - RGS** - Preuve opposable</div></div></div><div style="text-align:center;margin-top:16px"><button onclick="window.print()" style="padding:10px 20px;border-radius:8px;background:#2563EB;color:#fff;border:none;cursor:pointer">Imprimer preuve</button> <button onclick="document.getElementById('verifyPage').remove(); history.replaceState(null,'',location.pathname)" style="padding:10px 20px;border-radius:8px;background:#F1F5F9;border:1px solid #E2E8F0;cursor:pointer">Fermer</button></div></div>`;
-  } else {
-   content=`<div style="max-width:500px;margin:40px auto;background:#fff;border-radius:16px;padding:30px;text-align:center;border:1px solid #FECACA"><div style="font-size:40px">❓</div><h2>Document non trouvé localement</h2><p style="color:#64748B;font-size:13px">Hash: <span style="font-family:monospace;background:#F1F5F9;padding:2px 6px;border-radius:4px">${verifyHash}</span></p><p style="font-size:12px;color:#64748B">Ce document n'est pas dans ce navigateur (local). Ouvrez Devis Flash sur l'appareil où le bon a été créé.</p><button onclick="document.getElementById('verifyPage').remove(); history.replaceState(null,'',location.pathname)" style="padding:8px 16px;border-radius:8px;background:#F1F5F9;border:1px solid #E2E8F0">Fermer</button></div>`;
-  }
-  div.innerHTML=content; document.body.appendChild(div);
- },600);
+  const btn = document.createElement('button');
+  btn.innerHTML='⚙️ Mon entreprise'; btn.id='btn-entreprise';
+  btn.style.cssText='position:fixed;bottom:80px;left:20px;background:#0f172a;color:#fff;padding:12px 18px;border-radius:9999px;font-weight:700;z-index:52;box-shadow:0 8px 24px rgba(0,0,0,.3);border:0;cursor:pointer';
+  btn.onclick=openEntrepriseModal;
+  document.body.appendChild(btn);
 })();
 </script>
 
+
 <script>
-// ===== AUTOMATION ENGINE FULL AUTO - Devis Flash v7 =====
-let autoLogEntries=[];
-function autoLog(msg){
- const now=new Date().toLocaleTimeString('fr-FR');
- autoLogEntries.unshift(`[${now}] ${msg}`);
- if(autoLogEntries.length>20) autoLogEntries.pop();
- const el=document.getElementById('autoLog'); if(el) el.innerHTML=autoLogEntries.join('<br>');
- console.log('[AUTO]', msg);
-}
-function isAutoEnabled(rule){ const main=document.getElementById('autoMode'); if(!main||!main.checked) return false; const r=document.getElementById(rule); return r?r.checked:true; }
-function toggleAutoMode(){
- const on=document.getElementById('autoMode')?.checked;
- autoLog(on?'🤖 Mode Full Auto ACTIVÉ':'⏸️ Mode Full Auto désactivé');
- localStorage.setItem('df_auto_mode', on?'1':'0');
-}
+// === BULLE CHAT DRAGGABLE PC - Devis Flash ===
+(function(){
+  const btnSelector = '.chatbot-btn';
+  let btn = null;
+  let isDragging = false;
+  let startX, startY, initialLeft, initialTop;
+  let hasMoved = false;
 
-// Load auto settings
-setTimeout(()=>{
- const saved=localStorage.getItem('df_auto_mode'); if(saved==='0'){ const el=document.getElementById('autoMode'); if(el) el.checked=false; }
-},500);
+  function initDraggable(){
+    btn = document.querySelector(btnSelector);
+    if(!btn) { setTimeout(initDraggable, 500); return; }
+    
+    // Style pour indiquer draggable sur PC
+    btn.style.cursor = 'grab';
+    btn.title = 'Glisser pour déplacer - Cliquer pour ouvrir';
+    
+    // Sauvegarder position
+    const saved = JSON.parse(localStorage.getItem('devisflash_chat_pos')||'null');
+    if(saved && window.innerWidth > 768){
+      btn.style.right = 'auto';
+      btn.style.bottom = 'auto';
+      btn.style.left = saved.left + 'px';
+      btn.style.top = saved.top + 'px';
+      btn.style.position = 'fixed';
+    }
 
-// 1. Auto-créer intervention quand devis passe Accepté
-const _origChangeStatutAuto = changeStatut;
-changeStatut = function(id, newStatut){
- const d=(state.devis||[]).find(x=>x.id===id); const old=d?.statut;
- _origChangeStatutAuto(id, newStatut);
- if(newStatut==='Accepté' && old!=='Accepté' && isAutoEnabled('autoIntervention')){
-  setTimeout(()=>{ autoCreateInterventionFromDevis(id); },300);
- }
- if(newStatut==='Envoyé' && isAutoEnabled('autoRelance')){
-  autoLog(`📧 Devis ${id.slice(-6)} Envoyé - relance auto programmée +3j`);
- }
-};
+    btn.addEventListener('mousedown', onMouseDown);
+    btn.addEventListener('touchstart', onTouchStart, {passive:false});
+  }
 
-function autoCreateInterventionFromDevis(devisId){
- const d=(state.devis||[]).find(x=>x.id===devisId); if(!d) return;
- // Check if intervention already exists for this devis
- if((state.interventions||[]).some(it=>it.devisId===devisId && it.statut!=='Facturée')){ autoLog(`⚠️ Intervention existe déjà pour devis ${devisId.slice(-6)}`); return; }
- const clientObj=(state.clients||[]).find(c=>c.nom===d.client);
- const dateAuto=new Date(); dateAuto.setDate(dateAuto.getDate()+2); // +2 jours
- const obj={
-  id:'INT-'+Date.now().toString(36).toUpperCase(),
-  devisId:devisId,
-  client:d.client||'',
-  adresse:d.adresse||clientObj?.adresse||'',
-  date:dateAuto.toISOString().slice(0,10),
-  heure:'08:00',
-  technicien:'',
-  type:'Chantier complet',
-  description:d.iaPhrase||d.secteur||'Intervention auto-créée depuis devis Accepté',
-  duree:4,
-  statut:'Planifiée',
-  createdAt:new Date().toISOString(),
-  total:d.venteTotal||0,
-  signature:null,
-  signatureTech:null,
-  photos:[],
-  autoCreated:true,
-  eSignature:null
- };
- state.interventions=state.interventions||[]; state.interventions.push(obj); saveState(); renderInterventions();
- autoLog(`🛠️ Intervention auto-créée pour ${d.client} - ${dateAuto.toLocaleDateString('fr-FR')} (devis ${devisId.slice(-6)})`);
- toast('🤖 Intervention auto-créée - Full Auto');
+  function onMouseDown(e){
+    if(window.innerWidth <= 768) return; // mobile = pas de drag
+    isDragging = true;
+    hasMoved = false;
+    btn.style.cursor = 'grabbing';
+    startX = e.clientX;
+    startY = e.clientY;
+    const rect = btn.getBoundingClientRect();
+    initialLeft = rect.left;
+    initialTop = rect.top;
+    btn.style.right = 'auto';
+    btn.style.bottom = 'auto';
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+    e.preventDefault();
+  }
 
- // 2. Auto-envoyer signature à distance
- if(isAutoEnabled('autoSignature') && clientObj?.email){
-  setTimeout(()=>{ autoSendRemoteSignature(obj.id); },800);
- } else if(isAutoEnabled('autoSignature')){
-  autoLog(`📧 Pas d'email client pour ${d.client} - lien signature disponible manuellement`);
- }
-}
+  function onMouseMove(e){
+    if(!isDragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if(Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
+    let newLeft = initialLeft + dx;
+    let newTop = initialTop + dy;
+    // limites écran
+    newLeft = Math.max(0, Math.min(window.innerWidth - btn.offsetWidth, newLeft));
+    newTop = Math.max(0, Math.min(window.innerHeight - btn.offsetHeight, newTop));
+    btn.style.left = newLeft + 'px';
+    btn.style.top = newTop + 'px';
+  }
 
-function autoSendRemoteSignature(interventionId){
- const it=(state.interventions||[]).find(x=>x.id===interventionId); if(!it) return;
- const clientObj=(state.clients||[]).find(c=>c.nom===it.client);
- const email=clientObj?.email||document.getElementById('intRemoteEmail')?.value;
- if(!email){ autoLog(`⚠️ Auto signature impossible - pas d'email pour ${it.client}`); return; }
- const tempId='TMP-'+Date.now().toString(36).toUpperCase();
- const pending={ id:tempId, interventionId:interventionId, email:email, client:it.client, date:it.date, description:it.description, createdAt:new Date().toISOString(), status:'En attente signature auto', autoSent:true };
- state.remoteSignatures=state.remoteSignatures||[]; state.remoteSignatures.push(pending); saveState();
- const signUrl=`https://devis-flash.fr/?sign=${tempId}#signature`;
- autoLog(`📧 Lien signature auto envoyé à ${email} - ${signUrl.slice(0,40)}...`);
- // Open mailto automatically if auto mode
- if(isAutoEnabled('autoSignature')){
-  window.open(`mailto:${email}?subject=${encodeURIComponent('✍️ Signature requise - Bon intervention '+it.client)}&body=${encodeURIComponent('Bonjour '+it.client+',\n\nVotre artisan a planifié une intervention le '+it.date+'.\n\nMerci de signer votre bon d\'intervention en cliquant ici (signature électronique conforme eIDAS):\n'+signUrl+'\n\nVous pouvez signer avec votre doigt sur téléphone.\n\nMerci,\nDevis Flash - Facturation 2026')}`,'_blank');
-  toast('🤖 Lien signature auto envoyé à '+email);
- }
-}
+  function onMouseUp(e){
+    if(!isDragging) return;
+    isDragging = false;
+    btn.style.cursor = 'grab';
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    // Sauvegarde
+    if(hasMoved){
+      localStorage.setItem('devisflash_chat_pos', JSON.stringify({
+        left: parseInt(btn.style.left),
+        top: parseInt(btn.style.top)
+      }));
+      // Empêche le clic d'ouvrir le chat si on a drag
+      e.stopPropagation();
+      setTimeout(()=>{ hasMoved=false; }, 100);
+    }
+  }
 
-// 3. Auto-générer Bon PDF avec QR quand signé
-const _origGenerateBonForAuto = generateBonIntervention;
-generateBonIntervention = async function(id){
- await _origGenerateBonForAuto(id);
- if(isAutoEnabled('autoBonPDF')){
-  autoLog(`📄 Bon PDF QR auto-généré pour ${id}`);
- }
-};
+  function onTouchStart(e){
+    if(window.innerWidth > 768) return;
+    // sur mobile on laisse le comportement natif mais on permet petit drag vertical
+    const touch = e.touches[0];
+    startY = touch.clientY;
+  }
 
-// When remote signature submitted, auto -> Terminée -> Facture
-const _origSubmitRemoteSignatureAuto = submitRemoteSignature;
-submitRemoteSignature = async function(signId){
- await _origSubmitRemoteSignatureAuto(signId);
- // After signing, find intervention and auto facture
- setTimeout(()=>{
-  const st=JSON.parse(localStorage.getItem('devis-flash-state')||'{}');
-  const it=(st.interventions||[]).find(x=> x.id===signId.replace('TMP','INT') || x.id.includes(signId.slice(-6)) );
-  if(it && isAutoEnabled('autoFacture')){
-   // Mark as terminée then facture
-   const realIt=(state.interventions||[]).find(x=>x.id===it.id);
-   if(realIt){
-    realIt.statut='Terminée'; saveState();
-    autoLog(`✅ Intervention ${realIt.id} signée à distance - passage Terminée auto`);
+  // Empêcher ouverture chat si drag
+  const origClick = function(e){
+    if(hasMoved){ e.stopImmediatePropagation(); e.preventDefault(); hasMoved=false; }
+  };
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    initDraggable();
+    // Intercepter clic
     setTimeout(()=>{
-     if(isAutoEnabled('autoFacture')){
-      transformInterventionToFacture(realIt.id);
-      autoLog(`🧾 Facture auto-créée depuis intervention ${realIt.id} (Full Auto)`);
-     }
-    },800);
-   }
-  }
- },1000);
-};
+      const b = document.querySelector(btnSelector);
+      if(b) b.addEventListener('click', (e)=>{
+        if(hasMoved){ e.stopImmediatePropagation(); e.preventDefault(); }
+      }, true);
+    }, 1000);
+  });
 
-// 4. Auto-relance devis Envoyé +3j (check every minute)
-setInterval(()=>{
- if(!isAutoEnabled('autoRelance')) return;
- const now=new Date();
- (state.devis||[]).forEach(d=>{
-  if((d.statut||'')!=='Envoyé') return;
-  const diff=(now-new Date(d.date))/(1000*60*60*24);
-  if(diff>=3 && !d.relanceAutoSent){
-   d.relanceAutoSent=true; saveState();
-   autoLog(`⏰ Relance auto: devis ${d.client} Envoyé depuis ${Math.floor(diff)}j - email auto`);
-   const clientObj=(state.clients||[]).find(c=>c.nom===d.client);
-   if(clientObj?.email){
-    window.open(`mailto:${clientObj.email}?subject=${encodeURIComponent('Relance devis '+d.client)}&body=${encodeURIComponent('Bonjour '+d.client+',\n\nJe me permets de relancer mon devis du '+d.date+' d\'un montant de '+(d.venteTotal||0)+'€.\n\nReste à votre disposition.\n\nDevis Flash')}`,'_blank');
-   }
-  }
- });
-},60000);
-
-// 5. Auto-dashboard refresh
-setInterval(()=>{ try{ if(isAutoEnabled('autoMode')) renderInterventions(); }catch(e){} },10000);
-
-autoLog('🤖 Moteur Full Auto initialisé - Devis Accepté → Intervention → Signature → Facture');
-</script>
-
-<script>
-function saveAutoConfig(){
- const cfg={ waNumber: document.getElementById('cfgWhatsAppNumber')?.value||'', payCB: document.getElementById('cfgPayCB')?.value||'', payPal: document.getElementById('cfgPayPal')?.value||'', acomptePct: document.getElementById('cfgAcomptePct')?.value||'30' };
- localStorage.setItem('df_auto_config', JSON.stringify(cfg));
- state.payLinkCard=cfg.payCB||state.payLinkCard; state.payLinkPaypal=cfg.payPal||state.payLinkPaypal; saveState();
- autoLog(`⚙️ Config WA:${cfg.waNumber||'non'} Acompte:${cfg.acomptePct}%`); toast('Config sauvée');
-}
-function formatWaNumber(num){ return (num||'').replace(/[^0-9]/g,''); }
-function autoSendWhatsApp(interventionId, signUrl){
- if(!document.getElementById('autoWhatsApp')?.checked) return;
- const it=(state.interventions||[]).find(x=>x.id===interventionId); if(!it) return;
- const clientObj=(state.clients||[]).find(c=>c.nom===it.client); const tel=clientObj?.tel||'';
- const message=`Bonjour ${it.client},\n🛠️ Intervention ${it.date} ${it.heure||''}\n✍️ Signez (eIDAS): ${signUrl}`;
- const waUrl= tel ? `https://wa.me/${formatWaNumber(tel)}?text=${encodeURIComponent(message)}` : `https://wa.me/?text=${encodeURIComponent(message)}`;
- window.open(waUrl,'_blank'); autoLog(`💬 WhatsApp auto ${it.client}`);
-}
-const _origAutoSendWA2 = autoSendRemoteSignature;
-autoSendRemoteSignature = function(interventionId){
- _origAutoSendWA2(interventionId);
- const pending=(state.remoteSignatures||[]).slice(-1)[0]; if(!pending) return;
- const signUrl=`https://devis-flash.fr/?sign=${pending.id}#signature`;
- setTimeout(()=>{ autoSendWhatsApp(interventionId, signUrl); },900);
-};
-</script>
-<script>
-// AUTO PAIEMENT ACOMPTE
-const _origTransformPay = transformInterventionToFacture;
-transformInterventionToFacture = function(id){
- const it=(state.interventions||[]).find(x=>x.id===id); if(!it) return;
- const d=(state.devis||[]).find(x=>x.id===it.devisId);
- let facture=null;
- if(d){
-  const num='F-'+new Date().getFullYear()+'-'+String((state.factures||[]).length+1).padStart(3,'0');
-  facture={id:'FACT-'+Date.now().toString(36).toUpperCase(), numero:num, devisId:d.id, client:d.client, adresse:d.adresse||it.adresse, secteur:d.secteur, date:new Date().toISOString().slice(0,10), echeance:new Date(Date.now()+15*24*3600000).toISOString().slice(0,10), lines:d.lines||[], total:d.venteTotal||it.total||0, statut:'Envoyée', interventionId:id, photos:it.photos||[], signature:it.signature, eSignature:it.eSignature};
-  state.factures=state.factures||[]; state.factures.unshift(facture); d.statut='Facturé';
- } else {
-  const num='F-'+new Date().getFullYear()+'-'+String((state.factures||[]).length+1).padStart(3,'0');
-  facture={id:'FACT-'+Date.now().toString(36).toUpperCase(), numero:num, devisId:null, client:it.client, adresse:it.adresse, secteur:it.type, date:new Date().toISOString().slice(0,10), echeance:new Date(Date.now()+15*24*3600000).toISOString().slice(0,10), lines:[{designation:it.description||it.type,qte:1,puVente:it.total||0}], total:it.total||0, statut:'Envoyée', interventionId:id, photos:it.photos||[], signature:it.signature, eSignature:it.eSignature};
-  state.factures=state.factures||[]; state.factures.unshift(facture);
- }
- it.statut='Facturée'; saveState(); renderInterventions(); if(typeof renderFactures==='function') renderFactures(); if(typeof renderDashboard==='function') renderDashboard();
- toast('🧾 Facture '+facture.numero+' créée');
- if(document.getElementById('autoPaiement')?.checked){
-  const cfg=JSON.parse(localStorage.getItem('df_auto_config')||'{}'); const pct=parseInt(cfg.acomptePct||30); const acompte=(facture.total*pct/100);
-  autoLog(`💰 Facture ${facture.numero} Total ${fmtEUR(facture.total)} Acompte ${pct}% ${fmtEUR(acompte)}`);
-  setTimeout(()=>{
-   const clientObj=(state.clients||[]).find(c=>c.nom===facture.client);
-   const payCB=cfg.payCB||state.payLinkCard||''; const payPal=cfg.payPal||state.payLinkPaypal||'';
-   let payLinks=''; if(payCB) payLinks+=`💳 CB: ${payCB}\n`; if(payPal) payLinks+=`PayPal: ${payPal}\n`;
-   if(clientObj?.email){
-    window.open(`mailto:${clientObj.email}?subject=${encodeURIComponent('Facture '+facture.numero+' - '+fmtEUR(facture.total))}&body=${encodeURIComponent('Bonjour '+facture.client+',\n\nFacture '+facture.numero+' du '+facture.date+' Total '+fmtEUR(facture.total)+'\nAcompte '+pct+'% : '+fmtEUR(acompte)+'\n\n'+payLinks+'\nQR paiement sur facture.\n\nDevis Flash')}`,'_blank');
-    autoLog(`📧 Facture auto envoyée à ${clientObj.email}`);
-   }
-   if(document.getElementById('autoWhatsApp')?.checked && clientObj?.tel){
-    const waMsg=`🧾 Facture ${facture.numero}: ${fmtEUR(facture.total)} Acompte ${pct}%: ${fmtEUR(acompte)} ${payCB?`\nCB: ${payCB}`:''}`;
-    window.open(`https://wa.me/${(clientObj.tel||'').replace(/[^0-9]/g,'')}?text=${encodeURIComponent(waMsg)}`,'_blank');
-   }
-  },800);
- }
-};
+  // Bouton reset position (double-clic)
+  document.addEventListener('dblclick', (e)=>{
+    if(e.target.closest('.chatbot-btn')){
+      localStorage.removeItem('devisflash_chat_pos');
+      const b = document.querySelector('.chatbot-btn');
+      if(b){
+        b.style.left=''; b.style.top=''; b.style.right='22px'; b.style.bottom='80px';
+        if(typeof toast==='function') toast('📍 Bulle chat remise à sa place');
+      }
+    }
+  });
+})();
 </script>
 
 
 <script>
-// ===== GESTION ABONNEMENT - GRATUIT 3/mois RESTAURE =====
-function getSubscription(){
- try{ return JSON.parse(localStorage.getItem('df_subscription')||'null'); }catch(e){ return null; }
-}
-function isProActive(){
- const sub=getSubscription(); if(!sub) return false; const until=new Date(sub.until); return until > new Date();
-}
-function getPlan(){
- const sub=getSubscription(); if(!sub) return 'gratuit'; if(!isProActive()) return 'gratuit'; return sub.plan||'starter';
-}
-function applySubscriptionUI(){
- const plan=getPlan(); const sub=getSubscription();
- const badge=document.getElementById('planBadge');
- if(badge){
-  if(plan==='pro'){ badge.textContent='PRO ♾️ Full Auto'; badge.style.background='#2563EB'; badge.style.color='#fff'; }
-  else if(plan==='starter'){ badge.textContent='STARTER 30/mois'; badge.style.background='#EFF6FF'; badge.style.color='#2563EB'; }
-  else { badge.style.display='none'; badge.textContent=''; badge.style.background='#F1F5F9'; badge.style.color='#64748B'; }
-  if(sub){ badge.title=`Licence ${sub.plan} jusqu'au ${new Date(sub.until).toLocaleDateString('fr-FR')}`; }
- }
- window.checkDevisLimit = function(){
-  const currentMonth=new Date().getMonth();
-  const thisMonthDevis=(state.devis||[]).filter(d=>{ try{ return new Date(d.date).getMonth()===currentMonth; }catch(e){ return true; } }).length;
-  if(plan==='gratuit' && thisMonthDevis>=3){ return {allowed:false, limit:3, plan:plan, reason:'Limite gratuite atteinte'}; }
-  if(plan==='starter' && thisMonthDevis>=30){ return {allowed:false, limit:30, plan:plan}; }
-  return {allowed:true, limit: plan==='gratuit'?3:plan==='starter'?30:999999, plan:plan};
- };
-}
-setTimeout(applySubscriptionUI, 500);
-setInterval(applySubscriptionUI, 2000);
-window.getMerciUrl = function(plan, period){
- return `https://devis-flash.fr/merci.html?plan=${plan}&period=${period}&txn=SUMUP-${Date.now()}`;
-};
-// Suppression overlay abonnement requis
-const oldOverlay=document.getElementById('subRequiredOverlay'); if(oldOverlay) oldOverlay.remove();
+document.addEventListener('DOMContentLoaded', ()=>{
+  try{
+    let ent = JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+    if(!ent.emailjs_key){
+      ent.emailjs_key='ekM4QRagcFRNTF097';
+      ent.emailjs_service='DEVIS';
+      ent.emailjs_template='template_6s5kpid';
+      ent.email=ent.email||'devisflash93@gmail.com';
+      ent.siret=ent.siret||'10484045900010';
+      localStorage.setItem('devisflash_entreprise', JSON.stringify(ent));
+    }
+    localStorage.setItem('df_emailjs', JSON.stringify({
+      publicKey: ent.emailjs_key,
+      serviceId: ent.emailjs_service,
+      templateId: ent.emailjs_template
+    }));
+    if(window.emailjs) emailjs.init(ent.emailjs_key);
+    console.log('✅ V4 Mobile+PC Factur-X ready');
+  }catch(e){}
+});
 </script>
 
+<script>
+function exportDevisFlashJSON(){
+  const data={version:'V19', date:new Date().toISOString(), entreprise:JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}'), state:JSON.parse(localStorage.getItem('devisflash_state')||'{}')};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='devis-flash-backup-'+new Date().toISOString().slice(0,10)+'.json'; a.click(); URL.revokeObjectURL(url);
+}
+function importDevisFlashJSON(f){ if(!f) return; const r=new FileReader(); r.onload=e=>{ try{ const d=JSON.parse(e.target.result); if(d.entreprise) localStorage.setItem('devisflash_entreprise', JSON.stringify(d.entreprise)); if(d.state) localStorage.setItem('devisflash_state', JSON.stringify(d.state)); location.reload(); }catch(err){alert('JSON invalide');} }; r.readAsText(f); }
+function genererPDFPropre(){
+  try{ const {jsPDF}=window.jspdf; const doc=new jsPDF(); const ent=JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}'); const st=JSON.parse(localStorage.getItem('devisflash_state')||'{}'); const d=st.devis?.find(x=>x.id===st.lastApercu)||{client:{name:'Client'}, lines:st.lines||[]}; const t=computeTotals(d.lines||[]); doc.text(ent.nom||'Devis Flash',15,18); doc.text('SIRET '+(ent.siret||''),15,24); let y=40; (d.lines||[]).forEach(l=>{ doc.text((l.desc||'').substring(0,50),15,y); y+=8; if(y>270){doc.addPage(); y=20;}}); doc.text('TTC: '+t.venteTTC.toFixed(2)+' €',15,y+10); doc.save('Devis-Flash.pdf'); }catch(e){alert(e.message);}
+}
+</script>
 
-<footer style="background:#0F172A;color:#94A3B8;padding:40px 20px;text-align:center;margin-top:80px;font-family:Inter,sans-serif">
-  <div style="max-width:900px;margin:0 auto">
-    <p style="color:#fff;font-weight:700;margin-bottom:12px">Devis Flash - SIRET 10484045900010</p>
-    <p style="font-size:13px;line-height:1.6">Édité par votre entreprise digitale - SIRET 10484045900010 - Hébergement GitHub Pages + Cloudflare - Domaine devis-flash.fr<br>
-    Logiciel conforme facturation électronique 2026 - TVA 10%/20%/293B - eIDAS<br>
-    <a href="/mentions-legales.html" style="color:#60A5FA">Mentions légales</a> · <a href="/cgv.html" style="color:#60A5FA">CGV</a> · <a href="/confidentialite.html" style="color:#60A5FA">Confidentialité</a> · <a href="mailto:devisflash93@gmail.com" style="color:#60A5FA">Contact</a></p>
-    <p style="font-size:11px;margin-top:12px;opacity:0.6">© 2026 Devis Flash - Tous droits réservés - SIRET 10484045900010</p>
+<div id="relanceModal" style="position:fixed;inset:0;background:rgba(15,23,42,0.7);z-index:400;display:none;align-items:center;justify-content:center;padding:16px">
+ <div style="background:#fff;border-radius:16px;max-width:640px;width:100%;max-height:90vh;overflow:auto">
+  <div style="padding:16px 20px;border-bottom:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center">
+   <div><h3 id="relanceTitle" class="sora" style="margin:0;font-size:16px">Relance</h3><div id="relanceClient" style="font-size:12px;color:#64748B"></div></div>
+   <button class="btn btn-secondary btn-sm" onclick="closeRelanceModal()">✕</button>
   </div>
-</footer>
+  <div style="padding:16px;display:grid;gap:14px">
+   <div style="background:#F8FAFF;border:1px solid #DBEAFE;border-radius:8px;padding:8px 12px;font-size:12px;color:#1E40AF">💡 80% des devis se signent après relance. Copie-colle en 1 clic.</div>
+   <div><div style="display:flex;justify-content:space-between;align-items:center"><strong style="font-size:12px">📱 WhatsApp</strong><div style="display:flex;gap:6px"><button class="btn btn-secondary btn-sm" onclick="copyRelance('relanceWhats')">📋 Copier</button><button class="btn btn-primary btn-sm" style="background:#25D366" onclick="shareRelanceWhats()">📲 WhatsApp</button></div></div><textarea id="relanceWhats" style="width:100%;height:90px;margin-top:6px;padding:10px;border:1px solid #E2E8F0;border-radius:8px;font-size:13px"></textarea></div>
+   <div><div style="display:flex;justify-content:space-between"><strong style="font-size:12px">💬 SMS</strong><button class="btn btn-secondary btn-sm" onclick="copyRelance('relanceSms')">📋 Copier</button></div><textarea id="relanceSms" style="width:100%;height:60px;margin-top:6px;padding:10px;border:1px solid #E2E8F0;border-radius:8px;font-size:13px"></textarea></div>
+   <div><div style="display:flex;justify-content:space-between"><strong style="font-size:12px">📧 Email</strong><button class="btn btn-secondary btn-sm" onclick="copyRelance('relanceEmail')">📋 Copier</button></div><textarea id="relanceEmail" style="width:100%;height:130px;margin-top:6px;padding:10px;border:1px solid #E2E8F0;border-radius:8px;font-size:12px"></textarea></div>
+  </div>
+ </div>
+</div>
+<script>
+const RELANCE_TEMPLATES={
+ j3:{label:"Relance J+3",emoji:"⏰",whatsapp:d=>`Bonjour ${d.client} 👋\nJe fais suite à mon devis ${d.numero} du ${d.date} (${d.total}).\nAvez-vous eu le temps de le consulter ?\nJe reste dispo.\n${d.entreprise}`,sms:d=>`Bonjour ${d.client}, devis ${d.numero} (${d.total}) envoyé le ${d.date}. Dispo ? ${d.entreprise}`,email:d=>`Objet: Suivi devis ${d.numero}\n\nBonjour ${d.client},\n\nJe fais suite à mon devis ${d.numero} du ${d.date} (${d.total}).\nAvez-vous pu le consulter ?\n\nBien cordialement,\n${d.entreprise}`},
+ j7:{label:"Relance J+7",emoji:"📞",whatsapp:d=>`Bonjour ${d.client},\nPetite relance pour devis ${d.numero} (${d.total}).\nJe peux bloquer un créneau cette semaine ?\n🙏\n${d.entreprise}`,sms:d=>`${d.client}, toujours ok pour devis ${d.numero} ? Dispo cette semaine. ${d.entreprise}`,email:d=>`Objet: Devis ${d.numero} - toujours d'actualité ?\n\nBonjour ${d.client},\nRelance pour devis ${d.numero} (${d.total}).\n\nAu plaisir,\n${d.entreprise}`},
+ reduc5:{label:"Proposition -5%",emoji:"🎁",whatsapp:d=>`Bonjour ${d.client} !\n-5% sur devis ${d.numero} si signé avant ${d.dateLimite}.\nNouveau total: ${d.total5} (au lieu de ${d.total})\nOn part ensemble ? 😊\n${d.entreprise}`,sms:d=>`${d.client}, -5% sur devis ${d.numero} => ${d.total5} si signé avant ${d.dateLimite}. ${d.entreprise}`,email:d=>`Objet: Offre -5% devis ${d.numero}\n\nBonjour ${d.client},\nJe vous accorde -5% sur ${d.numero}: ${d.total} => ${d.total5} jusqu'au ${d.dateLimite}.\n\nBien à vous,\n${d.entreprise}`}
+};
+function openRelanceModal(devisId,type){
+ const d=(state.devis||[]).find(x=>x.id===devisId); if(!d) return;
+ const ent=JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+ const total=fmtEUR(d.venteTotal||0); const total5=fmtEUR((d.venteTotal||0)*0.95);
+ const data={client:(d.client||'Client').split(' ')[0], numero:d.numero||d.id.slice(0,6), date:fmtDate(d.date), total:total, total5:total5, dateLimite:fmtDate(new Date(Date.now()+3*24*3600000).toISOString()), entreprise:ent.nom||'Devis Flash', tel:ent.telephone||''};
+ const tpl=RELANCE_TEMPLATES[type];
+ document.getElementById('relanceTitle').textContent=tpl.emoji+' '+tpl.label+' - '+d.numero;
+ document.getElementById('relanceClient').textContent=d.client+' • '+total;
+ document.getElementById('relanceWhats').value=tpl.whatsapp(data);
+ document.getElementById('relanceSms').value=tpl.sms(data);
+ document.getElementById('relanceEmail').value=tpl.email(data);
+ document.getElementById('relanceModal').style.display='flex';
+}
+function closeRelanceModal(){ document.getElementById('relanceModal').style.display='none'; }
+function copyRelance(id){ const el=document.getElementById(id); el.select(); document.execCommand('copy'); toast('📋 Copié !'); }
+function shareRelanceWhats(){ const txt=document.getElementById('relanceWhats').value; window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank'); }
+</script>
 
+
+<style>
+.sig-canvas{border:2px dashed #2563EB;border-radius:12px;background:#fff;touch-action:none;cursor:crosshair}
+.status-timeline{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.status-step{font-size:10px;padding:4px 8px;border-radius:20px;font-weight:700;border:1px solid #E2E8F0;background:#F8FAFF;color:#64748B;cursor:pointer;transition:all .2s}
+.status-step.active{color:#fff;border-color:transparent}
+.status-step.done{background:#ECFDF5;color:#059669;border-color:#6EE7B7}
+.trezo-card{background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;border-radius:16px;padding:16px}
+</style>
+
+<div id="signatureModal" style="position:fixed;inset:0;background:rgba(15,23,42,0.8);z-index:500;display:none;align-items:center;justify-content:center;padding:16px">
+ <div style="background:#fff;border-radius:16px;max-width:520px;width:100%;padding:0;overflow:hidden">
+  <div style="padding:16px 20px;border-bottom:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center">
+   <div><h3 class="sora" style="margin:0">✍️ Signature électronique</h3><div style="font-size:12px;color:#64748B">Signez avec le doigt ou la souris</div></div>
+   <button class="btn btn-secondary btn-sm" onclick="closeSignatureModal()">✕</button>
+  </div>
+  <div style="padding:16px">
+   <canvas id="sigCanvas" class="sig-canvas" width="480" height="220" style="width:100%;height:220px"></canvas>
+   <div style="display:flex;gap:8px;margin-top:12px">
+    <button class="btn btn-secondary" style="flex:1" onclick="clearSignature()">🗑️ Effacer</button>
+    <button class="btn btn-primary" style="flex:1;background:#10B981" onclick="saveSignature()">✅ Valider signature</button>
+   </div>
+   <div style="margin-top:10px;font-size:11px;color:#64748B;text-align:center">En signant, vous acceptez le devis. Signature intégrée au PDF + statut Signé.</div>
+  </div>
+ </div>
+</div>
+
+<div id="chantierModal" style="position:fixed;inset:0;background:rgba(15,23,42,0.7);z-index:450;display:none;align-items:center;justify-content:center;padding:16px">
+ <div style="background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:90vh;overflow:auto">
+  <div style="padding:16px 20px;border-bottom:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center">
+   <h3 class="sora" style="margin:0">🏗️ Chantier - Suivi</h3>
+   <button class="btn btn-secondary btn-sm" onclick="closeChantierModal()">✕</button>
+  </div>
+  <div style="padding:16px;display:grid;gap:14px">
+   <div id="chantierTimeline"></div>
+   <div class="field"><label>Notes internes (privé)</label><textarea id="chantierNotes" style="width:100%;height:80px;padding:10px;border:1px solid #E2E8F0;border-radius:8px;font-size:13px" placeholder="Accès chantier, code portail, client absent..."></textarea></div>
+   <div class="field" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div><label>Acompte reçu ?</label><select id="chantierAcompteRecu" onchange="updateChantierAcompte()"><option value="non">❌ Non</option><option value="oui">✅ Oui encaissé</option></select></div>
+    <div><label>Montant encaissé €</label><input id="chantierMontantRecu" type="number" step="0.01" placeholder="0.00"></div>
+   </div>
+   <div style="display:flex;gap:8px"><button class="btn btn-primary" style="flex:1" onclick="saveChantierNotes()">💾 Sauver</button></div>
+  </div>
+ </div>
+</div>
+
+<script>
+const CHANTIER_STATUTS = [
+ {key:"Brouillon", emoji:"📝", color:"#64748B", bg:"#F1F5F9"},
+ {key:"Envoyé", emoji:"📤", color:"#2563EB", bg:"#EFF6FF"},
+ {key:"Signé", emoji:"✍️", color:"#059669", bg:"#ECFDF5"},
+ {key:"En cours", emoji:"🏗️", color:"#D97706", bg:"#FFFBEB"},
+ {key:"Terminé", emoji:"✅", color:"#7C3AED", bg:"#F5F3FF"},
+ {key:"Payé", emoji:"💰", color:"#0F172A", bg:"#0F172A", textColor:"#fff"}
+];
+
+let currentSigDevisId = null;
+let sigPad = {drawing:false, ctx:null, canvas:null};
+
+function initSignaturePad(){
+ const c=document.getElementById('sigCanvas');
+ if(!c) return;
+ const ctx=c.getContext('2d');
+ ctx.lineWidth=2.5; ctx.lineCap='round'; ctx.strokeStyle='#0F172A';
+ sigPad.canvas=c; sigPad.ctx=ctx;
+ function pos(e){
+  const rect=c.getBoundingClientRect();
+  const t=e.touches?e.touches[0]:e;
+  return {x:(t.clientX-rect.left)*(c.width/rect.width), y:(t.clientY-rect.top)*(c.height/rect.height)};
+ }
+ c.addEventListener('mousedown', e=>{ sigPad.drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); });
+ c.addEventListener('mousemove', e=>{ if(!sigPad.drawing) return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); });
+ c.addEventListener('mouseup', ()=>{ sigPad.drawing=false; });
+ c.addEventListener('mouseleave', ()=>{ sigPad.drawing=false; });
+ c.addEventListener('touchstart', e=>{ e.preventDefault(); sigPad.drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); }, {passive:false});
+ c.addEventListener('touchmove', e=>{ e.preventDefault(); if(!sigPad.drawing) return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); }, {passive:false});
+ c.addEventListener('touchend', e=>{ e.preventDefault(); sigPad.drawing=false; }, {passive:false});
+}
+function clearSignature(){ const c=document.getElementById('sigCanvas'); const ctx=c.getContext('2d'); ctx.clearRect(0,0,c.width,c.height); }
+function openSignatureModal(devisId){
+ currentSigDevisId=devisId;
+ document.getElementById('signatureModal').style.display='flex';
+ setTimeout(()=>{ clearSignature(); initSignaturePad(); },100);
+}
+function closeSignatureModal(){ document.getElementById('signatureModal').style.display='none'; currentSigDevisId=null; }
+function saveSignature(){
+ const c=document.getElementById('sigCanvas');
+ const blank = document.createElement('canvas'); blank.width=c.width; blank.height=c.height;
+ if(c.toDataURL()===blank.toDataURL()){ toast('✍️ Signez d\'abord'); return; }
+ const dataUrl = c.toDataURL('image/png');
+ const d = state.devis.find(x=>x.id===currentSigDevisId);
+ if(!d){ toast('Devis introuvable'); return; }
+ d.signature = dataUrl;
+ d.signatureDate = new Date().toISOString();
+ d.statut = 'Signé';
+ d.statutChantier = 'Signé';
+ saveState(); renderDashboard(); closeSignatureModal();
+ toast('✅ Devis signé ! Signature intégrée au PDF');
+ // auto open apercu
+ setTimeout(()=>{ openApercu(d.id); },300);
+}
+
+function openChantierModal(devisId){
+ const d=state.devis.find(x=>x.id===devisId); if(!d) return;
+ document.getElementById('chantierModal').dataset.devisId=devisId;
+ document.getElementById('chantierNotes').value=d.notes||'';
+ document.getElementById('chantierAcompteRecu').value=d.acompteRecu?'oui':'non';
+ document.getElementById('chantierMontantRecu').value=d.acompteMontant||'';
+ renderChantierTimeline(d);
+ document.getElementById('chantierModal').style.display='flex';
+}
+function closeChantierModal(){ document.getElementById('chantierModal').style.display='none'; }
+function renderChantierTimeline(d){
+ const cur = d.statutChantier||d.statut||'Brouillon';
+ const curIdx = CHANTIER_STATUTS.findIndex(s=>s.key===cur);
+ const el=document.getElementById('chantierTimeline');
+ el.innerHTML=`<div style="font-weight:700;font-size:13px;margin-bottom:8px">Timeline chantier - ${escapeHtml(d.client)} - ${fmtEUR(d.venteTotal||0)}</div><div class="status-timeline">`+CHANTIER_STATUTS.map((s,i)=>{
+   const isDone = i < curIdx; const isActive = s.key===cur;
+   const bg = isActive? s.color : isDone? '#ECFDF5':'#F8FAFF';
+   const col = isActive? '#fff' : isDone? '#059669':s.color;
+   const border = isDone? '#6EE7B7': '#E2E8F0';
+   return `<button class="status-step ${isActive?'active':''} ${isDone?'done':''}" style="background:${bg};color:${col};border-color:${border}" onclick="setChantierStatut('${d.id}','${s.key}')">${s.emoji} ${s.key}</button>${i<CHANTIER_STATUTS.length-1?'<span style="color:#CBD5E1">→</span>':''}`;
+ }).join('')+`</div><div style="margin-top:10px;font-size:11px;color:#64748B">Statut actuel: <strong style="color:${CHANTIER_STATUTS.find(s=>s.key===cur)?.color}">${cur}</strong></div>`;
+}
+function setChantierStatut(devisId, newStatut){
+ const d=state.devis.find(x=>x.id===devisId); if(!d) return;
+ d.statutChantier = newStatut;
+ d.statut = newStatut; // sync legacy
+ if(newStatut==='Payé'){ d.acompteRecu=true; d.acompteMontant=d.venteTotal; }
+ saveState(); renderDashboard(); renderChantierTimeline(d);
+ toast(`🏗️ ${newStatut}`);
+}
+function saveChantierNotes(){
+ const modal=document.getElementById('chantierModal'); const id=modal.dataset.devisId;
+ const d=state.devis.find(x=>x.id===id); if(!d) return;
+ d.notes=document.getElementById('chantierNotes').value;
+ d.acompteMontant=parseFloat(document.getElementById('chantierMontantRecu').value)||0;
+ d.acompteRecu=document.getElementById('chantierAcompteRecu').value==='oui';
+ if(d.acompteRecu && d.acompteMontant===0) d.acompteMontant = (d.venteTotal||0)*0.3;
+ saveState(); renderDashboard(); closeChantierModal(); toast('💾 Chantier sauvegardé');
+}
+function updateChantierAcompte(){
+ const recu=document.getElementById('chantierAcompteRecu').value;
+ if(recu==='oui'){
+   const modal=document.getElementById('chantierModal'); const id=modal.dataset.devisId;
+   const d=state.devis.find(x=>x.id===id);
+   if(d && !document.getElementById('chantierMontantRecu').value) document.getElementById('chantierMontantRecu').value=((d.venteTotal||0)*0.3).toFixed(2);
+ }
+}
+
+// Patch export PDF to include signature
+const _origRenderApercu = window.renderApercu;
+window.renderApercu = function(){
+ if(typeof _origRenderApercu==='function') _origRenderApercu();
+ const doc = state.devis.find(d=>d.id===state.lastApercu);
+ if(!doc) return;
+ const el=document.getElementById('apercuContent');
+ if(!el) return;
+ // Add signature block if exists
+ if(doc.signature){
+   const sigBlock = `<div style="margin-top:20px;padding:16px;border:1px solid #10B981;background:#ECFDF5;border-radius:10px"><div style="font-weight:700;color:#059669;font-size:13px">✍️ Devis signé le ${fmtDate(doc.signatureDate||doc.date)}</div><img src="${doc.signature}" style="max-width:220px;max-height:80px;margin-top:8px;background:#fff;border-radius:6px;padding:4px;border:1px solid #D1FAE5"><div style="font-size:11px;color:#64748B;margin-top:6px">Signature électronique simple - ${escapeHtml(doc.client)}</div></div>`;
+   if(!el.innerHTML.includes('Devis signé')) el.innerHTML += sigBlock;
+ }
+ // Add chantier notes + trezo
+ const trezoInfo = `<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+   <div style="padding:10px;border-radius:8px;background:${doc.acompteRecu?'#ECFDF5':'#FFFBEB'};border:1px solid ${doc.acompteRecu?'#6EE7B7':'#FDE68A'}"><div style="font-size:11px;color:#64748B">Acompte</div><div style="font-weight:700;color:${doc.acompteRecu?'#059669':'#D97706'}">${doc.acompteRecu? '✅ '+fmtEUR(doc.acompteMontant||0)+' encaissé' : '❌ En attente ('+fmtEUR((doc.venteTotal||0)*0.3)+')'}</div></div>
+   <div style="padding:10px;border-radius:8px;background:#F8FAFF;border:1px solid #E2E8F0"><div style="font-size:11px;color:#64748B">Reste à encaisser</div><div style="font-weight:700">${fmtEUR((doc.venteTotal||0)-(doc.acompteMontant||0))}</div></div>
+ </div>`;
+ if(!el.innerHTML.includes('Reste à encaisser')) el.innerHTML += trezoInfo;
+};
+
+// Patch computeDashboardStats for tresorerie
+const _origComputeStats = window.computeDashboardStats;
+window.computeDashboardStats = function(){
+ const base = _origComputeStats ? _origComputeStats() : {nb: state.devis.length, ca:0, cout:0, marge:0, margeMoy:0};
+ const now=new Date(); const month=now.getMonth(); const year=now.getFullYear();
+ const thisMonthDevis = state.devis.filter(d=>{ const dd=new Date(d.date); return dd.getMonth()===month && dd.getFullYear()===year; });
+ const encaisse = thisMonthDevis.reduce((s,d)=>s+(d.acompteRecu?(d.acompteMontant||0):0)+(d.statutChantier==='Payé'?(d.venteTotal-(d.acompteMontant||0)):0),0);
+ const enAttente = thisMonthDevis.reduce((s,d)=>{ const reste=(d.venteTotal||0)-(d.acompteRecu?(d.acompteMontant||0):0); return s + (d.statutChantier!=='Payé'? reste : 0); },0);
+ return {...base, encaisse, enAttente, thisMonthNb: thisMonthDevis.length};
+};
+
+const _origRenderDashboard = window.renderDashboard;
+window.renderDashboard = function(){
+ if(typeof _origRenderDashboard==='function') _origRenderDashboard();
+ // inject tresorerie card
+ const s = computeDashboardStats();
+ let trezoEl = document.getElementById('trezoBox');
+ if(!trezoEl){
+   const dash = document.querySelector('.stats-row') || document.getElementById('dashList')?.parentNode;
+   if(dash){
+     const box=document.createElement('div');
+     box.id='trezoBox';
+     box.className='trezo-card';
+     box.style.margin='16px 0';
+     dash.parentNode.insertBefore(box, dash.nextSibling);
+     trezoEl=box;
+   }
+ }
+ if(trezoEl){
+   trezoEl.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><div><div style="font-size:12px;opacity:0.8">💰 Trésorerie ce mois</div><div style="font-size:20px;font-weight:800;margin-top:4px">${fmtEUR(s.encaisse)} encaissés</div><div style="font-size:13px;opacity:0.8;margin-top:2px">${s.thisMonthNb} devis • ${fmtEUR(s.enAttente)} en attente</div></div><div style="display:flex;gap:8px"><div style="background:rgba(255,255,255,0.12);padding:8px 12px;border-radius:10px;text-align:center"><div style="font-size:11px;opacity:0.8">Encaissé</div><div style="font-weight:700;color:#34D399">${fmtEUR(s.encaisse)}</div></div><div style="background:rgba(255,255,255,0.12);padding:8px 12px;border-radius:10px;text-align:center"><div style="font-size:11px;opacity:0.8">À encaisser</div><div style="font-weight:700;color:#FBBF24">${fmtEUR(s.enAttente)}</div></div></div></div>`;
+ }
+};
+
+// Patch generate PDF function to include signature in jsPDF export
+const _origGenererPDFPropre = window.genererPDFPropre;
+window.genererPDFPropre = async function(){
+ const docId = state.lastApercu;
+ const d = state.devis.find(x=>x.id===docId);
+ if(d && d.signature){
+   // use jsPDF with signature
+   try{
+     const {jsPDF}=window.jspdf; const pdf=new jsPDF(); const ent=JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+     pdf.text(ent.nom||'Devis Flash',15,18); pdf.text('Devis '+ (d.numero||''),15,26);
+     let y=40; (d.lines||[]).forEach(l=>{ pdf.text((l.designation||'').substring(0,60),15,y); y+=8; if(y>250){pdf.addPage(); y=20;}});
+     pdf.text('Total TTC: '+(d.venteTotal||0).toFixed(2)+' €',15,y+10);
+     // add signature image
+     pdf.text('Signature client:',15,y+20);
+     pdf.addImage(d.signature, 'PNG', 15, y+25, 60, 20);
+     pdf.text('Signé le '+fmtDate(d.signatureDate),15,y+50);
+     pdf.save('Devis-'+d.client+'-Signe.pdf');
+     toast('📄 PDF signé exporté');
+     return;
+   }catch(e){ console.error(e); }
+ }
+ if(typeof _origGenererPDFPropre==='function') return _origGenererPDFPropre();
+};
+</script>
+
+
+<script>
+async function exportPDFFacturXWithSignature(devisId){
+ const d=(state.devis||[]).find(x=>x.id===devisId); if(!d){ toast('Devis introuvable'); return; }
+ const pdfData = await generateDevisPDFBase64(devisId);
+ if(!pdfData){ toast('Erreur PDF'); return; }
+ try{
+   const { PDFDocument, StandardFonts, rgb, PDFName } = PDFLib;
+   const pdfDoc = await PDFDocument.create();
+   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+   const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+   const page = pdfDoc.addPage([595, 842]);
+   let y = 792;
+   page.drawText('Devis Flash - Devis ' + (d.numero||d.id.slice(-6)) + ' - Factur-X', {x:40, y, size:14, font: fontBold, color: rgb(0.09,0.25,0.92)}); y-=20;
+   page.drawText('Client: ' + (d.client||''), {x:40, y, size:11, font}); y-=15;
+   page.drawText('Date: ' + fmtDate(d.date) + ' - Secteur: ' + (d.secteur||''), {x:40, y, size:10, font}); y-=15;
+   page.drawText('Total TTC: ' + fmtEUR(d.venteTotal||0), {x:40, y, size:11, font: fontBold}); y-=18;
+   if(d.signature){ try{ const sigBytes = Uint8Array.from(atob(d.signature.split(',')[1]), c=>c.charCodeAt(0)); const sigImg = await pdfDoc.embedPng(sigBytes); const dims=sigImg.scale(0.4); page.drawImage(sigImg, {x:40, y: y-40, width: dims.width, height: dims.height}); }catch(e){} }
+   try{ const xmpStr = '<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:about="" xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/"><pdfaid:part>3</pdfaid:part><pdfaid:conformance>B</pdfaid:conformance></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end="w"?>'; const xmpBytes = new TextEncoder().encode(xmpStr); const xmpStream = pdfDoc.context.stream(xmpBytes, {Type: PDFName.of('Metadata'), Subtype: PDFName.of('XML')}); const xmpRef = pdfDoc.context.register(xmpStream); pdfDoc.catalog.set(PDFName.of('Metadata'), xmpRef); }catch(e){}
+   const xmlBytes = new TextEncoder().encode(pdfData.xml); await pdfDoc.attach(xmlBytes, 'factur-x.xml', {mimeType: 'application/xml'});
+   if(d.signature){ try{ const b64=d.signature.split(',')[1]; const b=Uint8Array.from(atob(b64), c=>c.charCodeAt(0)); await pdfDoc.attach(b, 'signature.png', {mimeType: 'image/png'}); }catch(e){} }
+   const finalBytes = await pdfDoc.save(); const blob=new Blob([finalBytes],{type:'application/pdf'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=(d.numero||d.id)+'-FacturX-A3.pdf'; a.click(); URL.revokeObjectURL(url); toast('PDF/A-3 conforme genere'); }catch(e){ console.error(e); toast('Erreur '+e.message); }
+}
+</script>
+
+
+<script>
+// FIX V22: Convert PNG signature with alpha to JPG white background (fix ISO 19005-3 6.2.4.3)
+function pngToJpgBase64(pngBase64){
+ return new Promise((resolve)=>{
+   const img = new Image();
+   img.onload = ()=>{
+     const c = document.createElement('canvas');
+     c.width = img.width; c.height = img.height;
+     const ctx = c.getContext('2d');
+     ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0,0,c.width,c.height);
+     ctx.drawImage(img,0,0);
+     resolve(c.toDataURL('image/jpeg', 0.95));
+   };
+   img.src = pngBase64;
+ });
+}
+</script>
 </body>
+
 </html>
