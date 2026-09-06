@@ -710,6 +710,13 @@
 .pay-grid .pay-card button{max-width:320px !important; width:100% !important; margin-top:14px !important;}
 @media(max-width:720px){.pay-grid{grid-template-columns:1fr !important; max-width:400px !important;}}
 </style>
+
+<style>
+.icon-btn{font-size:20px !important;width:42px !important;height:42px !important;border-radius:10px !important;display:inline-flex !important;align-items:center !important;justify-content:center !important}
+.row-actions{gap:8px !important}
+.devis-row{padding:12px 8px !important}
+</style>
+
 </head>
 <body>
 
@@ -1771,13 +1778,12 @@ function renderDashboardList(){
    <div class="amt">${fmtEUR(d.venteTotal)}</div>
    <div class="amt" style="color:${dot};font-weight:700">${(d.margePct||0).toFixed(0)}%<br><span style="font-size:10px;color:var(--ink-soft)">${fmtEUR(d.margeTotal||0)}</span></div>
    <div class="row-actions" style="flex-wrap:wrap">
-    <button class="icon-btn" onclick="openApercu('${d.id}')" title="Voir / PDF">👁️</button>
-    <button class="icon-btn" onclick="sendDevisEmail('${d.id}')" title="Envoyer par email">📧</button>
-    <button class="icon-btn" onclick="convertToFacture('${d.id}')" title="Facturer">🧾</button>
-	    <button class="icon-btn" onclick="openRelanceModal('${d.id}','j3')"" title="Facturer">🧾</button>
-    <button class="icon-btn" onclick="restoreDevis('${d.id}')" title="Restaurer">↩️</button>
-    <button class="icon-btn" onclick="duplicateDevis('${d.id}')" title="Dupliquer">⧉</button>
-    <button class="icon-btn" onclick="deleteDevis('${d.id}')" title="Supprimer">🗑️</button>
+    <button class="icon-btn" style="font-size:20px;width:40px;height:40px" onclick="openApercu('${d.id}')" title="Voir / PDF">👁</button>
+    <button class="icon-btn" style="font-size:20px;width:40px;height:40px" onclick="sendDevisEmail('${d.id}')" title="Envoyer par email">📧</button>
+    <button class="icon-btn" style="font-size:20px;width:40px;height:40px;background:#EFF6FF;border-color:#BFDBFE" onclick="convertToFacture('${d.id}')" title="Facturer">🧾</button>
+    <button class="icon-btn" style="font-size:20px;width:40px;height:40px" onclick="restoreDevis('${d.id}')" title="Restaurer">↩</button>
+    <button class="icon-btn" style="font-size:20px;width:40px;height:40px" onclick="duplicateDevis('${d.id}')" title="Dupliquer">⧉</button>
+    <button class="icon-btn" style="font-size:20px;width:40px;height:40px;color:#DC2626" onclick="deleteDevis('${d.id}')" title="Supprimer">🗑</button>
    </div>
   </div>`;}).join("");
 }
@@ -4063,12 +4069,12 @@ window.renderDashboard = function(){ if(typeof _origRenderDash==='function') _or
   <div class="metreBody">
    <div class="metreLeft" id="metreLeft">
      <input type="file" id="metreFile" accept="image/*" style="display:none"/>
-     <div id="metreDrop" style="color:#0F172A;text-align:center;padding:20px;cursor:pointer">
+     <div id="metreDrop" style="color:#fff;text-align:center;padding:20px;cursor:pointer">
        <div style="font-size:42px">📷</div>
-       <div style="font-weight:800;margin-top:8px;color:#0F172A;font-size:16px">Glisse une photo de la pièce</div>
-       <div style="font-size:12px;color:#475569;font-weight:600;margin-top:4px">ou clique pour choisir</div>
-       <button onclick="document.getElementById('metreFile').click()" style="margin-top:12px;background:#0F172A;color:#fff;border:0;padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer">Choisir photo</button>
-       <div style="margin-top:12px;font-size:10px;color:#64748B;font-weight:600">IA détecte murs/sol • Précision ±10%</div>
+       <div style="font-weight:700;margin-top:8px">Glisse une photo de la pièce</div>
+       <div style="font-size:12px;opacity:.7;margin-top:4px">ou clique pour choisir</div>
+       <button onclick="document.getElementById('metreFile').click()" style="margin-top:12px;background:#fff;color:#0F172A;border:0;padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer">Choisir photo</button>
+       <div style="margin-top:12px;font-size:10px;opacity:.6">IA détecte murs/sol • Précision ±10%</div>
      </div>
      <canvas id="metreCanvas" class="metreCanvas" style="display:none"></canvas>
      <div id="metreOverlay" style="position:absolute;inset:0;pointer-events:none"></div>
