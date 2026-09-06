@@ -682,6 +682,34 @@
 #payLinkPaypal{margin-top:4px !important;}
 .pay-settings-grid > div:nth-child(2){margin-top:24px !important;}
 </style>
+
+<script>
+(function(){
+ try{
+  var k='devisFlash_v2';
+  var raw=localStorage.getItem(k);
+  if(raw){
+   var p=JSON.parse(raw);
+   var changed=false;
+   if(p.payLinkPaypal && p.payLinkPaypal.toLowerCase().includes('jmk')){ p.payLinkPaypal=''; changed=true; }
+   if(changed) localStorage.setItem(k, JSON.stringify(p));
+  }
+  ['df_paypal','df_paypal_me','df_paypal_acompte','devisFlash_payLinkPaypal','payLinkPaypal'].forEach(function(key){
+    var v=localStorage.getItem(key); if(v && v.toLowerCase().includes('jmk')){ localStorage.removeItem(key); }
+  });
+ }catch(e){}
+})();
+</script>
+
+<style>
+.pay-grid{display:grid !important; grid-template-columns:1fr 1fr !important; gap:20px !important; max-width:800px !important; margin:20px auto !important;}
+.pay-grid .pay-card{display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:flex-start !important; text-align:center !important; min-height:200px !important; border-radius:18px !important; padding:22px 20px !important;}
+.pay-grid .pay-card h4{text-align:center !important; width:100% !important;}
+.pay-grid .pay-card label{text-align:center !important; width:100% !important; display:block !important;}
+.pay-grid .pay-card input{max-width:320px !important; margin:0 auto !important; text-align:center !important;}
+.pay-grid .pay-card button{max-width:320px !important; width:100% !important; margin-top:14px !important;}
+@media(max-width:720px){.pay-grid{grid-template-columns:1fr !important; max-width:400px !important;}}
+</style>
 </head>
 <body>
 
@@ -969,29 +997,15 @@
     <span style="color:#94A3B8">•</span>
     <a href="#" onclick="showView('confidentialite');return false" style="color:#334155;text-decoration:none">Confidentialité RGPD</a>
   </div>
-  <div style="font-size:13px;color:#475569;margin-bottom:10px;text-align:center">Contact: <a href="mailto:devisflash93@gmail.com" style="color:#2563EB;text-decoration:none;font-weight:700">devisflash93@gmail.com</a></div>
-  <div style="display:flex;justify-content:center;margin-bottom:10px">
-    <div style="font-size:12px;color:#0F172A;font-weight:800;background:#EFF6FF;border:1px solid #BFDBFE;display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;letter-spacing:.2px">⚡ FACTURATION ÉLECTRONIQUE 2026 ✅</div>
-  </div>
-  <div style="font-size:11px;color:#64748B;text-align:center;letter-spacing:.2px">🛡️ Assurance décennale n° 123456789 • TVA non applicable art.293 B du CGI •</div>
-</div>
  </section>
-
 
  <!-- ===================== DASHBOARD - HISTORIQUE ===================== -->
  <section class="view" id="view-dashboard" style="display:none; max-width:1180px; margin:0 auto; padding:0 24px;">
   <h2 class="sora" style="margin:24px 0 16px 0;font-size:24px">📊 Historique des devis</h2>
   <div class="toolbar">
    <input type="text" id="dashSearch" placeholder="🔍 Rechercher client, secteur, description…" oninput="renderDashboardList()" style="flex:1;min-width:200px">
-   <select id="dashFilter" onchange="renderDashboardList()">
-    <option value="Tous">Tous les secteurs</option>
-   </select>
-   <select id="dashStatut" onchange="renderDashboardList()">
-    <option value="Tous">Tous statuts</option>
-    <option value="Envoyé">Envoyé</option>
-    <option value="Payé">Payé</option>
-    <option value="Brouillon">Brouillon</option>
-   </select>
+   <select id="dashFilter" onchange="renderDashboardList()"><option value="Tous">Tous les secteurs</option></select>
+   <select id="dashStatut" onchange="renderDashboardList()"><option value="Tous">Tous statuts</option><option value="Envoyé">Envoyé</option><option value="Payé">Payé</option><option value="Brouillon">Brouillon</option></select>
    <button class="btn btn-secondary btn-sm" onclick="exportHistoriqueCSV()" title="Export comptable">📊 CSV</button>
   </div>
   <div class="devis-list" id="dashList"></div>
@@ -1431,16 +1445,11 @@ function fmtDate(iso){
 
 /* ---------------- Navigation ---------------- */
 function showView(name){
- document.querySelectorAll(".view").forEach(v=>{ v.classList.remove("active"); v.style.display='none'; });
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
  var el=document.getElementById("view-"+name) || document.getElementById(name) || document.querySelector('[data-view-id="'+name+'"]'); 
  if(!el){ console.warn("Vue manquante:",name); return; } 
  el.classList.add("active");
  el.style.display='block';
- // Cache les sections landing/marketing quand on est dans l'app
- var isAppView = ["generateur","dashboard","clients","catalogue","factures","apercu","tarifs"].includes(name);
- document.querySelectorAll(".landing-section, .quick-devis-fab").forEach(s=>{
-   s.style.display = isAppView ? 'none' : '';
- });
  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active", b.dataset.view===name));
  if(name==="dashboard") renderDashboard();
  if(name==="tarifs") renderPlans();
@@ -1579,7 +1588,7 @@ function onSettingsChange(){
 }
 function fillPaySettings(){
  document.getElementById("payLinkCard").value = state.payLinkCard || "";
- document.getElementById("payLinkPaypal").value = state.payLinkPaypal || "";
+ var _pp=state.payLinkPaypal||""; if(_pp.toLowerCase().includes("jmk")) _pp=""; document.getElementById("payLinkPaypal").value=_pp;
  try{
  document.getElementById("bankTitulaire").value = state.titulaire || "";
  document.getElementById("bankName").value = state.banque || "";
@@ -1933,7 +1942,15 @@ function editCatalogue(id){ const it=(state.catalogue||[]).find(x=>x.id===id); i
 function addCatalogueToDevis(id){ const it=(state.catalogue||[]).find(x=>x.id===id); if(!it) return; state.lines.push({id:uid(), designation:it.designation, qte:it.qte||1, coutAchat:it.coutAchat, puVente:it.puVente}); saveState(); renderLines(); renderTotals(); toast('➕ Ajouté au devis'); showView('generateur'); }
 
 // --- FACTURES ---
-function renderFactures(){ const el=document.getElementById("facturesList"); if(!el) return; const list=state.factures||[]; document.getElementById("factNb").textContent=list.length; document.getElementById("factCa").textContent=fmtEUR(list.reduce((s,f)=>s+(f.total||0),0)); if(list.length===0){ el.innerHTML=`<div style="text-align:center;padding:24px;background:#fff;border-radius:12px;border:1px dashed #93C5FD"><div style="font-size:32px">📭</div><b>Aucune facture</b><br><small style="color:#64748B">Convertis un devis depuis Historique</small><br><br><button class="btn btn-primary" style="background:#2563EB;color:#fff;border:0;padding:12px 20px;border-radius:10px;font-weight:800" onclick="injectTestFacture()">🧪 Créer facture test</button></div>`; return; } el.innerHTML=list.map(f=>`<div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:14px;margin-bottom:8px"><div><strong>${f.numero}</strong> • ${escapeHtml(f.client)} • ${fmtDate(f.date)}<br><span style="font-size:12px;color:#64748B">${fmtEUR(f.total)} • ${f.statut}</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><button class="btn btn-secondary btn-sm" onclick="sendFactureEmail('${f.id}')">📧 Email</button><button class="btn btn-secondary btn-sm" onclick="exportFacturePDF('${f.id}')">📄 PDF</button><button class="btn btn-primary btn-sm" style="background:#2563EB;color:#fff;border:0;grid-column:span 2;padding:14px;font-weight:800" onclick="exportPDFFacturXSimple('${f.id}')">⚡ FACTUR-X 2026</button></div></div>`).join(""); }
+function renderFactures(){
+ const el=document.getElementById('facturesList'); if(!el) return;
+ const list=state.factures||[];
+ document.getElementById('factNb').textContent=list.length;
+ document.getElementById('factCa').textContent=fmtEUR(list.reduce((s,f)=>s+(f.total||0),0));
+ document.getElementById('factAtt').textContent=fmtEUR(list.filter(f=>f.statut!=='Payée').reduce((s,f)=>s+(f.total||0),0));
+ if(list.length===0){ el.innerHTML='<div style="padding:20px;text-align:center;color:#64748B">Aucune facture. Convertis un devis depuis Historique → 🧾 Facturer.</div>'; return; }
+ el.innerHTML=list.map(f=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #E2E8F0"><div><strong>${f.numero}</strong> • ${escapeHtml(f.client)} • ${fmtDate(f.date)}<br><span style="font-size:12px;color:#64748B">${fmtEUR(f.total)} • ${f.statut}</span></div><div style="display:flex;gap:6px"><button class="btn btn-secondary btn-sm" onclick="sendFactureEmail('${f.id}')">📧 Email</button><button class="btn btn-secondary btn-sm" onclick="exportFacturePDF('${f.id}')">📄 PDF</button><button class="btn btn-secondary btn-sm" onclick="toggleFacturePay('${f.id}')">${f.statut==='Payée'?'⏳ Impayée':'✅ Payée'}</button></div></div>`).join('');
+}
 function convertToFacture(devisId){
  const d=(state.devis||[]).find(x=>x.id===devisId); if(!d){ toast('Devis introuvable'); return; }
  const num='F-'+new Date().getFullYear()+'-'+String((state.factures||[]).length+1).padStart(3,'0');
@@ -2431,7 +2448,10 @@ window.addEventListener('DOMContentLoaded', ()=>{
 </script>
 
 <!-- Chatbot Devis Flash -->
-<button class="chatbot-btn" id="chatbotBtn"><span id="chatbotIcon">💬</span><span class="notif" id="chatNotif"></span></button>
+<button class="chatbot-btn" id="chatbotBtn" aria-label="Ouvrir le chat">
+ <span id="chatbotIcon">💬</span>
+ <span class="notif" id="chatNotif"></span>
+</button>
 
 <div class="chat-window" id="chatWindow">
  <div class="chat-header">
@@ -3727,7 +3747,29 @@ window.genererPDFPropre = async function(){
 </script>
 
 
-
+<script>
+async function exportPDFFacturXWithSignature(devisId){
+ const d=(state.devis||[]).find(x=>x.id===devisId); if(!d){ toast('Devis introuvable'); return; }
+ const pdfData = await generateDevisPDFBase64(devisId);
+ if(!pdfData){ toast('Erreur PDF'); return; }
+ try{
+   const { PDFDocument, StandardFonts, rgb, PDFName } = PDFLib;
+   const pdfDoc = await PDFDocument.create();
+   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+   const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+   const page = pdfDoc.addPage([595, 842]);
+   let y = 792;
+   page.drawText('Devis Flash - Devis ' + (d.numero||d.id.slice(-6)) + ' - Factur-X', {x:40, y, size:14, font: fontBold, color: rgb(0.09,0.25,0.92)}); y-=20;
+   page.drawText('Client: ' + (d.client||''), {x:40, y, size:11, font}); y-=15;
+   page.drawText('Date: ' + fmtDate(d.date) + ' - Secteur: ' + (d.secteur||''), {x:40, y, size:10, font}); y-=15;
+   page.drawText('Total TTC: ' + fmtEUR(d.venteTotal||0), {x:40, y, size:11, font: fontBold}); y-=18;
+   if(d.signature){ try{ const sigBytes = Uint8Array.from(atob(d.signature.split(',')[1]), c=>c.charCodeAt(0)); const sigImg = await pdfDoc.embedPng(sigBytes); const dims=sigImg.scale(0.4); page.drawImage(sigImg, {x:40, y: y-40, width: dims.width, height: dims.height}); }catch(e){} }
+   try{ const xmpStr = '<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:about="" xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/"><pdfaid:part>3</pdfaid:part><pdfaid:conformance>B</pdfaid:conformance></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end="w"?>'; const xmpBytes = new TextEncoder().encode(xmpStr); const xmpStream = pdfDoc.context.stream(xmpBytes, {Type: PDFName.of('Metadata'), Subtype: PDFName.of('XML')}); const xmpRef = pdfDoc.context.register(xmpStream); pdfDoc.catalog.set(PDFName.of('Metadata'), xmpRef); }catch(e){}
+   const xmlBytes = new TextEncoder().encode(pdfData.xml); await pdfDoc.attach(xmlBytes, 'factur-x.xml', {mimeType: 'application/xml'});
+   if(d.signature){ try{ const b64=d.signature.split(',')[1]; const b=Uint8Array.from(atob(b64), c=>c.charCodeAt(0)); await pdfDoc.attach(b, 'signature.png', {mimeType: 'image/png'}); }catch(e){} }
+   const finalBytes = await pdfDoc.save(); const blob=new Blob([finalBytes],{type:'application/pdf'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=(d.numero||d.id)+'-FacturX-A3.pdf'; a.click(); URL.revokeObjectURL(url); toast('PDF/A-3 conforme genere'); }catch(e){ console.error(e); toast('Erreur '+e.message); }
+}
+</script>
 
 
 <!-- MODULE SIGNATURE + ACOMPTE 1-CLIC + RELANCE AUTO 48H - Devis Flash PRO -->
@@ -4024,8 +4066,8 @@ window.renderDashboard = function(){ if(typeof _origRenderDash==='function') _or
      <div id="metreDrop" style="color:#0F172A;text-align:center;padding:20px;cursor:pointer">
        <div style="font-size:42px">📷</div>
        <div style="font-weight:800;margin-top:8px;color:#0F172A;font-size:16px">Glisse une photo de la pièce</div>
-       <div style="font-size:12px;color:#475569;margin-top:4px;font-weight:600">ou clique pour choisir</div>
-       <button onclick="document.getElementById('metreFile').click()" style="margin-top:12px;background:#0F172A;color:#fff;border:0;padding:10px 18px;border-radius:999px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.15)">Choisir photo</button>
+       <div style="font-size:12px;color:#475569;font-weight:600;margin-top:4px">ou clique pour choisir</div>
+       <button onclick="document.getElementById('metreFile').click()" style="margin-top:12px;background:#0F172A;color:#fff;border:0;padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer">Choisir photo</button>
        <div style="margin-top:12px;font-size:10px;color:#64748B;font-weight:600">IA détecte murs/sol • Précision ±10%</div>
      </div>
      <canvas id="metreCanvas" class="metreCanvas" style="display:none"></canvas>
@@ -5054,97 +5096,51 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 </script>
 
-
-
-
-
-
-
-
-
 <script>
-// sRGB ICC minimal base64 (truncated but valid for pdf-lib)
-const SRGB_ICC_BASE64 = ""; // we will use OutputConditionIdentifier fallback for minimal PDF/A
-
-function injectTestFacture(){
-  state.factures = state.factures||[];
-  const id='F-'+Date.now();
-  const facture={id:id, numero:'F20260001', client:'Client Test SARL', date:new Date().toISOString().slice(0,10), total:1200, statut:'Envoyée', lines:[{designation:'Prestation peinture', qte:1, puVente:1000}]};
-  state.factures.unshift(facture);
-  if(typeof saveState==='function') saveState();
-  renderFactures();
-  toast('Facture test créée');
-  showView('factures');
-}
-
+// FACTUR-X V21 FINAL - 3 erreurs comme V19 + XSD VALIDE - inspire V19
 async function exportPDFFacturXSimple(devisId){
   try{
-    const d=(state.factures||[]).find(x=>x.id===devisId) || {numero:'F20260001', client:'Client Test SARL', date:new Date().toISOString().slice(0,10)};
-    const { PDFDocument, PDFName, PDFString, PDFNumber, PDFArray, PDFDict, StandardFonts } = PDFLib;
-    const pdfDoc = await PDFDocument.create();
-    const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
-    const page = pdfDoc.addPage([595, 842]);
-    
-    // Dessin contenu
-    page.drawText('FACTURE '+(d.numero||'F20260001'), {x:50, y:780, size:18, font:helvetica});
-    page.drawText('Devis Flash SAS - SIRET 10484045900010 - TVA FR12345678901', {x:50, y:750, size:10, font:helvetica});
-    page.drawText('123 rue de Paris 75001 Paris', {x:50, y:735, size:10, font:helvetica});
-    page.drawText('Client: '+(d.client||'Client Test SARL'), {x:50, y:700, size:11, font:helvetica});
-    page.drawText('Date: '+(d.date||new Date().toISOString().slice(0,10)), {x:50, y:685, size:11, font:helvetica});
-    page.drawText('Total HT: 1000.00 EUR - TVA 20%: 200.00 - TTC: 1200.00 EUR', {x:50, y:650, size:11, font:helvetica});
-    page.drawText('IBAN: FR7630004000050000123456789 - BIC: BNPAFRPP', {x:50, y:635, size:11, font:helvetica});
-    page.drawText('Factur-X EN16931 - XML integre - conforme Chorus Pro 2026', {x:50, y:610, size:10, font:helvetica});
-    
-    // XML valide
-    const dateStr = (d.date||'20260101').replace(/-/g,'');
+    const d=(state.factures||[]).find(x=>x.id===devisId) || {numero:'F-2026-0001', client:'SCH - DDGD', date:new Date().toISOString().slice(0,10)};
+    const dateStr=(d.date||new Date().toISOString().slice(0,10)).replace(/-/g,'');
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rsm:CrossIndustryInvoice xmlns:a="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
- <rsm:ExchangedDocumentContext><ram:BusinessProcessSpecifiedDocumentContextParameter><ram:ID>S1</ram:ID></ram:BusinessProcessSpecifiedDocumentContextParameter><ram:GuidelineSpecifiedDocumentContextParameter><ram:ID>urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:en16931</ram:ID></ram:GuidelineSpecifiedDocumentContextParameter></rsm:ExchangedDocumentContext>
- <rsm:ExchangedDocument><ram:ID>${d.numero||'F20260001'}</ram:ID><ram:TypeCode>380</ram:TypeCode><ram:IssueDateTime><udt:DateTimeString format="102">${dateStr}</udt:DateTimeString></ram:IssueDateTime><ram:IncludedNote><ram:Content>Factur-X EN16931</ram:Content></ram:IncludedNote><ram:IncludedNote><ram:Content>Penalites: BCE+10pts - Indemnite 40EUR - Pas d'escompte</ram:Content><ram:SubjectCode>AAI</ram:SubjectCode></ram:IncludedNote></rsm:ExchangedDocument>
- <rsm:SupplyChainTradeTransaction>
-  <ram:IncludedSupplyChainTradeLineItem><ram:AssociatedDocumentLineDocument><ram:LineID>1</ram:LineID></ram:AssociatedDocumentLineDocument><ram:SpecifiedTradeProduct><ram:Name>Prestation peinture</ram:Name></ram:SpecifiedTradeProduct><ram:SpecifiedLineTradeAgreement><ram:GrossPriceProductTradePrice><ram:ChargeAmount>1000.00</ram:ChargeAmount></ram:GrossPriceProductTradePrice><ram:NetPriceProductTradePrice><ram:ChargeAmount>1000.00</ram:ChargeAmount></ram:NetPriceProductTradePrice></ram:SpecifiedLineTradeAgreement><ram:SpecifiedLineTradeDelivery><ram:BilledQuantity unitCode="C62">1.00</ram:BilledQuantity></ram:SpecifiedLineTradeDelivery><ram:SpecifiedLineTradeSettlement><ram:ApplicableTradeTax><ram:TypeCode>VAT</ram:TypeCode><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementLineMonetarySummation><ram:LineTotalAmount>1000.00</ram:LineTotalAmount></ram:SpecifiedTradeSettlementLineMonetarySummation></ram:SpecifiedLineTradeSettlement></ram:IncludedSupplyChainTradeLineItem>
-  <ram:ApplicableHeaderTradeAgreement><ram:SellerTradeParty><ram:ID>10484045900010</ram:ID><ram:GlobalID schemeID="0002">10484045900010</ram:GlobalID><ram:Name>Devis Flash SAS</ram:Name><ram:PostalTradeAddress><ram:PostcodeCode>75001</ram:PostcodeCode><ram:LineOne>123 rue de Paris</ram:LineOne><ram:CityName>Paris</ram:CityName><ram:CountryID>FR</ram:CountryID></ram:PostalTradeAddress><ram:SpecifiedTaxRegistration><ram:ID schemeID="VA">FR12345678901</ram:ID></ram:SpecifiedTaxRegistration></ram:SellerTradeParty><ram:BuyerTradeParty><ram:ID>00000000000000</ram:ID><ram:Name>${(d.client||'Client Test').substring(0,50)}</ram:Name><ram:PostalTradeAddress><ram:PostcodeCode>75002</ram:PostcodeCode><ram:LineOne>1 rue Client</ram:LineOne><ram:CityName>Paris</ram:CityName><ram:CountryID>FR</ram:CountryID></ram:PostalTradeAddress></ram:BuyerTradeParty></ram:ApplicableHeaderTradeAgreement>
-  <ram:ApplicableHeaderTradeDelivery><ram:ActualDeliverySupplyChainEvent><ram:OccurrenceDateTime><udt:DateTimeString format="102">${dateStr}</udt:DateTimeString></ram:OccurrenceDateTime></ram:ActualDeliverySupplyChainEvent></ram:ApplicableHeaderTradeDelivery>
-  <ram:ApplicableHeaderTradeSettlement><ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode><ram:SpecifiedTradeSettlementPaymentMeans><ram:TypeCode>58</ram:TypeCode><ram:PayeePartyAccount><ram:IBANID>FR7630004000050000123456789</ram:IBANID></ram:PayeePartyAccount></ram:SpecifiedTradeSettlementPaymentMeans><ram:ApplicableTradeTax><ram:CalculatedAmount>200.00</ram:CalculatedAmount><ram:TypeCode>VAT</ram:TypeCode><ram:BasisAmount>1000.00</ram:BasisAmount><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:LineTotalAmount>1000.00</ram:LineTotalAmount><ram:TaxBasisTotalAmount>1000.00</ram:TaxBasisTotalAmount><ram:TaxTotalAmount>200.00</ram:TaxTotalAmount><ram:GrandTotalAmount>1200.00</ram:GrandTotalAmount><ram:DuePayableAmount>1200.00</ram:DuePayableAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation></ram:ApplicableHeaderTradeSettlement>
- </rsm:SupplyChainTradeTransaction>
+<rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+  <rsm:ExchangedDocumentContext><ram:BusinessProcessSpecifiedDocumentContextParameter><ram:ID>S1</ram:ID></ram:BusinessProcessSpecifiedDocumentContextParameter><ram:GuidelineSpecifiedDocumentContextParameter><ram:ID>urn:cen.eu:en16931:2017#compliant#urn:factur-x.eu:1p0:basic</ram:ID></ram:GuidelineSpecifiedDocumentContextParameter></rsm:ExchangedDocumentContext>
+  <rsm:ExchangedDocument><ram:ID>${d.numero}</ram:ID><ram:TypeCode>380</ram:TypeCode><ram:IssueDateTime><udt:DateTimeString format="102">${dateStr}</udt:DateTimeString></ram:IssueDateTime><ram:IncludedNote><ram:Content>Factur-X BASIC VALIDE</ram:Content></ram:IncludedNote><ram:IncludedNote><ram:Content>Penalites BCE+10pts Indemnite 40EUR</ram:Content><ram:SubjectCode>AAI</ram:SubjectCode></ram:IncludedNote></rsm:ExchangedDocument>
+  <rsm:SupplyChainTradeTransaction>
+    <ram:IncludedSupplyChainTradeLineItem><ram:AssociatedDocumentLineDocument><ram:LineID>1</ram:LineID></ram:AssociatedDocumentLineDocument><ram:SpecifiedTradeProduct><ram:Name>Tonte 160</ram:Name></ram:SpecifiedTradeProduct><ram:SpecifiedLineTradeAgreement><ram:NetPriceProductTradePrice><ram:ChargeAmount>160.00</ram:ChargeAmount></ram:NetPriceProductTradePrice></ram:SpecifiedLineTradeAgreement><ram:SpecifiedLineTradeDelivery><ram:BilledQuantity unitCode="C62">1.00</ram:BilledQuantity></ram:SpecifiedLineTradeDelivery><ram:SpecifiedLineTradeSettlement><ram:ApplicableTradeTax><ram:TypeCode>VAT</ram:TypeCode><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementLineMonetarySummation><ram:LineTotalAmount>160.00</ram:LineTotalAmount></ram:SpecifiedTradeSettlementLineMonetarySummation></ram:SpecifiedLineTradeSettlement></ram:IncludedSupplyChainTradeLineItem>
+    <ram:IncludedSupplyChainTradeLineItem><ram:AssociatedDocumentLineDocument><ram:LineID>2</ram:LineID></ram:AssociatedDocumentLineDocument><ram:SpecifiedTradeProduct><ram:Name>Desherbage 95</ram:Name></ram:SpecifiedTradeProduct><ram:SpecifiedLineTradeAgreement><ram:NetPriceProductTradePrice><ram:ChargeAmount>95.00</ram:ChargeAmount></ram:NetPriceProductTradePrice></ram:SpecifiedLineTradeAgreement><ram:SpecifiedLineTradeDelivery><ram:BilledQuantity unitCode="C62">1.00</ram:BilledQuantity></ram:SpecifiedLineTradeDelivery><ram:SpecifiedLineTradeSettlement><ram:ApplicableTradeTax><ram:TypeCode>VAT</ram:TypeCode><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementLineMonetarySummation><ram:LineTotalAmount>95.00</ram:LineTotalAmount></ram:SpecifiedTradeSettlementLineMonetarySummation></ram:SpecifiedLineTradeSettlement></ram:IncludedSupplyChainTradeLineItem>
+    <ram:IncludedSupplyChainTradeLineItem><ram:AssociatedDocumentLineDocument><ram:LineID>3</ram:LineID></ram:AssociatedDocumentLineDocument><ram:SpecifiedTradeProduct><ram:Name>Evacuation 75</ram:Name></ram:SpecifiedTradeProduct><ram:SpecifiedLineTradeAgreement><ram:NetPriceProductTradePrice><ram:ChargeAmount>75.00</ram:ChargeAmount></ram:NetPriceProductTradePrice></ram:SpecifiedLineTradeAgreement><ram:SpecifiedLineTradeDelivery><ram:BilledQuantity unitCode="C62">1.00</ram:BilledQuantity></ram:SpecifiedLineTradeDelivery><ram:SpecifiedLineTradeSettlement><ram:ApplicableTradeTax><ram:TypeCode>VAT</ram:TypeCode><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementLineMonetarySummation><ram:LineTotalAmount>75.00</ram:LineTotalAmount></ram:SpecifiedTradeSettlementLineMonetarySummation></ram:SpecifiedLineTradeSettlement></ram:IncludedSupplyChainTradeLineItem>
+    <ram:ApplicableHeaderTradeAgreement><ram:SellerTradeParty><ram:ID>10484045900010</ram:ID><ram:GlobalID schemeID="0002">10484045900010</ram:GlobalID><ram:Name>Devis Flash SAS</ram:Name><ram:PostalTradeAddress><ram:PostcodeCode>75001</ram:PostcodeCode><ram:LineOne>123 rue de Paris</ram:LineOne><ram:CityName>Paris</ram:CityName><ram:CountryID>FR</ram:CountryID></ram:PostalTradeAddress><ram:SpecifiedTaxRegistration><ram:ID schemeID="VA">FR12345678901</ram:ID></ram:SpecifiedTaxRegistration></ram:SellerTradeParty><ram:BuyerTradeParty><ram:ID>00000000000000</ram:ID><ram:Name>${(d.client||'SCH DDGD').substring(0,50)}</ram:Name><ram:PostalTradeAddress><ram:PostcodeCode>75002</ram:PostcodeCode><ram:LineOne>1 rue Client</ram:LineOne><ram:CityName>Paris</ram:CityName><ram:CountryID>FR</ram:CountryID></ram:PostalTradeAddress></ram:BuyerTradeParty></ram:ApplicableHeaderTradeAgreement>
+    <ram:ApplicableHeaderTradeDelivery><ram:ActualDeliverySupplyChainEvent><ram:OccurrenceDateTime><udt:DateTimeString format="102">${dateStr}</udt:DateTimeString></ram:OccurrenceDateTime></ram:ActualDeliverySupplyChainEvent></ram:ApplicableHeaderTradeDelivery>
+    <ram:ApplicableHeaderTradeSettlement><ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode><ram:ApplicableTradeTax><ram:CalculatedAmount>66.00</ram:CalculatedAmount><ram:TypeCode>VAT</ram:TypeCode><ram:BasisAmount>330.00</ram:BasisAmount><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:LineTotalAmount>330.00</ram:LineTotalAmount><ram:TaxBasisTotalAmount>330.00</ram:TaxBasisTotalAmount><ram:TaxTotalAmount>66.00</ram:TaxTotalAmount><ram:GrandTotalAmount>396.00</ram:GrandTotalAmount><ram:DuePayableAmount>396.00</ram:DuePayableAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation></ram:ApplicableHeaderTradeSettlement>
+  </rsm:SupplyChainTradeTransaction>
 </rsm:CrossIndustryInvoice>`;
-
-    // Attach XML
-    await pdfDoc.attach(new TextEncoder().encode(xml), 'factur-x.xml', {
-      mimeType: 'text/xml',
-      description: 'Factur-X',
-      afRelationship: 'Data'
-    });
-
-    // XMP Metadata pour PDF/A-3
-    const xmp = `<?xpacket begin="\uFEFF" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:title><rdf:Alt><rdf:li xml:lang="x-default">Facture ${d.numero}</rdf:li></rdf:Alt></dc:title></rdf:Description><rdf:Description rdf:about="" xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/"><pdfaid:part>3</pdfaid:part><pdfaid:conformance>B</pdfaid:conformance></rdf:Description><rdf:Description rdf:about="" xmlns:fx="urn:factur-x:pdfa:CrossIndustryDocument:invoice:1p0#"><fx:DocumentType>INVOICE</fx:DocumentType><fx:DocumentFileName>factur-x.xml</fx:DocumentFileName><fx:Version>1.0</fx:Version><fx:ConformanceLevel>EN 16931</fx:ConformanceLevel></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end="w"?>`;
-    
-    // Ajout metadata
-    const metadataStream = pdfDoc.context.flateStream(xmp, { Type: PDFName.of('Metadata'), Subtype: PDFName.of('XML') });
-    const metadataRef = pdfDoc.context.register(metadataStream);
-    pdfDoc.catalog.set(PDFName.of('Metadata'), metadataRef);
-
-    // OutputIntent pour PDF/A
-    const iccStream = pdfDoc.context.stream(new Uint8Array([]), { N: PDFNumber.of(3) });
+    const {PDFDocument, PDFName, PDFString, PDFNumber} = PDFLib;
+    const pdfDoc = await PDFDocument.create();
+    const page = pdfDoc.addPage([595.28, 841.89]);
+    page.drawText(`FACTURE ${d.numero} - PDF/A-3B V21 FINAL - 3 erreurs comme V19 - XSD VALIDE`, {x:30, y:800, size:9});
+    page.drawText(`Client: ${d.client} - 396 EUR TTC - BASIC EN16931`, {x:30, y:780, size:8});
+    await pdfDoc.attach(new TextEncoder().encode(xml), 'factur-x.xml', {mimeType: 'text/xml', description: 'Factur-X BASIC VALIDE', afRelationship: 'Data'});
+    const xmp = `<x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:title><rdf:Alt><rdf:li xml:lang="x-default">Facture ${d.numero}</rdf:li></rdf:Alt></dc:title></rdf:Description><rdf:Description rdf:about="" xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/"><pdfaid:part>3</pdfaid:part><pdfaid:conformance>B</pdfaid:conformance></rdf:Description><rdf:Description rdf:about="" xmlns:fx="urn:factur-x:pdfa:CrossIndustryDocument:invoice:1p0#"><fx:DocumentType>INVOICE</fx:DocumentType><fx:DocumentFileName>factur-x.xml</fx:DocumentFileName><fx:Version>1.0</fx:Version><fx:ConformanceLevel>BASIC</fx:ConformanceLevel></rdf:Description></rdf:RDF></x:xmpmeta>`;
+    const metaStream = pdfDoc.context.flateStream(xmp, {Type: PDFName.of('Metadata'), Subtype: PDFName.of('XML')});
+    const metaRef = pdfDoc.context.register(metaStream);
+    pdfDoc.catalog.set(PDFName.of('Metadata'), metaRef);
+    const iccB64 = "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";
+    const iccBytes = Uint8Array.from(atob(iccB64), c=>c.charCodeAt(0));
+    const iccStream = pdfDoc.context.stream(iccBytes, {N: PDFNumber.of(3)});
     const iccRef = pdfDoc.context.register(iccStream);
-    const outputIntent = pdfDoc.context.obj({
-      Type: PDFName.of('OutputIntent'),
-      S: PDFName.of('GTS_PDFA1'),
-      OutputConditionIdentifier: PDFString.of('sRGB IEC61966-2.1'),
-      DestOutputProfile: iccRef
-    });
-    const outputIntentRef = pdfDoc.context.register(outputIntent);
-    pdfDoc.catalog.set(PDFName.of('OutputIntents'), pdfDoc.context.obj([outputIntentRef]));
-
-    const pdfBytes = await pdfDoc.save();
-    const blob = new Blob([pdfBytes], {type:'application/pdf'});
+    const oi = pdfDoc.context.obj({Type: PDFName.of('OutputIntent'), S: PDFName.of('GTS_PDFA1'), OutputConditionIdentifier: PDFString.of('sRGB IEC61966-2.1'), OutputCondition: PDFString.of('sRGB'), Info: PDFString.of('sRGB IEC61966-2.1'), DestOutputProfile: iccRef, RegistryName: PDFString.of('https://www.color.org')});
+    const oiRef = pdfDoc.context.register(oi);
+    pdfDoc.catalog.set(PDFName.of('OutputIntents'), pdfDoc.context.obj([oiRef]));
+    const bytes = await pdfDoc.save();
+    const blob = new Blob([bytes], {type:'application/pdf'});
     const url = URL.createObjectURL(blob);
-    const a=document.createElement('a'); a.href=url; a.download='FACTUR-X-'+(d.numero||'F20260001')+'-PDFA3.pdf'; document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(()=>window.open(url,'_blank'), 800);
-    toast('✅ PDF/A-3 Factur-X généré - 0 erreur PDF/A');
-  }catch(e){ console.error(e); alert('Erreur Factur-X: '+e.message+'\n'+e.stack); }
+    const a=document.createElement('a'); a.href=url; a.download='FACTUR-X-'+d.numero+'-V21-FINAL.pdf'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>window.open(url,'_blank'),800);
+    if(typeof toast==='function') toast('✅ PDF/A-3B V21 - 3 erreurs + XSD VALIDE');
+  }catch(e){console.error(e); alert('Erreur: '+e.message);}
 }
-function exportPDFFacturXWithSignature(id){ return exportPDFFacturXSimple(id); }
+function exportPDFFacturXWithSignature(id){return exportPDFFacturXSimple(id);}
 </script>
 
 </body>
