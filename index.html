@@ -682,6 +682,34 @@
 #payLinkPaypal{margin-top:4px !important;}
 .pay-settings-grid > div:nth-child(2){margin-top:24px !important;}
 </style>
+
+<script>
+(function(){
+ try{
+  var k='devisFlash_v2';
+  var raw=localStorage.getItem(k);
+  if(raw){
+   var p=JSON.parse(raw);
+   var changed=false;
+   if(p.payLinkPaypal && p.payLinkPaypal.toLowerCase().includes('jmk')){ p.payLinkPaypal=''; changed=true; }
+   if(changed) localStorage.setItem(k, JSON.stringify(p));
+  }
+  ['df_paypal','df_paypal_me','df_paypal_acompte','devisFlash_payLinkPaypal','payLinkPaypal'].forEach(function(key){
+    var v=localStorage.getItem(key); if(v && v.toLowerCase().includes('jmk')){ localStorage.removeItem(key); }
+  });
+ }catch(e){}
+})();
+</script>
+
+<style>
+.pay-grid{display:grid !important; grid-template-columns:1fr 1fr !important; gap:20px !important; max-width:800px !important; margin:20px auto !important;}
+.pay-grid .pay-card{display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:flex-start !important; text-align:center !important; min-height:200px !important; border-radius:18px !important; padding:22px 20px !important;}
+.pay-grid .pay-card h4{text-align:center !important; width:100% !important;}
+.pay-grid .pay-card label{text-align:center !important; width:100% !important; display:block !important;}
+.pay-grid .pay-card input{max-width:320px !important; margin:0 auto !important; text-align:center !important;}
+.pay-grid .pay-card button{max-width:320px !important; width:100% !important; margin-top:14px !important;}
+@media(max-width:720px){.pay-grid{grid-template-columns:1fr !important; max-width:400px !important;}}
+</style>
 </head>
 <body>
 
@@ -969,29 +997,15 @@
     <span style="color:#94A3B8">•</span>
     <a href="#" onclick="showView('confidentialite');return false" style="color:#334155;text-decoration:none">Confidentialité RGPD</a>
   </div>
-  <div style="font-size:13px;color:#475569;margin-bottom:10px;text-align:center">Contact: <a href="mailto:devisflash93@gmail.com" style="color:#2563EB;text-decoration:none;font-weight:700">devisflash93@gmail.com</a></div>
-  <div style="display:flex;justify-content:center;margin-bottom:10px">
-    <div style="font-size:12px;color:#0F172A;font-weight:800;background:#EFF6FF;border:1px solid #BFDBFE;display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;letter-spacing:.2px">⚡ FACTURATION ÉLECTRONIQUE 2026 ✅</div>
-  </div>
-  <div style="font-size:11px;color:#64748B;text-align:center;letter-spacing:.2px">🛡️ Assurance décennale n° 123456789 • TVA non applicable art.293 B du CGI •</div>
-</div>
  </section>
-
 
  <!-- ===================== DASHBOARD - HISTORIQUE ===================== -->
  <section class="view" id="view-dashboard" style="display:none; max-width:1180px; margin:0 auto; padding:0 24px;">
   <h2 class="sora" style="margin:24px 0 16px 0;font-size:24px">📊 Historique des devis</h2>
   <div class="toolbar">
    <input type="text" id="dashSearch" placeholder="🔍 Rechercher client, secteur, description…" oninput="renderDashboardList()" style="flex:1;min-width:200px">
-   <select id="dashFilter" onchange="renderDashboardList()">
-    <option value="Tous">Tous les secteurs</option>
-   </select>
-   <select id="dashStatut" onchange="renderDashboardList()">
-    <option value="Tous">Tous statuts</option>
-    <option value="Envoyé">Envoyé</option>
-    <option value="Payé">Payé</option>
-    <option value="Brouillon">Brouillon</option>
-   </select>
+   <select id="dashFilter" onchange="renderDashboardList()"><option value="Tous">Tous les secteurs</option></select>
+   <select id="dashStatut" onchange="renderDashboardList()"><option value="Tous">Tous statuts</option><option value="Envoyé">Envoyé</option><option value="Payé">Payé</option><option value="Brouillon">Brouillon</option></select>
    <button class="btn btn-secondary btn-sm" onclick="exportHistoriqueCSV()" title="Export comptable">📊 CSV</button>
   </div>
   <div class="devis-list" id="dashList"></div>
@@ -1574,7 +1588,7 @@ function onSettingsChange(){
 }
 function fillPaySettings(){
  document.getElementById("payLinkCard").value = state.payLinkCard || "";
- document.getElementById("payLinkPaypal").value = state.payLinkPaypal || "";
+ var _pp=state.payLinkPaypal||""; if(_pp.toLowerCase().includes("jmk")) _pp=""; document.getElementById("payLinkPaypal").value=_pp;
  try{
  document.getElementById("bankTitulaire").value = state.titulaire || "";
  document.getElementById("bankName").value = state.banque || "";
