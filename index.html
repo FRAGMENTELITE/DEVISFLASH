@@ -710,13 +710,6 @@
 .pay-grid .pay-card button{max-width:320px !important; width:100% !important; margin-top:14px !important;}
 @media(max-width:720px){.pay-grid{grid-template-columns:1fr !important; max-width:400px !important;}}
 </style>
-
-<style>
-.icon-btn{font-size:20px !important;width:42px !important;height:42px !important;border-radius:10px !important;display:inline-flex !important;align-items:center !important;justify-content:center !important}
-.row-actions{gap:8px !important}
-.devis-row{padding:12px 8px !important}
-</style>
-
 </head>
 <body>
 
@@ -1778,12 +1771,13 @@ function renderDashboardList(){
    <div class="amt">${fmtEUR(d.venteTotal)}</div>
    <div class="amt" style="color:${dot};font-weight:700">${(d.margePct||0).toFixed(0)}%<br><span style="font-size:10px;color:var(--ink-soft)">${fmtEUR(d.margeTotal||0)}</span></div>
    <div class="row-actions" style="flex-wrap:wrap">
-    <button class="icon-btn" style="font-size:20px;width:40px;height:40px" onclick="openApercu('${d.id}')" title="Voir / PDF">👁</button>
-    <button class="icon-btn" style="font-size:20px;width:40px;height:40px" onclick="sendDevisEmail('${d.id}')" title="Envoyer par email">📧</button>
-    <button class="icon-btn" style="font-size:20px;width:40px;height:40px;background:#EFF6FF;border-color:#BFDBFE" onclick="convertToFacture('${d.id}')" title="Facturer">🧾</button>
-    <button class="icon-btn" style="font-size:20px;width:40px;height:40px" onclick="restoreDevis('${d.id}')" title="Restaurer">↩</button>
-    <button class="icon-btn" style="font-size:20px;width:40px;height:40px" onclick="duplicateDevis('${d.id}')" title="Dupliquer">⧉</button>
-    <button class="icon-btn" style="font-size:20px;width:40px;height:40px;color:#DC2626" onclick="deleteDevis('${d.id}')" title="Supprimer">🗑</button>
+    <button class="icon-btn" onclick="openApercu('${d.id}')" title="Voir / PDF">👁️</button>
+    <button class="icon-btn" onclick="sendDevisEmail('${d.id}')" title="Envoyer par email">📧</button>
+    <button class="icon-btn" onclick="convertToFacture('${d.id}')" title="Facturer">🧾</button>
+	    <button class="icon-btn" onclick="openRelanceModal('${d.id}','j3')"" title="Facturer">🧾</button>
+    <button class="icon-btn" onclick="restoreDevis('${d.id}')" title="Restaurer">↩️</button>
+    <button class="icon-btn" onclick="duplicateDevis('${d.id}')" title="Dupliquer">⧉</button>
+    <button class="icon-btn" onclick="deleteDevis('${d.id}')" title="Supprimer">🗑️</button>
    </div>
   </div>`;}).join("");
 }
@@ -1955,7 +1949,7 @@ function renderFactures(){
  document.getElementById('factCa').textContent=fmtEUR(list.reduce((s,f)=>s+(f.total||0),0));
  document.getElementById('factAtt').textContent=fmtEUR(list.filter(f=>f.statut!=='Payée').reduce((s,f)=>s+(f.total||0),0));
  if(list.length===0){ el.innerHTML='<div style="padding:20px;text-align:center;color:#64748B">Aucune facture. Convertis un devis depuis Historique → 🧾 Facturer.</div>'; return; }
- el.innerHTML=list.map(f=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #E2E8F0"><div><strong>${f.numero}</strong> • ${escapeHtml(f.client)} • ${fmtDate(f.date)}<br><span style="font-size:12px;color:#64748B">${fmtEUR(f.total)} • ${f.statut}</span></div><div style="display:flex;gap:6px"><button class="btn btn-secondary btn-sm" onclick="sendFactureEmail('${f.id}')">📧 Email</button><button class="btn btn-secondary btn-sm" onclick="exportFacturePDF('${f.id}')">📄 PDF</button><button class="btn btn-secondary btn-sm" onclick="toggleFacturePay('${f.id}')">${f.statut==='Payée'?'⏳ Impayée':'✅ Payée'}</button></div></div>`).join('');
+ el.innerHTML=list.map(f=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 12px;border:1px solid #E2E8F0;border-radius:12px;margin-bottom:8px;background:#fff"><div><strong>${f.numero}</strong> • ${escapeHtml(f.client)} • ${fmtDate(f.date)}<br><span style="font-size:12px;color:#64748B">${fmtEUR(f.total)} • ${f.statut}</span></div><div style="display:flex;gap:6px;align-items:center"><button class="btn btn-secondary btn-sm" onclick="sendFactureEmail('${f.id}')">📧</button><button class="btn btn-secondary btn-sm" onclick="exportFacturePDF('${f.id}')">📄</button><button class="btn btn-secondary btn-sm" onclick="toggleFacturePay('${f.id}')">${f.statut==='Payée'?'⏳':'✅'}</button><button class="btn btn-sm" style="background:#FEE2E2;color:#DC2626;border:1px solid #FECACA;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;font-size:16px" onclick="deleteFacture('${f.id}')" title="Supprimer cette facture">🗑</button></div></div>`).join('');
 }
 function convertToFacture(devisId){
  const d=(state.devis||[]).find(x=>x.id===devisId); if(!d){ toast('Devis introuvable'); return; }
@@ -5147,6 +5141,28 @@ async function exportPDFFacturXSimple(devisId){
   }catch(e){console.error(e); alert('Erreur: '+e.message);}
 }
 function exportPDFFacturXWithSignature(id){return exportPDFFacturXSimple(id);}
+</script>
+
+
+<script>
+function deleteFacture(id){
+  const f=(state.factures||[]).find(x=>x.id===id);
+  if(!f) return;
+  if(!confirm('Supprimer la facture '+f.numero+' - '+f.client+' ?')) return;
+  state.factures = state.factures.filter(x=>x.id!==id);
+  try{
+    const raw=localStorage.getItem('devis_flash_v3');
+    if(raw){
+      const data=JSON.parse(raw);
+      data.factures = data.factures.filter(x=>x.id!==id);
+      localStorage.setItem('devis_flash_v3', JSON.stringify(data));
+    }
+    localStorage.setItem('devisFlash_factures', JSON.stringify(state.factures));
+    localStorage.setItem('df_factures', JSON.stringify(state.factures));
+  }catch(e){}
+  renderFactures();
+  if(typeof renderDashboard==='function') renderDashboard();
+}
 </script>
 
 </body>
