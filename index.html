@@ -711,8 +711,7 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
   border:1px solid #E2E8F0 !important;
   background:#fff !important;
 }
-.tab-btn.active{background:var(--brand) !important;color:#fff !important;border-color:var(--brand) !important;}
-.tab-btn[data-view="planning"]{background:#EFF6FF !important;border:2px solid #2563EB !important;font-weight:800 !important;}
+.tab-btn.active{background:#2563EB !important;color:#fff !important;border-color:#2563EB !important;}
 .tab-btn[data-view="tarifs"]{background:#ECFDF5 !important;border:2px solid #10B981 !important;font-weight:800 !important;}
 .landing-hero, .gen-hero, .gen-footer, .hero-section, #landing, .cta-section, .landing-wrap{display:none !important;visibility:hidden !important;height:0 !important;overflow:hidden !important;margin:0 !important;padding:0 !important;}
 #view-generateur .gen-hero,#view-generateur .gen-footer{display:none !important;}
@@ -723,10 +722,68 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
 /* GENERATEUR EN PREMIER - TOUS ONGLETS VISIBLES SANS SCROLL */
 .tabs{display:flex !important;flex-wrap:wrap !important;overflow:visible !important;justify-content:flex-start !important;gap:6px !important;padding:8px !important;background:#F8FAFF !important;border-radius:12px !important;}
 .tab-btn{flex:0 0 auto !important;font-size:12px !important;padding:7px 10px !important;white-space:nowrap !important;}
-.tab-btn[data-view="generateur"]{background:#EFF6FF !important;border:1px solid #BFDBFE !important;}
-.tab-btn[data-view="planning"]{order:1 !important;background:#EFF6FF !important;border:2px solid #2563EB !important;font-weight:800 !important;}
+.tab-btn[data-view="generateur"]{background:#EFF6FF !important;border:1px solid #BFDBFE !important;color:#1D4ED8 !important;}
 .tab-btn[data-view="tarifs"]{order:2 !important;background:#ECFDF5 !important;border:2px solid #10B981 !important;font-weight:800 !important;}
 .landing-hero,.gen-hero,.gen-footer{display:none !important;}
+</style>
+
+
+<style>
+/* FIX CONFLIT COULEUR ONGLETS - UNIFIÉ */
+.tabs{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:6px !important;
+  padding:10px 12px !important;
+  background:#F8FAFF !important;
+  border-radius:12px !important;
+  justify-content:flex-start !important;
+  overflow:visible !important;
+}
+.tab-btn{
+  border:1px solid #E2E8F0 !important;
+  background:#FFFFFF !important;
+  color:#334155 !important;
+  padding:8px 12px !important;
+  border-radius:10px !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  transition:all 0.15s ease !important;
+  box-shadow:0 1px 2px rgba(0,0,0,0.04) !important;
+}
+.tab-btn:hover{
+  background:#F1F5F9 !important;
+  border-color:#CBD5E1 !important;
+  transform:translateY(-1px) !important;
+}
+.tab-btn.active{
+  background:#2563EB !important;
+  color:#FFFFFF !important;
+  border-color:#2563EB !important;
+  box-shadow:0 4px 10px rgba(37,99,235,0.25) !important;
+  font-weight:700 !important;
+}
+/* Planning et Tarifs mis en avant mais sans conflit quand active */
+.tab-btn[data-view="planning"]:not(.active){
+  background:#EFF6FF !important;
+  border-color:#93C5FD !important;
+  color:#1D4ED8 !important;
+}
+.tab-btn[data-view="tarifs"]:not(.active){
+  background:#ECFDF5 !important;
+  border-color:#6EE7B7 !important;
+  color:#047857 !important;
+}
+/* Retirer landing */
+.landing-hero,.gen-hero,.gen-footer{display:none !important;}
+</style>
+
+
+<style>
+/* FIX DOUBLON PLANNING MOBILE */
+#tab-planning-hidden, .tab#tab-planning-hidden, button#tab-planning-hidden{
+  display:none !important;
+}
 </style>
 
 </head>
@@ -748,10 +805,10 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
    <button class="tab-btn" data-view="clients" onclick="showView('clients')">👥 <span>Clients / Bouclier</span></button>
    <button class="tab-btn" data-view="dashboard" onclick="showView('dashboard')">📚 <span>Historique</span></button>
    <button class="tab-btn" data-view="catalogue" onclick="showView('catalogue')">📦 <span>Catalogue</span></button>
-   <button class="tab-btn" data-view="banque" onclick="showView('banque')" style="border:1px solid #BFDBFE;background:#EFF6FF">🏦 <span>Banque</span><span style="font-size:8px;background:#2563EB;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P2</span></button>
-   <button class="tab-btn" data-view="conformite" onclick="showView('conformite')" style="border:1px solid #FECACA;background:#FEF2F2">⚖️ <span>Conformité</span><span style="font-size:8px;background:#DC2626;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P1</span></button>
+   <button class="tab-btn" data-view="banque" onclick="showView('banque')">🏦 <span>Banque</span><span style="font-size:8px;background:#2563EB;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P2</span></button>
+   <button class="tab-btn" data-view="conformite" onclick="showView('conformite')">⚖️ <span>Conformité</span><span style="font-size:8px;background:#DC2626;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P1</span></button>
    <button class="tab-btn" data-view="fiscalite" onclick="showView('fiscalite')">💰 <span>Aides & TVA</span></button>
-   <button class="tab-btn" data-view="anti-oubli" onclick="showView('anti-oubli')" style="border:1px solid #FDE68A;background:#FFFBEB">🧠 <span>Anti-oubli</span><span style="font-size:8px;background:#D97706;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P3</span></button>
+   <button class="tab-btn" data-view="anti-oubli" onclick="showView('anti-oubli')">🧠 <span>Anti-oubli</span><span style="font-size:8px;background:#D97706;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P3</span></button>
    <button class="tab-btn" data-view="apercu" onclick="showView('apercu')">📄 <span>Aperçu</span></button>
    <button class="tab-btn" data-view="faq" onclick="showView('faq')">❓ <span>FAQ</span></button>
   </nav>
@@ -1092,15 +1149,15 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
       </ul>
       <button onclick="goCheckout('starter','month')" style="margin-top:auto;background:#2563EB;color:#fff;border:0;padding:10px;border-radius:10px;font-weight:800;cursor:pointer">Choisir Starter</button>
     </div>
-    <div style="background:#0F172A;border-radius:16px;padding:20px;display:flex;flex-direction:column;color:#fff;position:relative;border:2px solid #2563EB">
+    <div style="background:#FFFFFF;border-radius:16px;padding:20px;display:flex;flex-direction:column;color:#0F172A;position:relative;border:2px solid #2563EB;box-shadow:0 8px 30px rgba(37,99,235,0.12)">
       <div style="position:absolute;top:0;right:0;background:#25D366;color:#fff;font-size:9px;font-weight:800;padding:5px 12px;border-radius:0 14px 0 10px">RECOMMANDÉ 2026</div>
       <div style="font-size:12px;font-weight:700;color:#93C5FD;letter-spacing:.8px;margin-top:8px">PRO</div>
       <div style="font-size:32px;font-weight:800;margin-top:6px">39,90€<span style="font-size:13px;font-weight:500;color:#94A3B8">/mois</span></div>
       <div style="font-size:11px;color:#25D366;font-weight:700;margin-top:2px">ou <a href="#" onclick="goCheckout('pro','year');return false;" style="color:#25D366;font-weight:800;text-decoration:underline">390€ / an (-37%)</a></div>
-      <ul style="list-style:none;padding:0;margin:16px 0 0 0;font-size:13px;color:#E2E8F0;line-height:1.8">
-        <li>✅ <b style="color:#fff">Tout Starter</b></li><li>✅ <b style="color:#fff">QR SEPA acompte instantané</b></li><li>✅ <b style="color:#fff">Factur-X / Chorus Pro XML 2026</b></li><li>✅ Numérotation inaltérable conforme</li><li>✅ Backup auto + Offline chantier</li><li>✅ Logo + IBAN + Décennale + SIRET</li><li>✅ Export compta + Facturation électronique ✅</li>
+      <ul style="list-style:none;padding:0;margin:16px 0 0 0;font-size:13px;color:#334155;line-height:1.8">
+        <li>✅ <b style="color:#0F172A">Tout Starter</b></li><li>✅ <b style="color:#0F172A">QR SEPA acompte instantané</b></li><li>✅ <b style="color:#0F172A">Factur-X / Chorus Pro XML 2026</b></li><li>✅ Numérotation inaltérable conforme</li><li>✅ Backup auto + Offline chantier</li><li>✅ Logo + IBAN + Décennale + SIRET</li><li>✅ Export compta + Facturation électronique ✅</li>
       </ul>
-      <button onclick="goCheckout('pro','month')" style="margin-top:auto;background:#fff;color:#0F172A;border:0;padding:12px;border-radius:10px;font-weight:900;cursor:pointer">Passer PRO 39,90€</button>
+      <button onclick="goCheckout('pro','month')" style="margin-top:auto;background:#2563EB;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:900;cursor:pointer">Passer PRO 39,90€</button>
       <div style="font-size:10px;color:#94A3B8;text-align:center;margin-top:8px">1,33€ / jour - Rentabilisé en 1 acompte</div>
     </div>
   </div>
@@ -4544,7 +4601,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   };
 });
 
-// Planning tab fix removed - duplicate avoided
+// FIX: doublon Planning mobile supprimé - tab-planning-hidden ne doit pas être recréé
 </script>
 <!-- FIN MODULE METRE + PLANNING -->
 
@@ -5630,12 +5687,12 @@ window.addEventListener('DOMContentLoaded', ()=>{ setTimeout(()=>{ checkConformi
 // Affiliation minimal - garde l'affiliation ok
 (function(){
   const KEY='df_aff_code';
-  function gen(){ const c='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; let s='DF'; for(let i=0;i<6;i++) s+=c[Math.floor(Math.random()*c.length)]; return s; }
+  function gen(){ return 'TOP30'; }
   function getCode(){ let code=localStorage.getItem(KEY); if(!code){ code=gen(); localStorage.setItem(KEY,code); } return code; }
   window.renderAffiliationBlock=function(){
     const el=document.getElementById('affiliationBlock'); if(!el) return;
-    const code=getCode(); const link=location.origin+location.pathname+'?ref='+code;
-    el.innerHTML=`<div style="background:linear-gradient(135deg,#EFF6FF 0%,#F0FDF4 100%);border:2px solid #2563EB;border-radius:16px;padding:20px;margin:20px auto;max-width:700px"><h3 style="margin:0 0 8px">🤝 Affiliation 30% à vie</h3><p style="font-size:13px;color:#475569;margin:0 0 12px">Code: <b>${code}</b> - Lien: ${link}</p><div style="display:flex;gap:8px"><input value="${link}" readonly style="flex:1;padding:8px;border:1px solid #E2E8F0;border-radius:8px;font-size:12px"><button onclick="navigator.clipboard.writeText('${link}'); alert('Copié')" class="btn btn-primary btn-sm">Copier</button></div></div>`;
+    const code='TOP30'; localStorage.setItem(KEY,code); const link=location.origin+location.pathname+'?ref='+code;
+    el.innerHTML=`<div style="background:linear-gradient(135deg,#EFF6FF 0%,#F0FDF4 100%);border:2px solid #2563EB;border-radius:16px;padding:20px;margin:20px auto;max-width:700px"><h3 style="margin:0 0 8px">🤝 Affiliation TOP30 - 30% à vie</h3><p style="font-size:13px;color:#475569;margin:0 0 12px">Code: <b style="background:#2563EB;color:#fff;padding:2px 8px;border-radius:6px;font-size:14px;letter-spacing:1px">${code}</b> - Lien: ${link}</p><div style="display:flex;gap:8px"><input value="${link}" readonly style="flex:1;padding:8px;border:1px solid #E2E8F0;border-radius:8px;font-size:12px;font-weight:600"><button onclick="navigator.clipboard.writeText('${link}'); alert('✅ Lien TOP30 copié')" class="btn btn-primary btn-sm">Copier</button></div><div style="margin-top:10px;font-size:11px;color:#059669;font-weight:700">✅ Code TOP30 visible et actif - 30% de commission</div></div>`;
   };
   document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(()=>{ try{ window.renderAffiliationBlock(); }catch(e){} },500); });
   // Hook into tarifs view
@@ -5679,6 +5736,49 @@ body:not(:has(#view-generateur.active)) .gen-footer{display:none !important;}
       if(name==='planning'){ setTimeout(ensurePlanning, 200); }
     };
   }
+})();
+</script>
+
+
+<script>
+// FIX FINAL - UN SEUL SHOWVIEW SANS CONFLIT COULEUR
+(function(){
+  const _originalShowView = window.showView;
+  window.showView = function(name){
+    // Hide all views
+    document.querySelectorAll('.view').forEach(v=>{
+      v.style.display='none';
+      v.classList.remove('active');
+    });
+    // Remove active from all tabs
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    // Show target view
+    const target = document.getElementById('view-'+name);
+    if(target){
+      target.style.display='block';
+      target.classList.add('active');
+    }
+    // Set active tab - clean
+    const activeBtn = document.querySelector('.tab-btn[data-view="'+name+'"]');
+    if(activeBtn) activeBtn.classList.add('active');
+    
+    // Specific renders
+    if(name==='planning' && typeof renderPlanning==='function'){
+      setTimeout(()=>{ try{ renderPlanning(); }catch(e){} }, 100);
+    }
+    if(name==='tarifs' && typeof renderAffiliationBlock==='function'){
+      setTimeout(()=>{ try{ renderAffiliationBlock(); }catch(e){} }, 100);
+    }
+    if(name==='dashboard' && typeof renderDashboard==='function'){
+      setTimeout(()=>{ try{ renderDashboard(); }catch(e){} }, 100);
+    }
+    // Update URL hash without triggering scroll
+    if(history.replaceState){
+      try{ history.replaceState(null,null,'#'+name); }catch(e){}
+    }
+  };
+  // Make global showView function also use it
+  window.showView = window.showView;
 })();
 </script>
 
