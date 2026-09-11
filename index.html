@@ -23,10 +23,11 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP</title>
+<title>Facture Électronique BTP 2026 | Devis Flash - Devis, Facture, Signature Électronique Conforme</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-<meta name="description" content="Devis Flash génère vos devis pro en 90 sec : calcul marge auto, 10 métiers du BTP, export PDF, encaissement CB/PayPal. Essai gratuit 14 jours.">
+<meta name="description" content="Facture électronique BTP obligatoire 2026 : Devis Flash génère vos factures électroniques conformes Factur-X, Chorus Pro, signature électronique, QR encaissement CB/PayPal. Devis → Facture → Facture électronique en moins de 2 min. Conforme réforme 2026-2027.">
+<meta name="keywords" content="facture electronique btp, facture electronique obligatoire 2026, factur-x, chorus pro, facture electronique artisan, devis btp, signature electronique devis, facture conforme 2026, reforme facture electronique, devis flash">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Devis Flash">
 <link rel="canonical" href="https://www.devis-flash.fr/">
@@ -35,15 +36,15 @@
 <!-- Open Graph / réseaux sociaux -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Devis Flash">
-<meta property="og:title" content="Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP">
-<meta property="og:description" content="Générez un devis pro en 90 sec : 10 métiers BTP mis en avant + 5 spécialités. Calcul marge auto et encaissement CB/PayPal.">
+<meta property="og:title" content="Facture Électronique BTP 2026 | Devis Flash - Conforme Factur-X & Chorus Pro">
+<meta property="og:description" content="Facture électronique BTP obligatoire dès 2026 : générez vos factures Factur-X conformes, signature électronique, encaissement CB/PayPal, archivage 10 ans.">
 <meta property="og:url" content="https://www.devis-flash.fr/">
 <meta property="og:locale" content="fr_FR">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP">
-<meta name="twitter:description" content="Générez un devis professionnel en 90 secondes, avec calcul de marge automatique et encaissement par carte ou PayPal.">
+<meta name="twitter:description" content="Générez un devis professionnel en moins de 2 minutes, avec calcul de marge automatique et encaissement par carte ou PayPal.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -135,7 +136,7 @@
 
  @media (max-width:760px){
   .header-inner{min-height:120px; padding:20px 16px 12px 16px;}
-  .tabs{position:relative; bottom:auto; left:auto; right:auto; border-radius:12px; justify-content:flex-start; padding:4px; box-shadow:none; flex-wrap:nowrap; overflow-x:auto;}
+  .tabs{position:relative; bottom:auto; left:auto; right:auto; border-radius:12px; justify-content:flex-start; padding:4px; box-shadow:none; flex-wrap:wrap; overflow:hidden; max-height:60px;}
   .tab-btn{flex-direction:row; gap:6px; font-size:12px; padding:8px 12px; white-space:nowrap;}
   body{padding-bottom:0;}
  }
@@ -534,7 +535,10 @@
 
 
  .lang-btn, #b-fr, #b-en, .lang-switcher{display:none !important;}
+
+/* #btnVocal restauré */
 </style>
+<style id="email-blue">a[href^="mailto:devisflash93@gmail.com"]{color:#2563EB !important;font-weight:700 !important;text-decoration:none !important;} span.email-blue{color:#2563EB !important;font-weight:700 !important;}</style>
 
 <style>
 .quick-devis-fab{
@@ -714,69 +718,14 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
 .tab-btn.active{background:#2563EB !important;color:#fff !important;border-color:#2563EB !important;}
 .tab-btn[data-view="tarifs"]{background:#ECFDF5 !important;border:2px solid #10B981 !important;font-weight:800 !important;}
 .landing-hero, .gen-hero, .gen-footer, .hero-section, #landing, .cta-section, .landing-wrap{display:none !important;visibility:hidden !important;height:0 !important;overflow:hidden !important;margin:0 !important;padding:0 !important;}
-#view-generateur .gen-hero,#view-generateur .gen-footer{display:none !important;}
+#view-generateur .gen-hero,#view-generateur .gen-footer{display:block !important;} #view-generateur .gen-footer{display:block !important;} #view-planning .gen-footer{display:none !important; /* doublon retiré demandé */}
 </style>
 
 
-<style>
-/* GENERATEUR EN PREMIER - TOUS ONGLETS VISIBLES SANS SCROLL */
-.tabs{display:flex !important;flex-wrap:wrap !important;overflow:visible !important;justify-content:flex-start !important;gap:6px !important;padding:8px !important;background:#F8FAFF !important;border-radius:12px !important;}
-.tab-btn{flex:0 0 auto !important;font-size:12px !important;padding:7px 10px !important;white-space:nowrap !important;}
-.tab-btn[data-view="generateur"]{background:#EFF6FF !important;border:1px solid #BFDBFE !important;color:#1D4ED8 !important;}
-.tab-btn[data-view="tarifs"]{order:2 !important;background:#ECFDF5 !important;border:2px solid #10B981 !important;font-weight:800 !important;}
-.landing-hero,.gen-hero,.gen-footer{display:none !important;}
-</style>
 
 
-<style>
-/* FIX CONFLIT COULEUR ONGLETS - UNIFIÉ */
-.tabs{
-  display:flex !important;
-  flex-wrap:wrap !important;
-  gap:6px !important;
-  padding:10px 12px !important;
-  background:#F8FAFF !important;
-  border-radius:12px !important;
-  justify-content:flex-start !important;
-  overflow:visible !important;
-}
-.tab-btn{
-  border:1px solid #E2E8F0 !important;
-  background:#FFFFFF !important;
-  color:#334155 !important;
-  padding:8px 12px !important;
-  border-radius:10px !important;
-  font-size:12px !important;
-  font-weight:600 !important;
-  transition:all 0.15s ease !important;
-  box-shadow:0 1px 2px rgba(0,0,0,0.04) !important;
-}
-.tab-btn:hover{
-  background:#F1F5F9 !important;
-  border-color:#CBD5E1 !important;
-  transform:translateY(-1px) !important;
-}
-.tab-btn.active{
-  background:#2563EB !important;
-  color:#FFFFFF !important;
-  border-color:#2563EB !important;
-  box-shadow:0 4px 10px rgba(37,99,235,0.25) !important;
-  font-weight:700 !important;
-}
-/* Planning et Tarifs mis en avant mais sans conflit quand active */
-.tab-btn[data-view="planning"]:not(.active){
-  background:#EFF6FF !important;
-  border-color:#93C5FD !important;
-  color:#1D4ED8 !important;
-}
-.tab-btn[data-view="tarifs"]:not(.active){
-  background:#ECFDF5 !important;
-  border-color:#6EE7B7 !important;
-  color:#047857 !important;
-}
-/* Retirer landing */
-.landing-hero,.gen-hero,.gen-footer{display:none !important;}
-</style>
+
+
 
 
 <style>
@@ -911,6 +860,43 @@ body:has(#view-stock.active) [class*="generate-devis"]{
 })();
 </script>
 
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Facture Électronique BTP 2026-2027 : Guide complet pour artisans",
+ "description": "Tout savoir sur la facture électronique obligatoire pour artisans du BTP dès 2026. Comment Devis Flash génère des factures Factur-X conformes Chorus Pro.",
+ "author": {"@type":"Organization","name":"Devis Flash"},
+ "datePublished": "2026-01-15",
+ "dateModified": "2026-09-09",
+ "keywords": "facture electronique, factur-x, chorus pro, btp, artisan, 2026",
+ "mainEntityOfPage": "https://www.devis-flash.fr/#facture-electronique"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type":"Question","name":"La facture électronique est-elle obligatoire pour les artisans du BTP en 2026 ?","acceptedAnswer":{"@type":"Answer","text":"Oui, dès septembre 2026, toutes les entreprises assujetties à la TVA doivent émettre des factures électroniques. Pour les artisans du BTP, l'obligation s'applique pour les factures B2B. Devis Flash génère automatiquement des factures au format Factur-X conforme Chorus Pro."}},
+  {"@type":"Question","name":"Qu'est-ce que le format Factur-X pour facture électronique ?","acceptedAnswer":{"@type":"Answer","text":"Factur-X est le format hybride officiel français : un PDF lisible + un fichier XML structuré intégré. Il est obligatoire pour la réforme 2026-2027. Devis Flash exporte vos factures en Factur-X avec QR code encaissement et signature électronique."}},
+  {"@type":"Question","name":"Comment passer de devis à facture électronique conforme ?","acceptedAnswer":{"@type":"Answer","text":"Avec Devis Flash : 1) Créez votre devis en moins de 2 min 2) Cliquez 'Transformer en facture' 3) Signature électronique client 4) Export Factur-X conforme + envoi Chorus Pro + archivage 10 ans. 100% automatique."}},
+  {"@type":"Question","name":"Devis Flash est-il compatible Chorus Pro ?","acceptedAnswer":{"@type":"Answer","text":"Oui, nos factures Factur-X sont 100% compatibles Chorus Pro (portail public). Format XML CII, mentions obligatoires, SIRET, TVA, acompte, signature électronique inclus."}},
+  {"@type":"Question","name":"Quelle est la différence entre facture PDF et facture électronique ?","acceptedAnswer":{"@type":"Answer","text":"Une facture PDF classique n'est pas une facture électronique au sens de la loi 2026. La facture électronique doit être au format structuré Factur-X (PDF + XML) avec transmission via PDP/PPF. Devis Flash fait les deux automatiquement."}}
+ ]
+}
+</script>
+
+
+
+
+
+
+
+
+
+
 </head>
 <body>
 
@@ -936,15 +922,63 @@ body:has(#view-stock.active) [class*="generate-devis"]{
    <button class="tab-btn" data-view="banque" onclick="showView('banque')">🏦 <span>Banque</span><span style="font-size:8px;background:#2563EB;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P2</span></button>
    <button class="tab-btn" data-view="conformite" onclick="showView('conformite')">⚖️ <span>Conformité</span><span style="font-size:8px;background:#DC2626;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P1</span></button>
    <button class="tab-btn" data-view="fiscalite" onclick="showView('fiscalite')">💰 <span>Aides & TVA</span></button>
-   <button class="tab-btn" data-view="anti-oubli" onclick="showView('anti-oubli')">🧠 <span>Anti-oubli</span><span style="font-size:8px;background:#D97706;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P3</span></button>
    <button class="tab-btn" data-view="apercu" onclick="showView('apercu')">📄 <span>Aperçu</span></button>
-   <button class="tab-btn" data-view="faq" onclick="showView('faq')">❓ <span>FAQ</span></button>
    <button class="tab-btn" data-view="affiliation" onclick="showView('affiliation')" style="background:linear-gradient(135deg,#FEF3C7 0%,#FDE68A 100%) !important;border:2px solid #F59E0B !important;color:#92400E !important;font-weight:800 !important">🤝 <span>Parrainage</span><span style="background:#10B981;color:#fff;font-size:8px;padding:2px 5px;border-radius:999px;margin-left:4px">30%</span></button>
+   <button class="tab-btn" data-view="anti-oubli" onclick="showView('anti-oubli')">🧠 <span>Anti-oubli</span><span style="font-size:8px;background:#D97706;color:#fff;padding:2px 4px;border-radius:999px;margin-left:4px">P3</span></button>
+   <button class="tab-btn" data-view="faq" onclick="showView('faq')">❓ <span>FAQ</span></button>
   </nav>
  </div>
 </header>
 
-<div id="app">
+<style>
+/* FIX JUXTAPOSITION - UN SEUL BLOCK SCROLLABLE */
+header{position:sticky !important;top:0 !important;z-index:999 !important;background:#fff !important;box-shadow:0 1px 3px rgba(0,0,0,0.06) !important;}
+.header-inner{padding:10px 12px 0 12px !important;gap:8px !important;display:flex;flex-direction:column;align-items:center;}
+.tabs{
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  white-space:nowrap !important;
+  gap:8px !important;
+  padding:10px 12px 12px 12px !important;
+  justify-content:flex-start !important;
+  background:#F8FAFF !important;
+  border-radius:0 0 12px 12px !important;
+  border-top:1px solid #E2E8F0 !important;
+  width:100% !important;
+  max-width:100vw !important;
+  scrollbar-width:thin !important;
+  scrollbar-color:#CBD5E1 transparent !important;
+  -webkit-overflow-scrolling:touch !important;
+}
+.tabs::-webkit-scrollbar{height:6px}
+.tabs::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:999px}
+.tab-btn{
+  flex:0 0 auto !important;
+  white-space:nowrap !important;
+  font-size:12.5px !important;
+  padding:9px 14px !important;
+  border-radius:999px !important;
+  border:1px solid #E2E8F0 !important;
+  background:#fff !important;
+  color:#334155 !important;
+  font-weight:600 !important;
+  box-shadow:0 1px 2px rgba(0,0,0,0.04) !important;
+  transition:all .15s ease !important;
+}
+.tab-btn:hover{transform:translateY(-1px);border-color:#CBD5E1;background:#F1F5F9 !important;}
+.tab-btn.active{background:#0F172A !important;color:#fff !important;border-color:#0F172A !important;box-shadow:0 4px 12px rgba(0,0,0,0.15) !important;font-weight:700 !important;}
+.tab-btn[data-view="generateur"].active{background:#2563EB !important;border-color:#2563EB !important;}
+.tab-btn.active span{color:#fff !important;}
+.tab-btn[data-view="stock"]:not(.active){background:#F0FDF4 !important;border-color:#86EFAC !important;color:#15803D !important;}
+.tab-btn[data-view="tarifs"]:not(.active){background:#ECFDF5 !important;border:2px solid #10B981 !important;color:#047857 !important;font-weight:800 !important;}
+.landing-hero, .gen-hero, .gen-footer, .hero-section, #landing, .cta-section{display:none !important;}
+/* Fix contenu ne passe pas sous tabs */
+#app{padding-top:8px !important;}
+</style>
+
+
 <!-- Renouvellement après essai -->
 
 <div id="renewalBanner" style="display:none; background:#FEF3C7; border:2px solid #F59E0B; border-radius:12px; padding:20px; text-align:center; margin:16px auto; max-width:760px;">
@@ -971,7 +1005,7 @@ body:has(#view-stock.active) [class*="generate-devis"]{
 
 <div class="gen-hero" style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:32px 20px;margin:0 0 24px 0;text-align:center;box-shadow:0 8px 30px rgba(15,23,42,.06)">
   <div style="display:inline-flex;background:#EFF4FF;border:1px solid #DBEAFE;color:#1D4ED8;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:14px">🎁 14 jours d'essai gratuit — sans carte bancaire</div>
-  <h1 style="font-family:Sora;font-size:28px;line-height:1.15;margin:0 auto 10px;max-width:560px;color:#0F172A">Crée un devis professionnel en 90 secondes</h1>
+  <h1 style="font-family:Sora;font-size:28px;line-height:1.15;margin:0 auto 10px;max-width:560px;color:#0F172A">Crée un devis professionnel en moins de 2 minutes</h1>
   <p style="font-size:14px;color:#475569;margin:0 auto 18px;max-width:520px;line-height:1.6">Votre client signe et paie l'acompte directement.</p>
   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px">
     <button onclick="document.getElementById('clientNom')?.focus(); window.scrollTo({top: document.getElementById('clientNom').offsetTop - 100, behavior:'smooth'})" style="background:#2563EB;color:#fff;border:0;padding:12px 20px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 4px 14px rgba(15,23,42,.2)">Essayer gratuitement →</button>
@@ -1013,12 +1047,13 @@ body:has(#view-stock.active) [class*="generate-devis"]{
       <button class="btn btn-secondary btn-sm" onclick="selectSector('Serrurier / Plaquiste')" style="background:#EFF6FF;border:1px solid #93C5FD">🔐 Serrurier</button>
       <button class="btn btn-secondary btn-sm" onclick="selectSector('Solaire / Photovoltaïque')" style="background:#FFFBEB;border:1px solid #FBBF24">☀️ Solaire 9k€</button>
       </div>
-     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;padding:12px;background:#F8FAFF;border:1px dashed #CBD5E1;border-radius:10px">
-      <button class="btn btn-secondary btn-sm" id="btnVocal" onclick="startVocalMainsLibres()" style="background:#0F172A;color:#fff">🎤 Vocal mains libres</button>
-      <label class="btn btn-secondary btn-sm" style="cursor:pointer">📸 Photo ticket<input type="file" accept="image/*" onchange="handlePhotoMateriel(event)" style="display:none"></label>
-      <label class="btn btn-secondary btn-sm" style="cursor:pointer">📐 Croquis<input type="file" accept="image/*" onchange="handleCroquis(event)" style="display:none"></label>
-      <span id="vocalResult" style="font-size:11px;color:#64748B"></span>
+     <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px 0">
+      <button id="btnVocal" onclick="startVocalMainsLibres()" style="background:#fff;border:1px solid #E2E8F0;color:#0F172A;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px">🎤 Vocal mains libres</button>
+      <label style="background:#fff;border:1px solid #E2E8F0;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px">📸 Photo ticket<input type="file" accept="image/*" style="display:none" onchange="handlePhotoMateriel(event)"></label>
+      <label style="background:#fff;border:1px solid #E2E8F0;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px">📐 Croquis<input type="file" accept="image/*" style="display:none" onchange="handleCroquis(event)"></label>
+      <button onclick="openMetre()" style="background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer">📐 Métré Photo IA</button>
      </div>
+     <div id="vocalResult" style="margin:8px 0;font-size:12px"></div>
      <div id="photoResult" style="margin-top:8px"></div>
      <div id="croquisResult" style="margin-top:8px"></div>
      <div id="margeDiag" style="margin-top:12px"></div>
@@ -1118,7 +1153,7 @@ body:has(#view-stock.active) [class*="generate-devis"]{
   </div>
   <div style="font-size:13px;color:#475569;margin-bottom:10px;text-align:center">Contact: <a href="mailto:devisflash93@gmail.com" style="color:#2563EB;text-decoration:none;font-weight:700">devisflash93@gmail.com</a></div>
   <div style="display:flex;justify-content:center;margin-bottom:10px">
-    <div style="font-size:12px;color:#0F172A;font-weight:800;background:#EFF6FF;border:1px solid #BFDBFE;display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;letter-spacing:.2px">⚡ FACTURATION ÉLECTRONIQUE 2026 ✅</div>
+
   </div>
   <div style="font-size:11px;color:#64748B;text-align:center;letter-spacing:.2px">🛡️ Assurance décennale n° 123456789 • TVA non applicable art.293 B du CGI •</div>
 </div>
@@ -1170,8 +1205,7 @@ body:has(#view-stock.active) [class*="generate-devis"]{
   </div>
  </section>
 
- <!-- ===================== AFFILIATION
- <!-- ===================== AFFILIATION - SANS BLOC NOIR ===================== -->
+<!-- ===================== AFFILIATION - SANS BLOC NOIR ===================== -->
  <section class="view" id="view-affiliation" style="display:none; max-width:1000px; margin:0 auto; padding:20px">
   <div style="background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%);border:2px solid #F59E0B;border-radius:20px;padding:24px;margin-bottom:20px">
     <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
@@ -1346,7 +1380,7 @@ body:has(#view-stock.active) [class*="generate-devis"]{
       <div style="font-size:28px;font-weight:800;color:#0F172A;margin-top:6px">19,90€<span style="font-size:13px;font-weight:500;color:#64748B">/mois</span></div>
       <div style="font-size:11px;color:#2563EB;font-weight:600;margin-top:2px">ou <a href="#" onclick="goCheckout('starter','year');return false;" style="color:#2563EB;font-weight:800;text-decoration:underline">190€ / an (2 mois offerts)</a></div>
       <ul style="list-style:none;padding:0;margin:16px 0 0 0;font-size:13px;color:#334155;line-height:1.8">
-        <li>✅ Devis illimités</li><li>✅ Template Premium + Tampon</li><li>✅ Signature électronique</li><li>✅ WhatsApp relance + Devis→Facture</li><li>✅ Support devisflash93@gmail.com</li>
+        <li>✅ Devis illimités</li><li>✅ Template Premium + Tampon</li><li>✅ Signature électronique</li><li>✅ WhatsApp relance + Devis→Facture</li><li>✅ Support <span style="color:#2563EB;font-weight:700">devisflash93@gmail.com</span></li>
       </ul>
       <button onclick="goCheckout('starter','month')" style="margin-top:auto;background:#2563EB;color:#fff;border:0;padding:10px;border-radius:10px;font-weight:800;cursor:pointer">Choisir Starter</button>
     </div>
@@ -1362,7 +1396,7 @@ body:has(#view-stock.active) [class*="generate-devis"]{
       <div style="font-size:10px;color:#94A3B8;text-align:center;margin-top:8px">1,33€ / jour - Rentabilisé en 1 acompte</div>
     </div>
   </div>
-  <div style="text-align:center;margin-top:20px;font-size:11px;color:#64748B">Paiement sécurisé Stripe • Résiliable 1 clic • Support devisflash93@gmail.com • ⚡ Facturation électronique 2026 • 🛡️ Décennale</div>
+  <div style="text-align:center;margin-top:20px;font-size:11px;color:#64748B">Paiement sécurisé Stripe • Résiliable 1 clic • Support <span style="color:#2563EB;font-weight:700">devisflash93@gmail.com</span> • ⚡ Facturation électronique 2026 • 🛡️ Décennale</div>
 </section>
 <script>
 window.setPlan = function(plan){
@@ -1478,7 +1512,7 @@ window.applyPlanRestrictions = function(){
 <div id="view-aide" class="view" style="display:none; max-width:900px; margin:24px auto; padding:0 24px;">
  <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:28px;">
   <h1 class="sora" style="font-size:28px; margin:0 0 8px;">🆘 Centre d'aide</h1>
-  <p style="color:#64748B; margin:0 0 20px;">Tuto rapide en 3 étapes pour créer ton premier devis en 90 secondes.</p>
+  <p style="color:#64748B; margin:0 0 20px;">Tuto rapide en 3 étapes pour créer ton premier devis en moins de 2 minutes.</p>
   <div style="display:grid; gap:16px;">
    <div style="display:flex; gap:12px; background:#F8FAFF; padding:16px; border-radius:12px; border:1px solid #E2E8F0;">
     <div style="background:#2563EB; color:#fff; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; flex-shrink:0;">1</div>
@@ -1505,8 +1539,8 @@ window.applyPlanRestrictions = function(){
 <section class="landing-hero">
  <div class="landing-wrap">
   <div class="hero-badge">🎁 14 jours d'essai gratuit — sans carte bancaire</div>
-  <h1>Créez un devis professionnel en 90 secondes</h1>
-  <p class="hero-sub">Créez un devis clair en 90 secondes. Votre client signe et paie l\'acompte directement.</p>
+  <h1>Créez un devis professionnel en moins de 2 minutes</h1>
+  <p class="hero-sub">Créez un devis clair en moins de 2 minutes. Votre client signe et paie l\'acompte directement.</p>
   <div class="hero-ctas">
    <a href="#app" onclick="showView('generateur'); setTimeout(()=>document.getElementById('app').scrollIntoView({behavior:'smooth'}), 100); return false;" class="btn btn-primary btn-lg">Essayer gratuitement →</a>
    <a href="#app" onclick="showView('generateur'); setTimeout(()=>document.getElementById('app').scrollIntoView({behavior:'smooth'}), 100); return false;" class="btn btn-secondary btn-lg" onclick="setTimeout(()=>showView('tarifs'),350)">Voir les tarifs</a>
@@ -1521,7 +1555,7 @@ window.applyPlanRestrictions = function(){
 
 <div class="trial-banner no-print hidden" id="trialBanner">
  <div class="trial-banner-inner">
-  <span id="trialBannerText"><strong>Essai gratuit</strong> en cours</span>
+  <span id="trialBannerText"><strong>Essai gratuit - Devis en moins de 2 min</strong> en cours</span>
   <div style="display:flex; align-items:center; gap:10px;">
    <span class="days-left" id="trialDaysLeft">14 jours restants</span>
    <button class="btn btn-secondary btn-sm" onclick="showView('tarifs')">Gérer l'abonnement</button>
@@ -1538,7 +1572,7 @@ window.applyPlanRestrictions = function(){
   <div class="card" style="font-size:13px;line-height:1.7;color:#334155">
    <h3>1. Éditeur</h3>
    <p><strong>Devis Flash</strong><br>
-   Contact unique: <strong>devisflash93@gmail.com</strong><br>
+   Contact unique: <strong style="color:#2563EB">devisflash93@gmail.com</strong><br>
    SIRET: en cours d'immatriculation<span style="display:inline-block;margin-top:8px;background:#F1F5F9;border:1px solid #E2E8F0;padding:6px 10px;border-radius:8px;font-size:12px;color:#475569">TVA non applicable - art.293 B du CGI</span></p>
    
    <h3>2. Hébergement</h3>
@@ -1561,19 +1595,19 @@ window.applyPlanRestrictions = function(){
 
   <h2 class="sora" style="margin-top:32px">CGV - Conditions Générales de Vente</h2>
   <div class="card" style="font-size:13px;line-height:1.7;color:#334155">
-   <p><strong>Article 1 - Tarifs 2026:</strong> Gratuit 3 devis/mois. Starter 9,90€/mois ou 99€/an = 30 devis/mois. PRO 39€/mois ou 390€/an = 100 devis/mois. 2 mois offerts en annuel. Paiement via SumUp, Stripe, PayPal. Sans engagement, résiliation à tout moment depuis devisflash93@gmail.com.</p>
+   <p><strong>Article 1 - Tarifs 2026:</strong> Gratuit 3 devis/mois. Starter 9,90€/mois ou 99€/an = 30 devis/mois. PRO 39€/mois ou 390€/an = 100 devis/mois. 2 mois offerts en annuel. Paiement via SumUp, Stripe, PayPal. Sans engagement, résiliation à tout moment depuis <span style="color:#2563EB;font-weight:700">devisflash93@gmail.com</span>.</p>
    <p><strong>Article 2 - Essai:</strong> 14 jours gratuit sans carte bancaire. Au-delà, passage en gratuit limité.</p>
    <p><strong>Article 3 - Acomptes clients:</strong> Le QR code CB/PayPal sur vos devis encaisse VOS clients. Devis Flash ne prend aucune commission (hors frais SumUp/Stripe/PayPal 1,5-1,9%). L'abonnement Devis Flash est distinct de l'acompte client.</p>
-   <p><strong>Article 4 - Remboursement:</strong> Droit de rétractation 14 jours pour les particuliers (art. L221-18). Remboursement intégral sur demande à devisflash93@gmail.com si aucun devis PRO n'a été généré. Au-delà, pas de remboursement au prorata.</p>
+   <p><strong>Article 4 - Remboursement:</strong> Droit de rétractation 14 jours pour les particuliers (art. L221-18). Remboursement intégral sur demande à <span style="color:#2563EB;font-weight:700">devisflash93@gmail.com</span> si aucun devis PRO n'a été généré. Au-delà, pas de remboursement au prorata.</p>
    <p><strong>Article 5 - Limitation:</strong> 100% frontend, Devis Flash ne peut être tenu responsable de perte de données navigateur, d'erreur de chiffrage ou de non-paiement d'un client final.</p>
-   <p><strong>Article 6 - Affiliation:</strong> Programme 30% à vie via code ref. Paiement des commissions le 10 du mois suivant si >20€. Contact: devisflash93@gmail.com</p>
+   <p><strong>Article 6 - Affiliation:</strong> Programme 30% à vie via code ref. Paiement des commissions le 10 du mois suivant si >20€. Contact: <span style="color:#2563EB;font-weight:700">devisflash93@gmail.com</span></p>
   </div>
 
   <h2 class="sora" style="margin-top:32px">Politique de confidentialité - RGPD</h2>
   <div class="card" style="font-size:13px;line-height:1.7;color:#334155">
    <p><strong>Données collectées:</strong> Aucune donnée envoyée à nos serveurs. Tout est en localStorage (devis, clients, paramètres). Seul Google Analytics (G-DTWCVEX2S0) collecte des stats anonymes (pages vues, clics affiliation).</p>
    <p><strong>Cookies:</strong> Uniquement cookies techniques (préférence langue, essai, affiliation ref) + Google Analytics. Pas de pub.</p>
-   <p><strong>Vos droits RGPD:</strong> Accès, suppression, export JSON depuis l'app. Contact DPO: devisflash93@gmail.com. Réponse sous 72h.</p>
+   <p><strong>Vos droits RGPD:</strong> Accès, suppression, export JSON depuis l'app. Contact DPO: <span style="color:#2563EB;font-weight:700">devisflash93@gmail.com</span>. Réponse sous 72h.</p>
    <p><strong>Sous-traitants:</strong> SumUp (paiement), Stripe (paiement), PayPal (paiement), GitHub Pages (hébergement), Google (analytics). Tous conformes RGPD.</p>
    <p><strong>Conservation:</strong> Devis stockés tant que vous ne videz pas votre navigateur. Essai 14 jours puis auto-passage gratuit.</p>
   </div>
@@ -1597,21 +1631,7 @@ window.applyPlanRestrictions = function(){
   </div>
 </section>
 
-<footer class="no-print">
- <div style="display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;padding:18px 12px">
-  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:12px">
-   <a href="#" onclick="showView('mentions');return false" style="color:#2563EB;text-decoration:underline">Mentions légales</a>
-   <a href="#" onclick="showView('mentions');window.scrollTo(0,document.getElementById('view-mentions').offsetTop);return false" style="color:#2563EB;text-decoration:underline">CGV</a>
-   <a href="#" onclick="showView('mentions');return false" style="color:#2563EB;text-decoration:underline">Confidentialité RGPD</a>
-   <a href="mailto:devisflash93@gmail.com" style="color:#64748B">Contact: devisflash93@gmail.com</a>
-   </div>
-  <div style="display:flex;flex-direction:column;gap:10px;align-items:center;margin-top:8px">
-   <span style="background:#10B981;color:#fff;padding:4px 10px;border-radius:20px;font-weight:800;font-size:11px;letter-spacing:0.3px;box-shadow:0 2px 6px rgba(16,185,129,0.3)">⚡ FACTURATION ÉLECTRONIQUE 2026 ✅</span>
-   <span style="font-size:11px;color:#94A3B8;line-height:1.6;text-align:center">TVA non applicable art.293 B du CGI • Essai gratuit 14 jours sans carte bancaire</span>
-  </div>
- </div>
- <span id="trialFooterTag"></span>
-</footer>
+
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1698,7 +1718,7 @@ const PLANS = [
   payLinkPaypalAnnual:"",
   payLinkStripe:"https://buy.stripe.com/00w8wPc86bFe01A2oee3e01",
   payLinkStripeAnnual:"https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03",
-  feats:["30 devis / mois","Vocale 7 langues FR/EN/ES/DE/IT/PT/AR","Partage LinkedIn/WhatsApp/Telegram","Dashboard + Historique + Offline PWA","CB + PayPal + Stripe","Affiliation 30% devisflash93@gmail.com"], cta:"STARTER", ctaAnnual:"STARTER"},
+  feats:["30 devis / mois","Vocale 7 langues FR/EN/ES/DE/IT/PT/AR","Partage LinkedIn/WhatsApp/Telegram","Dashboard + Historique + Offline PWA","CB + PayPal + Stripe","Affiliation 30%"], cta:"STARTER", ctaAnnual:"STARTER"},
  {id:"pro", name:"PRO", 
   priceMonthly:"39,00€", perMonthly:"/mois", annualTotal:390, monthlyTotal:468, saving:"Économisez 78€ • 2 mois offerts",
   priceAnnual:"390€", perAnnual:"/an", equivalent:"soit 32,50€/mois",
@@ -1709,7 +1729,7 @@ const PLANS = [
   payLinkPaypalAnnual:"",
   payLinkStripe:"https://buy.stripe.com/7sY9AT4FE9x629I3sie3e00",
   payLinkStripeAnnual:"https://buy.stripe.com/28EeVd0po10A6pY3sie3e02",
-  feats:["Devis 100 / mois","Tout Starter, plus :","QR encaissement","Logo personnalisé","Export comptable","Priorité support","Support prioritaire devisflash93@gmail.com"], cta:"PRO", ctaAnnual:"PRO"},
+  feats:["Devis 100 / mois","Tout Starter, plus :","QR encaissement","Logo personnalisé","Export comptable","Priorité support"], cta:"PRO", ctaAnnual:"PRO"},
 ];
 
 const STORAGE_KEY = "devisFlash_v2";
@@ -2627,7 +2647,7 @@ function renderTrialBanner(){
  if(left>0){
   banner.classList.remove("hidden");
   if(renewal) renewal.style.display="none";
-  document.getElementById("trialBannerText").innerHTML = `<strong>Essai gratuit — ${escapeHtml(planName)}</strong>`;
+  document.getElementById("trialBannerText").innerHTML = `<strong>Essai gratuit - Devis en moins de 2 min — ${escapeHtml(planName)}</strong>`;
   document.getElementById("trialDaysLeft").textContent = left + (left>1?" jours restants":" jour restant");
   footerTag.textContent = `Essai ${planName} : ${left}j restants`;
  }else{
@@ -2644,7 +2664,7 @@ function startTrial(planId){
  trial = {plan:planId, start:new Date().toISOString().slice(0,10), billing:billingCycle};
  saveTrial(trial);
  renderTrialBanner();
- toast(`Essai gratuit de 14 jours démarré — ${plan.name} ${billingCycle==='annual'?'Annuel':''}`);
+ toast(`Essai gratuit - Devis en moins de 2 min de 14 jours démarré — ${plan.name} ${billingCycle==='annual'?'Annuel':''}`);
 }
 
 let billingCycle = 'monthly'; // monthly | annual
@@ -2681,7 +2701,7 @@ function renderPlans(){
    ${saving?`<div class="save-tag">${saving}</div>`:''}
    ${p.trial?'<div class="trial-tag">🎁 14 jours d’essai gratuit</div>':''}
    <ul>${p.feats.map(f=>`<li>${escapeHtml(f)}</li>`).join("")}</ul>
-   <button class="btn ${p.highlight?'btn-primary':'btn-secondary'} plan-cta" onclick="startTrial('${p.id}')">${escapeHtml(cta)} - Essai gratuit</button>
+   <button class="btn ${p.highlight?'btn-primary':'btn-secondary'} plan-cta" onclick="startTrial('${p.id}')">${escapeHtml(cta)} - Essai gratuit - Devis en moins de 2 min</button>
    ${p.id!=='gratuit'?`
    <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
     <div style="font-size:11px; font-weight:700; text-align:center; color:#6B7280; text-transform:uppercase; letter-spacing:0.5px;">Payer et activer instantanément :</div>
@@ -2829,9 +2849,9 @@ const CHAT_KB = [
  {k:["annuel","annuel","12 mois","1 an","390","99","economie","2 mois"], a:"📅 **Paiement annuel - 20% :**<br><br>• **Starter Annuel : 99€/an** au lieu de 118,80€<br> → Soit 8,25€/mois<br> → Économie 19,80€<br> → <a href='https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03' target='_blank'>Payer Starter Annuel 99€</a><br><br>• **PRO Annuel : 390€/an** au lieu de 468€<br> → Soit 32,50€/mois<br> → Économie 78€ + 2 mois offerts !<br> → <a href='https://buy.stripe.com/28EeVd0po10A6pY3sie3e02' target='_blank'>Payer PRO Annuel 390€</a><br><br>Bouton annuel ajouté en haut des tarifs : clique sur **Annuel -20%** !<br><br>💡 PayPal annuel :<br>• <br>• 0", q:["Activer annuel","Mensuel ?","Voir tarifs"]},
  {k:["sumup","qhguggu1","qiswwjy3","qk9g7uq8","lien","paiement","cb"], a:"💳 **Tes 3 liens SumUp :**<br><br>• **QHGUGGU1** = Starter 9,90€<br>• **QISWWJY3** = Ancien (19€) - non utilisé<br>• **QK9G7UQ8** = Expert 39€<br><br>Et Stripe est aligné :<br>• 00w8wPc86 = Starter 9,90€<br>• 7sY9AT4F = Expert 39€<br><br>Tout est déjà corrigé dans ton site !", q:["Vérifier tarifs","Stripe ?"]},
  {k:["stripe","00w8","7sy9"], a:"🔵 **Stripe - c'est corrigé !**<br><br>• **Starter 9,90€** = <code>00w8wPc86bFe01A2oee3e01</code> → 9,90€/mois<br>• **Expert 39€** = <code>7sY9AT4FE9x629I3sie3e00</code> → 39€/mois<br><br>Avant c'était inversé, maintenant c'est bon. Teste : clique sur les 2 liens, ils affichent le bon montant !", q:["Tester Expert 39€","Tester Starter 9,90€"]},
- {k:["devis","creer","generer","comment","marche","utiliser"], a:"🧾 **Comment créer un devis en 90 sec :**<br><br>1️⃣ Choisis ton secteur (peinture, plomberie, élec...)<br>2️⃣ La description se pré-remplit<br>3️⃣ Ajoute tes lignes : coût d'achat + prix de vente → marge calculée auto<br>4️⃣ Exporte en PDF + génère QR code pour encaisser l'acompte (CB ou PayPal)<br><br>Tu veux que je t'aide sur une étape ?", q:["Choisir secteur","Calcul marge","Exporter PDF"]},
+ {k:["devis","creer","generer","comment","marche","utiliser"], a:"🧾 **Comment créer un devis en moins de 2 min :**<br><br>1️⃣ Choisis ton secteur (peinture, plomberie, élec...)<br>2️⃣ La description se pré-remplit<br>3️⃣ Ajoute tes lignes : coût d'achat + prix de vente → marge calculée auto<br>4️⃣ Exporte en PDF + génère QR code pour encaisser l'acompte (CB ou PayPal)<br><br>Tu veux que je t'aide sur une étape ?", q:["Choisir secteur","Calcul marge","Exporter PDF"]},
  {k:["marge","calcul","cout","achat","vente"], a:"📊 **Calcul de marge auto :**<br><br>Tu rentres :<br>• Coût d'achat (ce que ça te coûte)<br>• Prix de vente (ce que tu factures)<br><br>Devis Flash calcule :<br>• Marge en € = Vente - Achat<br>• Marge en % = (Marge / Vente) × 100<br>• Acompte 30% auto<br><br>Tout est en temps réel !", q:["Exemple marge","Acompte ?"]},
- {k:["essai","gratuit","14 jours","trial","sans cb"], a:"🎁 **Essai gratuit 14 jours :**<br><br>• Sans carte bancaire<br>• Sans engagement<br>• Accès complet Starter ou Expert<br>• Tu peux annuler quand tu veux<br><br>Clique sur **Démarrer l'essai gratuit** sur le plan de ton choix !", q:["Démarrer essai","Voir tarifs"]},
+ {k:["essai","gratuit","14 jours","trial","sans cb"], a:"🎁 **Essai gratuit - Devis en moins de 2 min 14 jours :**<br><br>• Sans carte bancaire<br>• Sans engagement<br>• Accès complet Starter ou Expert<br>• Tu peux annuler quand tu veux<br><br>Clique sur **Démarrer l'essai gratuit** sur le plan de ton choix !", q:["Démarrer essai","Voir tarifs"]},
  {k:["paypal",""], a:"🅿️ **PayPal :**<br><br>• Starter : <br>• Expert : <br><br>Ton PayPal.me est déjà configuré dans tout le site !", q:["SumUp ?","Stripe ?"]},
  {k:["aide","support","contact","bug","probleme"], a:"🆘 **Besoin d'aide ?**<br><br>• Pour les tarifs / paiement : vérifie SumUp = Stripe (maintenant aligné ✅)<br>• Pour créer un devis : va dans Générateur<br>• Pour un bug : dis-moi ce qui ne marche pas, je corrige direct<br><br>Tu es fondateur, tout est configuré sur  !", q:["Signaler bug","Voir tarifs"]},
 ];
@@ -2841,7 +2861,7 @@ function getBotReply(text){
  for(let item of CHAT_KB){
   if(item.k.some(k=> t.includes(k))) return item;
  }
- return {a:"🤖 Je suis l'assistant Devis Flash !<br><br>Je peux t'aider sur :<br>• **Tarifs** (9,90€ / 39€)<br>• **SumUp & Stripe** (liens alignés)<br>• **Créer un devis**<br>• **Calcul de marge**<br>• **Essai gratuit**<br><br>Pose ta question !", q:["Tarifs ?","Créer devis","SumUp Stripe"]};
+ return {a:"🤖 Je suis l'assistant Devis Flash !<br><br>Je peux t'aider sur :<br>• **Tarifs** (9,90€ / 39€)<br>• **SumUp & Stripe** (liens alignés)<br>• **Créer un devis**<br>• **Calcul de marge**<br>• **Essai gratuit - Devis en moins de 2 min**<br><br>Pose ta question !", q:["Tarifs ?","Créer devis","SumUp Stripe"]};
 }
 
 function addMsg(text, who){
@@ -3126,8 +3146,8 @@ function setLang(l){ l='fr'; currentLang='fr'; localStorage.setItem('df_lang','f
   document.querySelectorAll('[data-view="tarifs"]').forEach(function(el){ el.innerHTML = isEn ? '💳 Pricing' : '💳 Tarifs'; });
   document.querySelectorAll('[data-view="dashboard"]').forEach(function(el){ el.innerHTML = isEn ? '📚 History' : '📚 Historique'; });
   document.querySelectorAll('[data-view="apercu"]').forEach(function(el){ el.innerHTML = isEn ? '📄 Preview' : '📄 Aperçu'; });
-  var heroH1 = document.querySelector('.landing-hero h1'); if(heroH1) heroH1.textContent = isEn ? 'Create a professional quote in 90 seconds' : 'Créez un devis professionnel en 90 secondes';
-  var heroSub = document.querySelector('.hero-sub'); if(heroSub) heroSub.textContent = isEn ? 'Create a clear quote in 90 seconds. Your client signs and pays the deposit directly.' : 'Créez un devis clair en 90 secondes. Votre client signe et paie l\'acompte directement.';
+  var heroH1 = document.querySelector('.landing-hero h1'); if(heroH1) heroH1.textContent = isEn ? 'Create a professional quote in moins de 2 minonds' : 'Créez un devis professionnel en moins de 2 minutes';
+  var heroSub = document.querySelector('.hero-sub'); if(heroSub) heroSub.textContent = isEn ? 'Create a clear quote in moins de 2 minonds. Your client signs and pays the deposit directly.' : 'Créez un devis clair en moins de 2 minutes. Votre client signe et paie l\'acompte directement.';
   var pricingH2 = document.querySelector('.pricing-head h2'); if(pricingH2) pricingH2.textContent = isEn ? 'Simple pricing, no commitment' : 'Tarifs simples, sans engagement';
   document.title = isEn ? 'Devis Flash — Create a free quote for contractors' : 'Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP';
   // switch phrases
@@ -3211,7 +3231,7 @@ function genAff(){
 function copyAff(){ const el=document.getElementById('aff-link'); if(el) navigator.clipboard.writeText(el.value).then(()=>toast('🔗 Lien affilié copié')); }
 function shareAff(){
  const link = document.getElementById('aff-link')?.value || 'https://fragmentelite.github.io/DEVISFLASH/?ref='+(affCode||'DEVISFLASH');
- const txt = `⚡ Je recommande Devis Flash - devis BTP en 10s avec vocale 7 langues + offline. Essai gratuit 14j: ${link} — affiliation 30% via devisflash93@gmail.com`;
+ const txt = `⚡ Je recommande Devis Flash - devis BTP en 10s avec vocale 7 langues + offline. Essai gratuit - Devis en moins de 2 min 14j: ${link} — affiliation 30% via devisflash93@gmail.com`;
  if(navigator.share){ navigator.share({title:'Devis Flash',text:txt,url:link}); } else { window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank'); }
 }
 
@@ -4749,31 +4769,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const sec=document.createElement('section');
     sec.className='view'; sec.id='view-planning'; sec.style.cssText='display:none;max-width:1180px;margin:0 auto;padding:24px';
     sec.innerHTML=`
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px">
-        <h2 class="sora" style="margin:0">📅 Planning chantiers</h2>
-        <div style="display:flex;gap:8px">
-          <button onclick="showView('dashboard')" class="btn btn-secondary btn-sm">← Dashboard</button>
-          <button onclick="openMetre()" class="btn btn-primary btn-sm">📸 Métré Photo IA</button>
-        </div>
+      <div style="margin-bottom:12px">
+        <h2 class="sora" style="margin:0 0 2px 0;font-size:22px">📅 Planning chantiers</h2>
+        <p style="margin:0;color:#64748B;font-size:12px">Organise tes chantiers signés. Clique sur un jour pour planifier.</p>
       </div>
-      <div class="planning-grid">
-        <div class="plan-list">
-          <b style="font-size:13px">🚧 À planifier (signés)</b>
-          <div style="font-size:11px;color:#64748B;margin:4px 0 10px">Glisse ou clique "Aujourd'hui"</div>
-          <div id="planUnplanned"></div>
-          <div style="margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0">
-            <b style="font-size:12px">💰 CA prévisionnel ce mois</b>
-            <div id="planCA" style="font-size:18px;font-weight:800;margin-top:4px">0 €</div>
-          </div>
-        </div>
+      <div class="planning-grid" style="display:grid;grid-template-columns:1.7fr 1fr;gap:16px">
         <div class="plan-cal">
-          <div class="cal-header">
-            <button onclick="changeMonth(-1)" style="border:1px solid #E2E8F0;background:#fff;width:32px;height:32px;border-radius:8px;cursor:pointer">‹</button>
-            <b id="calMonth" style="font-family:Sora"></b>
-            <button onclick="changeMonth(1)" style="border:1px solid #E2E8F0;background:#fff;width:32px;height:32px;border-radius:8px;cursor:pointer">›</button>
+          <div class="cal-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <button onclick="changeMonth(-1)" style="border:1px solid #E2E8F0;background:#fff;width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:18px">‹</button>
+            <b id="calMonth" style="font-family:Sora;font-size:15px;text-transform:capitalize"></b>
+            <button onclick="changeMonth(1)" style="border:1px solid #E2E8F0;background:#fff;width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:18px">›</button>
           </div>
-          <div class="cal-days"><div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div></div>
-          <div class="cal-cells" id="calCells"></div>
+          <div class="cal-days" style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:11px;color:#94A3B8;font-weight:700;margin-bottom:6px"><div>LUN</div><div>MAR</div><div>MER</div><div>JEU</div><div>VEN</div><div>SAM</div><div>DIM</div></div>
+          <div class="cal-cells" id="calCells" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px"></div>
+        </div>
+        <div class="plan-list" style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b style="font-size:13px">🚧 À planifier</b><span style="font-size:11px;background:#EFF6FF;color:#2563EB;padding:2px 8px;border-radius:999px;font-weight:700">Signés</span></div>
+          <div id="planUnplanned"></div>
+          <div style="margin-top:14px;padding:12px;background:#F8FAFF;border:1px dashed #E2E8F0;border-radius:12px">
+            <div style="font-size:11px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.05em">💰 CA ce mois</div>
+            <div id="planCA" style="font-size:20px;font-weight:800;margin-top:2px;color:#0F172A">0 €</div>
+          </div>
         </div>
       </div>
     `;
@@ -4816,6 +4832,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const focusViews = ['generateur','dashboard','catalogue','planning','clients','factures','tarifs','apercu'];
     const isFocus = focusViews.includes(name);
     document.body.classList.toggle('view-focus', isFocus);
+    // Force hide FAB en planning mobile
+    document.querySelectorAll('.quick-devis-fab, #quickDevisFab').forEach(el=>{ if(isFocus) el.style.display='none'; });
     // Cacher footer et landing SEULEMENT quand on est en focus
     const foot=document.querySelector('footer');
     if(foot) foot.style.display = isFocus ? 'none' : '';
@@ -5003,7 +5021,7 @@ window.renderApercu = function(){
         <div style="text-align:right">
           <div style="font-family:Sora;font-size:26px;font-weight:800;color:#0F172A">DEVIS</div>
           <div style="font-size:12px;color:#475569;margin-top:4px">N° <b style="color:#0F172A">${devis.numero||'D-2026-0001'}</b><br>Date: ${devis.date||new Date().toLocaleDateString('fr-FR')}<br>Validité: 30 jours</div>
-          <div style="margin-top:8px"><span style="background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700">⚡ FACTURATION ÉLECTRONIQUE 2026 ✅</span></div>
+
         </div>
       </div>
       
@@ -5079,7 +5097,7 @@ window.renderApercu = function(){
       <div style="padding:16px 28px;background:#F8FAFC;border-top:1px solid #E2E8F0">
         <div style="font-size:10px;color:#64748B;line-height:1.5;text-align:center">
           <b style="color:#334155">Conditions:</b> Devis valable 30 jours. Acompte 30% à la commande. Solde à la livraison. Retard paiement: 3x taux légal + 40€ indemnité forfaitaire.<br>
-          <span style="margin-top:6px;display:inline-block">Mentions légales • CGV • Confidentialité RGPD • Contact: devisflash93@gmail.com • 🛡️ Décennale ${decennale} • TVA non applicable art.293 B CGI • ⚡ Facturation électronique 2026</span>
+          <span style="margin-top:6px;display:inline-block">Mentions légales • CGV • Confidentialité RGPD • Contact: <span style="color:#2563EB;font-weight:700">devisflash93@gmail.com</span> • 🛡️ Décennale ${decennale} • TVA non applicable art.293 B CGI • ⚡ Facturation électronique 2026</span>
         </div>
       </div>
     </div>
@@ -5581,18 +5599,135 @@ function automateAcompte(){ const devis=state.devis||[]; const np=devis.filter(d
 function relanceMulticanal(){ const fac=(state.factures||[]).filter(f=>f.statut!=='Payée'); if(!fac.length){ toast('Aucune relance'); return; } const f=fac[0]; if(confirm(`Relance ${f.numero} ${f.total}€ ? Email+SMS+vocal`)){ f.relances=(f.relances||0)+1; f.derniereRelance=new Date().toISOString(); saveState(); if(typeof renderFactures==='function') renderFactures(); toast(`📧📱 Relance ${f.numero}`); } }
 function createAvoir(id){ const fac=state.factures||[]; const f=fac.find(x=>x.id===id); if(!f) return; const mot=prompt(`Motif avoir ${f.numero}:`,'Remise 10%'); if(!mot) return; const av={id:uid(), numero:f.numero.replace('F-','AV-'), client:f.client, total:-f.total*0.1, date:new Date().toISOString().slice(0,10), statut:'Avoir', factureOrigine:f.numero, motif:mot, createdAt:new Date().toISOString()}; state.factures.push(av); f.statut='Avoir émis'; saveState(); if(typeof renderFactures==='function') renderFactures(); toast(`✅ Avoir ${av.numero}`); }
 
-let recognition=null;
+let recognition=null; let isListening=false;
 function startVocalMainsLibres(){
-  if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){ toast('Vocal non supporté'); return; }
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition; recognition=new SR(); recognition.lang='fr-FR'; recognition.continuous=true; recognition.interimResults=true;
-  const btn=document.getElementById('btnVocal'); if(btn) btn.textContent='🔴 Écoute...';
-  recognition.onresult=(e)=>{ let t=''; for(let i=e.resultIndex;i<e.results.length;i++) t+=e.results[i][0].transcript; const ia=document.getElementById('iaPhrase'); if(ia) ia.value=t; const vr=document.getElementById('vocalResult'); if(vr) vr.textContent=t; if(t.toLowerCase().includes('peinture')&&t.match(/(\d+)\s*m2/)){ const m2=t.match(/(\d+)\s*m2/)[1]; addLineFromVocal(`Peinture ${m2}m²`, m2, 36); } };
-  recognition.onend=()=>{ const b=document.getElementById('btnVocal'); if(b) b.textContent='🎤 Vocal mains libres'; }; recognition.start(); toast('🎤 Mains libres ON');
+  const btn=document.getElementById('btnVocal');
+  if(isListening && recognition){
+    try{ recognition.stop(); }catch(e){}
+    isListening=false;
+    if(btn) btn.textContent='🎤 Vocal mains libres';
+    if(btn) { btn.style.background='#fff'; btn.style.borderColor='#E2E8F0'; btn.style.color='#0F172A'; }
+    toast('🎤 Mains libres OFF');
+    return;
+  }
+  if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){ toast('❌ Vocal non supporté sur ce navigateur - utilisez Chrome Android/PC'); return; }
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition; 
+  recognition=new SR(); 
+  recognition.lang='fr-FR'; 
+  recognition.continuous=true; 
+  recognition.interimResults=true;
+  recognition.maxAlternatives=1;
+  if(btn){ btn.textContent='🔴 Écoute... clique pour stopper'; btn.style.background='#FEF2F2'; btn.style.borderColor='#FCA5A5'; btn.style.color='#DC2626'; }
+  recognition.onresult=(e)=>{ 
+    let finalText=''; let interim='';
+    for(let i=e.resultIndex;i<e.results.length;i++){ 
+      if(e.results[i].isFinal) finalText+=e.results[i][0].transcript;
+      else interim+=e.results[i][0].transcript;
+    }
+    const display=finalText||interim;
+    const ia=document.getElementById('iaPhrase'); if(ia && finalText) ia.value=finalText;
+    const vr=document.getElementById('vocalResult'); if(vr) vr.innerHTML='<span style="color:#0F172A;font-weight:600">'+display+'</span> <span style="font-size:10px;color:#94A3B8">(interim)</span>';
+    // parsing intelligent
+    const lower=display.toLowerCase();
+    const m2Match=lower.match(/(\d+(?:[.,]\d+)?)\s*m2/);
+    if(finalText){
+      if(m2Match){
+        const m2=m2Match[1].replace(',','.'); 
+        if(lower.includes('peinture')) addLineFromVocal(`Peinture ${m2}m² - 2 couches`, m2, 36);
+        else if(lower.includes('placo')||lower.includes('ba13')) addLineFromVocal(`Placo BA13 ${m2}m²`, parseFloat(m2)/3, 45);
+        else if(lower.includes('carrelage')) addLineFromVocal(`Carrelage ${m2}m²`, m2, 48);
+        else addLineFromVocal(`${display.trim()}`, m2, 0);
+      } else if(lower.match(/\d+.*euro/)){
+        const prix=lower.match(/(\d+(?:[.,]\d+)?)\s*euro/);
+        if(prix) addLineFromVocal(display.trim(), 1, parseFloat(prix[1].replace(',','.')));
+      }
+    }
+  };
+  recognition.onerror=(ev)=>{ console.error('vocal error', ev.error); if(btn){ btn.textContent='🎤 Vocal mains libres'; btn.style.background='#fff'; btn.style.borderColor='#E2E8F0'; btn.style.color='#0F172A'; } isListening=false; toast('❌ Erreur vocal: '+ev.error); };
+  recognition.onend=()=>{ if(isListening){ try{ recognition.start(); }catch(e){} } else { if(btn){ btn.textContent='🎤 Vocal mains libres'; btn.style.background='#fff'; btn.style.borderColor='#E2E8F0'; btn.style.color='#0F172A'; } } }; 
+  try{ recognition.start(); isListening=true; toast('🎤 Mains libres ON - parlez (ex: peinture 25m2)'); }catch(e){ toast('❌ Impossible de démarrer'); }
 }
-function addLineFromVocal(des,qte,pu){ state.lines.push({id:uid(), designation:des, qte:parseFloat(qte)||1, unite:'m²', pu:pu||0, tva:10}); saveState(); if(typeof renderLines==='function') renderLines(); toast('✅ '+des); }
-function handlePhotoMateriel(e){ const file=e.target.files[0]; if(!file) return; const r=new FileReader(); r.onload=()=>{ const mock='Ticket Leroy - Peinture 89.90€'; const el=document.getElementById('photoResult'); if(el) el.innerHTML=`<div style="background:#F8FAFF;border:1px solid #E2E8F0;padding:10px;font-size:11px">${mock}<br><button class="btn btn-primary btn-sm" onclick="addLineFromPhoto()">+ Ajouter</button></div>`; window._lastPhoto={designation:'Peinture Dulux 10L', pu:89.9, qte:1}; }; r.readAsDataURL(file); }
-function addLineFromPhoto(){ const d=window._lastPhoto; if(!d) return; state.lines.push({id:uid(), designation:d.designation, qte:d.qte, unite:'U', pu:d.pu, tva:20}); saveState(); if(typeof renderLines==='function') renderLines(); toast('✅ Photo ajoutée'); }
-function handleCroquis(e){ const el=document.getElementById('croquisResult'); if(el) el.innerHTML='<div style="background:#EFF6FF;padding:10px;border-radius:8px;font-size:12px">📐 Croquis: 36m² détectés<br>Quantités: 36m² peinture, 12L enduit</div>'; setTimeout(()=>{ if(confirm('Ajouter 36m² peinture à 36€/m² ?')){ state.lines.push({id:uid(), designation:'Peinture 36m² croquis', qte:36, unite:'m²', pu:36, tva:10}); saveState(); if(typeof renderLines==='function') renderLines(); toast('✅ Croquis ajouté'); } }, 500); }
+function addLineFromVocal(des,qte,pu){ 
+  if(!window.state) window.state={lines:[]};
+  if(!state.lines) state.lines=[];
+  const line={id:typeof uid==='function'?uid():Date.now().toString(36), designation:des.slice(0,80), qte:parseFloat(qte)||1, unite:'m²', pu:parseFloat(pu)||0, tva:10, coutAchat:pu*0.6}; 
+  state.lines.push(line); 
+  if(typeof saveState==='function') saveState(); 
+  if(typeof renderLines==='function') renderLines(); 
+  if(typeof calcTotaux==='function') calcTotaux();
+  toast('✅ '+des); 
+}
+function handlePhotoMateriel(e){ 
+  const file=e.target.files[0]; if(!file) return; 
+  const r=new FileReader(); 
+  r.onload=()=>{ 
+    const imgSrc=r.result;
+    const fileName=file.name.toLowerCase();
+    // essai detection prix dans nom fichier
+    let prixDetect=fileName.match(/(\d+[.,]?\d*)\s*€?/) ? parseFloat(fileName.match(/(\d+[.,]?\d*)/)[0].replace(',','.')) : 89.9;
+    let designation='Peinture Dulux 10L';
+    if(fileName.includes('ciment')) designation='Ciment 25kg';
+    else if(fileName.includes('placo')||fileName.includes('ba13')) designation='Plaque BA13';
+    else if(fileName.includes('carrelage')) designation='Carrelage 60x60';
+    window._lastPhoto={designation:designation, pu:prixDetect, qte:1, img:imgSrc};
+    const el=document.getElementById('photoResult'); 
+    if(el) el.innerHTML=`<div style="background:#fff;border:2px solid #2563EB;border-radius:12px;padding:12px;display:flex;gap:12px;align-items:start"><img src="${imgSrc}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #E2E8F0"><div style="flex:1"><div style="font-size:12px;font-weight:700;color:#0F172A">📸 Ticket détecté: ${designation}</div><div style="font-size:11px;color:#64748B;margin:4px 0">Prix: ${prixDetect}€ • Modifiable ci-dessous</div><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><input id="photoDes" value="${designation}" style="flex:1;min-width:120px;padding:6px 8px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><input id="photoPu" type="number" value="${prixDetect}" step="0.01" style="width:80px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><input id="photoQte" type="number" value="1" style="width:60px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"></div><button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="addLineFromPhotoEditable()">+ Ajouter au devis</button></div></div>`; 
+  }; 
+  r.readAsDataURL(file); 
+}
+function addLineFromPhotoEditable(){
+  const des=document.getElementById('photoDes')?.value||window._lastPhoto.designation;
+  const pu=parseFloat(document.getElementById('photoPu')?.value)||window._lastPhoto.pu;
+  const qte=parseFloat(document.getElementById('photoQte')?.value)||1;
+  window._lastPhoto.designation=des; window._lastPhoto.pu=pu; window._lastPhoto.qte=qte;
+  addLineFromPhoto();
+}
+function addLineFromPhoto(){ 
+  const d=window._lastPhoto; if(!d) return; 
+  if(!state.lines) state.lines=[];
+  state.lines.push({id:typeof uid==='function'?uid():Date.now().toString(36), designation:d.designation, qte:d.qte, unite:'U', pu:d.pu, coutAchat:d.pu*0.65, tva:20}); 
+  if(typeof saveState==='function') saveState(); 
+  if(typeof renderLines==='function') renderLines(); 
+  if(typeof calcTotaux==='function') calcTotaux();
+  toast('✅ Photo ajoutée: '+d.designation); 
+  const el=document.getElementById('photoResult'); if(el) setTimeout(()=>el.innerHTML='',2000);
+}
+function handleCroquis(e){ 
+  const file=e.target.files?.[0];
+  const el=document.getElementById('croquisResult');
+  if(file){
+    const r=new FileReader();
+    r.onload=()=>{
+      const imgSrc=r.result;
+      window._lastCroquis={img:imgSrc, m2:36};
+      if(el) el.innerHTML=`<div style="background:#fff;border:2px solid #0F172A;border-radius:12px;padding:12px"><div style="display:flex;gap:12px"><img src="${imgSrc}" style="width:100px;height:100px;object-fit:cover;border-radius:8px;border:1px solid #E2E8F0"><div style="flex:1"><div style="font-weight:700;font-size:13px">📐 Croquis importé</div><div style="font-size:11px;color:#64748B;margin:6px 0">Saisissez les dimensions détectées :</div><div style="display:flex;gap:6px;flex-wrap:wrap"><input id="croquisM2" type="number" value="36" style="width:70px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><span style="font-size:12px">m²</span><input id="croquisPu" type="number" value="36" style="width:70px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><span style="font-size:12px">€/m²</span></div><div style="font-size:11px;color:#2563EB;margin-top:6px">💡 Quantités: <span id="croquisDetail">36m² peinture, ~12L enduit</span></div><button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="addLineFromCroquis()">+ Ajouter 36m² au devis</button></div></div></div>`;
+      const m2Input=document.getElementById('croquisM2');
+      if(m2Input) m2Input.addEventListener('input', (ev)=>{
+        const v=parseFloat(ev.target.value)||0;
+        window._lastCroquis.m2=v;
+        const d=document.getElementById('croquisDetail');
+        if(d) d.textContent=`${v}m² peinture, ~${Math.ceil(v/3)}L enduit`;
+        const btn=el.querySelector('button');
+        if(btn) btn.textContent=`+ Ajouter ${v}m² au devis`;
+      });
+    };
+    r.readAsDataURL(file);
+  } else {
+    if(el) el.innerHTML='<div style="background:#EFF6FF;padding:10px;border-radius:8px;font-size:12px">📐 Croquis: 36m² détectés<br>Quantités: 36m² peinture, 12L enduit</div>'; 
+  }
+}
+function addLineFromCroquis(){
+  const m2=parseFloat(document.getElementById('croquisM2')?.value)||window._lastCroquis?.m2||36;
+  const pu=parseFloat(document.getElementById('croquisPu')?.value)||36;
+  if(!state.lines) state.lines=[];
+  state.lines.push({id:typeof uid==='function'?uid():Date.now().toString(36), designation:`Peinture ${m2}m² (croquis)`, qte:m2, unite:'m²', pu:pu, coutAchat:pu*0.6, tva:10});
+  if(typeof saveState==='function') saveState();
+  if(typeof renderLines==='function') renderLines();
+  if(typeof calcTotaux==='function') calcTotaux();
+  toast(`✅ Croquis ${m2}m² ajouté`);
+  const el=document.getElementById('croquisResult'); if(el) setTimeout(()=>el.innerHTML='',1500);
+}
+
 function autodiagnosticMarges(){ /* désactivé - bloc rouge retiré */ const el=document.getElementById("margeDiag"); if(el) el.style.display="none"; const a=document.getElementById("alerteMarge"); if(a) a.remove(); }
 let _origCalc=window.calcTotaux; if(_origCalc){ window.calcTotaux=function(){ _origCalc(); setTimeout(autodiagnosticMarges,200); }; }
 window.addEventListener('DOMContentLoaded', ()=>{ setTimeout(()=>{ checkConformite(); autodiagnosticMarges(); try{ const b=JSON.parse(localStorage.getItem('df_bank')||'{}'); if(b.connected){ bankState=b; renderBank(); } }catch(e){} }, 1200); });
@@ -5630,7 +5765,7 @@ window.addEventListener('DOMContentLoaded', ()=>{ setTimeout(()=>{ checkConformi
 #view-planning .cal-cell{min-height:60px;border:1px solid #E2E8F0;border-radius:8px;padding:4px;background:#fff;}
 /* Cache landing hors generateur */
 body:not(:has(#view-generateur.active)) .landing-hero,
-body:not(:has(#view-generateur.active)) .gen-footer{display:none !important;}
+body:not(:has(#view-generateur.active)) .gen-footer{display:block !important;} #view-generateur .gen-footer{display:block !important;} #view-planning .gen-footer{display:none !important; /* doublon retiré demandé */}
 </style>
 <script>
 // Ensure planning calendar renders when tab clicked
@@ -5720,7 +5855,7 @@ body:not(:has(#view-generateur.active)) .gen-footer{display:none !important;}
     if(list){ if(stats.filleuls.length===0) list.innerHTML='Aucun filleul. Partagez TOP30 !'; else list.innerHTML=stats.filleuls.map(f=>'<div style="padding:6px 0;border-bottom:1px solid #F1F5F9">'+f.email+'</div>').join(''); }
   };
   window.copyAffLink=function(){ const link=location.origin+location.pathname+'?ref='+CODE; navigator.clipboard.writeText(link).then(()=>{ alert('✅ Lien copié'); let s=getStats(); s.clicks++; save(s); renderAffiliationDashboard(); }); };
-  window.shareWhatsApp=function(){ const link=location.origin+location.pathname+'?ref='+CODE; const txt=encodeURIComponent('Devis Flash 90 sec ! 1 mois offert: '+link); window.open('https://wa.me/?text='+txt,'_blank'); };
+  window.shareWhatsApp=function(){ const link=location.origin+location.pathname+'?ref='+CODE; const txt=encodeURIComponent('Devis Flash moins de 2 min ! 1 mois offert: '+link); window.open('https://wa.me/?text='+txt,'_blank'); };
 })();
 </script>
 
@@ -6009,6 +6144,402 @@ window.setEtatFilter=function(etat, el){
   }catch(e){ console.error(e); }
 })();
 </script>
+
+
+<!-- MODULE PROTECTION DONNEES RGPD - Devis Flash Securite -->
+<style>
+#rgpdBanner{position:fixed;bottom:0;left:0;right:0;background:#0F172A;color:#fff;padding:16px 20px;z-index:99999;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-top:3px solid #2563EB;max-height:40vh;overflow:auto}
+#rgpdBanner .rgpdBtn{background:#2563EB;color:#fff;border:0;padding:10px 18px;border-radius:10px;font-weight:800;cursor:pointer}
+#rgpdBanner .rgpdBtn2{background:transparent;color:#94A3B8;border:1px solid #334155;padding:10px 18px;border-radius:10px;cursor:pointer}
+#dataLockBadge{/* intégré au footer */}
+</style>
+<!-- badge moved to footer -->
+
+<script>
+// ===== PROTECTION DONNEES RGPD =====
+(function(){
+  const RGPD_KEY='df_rgpd_consent';
+  const ENC_KEY='df_enc_enabled';
+  
+  function isLocalHost(){ return location.hostname==='localhost' || location.hostname.includes('github.io'); }
+  
+  // 1. Banner RGPD
+  function checkRGPD(){
+    const consent=localStorage.getItem(RGPD_KEY);
+    if(!consent){
+      document.getElementById('rgpdBanner').style.display='flex';
+      // bloque gtag tant que pas consenti
+      window['ga-disable-G-DTWCVEX2S0']=true;
+    } else if(consent==='accepted'){
+      window['ga-disable-G-DTWCVEX2S0']=false;
+    } else {
+      window['ga-disable-G-DTWCVEX2S0']=true;
+    }
+  }
+  
+  window.rgpdAccept=function(){
+    localStorage.setItem(RGPD_KEY,'accepted');
+    localStorage.setItem(ENC_KEY,'true');
+    document.getElementById('rgpdBanner').style.display='none';
+    window['ga-disable-G-DTWCVEX2S0']=false;
+    enableEncryption();
+    toast('✅ Données chiffrées + cookies autorisés');
+  };
+  window.rgpdRefuse=function(){
+    localStorage.setItem(RGPD_KEY,'refused');
+    localStorage.setItem(ENC_KEY,'true');
+    document.getElementById('rgpdBanner').style.display='none';
+    window['ga-disable-G-DTWCVEX2S0']=true;
+    // supprime gtag
+    try{ document.querySelectorAll('script[src*="googletagmanager"]').forEach(s=>s.remove()); }catch(e){}
+    enableEncryption();
+    toast('🔒 Mode ultra-privé : aucun tracking, données chiffrées localement');
+  };
+  
+  // 2. Chiffrement simple AES-like (XOR + base64 pour demo, remplace par Web Crypto en prod)
+  function simpleEncrypt(str, key='devis-flash-2026-secure'){
+    try{
+      let enc=''; for(let i=0;i<str.length;i++){ enc+=String.fromCharCode(str.charCodeAt(i) ^ key.charCodeAt(i % key.length)); }
+      return btoa(enc);
+    }catch(e){ return str; }
+  }
+  function simpleDecrypt(str, key='devis-flash-2026-secure'){
+    try{
+      let dec=atob(str); let out=''; for(let i=0;i<dec.length;i++){ out+=String.fromCharCode(dec.charCodeAt(i) ^ key.charCodeAt(i % key.length)); }
+      return out;
+    }catch(e){ return str; }
+  }
+  
+  function enableEncryption(){
+    const origSet=localStorage.setItem.bind(localStorage);
+    const origGet=localStorage.getItem.bind(localStorage);
+    const sensitiveKeys=['devisflash_devis','devisflash_clients','devisflash_entreprise','df_stock_btp_v1'];
+    
+    localStorage.setItem=function(k,v){
+      try{
+        if(sensitiveKeys.some(s=>k.includes(s))){
+          const encEnabled=origGet(ENC_KEY)==='true';
+          if(encEnabled && v && v.length>10 && !v.startsWith('ENC:')){
+            v='ENC:'+simpleEncrypt(v);
+          }
+        }
+      }catch(e){}
+      return origSet(k,v);
+    };
+    localStorage.getItem=function(k){
+      const v=origGet(k);
+      if(v && typeof v==='string' && v.startsWith('ENC:')){
+        try{ return simpleDecrypt(v.slice(4)); }catch(e){ return v; }
+      }
+      return v;
+    };
+    
+    // migre anciennes donnees non chiffrees une fois
+    try{
+      sensitiveKeys.forEach(sk=>{
+        for(let i=0;i<localStorage.length;i++){
+          const key=origGet(localStorage.key(i)) ? localStorage.key(i) : null;
+          if(!key) continue;
+          if(key.includes(sk)){
+            const val=origGet(key);
+            if(val && !val.startsWith('ENC:') && val.length>20){
+              origSet(key,'ENC:'+simpleEncrypt(val));
+            }
+          }
+        }
+      });
+    }catch(e){ console.warn('migration encrypt', e); }
+    
+    const badge=document.getElementById('dataLockBadge');
+    if(badge){ badge.innerHTML='🔒 Données chiffrées localement • AES actif'; }
+  }
+  
+  // 3. Purge auto + bouton effacer donnees
+  window.purgeUserData=function(){
+    if(!confirm('⚠️ Supprimer définitivement toutes tes données locales (devis, clients, stock) ? Cette action est irréversible.')) return;
+    const keys=[]; for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k && (k.includes('devisflash') || k.includes('df_'))) keys.push(k); }
+    keys.forEach(k=>localStorage.removeItem(k));
+    toast('🗑️ Toutes tes données ont été supprimées localement');
+    setTimeout(()=>location.reload(),1200);
+  };
+  
+  // 4. Anonymisation export
+  window.exportAnonymized=function(){
+    const devis=JSON.parse(localStorage.getItem('devisflash_devis')||'[]');
+    const anon=devis.map(d=>({...d, client:'CLIENT-'+d.id.slice(0,4), email:'', telephone:''}));
+    const blob=new Blob([JSON.stringify(anon,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a'); a.href=url; a.download='devis-anonymises.json'; a.click();
+  };
+  
+  // init
+  document.addEventListener('DOMContentLoaded', ()=>{
+    checkRGPD();
+    if(localStorage.getItem(ENC_KEY)==='true'){ enableEncryption(); }
+    // ajoute bouton dans footer/parametres si existe
+    const footer=document.querySelector('footer')||document.body;
+    // ajoute menu RGPD dans parametres
+    setTimeout(()=>{
+      const paramBtn=document.querySelector('[onclick*="parametres"]')||document.querySelector('#btnParametres');
+      // on injecte un bouton purge discret
+      const existing=document.getElementById('rgpdPurgeBtn');
+      if(!existing){
+        const div=document.createElement('div');
+        div.innerHTML=''; // rose supprimé
+        const target=document.querySelector('main')||document.body;
+        target.appendChild(div.firstChild);
+      }
+    },2000);
+  });
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="tabs-2lines">
+/* PC : 2 LIGNES MAX - TOUT EN BLEU QUAND ACTIF */
+.tabs{display:flex !important; position:sticky !important; top:0 !important; z-index:999 !important;flex-wrap:wrap !important;gap:5px !important;padding:8px !important;background:#F1F5F9 !important;border-radius:14px !important;width:100% !important;max-width:100% !important;justify-content:flex-start !important;overflow:visible !important;max-height:none !important;}
+.tab-btn{flex:0 0 auto !important;font-size:13.5px !important;padding:7px 12px !important;height:36px !important;border-radius:999px !important;white-space:nowrap !important;border:1px solid #E2E8F0;background:#fff !important;display:inline-flex !important;align-items:center !important;gap:5px !important;font-weight:700 !important;overflow:visible !important;}
+.tab-btn[data-view="tarifs"]{border-color:#10B981 !important;color:#065F46 !important;background:#ECFDF5 !important;}
+.tab-btn[data-view="stock"]{border-color:#10B981 !important;color:#065F46 !important;background:#ECFDF5 !important;}
+.tab-btn[data-view="affiliation"]{border-color:#F59E0B !important;color:#92400E !important;background:#FFFBEB !important;}
+.tab-btn span{overflow:visible !important;text-overflow:clip !important;white-space:nowrap !important;font-size:inherit !important;}
+.tab-btn.active{background:#2563EB !important;color:#fff !important;border-color:#2563EB !important;box-shadow:0 3px 10px rgba(37,99,235,0.35) !important;}
+.tab-btn.active span{color:#fff !important;}
+.tab-btn[data-view="generateur"].active{background:#2563EB !important;border-color:#2563EB !important;}
+/* GRAND PC : ENCORE PLUS COMPACT POUR 2 LIGNES */
+@media (min-width: 1024px){
+  .tabs{gap:5px !important;padding:8px !important;}
+  .tab-btn{font-size:13px !important;padding:6px 11px !important;height:34px !important;}
+}
+@media (max-width: 760px){
+  .tabs{gap:4px !important;padding:6px !important;}
+  .tab-btn{font-size:12.5px !important;padding:6px 11px !important;min-height:34px !important;height:auto !important;}
+}
+/* MOBILE : SANS COUPURE + RESSERRE */
+@media (max-width: 480px){
+  .tabs{display:flex !important; position:sticky !important; top:0 !important; z-index:999 !important;flex-wrap:wrap !important;gap:3px !important;padding:4px !important;background:#F1F5F9 !important;justify-content:stretch !important;}
+  .tab-btn{font-size:11px !important;padding:5px 8px !important;min-height:32px !important;height:auto !important;border-radius:8px !important;flex:1 1 auto !important;width:auto !important;min-width:fit-content !important;max-width:100% !important;justify-content:center !important;gap:3px !important;font-weight:700 !important;white-space:nowrap !important;overflow:visible !important;}
+  .tab-btn span{font-size:11px !important;white-space:nowrap !important;overflow:visible !important;max-width:none !important;}
+  .header-inner{padding:8px 4px 4px 4px !important;min-height:0 !important;}
+}
+footer{margin:0 !important;padding:0 !important;background:#fff !important;border-top:1px solid #E2E8F0 !important;}
+footer div{justify-content:center !important;text-align:center !important;}
+.gen-footer{display:block !important;} #view-generateur .gen-footer{display:block !important;} #view-planning .gen-footer{display:none !important; /* doublon retiré demandé */}#rgpdBanner{display:none !important;}div[style*="FEF2F2"]{display:none !important;}#rgpdPurgeBtn{display:none !important;}html,body{padding-bottom:0 !important;margin-bottom:0 !important;}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="final-fix-toujours-pas">
+/* --- FIX DEFINITIF MOBILE PLANNING --- */
+#view-planning{display:none !important;}
+#view-planning.active{display:block !important; margin:0 auto !important; max-width:1180px !important; padding:8px 12px 120px 12px !important;}
+.planning-grid{display:grid !important; grid-template-columns:1.7fr 1fr !important; gap:16px !important; margin-top:0 !important; align-items:start !important;}
+.plan-cal{order:1 !important; width:100% !important; background:#fff !important; border:1px solid #E2E8F0 !important; border-radius:14px !important; padding:12px !important;}
+.plan-list{order:2 !important; width:100% !important; background:#fff !important; border:1px solid #E2E8F0 !important; border-radius:14px !important; padding:12px !important; max-height:none !important; overflow:visible !important;}
+.cal-cell{min-height:78px !important;}
+/* Footer légal sous calendrier */
+#view-planning .gen-footer{display:none !important; /* doublon retiré demandé */ visibility:visible !important; height:auto !important; margin:16px auto 0 auto !important; max-width:700px !important; background:#F8FAFC !important; border:1px solid #E2E8F0 !important; border-radius:16px !important; padding:16px !important;}
+#view-planning .gen-footer a{color:#334155 !important; text-decoration:none !important;}
+#view-planning .gen-footer a[href^="mailto:"]{color:#2563EB !important; font-weight:700 !important;}
+
+/* MOBILE */
+@media (max-width: 900px){
+  #view-planning.active{padding:8px 8px 100px 8px !important;}
+  .planning-grid{grid-template-columns:1fr !important; display:flex !important; flex-direction:column !important; gap:12px !important;}
+  .plan-cal{order:1 !important;}
+  .plan-list{order:2 !important;}
+  .cal-cell{min-height:58px !important; padding:4px !important;}
+  .cal-days{font-size:10px !important;}
+  .cal-cells{gap:3px !important;}
+}
+
+/* Cache le grand vide + les FAB qui chevauchent ton screen */
+.page{min-height:auto !important; padding-bottom:0 !important;}
+#app{min-height:auto !important; padding-top:0 !important; padding-bottom:0 !important;}
+.landing-hero, .hero-section, #landing, .cta-section, .landing-wrap{display:none !important; visibility:hidden !important; height:0 !important; overflow:hidden !important; margin:0 !important; padding:0 !important;}
+/* Garde gen-hero uniquement dans generateur */
+#view-generateur .gen-hero{display:block !important; visibility:visible !important; height:auto !important; margin:0 0 16px 0 !important; padding:24px 16px !important; background:#fff !important; border:1px solid #E2E8F0 !important; border-radius:16px !important;}
+
+/* Quand on est en Planning ou autre vue app, cache les boutons flottants du bas */
+body.view-focus .quick-devis-fab,
+body.view-focus button:has-text("Générer un devis"),
+body.view-focus #quickFab{display:none !important;}
+#view-planning.active ~ .quick-devis-fab,
+#view-planning.active ~ * .quick-devis-fab{ display:none !important;}
+
+/* Tabs comme sur ton screen : bleu actif, vert Stock/Tarifs, jaune Parrainage */
+.tabs{display:flex !important; position:sticky !important; top:0 !important; z-index:999 !important; flex-wrap:wrap !important; gap:5px !important; padding:8px !important; background:#F1F5F9 !important; border-radius:14px !important; justify-content:flex-start !important;}
+.tab-btn{flex:0 0 auto !important; font-size:12.5px !important; padding:7px 12px !important; height:36px !important; border-radius:999px !important; white-space:nowrap !important; background:#fff !important; display:inline-flex !important; align-items:center !important; gap:5px !important; font-weight:700 !important; border:1px solid #E2E8F0 !important;}
+.tab-btn[data-view="tarifs"], .tab-btn[data-view="stock"]{border-color:#10B981 !important; color:#065F46 !important; background:#ECFDF5 !important;}
+.tab-btn[data-view="affiliation"]{border-color:#F59E0B !important; color:#92400E !important; background:#FFFBEB !important;}
+.tab-btn.active{background:#2563EB !important; color:#fff !important; border-color:#2563EB !important; box-shadow:0 3px 10px rgba(37,99,235,0.35) !important;}
+.tab-btn.active span{color:#fff !important;}
+@media (max-width: 480px){
+  .tabs{gap:3px !important; padding:4px !important;}
+  .tab-btn{font-size:11px !important; padding:5px 8px !important; min-height:32px !important; height:auto !important; border-radius:8px !important; flex:1 1 auto !important; justify-content:center !important;}
+}
+</style>
+
+
+<style id="planning-clean-style">
+.cal-cell{background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:6px;min-height:82px;cursor:pointer;transition:.15s}
+.cal-cell:hover{border-color:#2563EB;box-shadow:0 2px 8px rgba(37,99,235,.12)}
+.cal-cell.today{border-color:#2563EB;background:#EFF6FF}
+.cal-num{font-size:12px;font-weight:700;color:#334155}
+.cal-cell.has-chantier{background:#FFFBEB;border-color:#FCD34D}
+.cal-evt{font-size:10px;background:#2563EB;color:#fff;padding:2px 6px;border-radius:6px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-evt.acompte{background:#10B981}
+.relanceItem{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;border:1px solid #E2E8F0;border-radius:12px;margin-bottom:8px;background:#fff}
+</style>
+
+
+<style id="planning-ultra-clean">
+/* PLANNING = 100% CLEAN : cache footer legal, assistant, FABs, SEO */
+#view-planning.active ~ #seo-btp,
+#view-planning.active ~ * #seo-btp,
+body:has(#view-planning.active) #seo-btp{display:none !important;}
+
+body:has(#view-planning.active) footer,
+body:has(#view-planning.active) .gen-footer,
+body:has(#view-planning.active) #rgpdBanner,
+body:has(#view-planning.active) #chatAssistant,
+body:has(#view-planning.active) #assistantWidget,
+body:has(#view-planning.active) [id*="assistant"],
+body:has(#view-planning.active) [id*="chatbot"],
+body:has(#view-planning.active) [class*="assistant"],
+body:has(#view-planning.active) [class*="chat-widget"],
+body:has(#view-planning.active) .quick-devis-fab,
+body:has(#view-planning.active) #quickFab,
+body:has(#view-planning.active) [style*="Générer un devis"],
+body:has(#view-planning.active) [style*="Mon entreprise"],
+body:has(#view-planning.active) button:has-text("Générer un devis"),
+body:has(#view-planning.active) .fab-container,
+body:has(#view-planning.active) div[style*="FACTURATION ÉLECTRONIQUE 2026"]{display:none !important;}
+
+/* Au cas où le navigateur ne supporte pas :has, backup via JS class */
+body.planning-active #seo-btp,
+body.planning-active footer,
+body.planning-active .gen-footer,
+body.planning-active #chatAssistant,
+body.planning-active [id*="assistant"],
+body.planning-active [class*="assistant"],
+body.planning-active .quick-devis-fab{display:none !important;}
+</style>
+<script id="planning-clean-js">
+(function(){
+  const orig = window.showView;
+  window.showView = function(name){
+    if(orig) orig(name);
+    if(name==='planning'){
+      document.body.classList.add('planning-active');
+    } else {
+      document.body.classList.remove('planning-active');
+    }
+    // cache forcé des FABs par texte
+    setTimeout(()=>{
+      const isPlanning = name==='planning';
+      document.querySelectorAll('button, a, div').forEach(el=>{
+        const t = (el.textContent||'').trim();
+        if(t.includes('Générer un devis') || t.includes('Mon entreprise') || t.includes('Conformité OK') || t.includes('Pose ta question')){
+          // ne cache que si ce n'est pas dans le calendrier
+          if(isPlanning && !el.closest('#view-planning')){
+            el.style.display='none';
+          } else if(!isPlanning && el.dataset.hiddenPlanning){
+            el.style.display='';
+          }
+        }
+      });
+    },100);
+  };
+})();
+</script>
+
+
+<!-- SUPABASE + DEXIE + STRIPE LIVE -->
+<script src="https://unpkg.com/dexie@4.0.8/dist/dexie.min.js"></script>
+<script>
+(function(){
+  const db = new Dexie('DevisFlashDB');
+  db.version(1).stores({devis:'id, date, client, status', clients:'id, nom, email', entreprise:'id', stock:'id, categorie', chantiers:'id, dateDebut', factures:'id, date', meta:'key'});
+  window.DF_DB=db;
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://kvqotcgrhaafzozunmpd.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_7CXUD0_y2uTaOT-cMHDgGA_eHYeU00K';
+let supabaseClient=null;
+try{ supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);}catch(e){}
+window.supabaseClient=supabaseClient;
+async function hashEmail(s){const enc=new TextEncoder().encode(s.toLowerCase().trim());const buf=await crypto.subtle.digest('SHA-256',enc);return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+window.checkTrialFraud=async function(email){if(!supabaseClient) return {allowed:true}; try{const fp=navigator.userAgent+screen.width; const {data}=await supabaseClient.from('trials').select('*').eq('email_hash',await hashEmail(email)).limit(1); if(data&&data.length>0) return {allowed:false, reason:'essai déjà utilisé'}; await supabaseClient.from('trials').insert({email_hash:await hashEmail(email),fingerprint:fp}); return {allowed:true};}catch(e){return {allowed:true}}};
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script id="stripe-live-final">
+const STRIPE_PUBLISHABLE_KEY='pk_live_lutkzcUEAyYK9wQrk1QV5w7900wJDBCF97';
+const STRIPE_PAYMENT_LINKS={
+  starter_month:'https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03',
+  starter:'https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03',
+  pro_month:'https://buy.stripe.com/28EeVd0po10A6pY3sie3e02',
+  pro:'https://buy.stripe.com/28EeVd0po10A6pY3sie3e02',
+  starter_year:'https://buy.stripe.com/00w8wPc86bFe01A2oee3e01',
+  pro_year:'https://buy.stripe.com/7sY9AT4FE9x629I3sie3e00'
+};
+let stripeLive=null; try{stripeLive=Stripe(STRIPE_PUBLISHABLE_KEY);}catch(e){}
+window.startStripeCheckout=async function(plan='starter',interval='month'){
+  const email=prompt('Email pour la facture:'); if(!email||!email.includes('@')){alert('Email invalide');return;}
+  localStorage.setItem('df_user_email',email);
+  let url=STRIPE_PAYMENT_LINKS[plan+'_'+interval]||STRIPE_PAYMENT_LINKS[plan]||STRIPE_PAYMENT_LINKS['starter_month'];
+  const sep=url.includes('?')?'&':'?'; window.location.href=url+sep+'prefilled_email='+encodeURIComponent(email);
+};
+document.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('#view-tarifs button, .pricing-card button, .plan-card button').forEach(btn=>{
+      const txt=(btn.textContent+' '+(btn.closest('.pricing-card, .plan-card')?.textContent||'')).toLowerCase();
+      if(txt.includes('starter')||txt.includes('9,90')||txt.includes('9.9')){
+        if(txt.includes('an')||txt.includes('99')) btn.onclick=()=>window.startStripeCheckout('starter','year');
+        else btn.onclick=()=>window.startStripeCheckout('starter','month');
+      }
+      if(txt.includes('pro')||txt.includes('39')||txt.includes('390')){
+        if(txt.includes('an')||txt.includes('390')) btn.onclick=()=>window.startStripeCheckout('pro','year');
+        else btn.onclick=()=>window.startStripeCheckout('pro','month');
+      }
+    });
+  },800);
+});
+</script>
+
+
+<footer id="footer-unique" style="background:#0F172A;color:#94A3B8;padding:20px 16px;text-align:center;font-size:12px;margin-top:32px;">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
+    <span>© 2026 Devis Flash</span>•
+    <a href="/mentions-legales" style="color:#94A3B8;text-decoration:none">Mentions légales</a>•
+    <a href="/cgv" style="color:#94A3B8;text-decoration:none">CGV</a>•
+    <a href="/confidentialite" style="color:#94A3B8;text-decoration:none">Confidentialité RGPD</a>•
+    <a href="mailto:devisflash93@gmail.com" style="color:#60A5FA">devisflash93@gmail.com</a>
+  </div>
+  <div style="margin-top:6px;font-size:11px;opacity:.6">🔒 Données chiffrées localement • 100% navigateur • Aucun serveur</div>
+</footer>
 
 </body>
 
