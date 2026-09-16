@@ -2,8 +2,6 @@
 <html lang="fr">
 <head>
 
-
-
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="_NCfT8Efmu4MPgOFQPlcJ8vH8J4mBuJVk3gTqvpYXeM" />
 <link rel="manifest" href="manifest.json">
@@ -23,11 +21,10 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2 Factures Gratuites - Conforme 2026 | Devis Flash</title>
+<title>2 Factures Gratuites - Devis en 2 min | Devis Flash</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-<meta name="description" content="Facture électronique BTP obligatoire 2026 : Devis Flash génère vos factures électroniques conformes Factur-X, Chorus Pro, signature électronique, QR encaissement CB/PayPal. Devis → Facture → Facture électronique en moins de 2 min. Conforme réforme 2026-2027.">
-<meta name="keywords" content="facture electronique btp, facture electronique obligatoire 2026, factur-x, chorus pro, facture electronique artisan, devis btp, signature electronique devis, facture conforme 2026, reforme facture electronique, devis flash">
+<meta name="description" content="Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture électronique Factur-X conforme 2026. 3 devis/mois offerts.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Devis Flash">
 <link rel="canonical" href="https://www.devis-flash.fr/">
@@ -36,15 +33,15 @@
 <!-- Open Graph / réseaux sociaux -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Devis Flash">
-<meta property="og:title" content="Facture Électronique BTP 2026 | Devis Flash - Conforme Factur-X & Chorus Pro">
-<meta property="og:description" content="Facture électronique BTP obligatoire dès 2026 : générez vos factures Factur-X conformes, signature électronique, encaissement CB/PayPal, archivage 10 ans.">
+<meta property="og:title" content="2 Factures Gratuites - Devis en 2 min | Devis Flash">
+<meta property="og:description" content="Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture électronique Factur-X conforme 2026.">
 <meta property="og:url" content="https://www.devis-flash.fr/">
 <meta property="og:locale" content="fr_FR">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Devis Flash — Créer un devis en ligne gratuit pour artisans & BTP">
-<meta name="twitter:description" content="Générez un devis professionnel en moins de 2 minutes, avec calcul de marge automatique et encaissement par carte ou PayPal.">
+<meta name="twitter:title" content="2 Factures Gratuites - Devis en 2 min | Devis Flash">
+<meta name="twitter:description" content="Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture Factur-X 2026.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -1037,7 +1034,16 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
 
     <div class="card">
      <h3>📦 Prestations</h3>
-     
+     <div class="preset-row" style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-secondary btn-sm" onclick="selectSector('BTP/Maçonnerie')">🏗️ Maçonnerie</button>
+      <button class="btn btn-secondary btn-sm" onclick="selectSector('Peinture')">🎨 Peinture</button>
+      <button class="btn btn-secondary btn-sm" onclick="selectSector('Plomberie')">🚰 Plomberie</button>
+      <button class="btn btn-secondary btn-sm" onclick="selectSector('Electricite')">⚡ Élec</button>
+      <button class="btn btn-secondary btn-sm" onclick="selectSector('Chauffagiste / PAC')" style="background:#FEF3C7;border:1px solid #FCD34D">🔥 PAC 10k€</button>
+      <button class="btn btn-secondary btn-sm" onclick="selectSector('Climatisation / Elagage')" style="background:#ECFDF5;border:1px solid #6EE7B7">🌳 Climatisation</button>
+      <button class="btn btn-secondary btn-sm" onclick="selectSector('Serrurier / Plaquiste')" style="background:#EFF6FF;border:1px solid #93C5FD">🔐 Serrurier</button>
+      <button class="btn btn-secondary btn-sm" onclick="selectSector('Solaire / Photovoltaïque')" style="background:#FFFBEB;border:1px solid #FBBF24">☀️ Solaire 9k€</button>
+      </div>
      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px 0">
       <button id="btnVocal" onclick="startVocalMainsLibres()" style="background:#fff;border:1px solid #E2E8F0;color:#0F172A;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px">🎤 Vocal mains libres</button>
       <label style="background:#fff;border:1px solid #E2E8F0;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px">📸 Photo ticket<input type="file" accept="image/*" style="display:none" onchange="handlePhotoMateriel(event)"></label>
@@ -1530,7 +1536,7 @@ window.applyPlanRestrictions = function(){
 <section class="landing-hero">
  <div class="landing-wrap">
   
-  <h1>Créez un devis professionnel en moins de 2 minutes</h1>
+  <h2 class="sora" style="font-size:32px;">Créez un devis professionnel en moins de 2 minutes</h2>
   <p class="hero-sub">Créez un devis clair en moins de 2 minutes. Votre client signe et paie l\'acompte directement.</p>
   <div class="hero-ctas">
    <a href="#app" onclick="showView('generateur'); setTimeout(()=>document.getElementById('app').scrollIntoView({behavior:'smooth'}), 100); return false;" class="btn btn-primary btn-lg">Essayer gratuitement →</a>
@@ -3000,7 +3006,7 @@ document.addEventListener('click', function(e){
    <div class="feature-card">
     <div class="feature-emoji">🏗️</div>
     <h3>12 métiers du BTP couverts</h3>
-    <p>Maçonnerie, peinture, plomberie, électricité, chauffage/PAC, climatisation, serrurier/plaquiste, solaire, nettoyage, jardinage, services, logistique : un modèle par secteur. Édition 2026.</p>
+    <p>Maçonnerie, peinture, plomberie, électricité, chauffage/PAC, climatisation/froid, carrelage, menuiserie/charpente, isolation, serrurier/plaquiste, solaire, plasturgie : 12 métiers BTP purs. Édition 2026.</p>
    </div>
    <div class="feature-card">
     <div class="feature-emoji">💳</div>
@@ -3031,6 +3037,30 @@ document.addEventListener('click', function(e){
   <a href="#app" onclick="showView('generateur'); setTimeout(()=>document.getElementById('app').scrollIntoView({behavior:'smooth'}), 100); return false;" class="btn btn-primary btn-lg">Créer mon premier devis →</a>
  </div>
 </section>
+
+<section class="landing-section" id="blog-seo" aria-labelledby="blog-h2">
+ <div class="landing-wrap">
+  <h2 id="blog-h2" class="sora">Actualités BTP 2026 - Facture Électronique Obligatoire</h2>
+  <div class="blog-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px;">
+   <article class="blog-card" style="border:1px solid #E2E8F0; border-radius:12px; padding:16px; background:#fff;">
+    <h3>Facture électronique BTP obligatoire septembre 2026</h3>
+    <p>Tout savoir sur Factur-X, Chorus Pro et PPF. Comment être conforme sans logiciel compliqué.</p>
+    <a href="/blog/facture-electronique-btp-2026">Lire l'article →</a>
+   </article>
+   <article class="blog-card" style="border:1px solid #E2E8F0; border-radius:12px; padding:16px; background:#fff;">
+    <h3>Comment calculer sa marge BTP (formule réelle)</h3>
+    <p>Arrêtez de perdre 15% de marge. La vraie formule marge BTP expliquée par un artisan.</p>
+    <a href="/blog/calcul-marge-btp">Lire l'article →</a>
+   </article>
+   <article class="blog-card" style="border:1px solid #E2E8F0; border-radius:12px; padding:16px; background:#fff;">
+    <h3>Modèle devis maçonnerie gratuit 2026</h3>
+    <p>Exemple de devis maçonnerie conforme avec mentions légales et TVA. Téléchargeable PDF.</p>
+    <a href="/blog/modele-devis-maconnerie">Lire l'article →</a>
+   </article>
+  </div>
+ </div>
+</section>
+
 <section class="landing-section" id="faq-section" style="margin-bottom:0; padding-bottom:48px;" aria-labelledby="faq-h2">
  <div class="landing-wrap landing-wrap-narrow">
   <h2 id="faq-h2" class="sora">Questions fréquentes</h2>
@@ -4040,7 +4070,7 @@ window.renderApercu = function(){
  if(!el) return;
  // Add signature block if exists
  if(doc.signature){
-   const sigBlock = `<div style="margin-top:20px;padding:16px;border:1px solid #10B981;background:#ECFDF5;border-radius:10px"><div style="font-weight:700;color:#059669;font-size:13px">✍️ Devis signé le ${fmtDate(doc.signatureDate||doc.date)}</div><img src="${doc.signature}" style="max-width:220px;max-height:80px;margin-top:8px;background:#fff;border-radius:6px;padding:4px;border:1px solid #D1FAE5"><div style="font-size:11px;color:#64748B;margin-top:6px">Signature électronique simple - ${escapeHtml(doc.client)}</div></div>`;
+   const sigBlock = `<div style="margin-top:20px;padding:16px;border:1px solid #10B981;background:#ECFDF5;border-radius:10px"><div style="font-weight:700;color:#059669;font-size:13px">✍️ Devis signé le ${fmtDate(doc.signatureDate||doc.date)}</div><img alt="Logiciel devis BTP Devis Flash - devis artisan gratuit"  src="${doc.signature}" style="max-width:220px;max-height:80px;margin-top:8px;background:#fff;border-radius:6px;padding:4px;border:1px solid #D1FAE5"><div style="font-size:11px;color:#64748B;margin-top:6px">Signature électronique simple - ${escapeHtml(doc.client)}</div></div>`;
    if(!el.innerHTML.includes('Devis signé')) el.innerHTML += sigBlock;
  }
  // Add chantier notes + trezo
@@ -4192,7 +4222,7 @@ function openPayAfterSign(devisId){
   if(link){
     payBtn.href = link;
     payBtn.style.display='block';
-    qrContent.innerHTML = `<div style="font-size:11px;color:#2563EB;word-break:break-all">${link}</div><div style="margin-top:8px"><img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(link)}" style="width:140px;height:140px;border-radius:8px;border:1px solid #E2E8F0"/></div>`;
+    qrContent.innerHTML = `<div style="font-size:11px;color:#2563EB;word-break:break-all">${link}</div><div style="margin-top:8px"><img alt="Logiciel devis BTP Devis Flash - devis artisan gratuit"  src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(link)}" style="width:140px;height:140px;border-radius:8px;border:1px solid #E2E8F0"/></div>`;
     // Confetti + toast
     if(typeof toast==='function') toast('💳 QR acompte prêt - '+acompteMontant+'€');
   } else {
@@ -4997,7 +5027,7 @@ window.renderApercu = function(){
       <!-- HEADER -->
       <div style="padding:24px 28px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:3px solid #0F172A">
         <div style="display:flex;gap:14px;align-items:center">
-          ${logo ? `<img src="${logo}" style="width:64px;height:64px;object-fit:contain;border-radius:12px;border:1px solid #E2E8F0">` : `<div style="width:64px;height:64px;background:linear-gradient(135deg,#2563EB,#1D4ED8);border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:28px">DF</div>`}
+          ${logo ? `<img alt="Logiciel devis BTP Devis Flash - devis artisan gratuit"  src="${logo}" style="width:64px;height:64px;object-fit:contain;border-radius:12px;border:1px solid #E2E8F0">` : `<div style="width:64px;height:64px;background:linear-gradient(135deg,#2563EB,#1D4ED8);border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:28px">DF</div>`}
           <div>
             <div style="font-family:Sora;font-size:18px;font-weight:800;color:#0F172A;line-height:1.2">${nomEnt}</div>
             <div style="font-size:11px;color:#475569;margin-top:4px;line-height:1.4">${adresse}<br>${tel} • ${email}<br>${siret}<br><span style="background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 6px;border-radius:999px;font-weight:700;color:#1D4ED8">🛡️ Décennale ${decennale}</span></div>
@@ -5059,7 +5089,7 @@ window.renderApercu = function(){
         <div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-size:11px;font-weight:700;color:#334155">Signature client (Bon pour accord)</div><button onclick="openSignatureModal()" style="background:#0F172A;color:#fff;border:0;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">✍️ Signer</button></div>
           <div style="border:1.5px dashed #CBD5E1;border-radius:12px;height:110px;display:flex;align-items:center;justify-content:center;background:#F8FAFC;position:relative;overflow:hidden">
-            ${devis.signature ? `<img src="${devis.signature}" style="max-width:100%;max-height:100%;object-fit:contain">` : `<span style="font-size:11px;color:#94A3B8">Signature électronique ici</span>`}
+            ${devis.signature ? `<img alt="Logiciel devis BTP Devis Flash - devis artisan gratuit"  src="${devis.signature}" style="max-width:100%;max-height:100%;object-fit:contain">` : `<span style="font-size:11px;color:#94A3B8">Signature électronique ici</span>`}
             <div style="position:absolute;bottom:6px;right:8px;background:#fff;border:1px solid #E2E8F0;padding:2px 6px;border-radius:999px;font-size:8px;color:#64748B">Devis Flash - signature horodatée</div>
           </div>
           <div style="font-size:10px;color:#64748B;margin-top:6px">Date: ${new Date().toLocaleDateString('fr-FR')} • IP enregistrée</div>
@@ -5656,7 +5686,7 @@ function handlePhotoMateriel(e){
     else if(fileName.includes('carrelage')) designation='Carrelage 60x60';
     window._lastPhoto={designation:designation, pu:prixDetect, qte:1, img:imgSrc};
     const el=document.getElementById('photoResult'); 
-    if(el) el.innerHTML=`<div style="background:#fff;border:2px solid #2563EB;border-radius:12px;padding:12px;display:flex;gap:12px;align-items:start"><img src="${imgSrc}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #E2E8F0"><div style="flex:1"><div style="font-size:12px;font-weight:700;color:#0F172A">📸 Ticket détecté: ${designation}</div><div style="font-size:11px;color:#64748B;margin:4px 0">Prix: ${prixDetect}€ • Modifiable ci-dessous</div><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><input id="photoDes" value="${designation}" style="flex:1;min-width:120px;padding:6px 8px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><input id="photoPu" type="number" value="${prixDetect}" step="0.01" style="width:80px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><input id="photoQte" type="number" value="1" style="width:60px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"></div><button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="addLineFromPhotoEditable()">+ Ajouter au devis</button></div></div>`; 
+    if(el) el.innerHTML=`<div style="background:#fff;border:2px solid #2563EB;border-radius:12px;padding:12px;display:flex;gap:12px;align-items:start"><img alt="Logiciel devis BTP Devis Flash - devis artisan gratuit"  src="${imgSrc}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #E2E8F0"><div style="flex:1"><div style="font-size:12px;font-weight:700;color:#0F172A">📸 Ticket détecté: ${designation}</div><div style="font-size:11px;color:#64748B;margin:4px 0">Prix: ${prixDetect}€ • Modifiable ci-dessous</div><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><input id="photoDes" value="${designation}" style="flex:1;min-width:120px;padding:6px 8px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><input id="photoPu" type="number" value="${prixDetect}" step="0.01" style="width:80px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><input id="photoQte" type="number" value="1" style="width:60px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"></div><button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="addLineFromPhotoEditable()">+ Ajouter au devis</button></div></div>`; 
   }; 
   r.readAsDataURL(file); 
 }
@@ -5685,7 +5715,7 @@ function handleCroquis(e){
     r.onload=()=>{
       const imgSrc=r.result;
       window._lastCroquis={img:imgSrc, m2:36};
-      if(el) el.innerHTML=`<div style="background:#fff;border:2px solid #0F172A;border-radius:12px;padding:12px"><div style="display:flex;gap:12px"><img src="${imgSrc}" style="width:100px;height:100px;object-fit:cover;border-radius:8px;border:1px solid #E2E8F0"><div style="flex:1"><div style="font-weight:700;font-size:13px">📐 Croquis importé</div><div style="font-size:11px;color:#64748B;margin:6px 0">Saisissez les dimensions détectées :</div><div style="display:flex;gap:6px;flex-wrap:wrap"><input id="croquisM2" type="number" value="36" style="width:70px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><span style="font-size:12px">m²</span><input id="croquisPu" type="number" value="36" style="width:70px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><span style="font-size:12px">€/m²</span></div><div style="font-size:11px;color:#2563EB;margin-top:6px">💡 Quantités: <span id="croquisDetail">36m² peinture, ~12L enduit</span></div><button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="addLineFromCroquis()">+ Ajouter 36m² au devis</button></div></div></div>`;
+      if(el) el.innerHTML=`<div style="background:#fff;border:2px solid #0F172A;border-radius:12px;padding:12px"><div style="display:flex;gap:12px"><img alt="Logiciel devis BTP Devis Flash - devis artisan gratuit"  src="${imgSrc}" style="width:100px;height:100px;object-fit:cover;border-radius:8px;border:1px solid #E2E8F0"><div style="flex:1"><div style="font-weight:700;font-size:13px">📐 Croquis importé</div><div style="font-size:11px;color:#64748B;margin:6px 0">Saisissez les dimensions détectées :</div><div style="display:flex;gap:6px;flex-wrap:wrap"><input id="croquisM2" type="number" value="36" style="width:70px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><span style="font-size:12px">m²</span><input id="croquisPu" type="number" value="36" style="width:70px;padding:6px;border:1px solid #E2E8F0;border-radius:6px;font-size:12px"><span style="font-size:12px">€/m²</span></div><div style="font-size:11px;color:#2563EB;margin-top:6px">💡 Quantités: <span id="croquisDetail">36m² peinture, ~12L enduit</span></div><button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="addLineFromCroquis()">+ Ajouter 36m² au devis</button></div></div></div>`;
       const m2Input=document.getElementById('croquisM2');
       if(m2Input) m2Input.addEventListener('input', (ev)=>{
         const v=parseFloat(ev.target.value)||0;
