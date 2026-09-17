@@ -6,13 +6,7 @@
 📦 **Version :** BTP PUR - 12 secteurs - Conforme Factur-X & Chorus Pro  
 ✅ **Statut :** Production - Conforme réforme 2026
 
----
-
-## 🎯 Positionnement : 100% BTP - Pas de blabla
-
-**Devis Flash n'est PAS un logiciel généraliste.**
-
-Pas de coiffure, pas de coaching, pas de nettoyage. Uniquement 12 métiers du Bâtiment.
+## 🎯100% BTP -
 
 ### Les 12 secteurs officiels
 
