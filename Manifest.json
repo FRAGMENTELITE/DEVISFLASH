@@ -1,25 +1,16 @@
 {
-  "name": "Devis Flash - Générateur de devis BTP",
+  "name": "Devis Flash",
   "short_name": "Devis Flash",
-  "description": "Générateur de devis et factures pour artisans BTP - Factur-X obligatoire 2026",
+  "description": "Logiciel devis BTP gratuit - Devis en 2 min, Factur-X 2026",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2563eb",
-  "orientation": "portrait",
-  "scope": "/",
+  "theme_color": "#2563EB",
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-512.png",
+      "src": "devis_flash_logo_transparent.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
