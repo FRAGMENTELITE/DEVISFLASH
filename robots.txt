@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://devis-flash.fr/sitemap.xml
+Sitemap: https://www.devis-flash.fr/sitemap.xml
