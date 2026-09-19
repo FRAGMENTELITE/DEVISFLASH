@@ -1133,6 +1133,32 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
  <div style="font-size:11px;color:#64748B;text-align:center;letter-spacing:.2px">🛡️ Assurance décennale n° 123456789 • TVA non applicable art.2 B du CGI •</div>
 </div>
  </section>
+<section class="view" id="view-planning" style="display:none; max-width:1180px; margin:0 auto; padding:8px 16px 80px 16px;">
+ <div style="margin:0 0 8px 0;">
+  <div class="app-h2 sora" style="margin:0 0 2px 0; font-size:22px; font-weight:800;">📅 Planning chantiers</div>
+  <p style="margin:0; color:#64748B; font-size:12px;">Organise tes chantiers signés. Clique sur un jour pour planifier.</p>
+ </div>
+ <div class="planning-grid" style="display:grid; grid-template-columns: 1fr 320px; gap:16px; margin-top:8px; align-items:start;">
+  <div class="plan-cal" style="background:#fff; border:1px solid #E2E8F0; border-radius:14px; padding:12px;">
+   <div class="cal-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+    <button onclick="changeMonth(-1)" style="border:1px solid #E2E8F0; background:#fff; width:36px; height:36px; border-radius:10px; cursor:pointer;">‹</button>
+    <b id="calMonth" style="font-family:Sora; font-size:15px; text-transform:capitalize;"></b>
+    <button onclick="changeMonth(1)" style="border:1px solid #E2E8F0; background:#fff; width:36px; height:36px; border-radius:10px; cursor:pointer;">›</button>
+   </div>
+   <div class="cal-days" style="display:grid; grid-template-columns:repeat(7,1fr); text-align:center; font-size:11px; color:#94A3B8; font-weight:700; margin-bottom:6px;"><div>LUN</div><div>MAR</div><div>MER</div><div>JEU</div><div>VEN</div><div>SAM</div><div>DIM</div></div>
+   <div class="cal-cells" id="calCells" style="display:grid; grid-template-columns:repeat(7,1fr); gap:6px;"></div>
+  </div>
+  <div class="plan-list" style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:14px;">
+   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;"><b style="font-size:13px;">🚧 À planifier</b><span style="font-size:11px; background:#EFF6FF; color:#2563EB; padding:2px 8px; border-radius:999px; font-weight:700;">Signés</span></div>
+   <div id="planUnplanned"></div>
+   <div style="margin-top:14px; padding:12px; background:#F8FAFF; border:1px dashed #E2E8F0; border-radius:12px;">
+    <div style="font-size:11px; color:#64748B; font-weight:700; text-transform:uppercase;">💰 CA ce mois</div>
+    <div id="planCA" style="font-size:20px; font-weight:800; margin-top:2px; color:#0F172A;">0 €</div>
+   </div>
+  </div>
+ </div>
+</section>
+
 
  <!-- ===================== STOCK BTP - GESTIONNAIRE ===================== -->
  
@@ -1389,7 +1415,7 @@ document.addEventListener('DOMContentLoaded',()=>setTimeout(renderStock,500));
  </div>
  <div class="toolbar"><select id="catFilter" onchange="renderCatalogue()"><option value="Tous">Tous secteurs</option></select><input type="text" id="catSearch" placeholder="🔍 Rechercher prestation..." oninput="renderCatalogue()" style="flex:1"></div>
  <div class="card" style="padding:0;overflow:hidden"><div id="catalogueList"></div></div>
- <div id="catalogueModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,23,42,0.6);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px">
+ <div id="catalogueModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,23,42,0.6);z-index:200;display:none;align-items:center;justify-content:center;padding:16px">
   <div style="background:#fff;border-radius:16px;max-width:520px;width:100%;padding:24px">
   <div class="app-h3" style="margin:0 0 16px 0">📦 Prestation catalogue</div>
   <input type="hidden" id="catId">
@@ -3696,7 +3722,7 @@ window.transformerEnFactureElectronique = transformerEnFactureElectronique;
 </div>
 <div style="display:flex;gap:8px;margin-top:16px">
 <button onclick="saveEntreprise()" style="flex:1;background:#2563eb;color:#fff;padding:12px;border-radius:10px;font-weight:700;border:0">💾 Enregistrer</button>
-<button onclick="document.getElementById('entrepriseModal').style.display='none'" style="flex:1;background:#f1f5f9;padding:12px;border-radius:10px;border:0">Fermer</button>
+<button onclick="closeEntrepriseModal()" style="flex:1;background:#f1f5f9;padding:12px;border-radius:10px;border:0">Fermer</button>
 </div>
 <div style="margin-top:12px;padding:10px;background:#f0f9ff;border-radius:8px;font-size:11px;line-height:1.4">
 ✅ SIRET validé Luhn | ✅ TVA format FR | ✅ SHA-256 + verify URL<br>
@@ -3750,7 +3776,7 @@ function saveEntreprise(){
  if(ent.emailjs_key && window.emailjs){ try{ emailjs.init(ent.emailjs_key); }catch(e){} }
  if(typeof toast==='function') toast('✅ Entreprise enregistrée - Factur-X conforme - '+ent.nom);
  else alert('✅ Entreprise enregistrée');
- document.getElementById('entrepriseModal').style.display='none';
+ closeEntrepriseModal();
 }
 (function(){
  const btn = document.createElement('button');
@@ -4808,63 +4834,7 @@ window.openDayPlanning=openDayPlanning;
 function changeMonth(dir){ calDate.setMonth(calDate.getMonth()+dir); renderPlanning(); }
 window.changeMonth=changeMonth;
 
-// Injecte vue planning dans la nav si pas existant + bouton
-document.addEventListener('DOMContentLoaded', ()=>{
- // ajoute bouton nav planning
- const nav=document.querySelector('.tabs') || document.querySelector('header .header-inner');
- // ajoute section planning
- if(!document.getElementById('view-planning')){
-  const sec=document.createElement('section');
-  sec.className='view'; sec.id='view-planning'; sec.style.cssText='display:none;max-width:1180px;margin:0 auto;padding:24px';
-  sec.innerHTML=`
-   <div style="margin-bottom:12px">
-    <div class="app-h2" class="sora" style="margin:0 0 2px 0;font-size:22px">📅 Planning chantiers</div>
-    <p style="margin:0;color:#64748B;font-size:12px">Organise tes chantiers signés. Clique sur un jour pour planifier.</p>
-   </div>
-   <div class="planning-grid" style="display:grid;grid-template-columns:1.7fr 1fr;gap:16px">
-    <div class="plan-cal">
-     <div class="cal-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <button onclick="changeMonth(-1)" style="border:1px solid #E2E8F0;background:#fff;width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:18px">‹</button>
-      <b id="calMonth" style="font-family:Sora;font-size:15px;text-transform:capitalize"></b>
-      <button onclick="changeMonth(1)" style="border:1px solid #E2E8F0;background:#fff;width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:18px">›</button>
-     </div>
-     <div class="cal-days" style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:11px;color:#94A3B8;font-weight:700;margin-bottom:6px"><div>LUN</div><div>MAR</div><div>MER</div><div>JEU</div><div>VEN</div><div>SAM</div><div>DIM</div></div>
-     <div class="cal-cells" id="calCells" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px"></div>
-    </div>
-    <div class="plan-list" style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:14px">
-     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b style="font-size:13px">🚧 À planifier</b><span style="font-size:11px;background:#EFF6FF;color:#2563EB;padding:2px 8px;border-radius:999px;font-weight:700">Signés</span></div>
-     <div id="planUnplanned"></div>
-     <div style="margin-top:14px;padding:12px;background:#F8FAFF;border:1px dashed #E2E8F0;border-radius:12px">
-      <div style="font-size:11px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.05em">💰 CA ce mois</div>
-      <div id="planCA" style="font-size:20px;font-weight:800;margin-top:2px;color:#0F172A">0 €</div>
-     </div>
-    </div>
-   </div>
-  `;
-  document.getElementById('app')?.appendChild(sec) || document.body.appendChild(sec);
- }
- // ajoute bouton Métré dans générateur
- setTimeout(()=>{
-  const genHeader=document.querySelector('#view-generateur .card') || document.querySelector('#view-generateur');
-  if(genHeader && !document.getElementById('btnMetreGen')){
-   const b=document.createElement('button');
-   b.id='btnMetreGen'; b.innerHTML='📸 Métré Photo IA'; b.style.cssText='background:#fff;color:#fff;border:0;padding:8px 14px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;margin:6px';
-   b.onclick=openMetre;
-   const addBtn=document.querySelector('button[onclick="addLine()"]');
-   if(addBtn && addBtn.parentNode) addBtn.parentNode.insertBefore(b, addBtn);
-   else genHeader.prepend(b);
-  }
- },800);
- // override showView pour planning
- const origShow=window.showView;
- window.showView=function(name){
-  if(origShow) origShow(name);
-  if(name==='planning'){ renderPlanning(); }
-  // cacher/afficher
-  document.querySelectorAll('.view').forEach(v=>{ if(v.id==='view-'+name) v.style.display='block'; else if(v.id.startsWith('view-')) v.style.display='none'; });
-  if(name==='planning') renderPlanning();
- };
-});
+// Planning static - injection supprimée);
 
 // FIX: doublon Planning mobile supprimé - tab-planning-hidden ne doit pas être recréé
 </script>
@@ -6439,7 +6409,7 @@ const PLANS = [
  feats:["Devis 100 / mois","Tout Starter, plus :","QR encaissement acompte","Logo personnalisé PDF","Export comptable + Stock","Priorité support"], cta:"39€ / MOIS", ctaAnnual:"390€ / AN"},
 ];
 
-let billingCycle = 'monthly';
+billingCycle = 'monthly';
 const STRIPE_PAYMENT_LINKS={
  facturation_month:'https://buy.stripe.com/5kQ7sL0po38IdSq2oee3e04',
  facturation:'https://buy.stripe.com/5kQ7sL0po38IdSq2oee3e04',
@@ -6893,6 +6863,350 @@ window.onFieldChange = function(){ if(typeof _origOnFieldChange==='function') _o
   });
 
   console.log('✅ Patch anti-modal EmailJS sur tarifs PC activé');
+})();
+</script>
+
+
+<style>
+/* FIX ULTIME - MON ENTREPRISE + TOUS ONGLETS */
+#entrepriseModal{ display:none !important; position:fixed !important; inset:0 !important; background:rgba(0,0,0,.6) !important; z-index:9999 !important; align-items:center !important; justify-content:center !important; }
+#entrepriseModal.show{ display:flex !important; }
+#catalogueModal{ display:none !important; position:fixed !important; inset:0 !important; background:rgba(15,23,42,0.6) !important; z-index:9998 !important; }
+#catalogueModal.show{ display:flex !important; }
+#view-planning{ padding:8px 16px 80px 16px !important; }
+#mainFooter{ display:none !important; }
+body.view-generateur #mainFooter{ display:block !important; }
+
+/* Bouton Mon entreprise toujours visible et cliquable */
+#btn-entreprise{
+  position:fixed !important;
+  bottom:80px !important;
+  left:20px !important;
+  background:#0f172a !important;
+  color:#fff !important;
+  padding:12px 18px !important;
+  border-radius:9999px !important;
+  font-weight:700 !important;
+  z-index:9998 !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.3) !important;
+  border:0 !important;
+  cursor:pointer !important;
+  display:block !important;
+}
+/* Caché dans outils sauf generateur - mais visible si user clique */
+body.view-catalogue #btn-entreprise,
+body.view-stock #btn-entreprise,
+body.view-tarifs #btn-entreprise,
+body.view-factures #btn-entreprise,
+body.view-clients #btn-entreprise,
+body.view-dashboard #btn-entreprise,
+body.view-planning #btn-entreprise,
+body.view-banque #btn-entreprise{
+  display:none !important;
+}
+</style>
+<script>
+// === VERIFICATION MON ENTREPRISE + FIX TOUS ONGLETS ===
+(function(){
+  console.log('🔍 Vérification Mon entreprise...');
+
+  // Vérifie que les fonctions existent
+  if(typeof isValidSIRET !== 'function'){
+    window.isValidSIRET = function(siret){
+      if(!/^\d{14}$/.test(siret)) return false;
+      let sum=0;
+      for(let i=0;i<14;i++){let d=parseInt(siret[13-i]); if(i%2===1){d*=2; if(d>9)d-=9;} sum+=d;}
+      return sum%10===0;
+    };
+  }
+  if(typeof isValidTVA !== 'function'){
+    window.isValidTVA = function(tva){ return /^FR[0-9A-Z]{2}\d{9}$/.test(tva) || tva===''; };
+  }
+
+  window.billingCycle = window.billingCycle || 'monthly';
+
+  function hideAllModals(){
+    ['entrepriseModal','catalogueModal','clientModal','emailModal','relanceModal','signatureModal'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el){ el.style.display='none'; el.classList.remove('show'); }
+    });
+  }
+
+  // MON ENTREPRISE - Fonctions vérifiées
+  window.openEntrepriseModal = function(){
+    console.log('⚙️ Ouverture Mon entreprise');
+    var ent={}; try{ ent=JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}'); }catch(e){}
+    var el;
+    el=document.getElementById('ent_nom'); if(el) el.value=ent.nom||'Devis Flash';
+    el=document.getElementById('ent_siret'); if(el) el.value=ent.siret||'10484045900010';
+    el=document.getElementById('ent_tva'); if(el) el.value=ent.tva||'';
+    el=document.getElementById('ent_adresse'); if(el) el.value=ent.adresse||'';
+    el=document.getElementById('ent_cp'); if(el) el.value=ent.cp||'120';
+    el=document.getElementById('ent_ville'); if(el) el.value=ent.ville||'Villepinte';
+    el=document.getElementById('ent_email'); if(el) el.value=ent.email||'Devis Flash';
+    var modal=document.getElementById('entrepriseModal');
+    if(modal){ modal.classList.add('show'); modal.style.display='flex'; }
+    if(typeof validateSIRETField==='function') validateSIRETField();
+    console.log('✅ Mon entreprise ouvert - SIRET:', ent.siret);
+  };
+
+  window.closeEntrepriseModal = function(){
+    var m=document.getElementById('entrepriseModal');
+    if(m){ m.classList.remove('show'); m.style.display='none'; }
+  };
+
+  window.validateSIRETField = function(){
+    var s=document.getElementById('ent_siret')?.value||'';
+    var el=document.getElementById('siret_status');
+    if(!el) return;
+    if(!s){ el.innerHTML=''; return; }
+    if(isValidSIRET(s)) el.innerHTML='<span style="color:#16a34a">✅ SIRET valide Luhn - Factur-X OK</span>';
+    else el.innerHTML='<span style="color:#dc2626">❌ SIRET invalide (14 chiffres + clé Luhn)</span>';
+  };
+
+  window.saveEntreprise = function(){
+    var ent={
+      nom: document.getElementById('ent_nom')?.value||'Devis Flash',
+      siret: document.getElementById('ent_siret')?.value||'10484045900010',
+      tva: document.getElementById('ent_tva')?.value||'',
+      adresse: document.getElementById('ent_adresse')?.value||'',
+      cp: document.getElementById('ent_cp')?.value||'120',
+      ville: document.getElementById('ent_ville')?.value||'Villepinte',
+      email: document.getElementById('ent_email')?.value||'Devis Flash',
+      emailjs_key: 'ekM4QRagcFRNTF097',
+      emailjs_service: 'DEVIS',
+      emailjs_template: 'template_6s5kpid'
+    };
+    if(!isValidSIRET(ent.siret)){ alert('❌ SIRET invalide - 14 chiffres + clé Luhn\nExemple valide: 10484045900010'); return; }
+    if(ent.tva && !isValidTVA(ent.tva)){ alert('❌ TVA intra invalide format FRXX...\nExemple: FR12345678901'); return; }
+    localStorage.setItem('devisflash_entreprise', JSON.stringify(ent));
+    if(window.emailjs && ent.emailjs_key){ try{ emailjs.init(ent.emailjs_key); }catch(e){} }
+    if(typeof toast==='function') toast('✅ Entreprise enregistrée - '+ent.nom+' - Factur-X conforme');
+    else alert('✅ Entreprise enregistrée - '+ent.nom);
+    closeEntrepriseModal();
+    console.log('✅ Entreprise sauvegardée:', ent);
+  };
+
+  // Catalogue modal
+  window.openCatalogueModal = function(){
+    var m=document.getElementById('catalogueModal');
+    if(m){ m.classList.remove('hidden'); m.classList.add('show'); m.style.display='flex'; }
+  };
+  window.closeCatalogueModal = function(){
+    var m=document.getElementById('catalogueModal');
+    if(m){ m.classList.add('hidden'); m.classList.remove('show'); m.style.display='none'; }
+  };
+
+  window.startGratuit = function(){ 
+    if(typeof toast==='function') toast('✅ Plan Gratuit'); 
+    showView('generateur'); 
+  };
+  
+  window.setBilling = function(cycle){
+    window.billingCycle=cycle;
+    localStorage.setItem('df_billing_cycle', cycle);
+    document.querySelectorAll('.bt-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.cycle===cycle); });
+    var note=document.getElementById('annualNote'); if(note) note.style.display=cycle==='annual'?'block':'none';
+    if(typeof renderPlans==='function') renderPlans();
+  };
+
+  window.renderPlans = function(){
+    var el=document.getElementById('plansGrid'); if(!el) return;
+    var isAnnual=window.billingCycle==='annual';
+    el.innerHTML=PLANS.map(function(p){
+      var price=isAnnual?(p.priceAnnual||p.priceMonthly||p.price):(p.priceMonthly||p.price);
+      var per=isAnnual?(p.perAnnual||'/an'):(p.perMonthly||p.per||'/mois');
+      var saving=(isAnnual||p.id==="facturation")?(p.saving||''):'';
+      var cta=isAnnual?(p.ctaAnnual||p.cta):p.cta;
+      var l1=isAnnual?(p.payLinkAnnual||p.payLink):p.payLink;
+      var l2=isAnnual?(p.payLinkStripeAnnual||p.payLinkStripe):p.payLinkStripe;
+      var l3=isAnnual?(p.payLinkPaypalAnnual||p.payLinkPaypal):p.payLinkPaypal;
+      var feats=p.feats.map(function(f){return "<li>"+f+"</li>";}).join("");
+      if(p.id==='gratuit') return '<div class="plan-card"><div class="pname">'+p.name+'</div><div class="pprice">'+price+'<span>'+per+'</span></div><ul>'+feats+'</ul><button class="btn btn-secondary plan-cta" onclick="startGratuit()">COMMENCER GRATUIT</button></div>';
+      return '<div class="plan-card '+(p.highlight?'highlight':'')+'">'+(p.highlight?'<div class="badge-pop">Le plus choisi</div>':'')+'<div class="pname">'+p.name+'</div><div class="pprice">'+price+'<span>'+per+'</span></div>'+(saving?'<div class="save-tag">'+saving+'</div>':'')+'<ul>'+feats+'</ul><a href="'+l1+'" target="_blank" class="btn '+(p.highlight?'btn-primary':'btn-secondary')+' plan-cta" style="display:block;text-align:center;text-decoration:none;">'+cta+' ✅</a><div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;"><a href="'+l1+'" target="_blank" style="background:#111;color:#fff;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;">SumUp</a><a href="'+l2+'" target="_blank" style="background:#635BFF;color:#fff;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;">Stripe</a></div><a href="'+l3+'" target="_blank" style="background:#FFC439;color:#003087;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;display:block;margin-top:6px;font-weight:700;">PayPal</a></div>';
+    }).join("");
+  };
+
+  window.showView = function(name){
+    hideAllModals();
+    
+    // Bouton Mon entreprise visible uniquement dans generateur
+    var btn=document.getElementById('btn-entreprise');
+    if(btn){
+      var tools=['catalogue','tarifs','stock','factures','clients','dashboard','planning','banque','affiliation','anti-oubli','fiscalite','conformite','apercu'];
+      btn.style.display = tools.includes(name) ? 'none' : 'block';
+    }
+    
+    document.querySelectorAll(".view").forEach(function(v){
+      v.classList.remove("active");
+      v.style.display='none';
+    });
+    
+    var el=document.getElementById("view-"+name);
+    if(!el) el=document.getElementById(name);
+    if(!el){ console.warn('Vue manquante', name); return; }
+    el.classList.add("active");
+    el.style.display='block';
+    
+    document.body.className = document.body.className.replace(/view-\S+/g,'').trim() + ' view-'+name;
+    
+    var footer=document.getElementById('mainFooter');
+    if(footer) footer.style.display = (name==='generateur') ? 'block' : 'none';
+    
+    document.querySelectorAll(".tab-btn").forEach(function(b){
+      b.classList.toggle("active", b.dataset.view===name);
+    });
+    
+    if(name==='planning'){
+      window.scrollTo({top:0, behavior:'auto'});
+      if(typeof renderPlanning==='function') setTimeout(renderPlanning, 80);
+    } else {
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    
+    try{
+      if(name==='catalogue' && typeof renderCatalogue==='function') setTimeout(renderCatalogue, 50);
+      if(name==='stock' && window.renderStock) setTimeout(function(){ window.renderStock(); }, 50);
+      if(name==='banque' && typeof renderBank==='function') setTimeout(renderBank, 100);
+      if(name==='tarifs' && typeof renderPlans==='function') renderPlans();
+      if(name==='dashboard' && typeof renderDashboard==='function') renderDashboard();
+      if(name==='clients' && typeof renderClients==='function') renderClients();
+      if(name==='factures' && typeof renderFactures==='function') renderFactures();
+      if(name==='apercu' && typeof renderApercu==='function') renderApercu();
+    }catch(e){ console.error(e); }
+    
+    console.log('✅ View:', name, '- Mon entreprise btn:', name==='generateur' ? 'VISIBLE' : 'caché');
+  };
+
+  // Init
+  document.addEventListener('DOMContentLoaded', function(){
+    // Recrée bouton si manquant
+    if(!document.getElementById('btn-entreprise')){
+      var b=document.createElement('button');
+      b.innerHTML='⚙️ Mon entreprise';
+      b.id='btn-entreprise';
+      b.style.cssText='position:fixed;bottom:80px;left:20px;background:#0f172a;color:#fff;padding:12px 18px;border-radius:9999px;font-weight:700;z-index:9998;box-shadow:0 8px 24px rgba(0,0,0,.3);border:0;cursor:pointer';
+      b.onclick=openEntrepriseModal;
+      document.body.appendChild(b);
+    }
+    var btn=document.getElementById('btn-entreprise');
+    if(btn) btn.onclick=openEntrepriseModal;
+    
+    // SIRET listener
+    var siretInput=document.getElementById('ent_siret');
+    if(siretInput) siretInput.addEventListener('input', validateSIRETField);
+    
+    setTimeout(function(){
+      hideAllModals();
+      if(typeof renderPlanning==='function') renderPlanning();
+      window.setBilling(window.billingCycle);
+      window.renderPlans();
+      window.showView('generateur');
+      
+      // Vérification finale
+      var ent={}; try{ ent=JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}'); }catch(e){}
+      console.log('🔍 VERIF MON ENTREPRISE:', ent);
+      if(!ent.siret){
+        console.log('⚠️ Pas de SIRET, modal prête mais non auto-ouverte');
+      } else {
+        console.log('✅ SIRET existant:', ent.siret, 'Valide:', isValidSIRET(ent.siret));
+      }
+    }, 500);
+  });
+
+  console.log('✅ VERIF MON ENTREPRISE OK - Isolation totale, SIRET Luhn, Factur-X');
+})();
+</script>
+
+
+<style>
+#entrepriseModal{ display:none !important; position:fixed !important; inset:0 !important; background:rgba(0,0,0,.6) !important; z-index:99999 !important; align-items:center !important; justify-content:center !important; }
+#entrepriseModal.show{ display:flex !important; }
+#catalogueModal{ display:none !important; z-index:99998 !important; }
+#catalogueModal.show{ display:flex !important; }
+</style>
+<script>
+// === FIX DEFINITIF FERMETURE - SUR TON FICHIER EXACT ===
+(function(){
+  console.log('🔧 Patch fermeture sur VERIF-MON-ENTREPRISE-FINAL');
+
+  window.closeEntrepriseModal = function(){
+    console.log('❌ Fermeture Mon entreprise');
+    var m=document.getElementById('entrepriseModal');
+    if(m){
+      m.classList.remove('show');
+      m.style.setProperty('display','none','important');
+      // Fallback
+      setTimeout(function(){
+        m.style.display='none';
+        m.classList.remove('show');
+      }, 20);
+    }
+  };
+
+  window.openEntrepriseModal = function(){
+    var ent={}; try{ ent=JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}'); }catch(e){}
+    var el;
+    el=document.getElementById('ent_nom'); if(el) el.value=ent.nom||'Devis Flash';
+    el=document.getElementById('ent_siret'); if(el) el.value=ent.siret||'10484045900010';
+    el=document.getElementById('ent_tva'); if(el) el.value=ent.tva||'';
+    el=document.getElementById('ent_adresse'); if(el) el.value=ent.adresse||'';
+    el=document.getElementById('ent_cp'); if(el) el.value=ent.cp||'120';
+    el=document.getElementById('ent_ville'); if(el) el.value=ent.ville||'Villepinte';
+    el=document.getElementById('ent_email'); if(el) el.value=ent.email||'Devis Flash';
+    var modal=document.getElementById('entrepriseModal');
+    if(modal){
+      modal.classList.add('show');
+      modal.style.setProperty('display','flex','important');
+    }
+    if(typeof validateSIRETField==='function') validateSIRETField();
+  };
+
+  window.closeCatalogueModal = function(){
+    var m=document.getElementById('catalogueModal');
+    if(m){ m.classList.remove('show'); m.style.setProperty('display','none','important'); }
+  };
+  window.openCatalogueModal = function(){
+    var m=document.getElementById('catalogueModal');
+    if(m){ m.classList.add('show'); m.style.setProperty('display','flex','important'); }
+  };
+
+  // Fermeture clic fond + ESC
+  document.addEventListener('click', function(e){
+    var modal=document.getElementById('entrepriseModal');
+    if(modal && e.target===modal) closeEntrepriseModal();
+    var cat=document.getElementById('catalogueModal');
+    if(cat && e.target===cat) closeCatalogueModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){
+      closeEntrepriseModal();
+      closeCatalogueModal();
+    }
+  });
+
+  // Fix bouton Fermer qui avait ancien onclick - force nouveau
+  document.addEventListener('DOMContentLoaded', function(){
+    var btns=document.querySelectorAll('#entrepriseModal button');
+    btns.forEach(function(b){
+      if(b.textContent.includes('Fermer')){
+        b.onclick = closeEntrepriseModal;
+      }
+      if(b.textContent.includes('Enregistrer')){
+        b.onclick = function(){ 
+          if(typeof saveEntreprise==='function') saveEntreprise();
+        };
+      }
+    });
+    var btnEnt=document.getElementById('btn-entreprise');
+    if(btnEnt) btnEnt.onclick = openEntrepriseModal;
+    
+    // Cache modals au démarrage
+    var m=document.getElementById('entrepriseModal'); if(m){ m.classList.remove('show'); m.style.display='none'; }
+    var c=document.getElementById('catalogueModal'); if(c){ c.classList.remove('show'); c.style.display='none'; }
+  });
+
+  console.log('✅ Fermeture OK - Bouton Fermer + clic fond + ESC');
 })();
 </script>
 
