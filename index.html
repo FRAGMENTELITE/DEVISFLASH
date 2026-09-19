@@ -81,11 +81,11 @@
  "@type": "FAQPage",
  "mainEntity": [
  {"@type":"Question","name":"Quelle est la différence entre abonnement et paiement d'acompte ?","acceptedAnswer":{"@type":"Answer","text":"L'abonnement (Starter 9,90€/mois ou 99€/an, Expert 39€/mois ou 390€/an) sert à payer votre accès à Devis Flash via SumUp, Stripe ou PayPal. Le paiement d'acompte est différent : c'est l'argent que VOS clients vous paient (30% par défaut) via le QR code sur votre devis. Devis Flash ne prend aucune commission sur les acomptes."}},
- {"@type":"Question","name":"Devis Flash est-il vraiment gratuit ? Combien de devis par mois ?","acceptedAnswer":{"@type":"Answer","text":"Gratuit: 3 devis + 2 factures Factur-X/mois. Starter 9,90€/mois ou 99€/an: 30 devis/mois + factures illimitées. PRO 39€/mois ou 390€/an: 100 devis/mois. Essai 14 jours gratuit sans carte bancaire. Conforme réforme 2026."}},
+ {"@type":"Question","name":"Devis Flash est-il vraiment gratuit ? Combien de devis par mois ?","acceptedAnswer":{"@type":"Answer","text":"Gratuit: 3 devis + 2 factures Factur-X/mois. Starter 9,90€/mois ou 99€/an: 30 devis/mois + factures illimitées. PRO 39€/mois ou 390€/an: 100 devis/mois. Essai Gratuit sans carte bancaire. Conforme réforme 2026."}},
  {"@type":"Question","name":"Comment encaisser un acompte client ?","acceptedAnswer":{"@type":"Answer","text":"Dans l'onglet Générateur, renseignez votre lien SumUp, Stripe ou PayPal.me PRO (pas celui de votre abonnement). Devis Flash génère automatiquement un QR Code encaissement + logo personnalisé + export comptable (PRO). Votre client scanne et paie, vous recevez 100%."}},
  {"@type":"Question","name":"Que contient le plan Expert / PRO ?","acceptedAnswer":{"@type":"Answer","text":"Starter 9,90€ = 30 devis/mois + vocale 7 langues + partage + dashboard + historique. PRO 39€ = 100 devis/mois + tout Starter + QR encaissement + logo personnalisé sur PDF + export comptable CSV + affiliation 30% via Devis Flash."}},
  {"@type":"Question","name":"Mes devis et mes données sont-ils sauvegardés ?","acceptedAnswer":{"@type":"Answer","text":"Vos devis, clients et paramètres sont enregistrés directement dans votre navigateur. Export JSON disponible."}},
- {"@type":"Question","name":"Puis-je annuler mon essai gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui, essai 14 jours sans carte bancaire, sans engagement."}}
+ {"@type":"Question","name":"Puis-je annuler mon essai gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui, essai sans carte bancaire, sans engagement."}}
  ]
 }
 </script>
@@ -152,11 +152,11 @@
  body{padding-bottom:0;}
  }
 
- /* ---------- Trial banner ---------- */
- .trial-banner{
+ /* ---------- Gratuit banner ---------- */
+ .free-banner{
  max-width:1180px; margin:14px auto 0 auto; padding:0 24px;
  }
- .trial-banner-inner{
+ .free-banner-inner{
  background:linear-gradient(135deg,var(--amber-soft),#FFF7ED);
  border:1px solid #FDE3B8;
  border-radius:12px;
@@ -165,8 +165,8 @@
  gap:12px; flex-wrap:wrap;
  font-size:13.5px;
  }
- .trial-banner-inner strong{color:#92400E;}
- .trial-banner .days-left{
+ .free-banner-inner strong{color:#92400E;}
+ .free-banner .days-left{
  font-family:'IBM Plex Mono', monospace;
  background:#fff; border:1px solid #FDE3B8; border-radius:20px;
  padding:3px 12px; font-weight:600; color:#92400E; font-size:12.5px;
@@ -317,7 +317,7 @@
  font-size:10px; font-weight:700; padding:2px 8px; border-radius:20px;
  }
  .annual-note{font-size:12.5px; color:#166534; font-weight:600; background:#F0FDF4; border:1px solid #BBF7D0; padding:6px 14px; border-radius:20px;}
- .trial-callout{
+ .free-callout{
  max-width:640px; margin:0 auto 28px auto;
  background:var(--amber-soft); border:1px solid #FDE3B8; border-radius:12px;
  padding:12px 18px; text-align:center; font-size:13.5px; color:#92400E;
@@ -334,7 +334,7 @@
  background:var(--brand); color:#fff; font-size:11px; font-weight:700;
  padding:3px 12px; border-radius:20px;
  }
- .plan-card .trial-tag{
+ .plan-card .free-tag{
  display:inline-block; margin-top:8px; background:var(--amber-soft); color:#92400E;
  font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; border:1px solid #FDE3B8;
  }
@@ -967,8 +967,8 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
 
 <!-- Renouvellement après essai -->
 
-<div id="renewalBanner" style="display:none; background:#FEF3C7; border:2px solid #F59E0B; border-radius:12px; padding:20px; text-align:center; margin:16px auto; max-width:760px;">
- <div style="font-size:18px; font-weight:800; color:#92400E; margin-bottom:6px;">⏰ Votre essai gratuit de 14 jours a expiré</div>
+<div id="renewalBanner" style="display:none" style="display:none; background:#FEF3C7; border:2px solid #F59E0B; border-radius:12px; padding:20px; text-align:center; margin:16px auto; max-width:760px;">
+ <div style="font-size:18px; font-weight:800; color:#92400E; margin-bottom:6px;">⏰ Votre période gratuite</div>
  <div style="font-size:14px; color:#78350F; margin-bottom:12px;">Plan <strong id="renewalPlanName">Starter</strong> — Renouvelez pour continuer</div>
  <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
  <button onclick="activateAndPay('starter','monthly')" style="background:#2563EB; color:white; border:none; padding:12px 18px; border-radius:8px; cursor:pointer; font-weight:700;">Renouveler Starter 9,90€</button>
@@ -1547,8 +1547,8 @@ window.applyPlanRestrictions = function(){
  
  
  
- <div class="trial-callout">
-  🎁 <strong>14 jours d'essai gratuit</strong> — sans carte bancaire. Activation instantanée après paiement.
+ <div class="free-callout">
+  ✅ <strong>Gratuit - 3 devis/mois</strong> — sans carte bancaire. Activation instantanée.
  </div>
 
  <div class="plans" id="plansGrid"></div>
@@ -1592,7 +1592,7 @@ window.applyPlanRestrictions = function(){
 
   <div class="faq-card" data-cat="abonnement" style="border:1px solid #E2E8F0; border-radius:12px; padding:16px; margin-bottom:12px; cursor:pointer;" onclick="this.classList.toggle('open')">
   <div class="app-h3" style="margin:0; display:flex; justify-content:space-between;">💳 Devis Flash est-il gratuit ? <span>▼</span></div>
-  <div class="faq-answer" style="display:none; margin-top:12px; color:#334155;">Oui, 3 devis + 2 factures Factur-X gratuites par mois. Starter et PRO en essai 14 jours sans CB.</div>
+  <div class="faq-answer" style="display:none; margin-top:12px; color:#334155;">Oui, 3 devis + 2 factures Factur-X gratuites par mois. Starter et PRO en gratuit sans CB.</div>
   </div>
 
   <div class="faq-card" data-cat="acompte" style="border:1px solid #A7F3D0; background:#ECFDF5; border-radius:12px; padding:16px; margin-bottom:12px; cursor:pointer;" onclick="this.classList.toggle('open')">
@@ -1687,7 +1687,7 @@ window.applyPlanRestrictions = function(){
  <div class="app-h2" class="sora" style="margin-top:32px">CGV - Conditions Générales de Vente</div>
  <div class="card" style="font-size:13px;line-height:1.7;color:#334155">
   <p><strong>Article 1 - Tarifs 2026:</strong> Gratuit 3 devis + 2 factures/mois. Starter 9,90€/mois ou 99€/an = 30 devis/mois. PRO 39€/mois ou 390€/an = 100 devis/mois. 2 mois offerts en annuel. Paiement via SumUp, Stripe, PayPal. Sans engagement, résiliation à tout moment depuis <span style="color:#2563EB;font-weight:700">Devis Flash</span>.</p>
-  <p><strong>Article 2 - Essai:</strong> 14 jours gratuit sans carte bancaire. Au-delà, passage en gratuit limité.</p>
+  <p><strong>Article 2 - Essai:</strong> Gratuit sans carte bancaire. Au-delà, passage en gratuit limité.</p>
   <p><strong>Article 3 - Acomptes clients:</strong> Le QR code CB/PayPal sur vos devis encaisse VOS clients. Devis Flash ne prend aucune commission (hors frais SumUp/Stripe/PayPal 1,5-1,9%). L'abonnement Devis Flash est distinct de l'acompte client.</p>
   <p><strong>Article 4 - Remboursement:</strong> Droit de rétractation 14 jours pour les particuliers (art. L221-18). Remboursement intégral sur demande à <span style="color:#2563EB;font-weight:700">Devis Flash</span> si aucun devis PRO n'a été généré. Au-delà, pas de remboursement au prorata.</p>
   <p><strong>Article 5 - Limitation:</strong> 100% frontend, Devis Flash ne peut être tenu responsable de perte de données navigateur, d'erreur de chiffrage ou de non-paiement d'un client final.</p>
@@ -1795,12 +1795,12 @@ const SECTEUR_TOTAUX = {
 };
 
 const PLANS = [
- {id:"gratuit", name:"GRATUIT", price:"0€", per:"/mois", priceMonthly:"0€", priceAnnual:"0€", perMonthly:"", perAnnual:"", trial:false, highlight:false,
+ {id:"gratuit", name:"GRATUIT", price:"0€", per:"/mois", priceMonthly:"0€", priceAnnual:"0€", perMonthly:"", perAnnual:"", free:false, highlight:false,
  feats:["3 devis + 2 factures / mois","Conforme Factur-X 2026","Numérotation légale","Archivage 10 ans","QR paiement inclus","Sans CB"], cta:"COMMENCER GRATUIT"},
  {id:"facturation", name:"FACTURATION ÉLECTRONIQUE", 
  priceMonthly:"4,90€", perMonthly:"/mois", annualTotal:49, monthlyTotal:58.8, saving:"OFFRE LANCEMENT - Jusqu au 31/12/26 puis 7.90€",
  priceAnnual:"49€", perAnnual:"/an", equivalent:"soit 4,08€/mois",
- trial:false, highlight:false, 
+ free:false, highlight:false, 
  payLink:"https://pay.sumup.com/b2c/Q2ANG5JE",
  payLinkAnnual:"https://pay.sumup.com/b2c/QTDUJ3X0",
  payLinkPaypal:"https://paypal.me/jmk930/4.90EUR",
@@ -1811,7 +1811,7 @@ const PLANS = [
  {id:"starter", name:"STARTER", 
  priceMonthly:"9,90€", perMonthly:"/mois", annualTotal:99, monthlyTotal:118.80, saving:"Le plus choisi - Économisez 19,80€",
  priceAnnual:"99€", perAnnual:"/an", equivalent:"soit 8,25€/mois",
- trial:false, highlight:true, 
+ free:false, highlight:true, 
  payLink:"https://pay.sumup.com/b2c/QHGUGGU1", 
  payLinkAnnual:"https://pay.sumup.com/b2c/QHGUGGU1",
  payLinkPaypal:"https://paypal.me/jmk930/9.90EUR",
@@ -1822,7 +1822,7 @@ const PLANS = [
  {id:"pro", name:"PRO", 
  priceMonthly:"39,00€", perMonthly:"/mois", annualTotal:390, monthlyTotal:468, saving:"Économisez 78€ • 2 mois offerts",
  priceAnnual:"390€", perAnnual:"/an", equivalent:"soit 32,50€/mois",
- trial:false, highlight:false, 
+ free:false, highlight:false, 
  payLink:"https://pay.sumup.com/b2c/QK9G7UQ8", 
  payLinkAnnual:"https://pay.sumup.com/b2c/QK9G7UQ8",
  payLinkPaypal:"https://paypal.me/jmk930/39EUR",
@@ -1833,7 +1833,7 @@ const PLANS = [
 ];
 
 const STORAGE_KEY = "devisFlash_v2";
-const TRIAL_KEY = "devisFlash_trial_v2";
+const TRIAL_KEY = "devisFlash_free_v2";
 
 function loadState(){
  try{
@@ -1890,19 +1890,19 @@ function saveState(){
  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
  catch(e){ toast("Erreur d'enregistrement local"); }
 }
-function loadTrial(){
+function loadGratuit(){
  try{
  const raw = localStorage.getItem(TRIAL_KEY);
  if(raw) return JSON.parse(raw);
  }catch(e){}
  return null;
 }
-function saveTrial(t){
+function saveGratuit(t){
  try{ localStorage.setItem(TRIAL_KEY, JSON.stringify(t)); }catch(e){}
 }
 
 let state = loadState();
-let trial = loadTrial();
+let free = loadGratuit();
 
 function uid(){ return Math.random().toString(36).slice(2,9); }
 
@@ -2735,20 +2735,15 @@ window.renderDashboardList = function(){
 
 /* ---------------- Tarifs / Essai 14 jours ---------------- */
 
-function daysLeft(t){
- const start = new Date(t.start+"T00:00:00");
- const now = new Date();
- const diff = Math.floor((now-start)/(1000*60*60*24));
- return Math.max(0, 14-diff);
-}
-function renderTrialBanner(){ try{ const b=document.getElementById("trialBanner"); if(b) b.classList.add("hidden"); const r=document.getElementById("renewalBanner"); if(r) r.style.display="none"; }catch(e){} }
+function daysLeft(t){ return 0; }
+function renderGratuitBanner(){ try{ const b=document.getElementById("freeBanner"); if(b) b.classList.add("hidden"); const r=document.getElementById("renewalBanner"); if(r) r.style.display="none"; }catch(e){} }
 
-function startTrial(planId){
+function startGratuit(planId){
  const plan = PLANS.find(p=>p.id===planId);
- if(!plan.trial){ toast("Plan gratuit activé"); return; }
- trial = {plan:planId, start:new Date().toISOString().slice(0,10), billing:billingCycle};
- saveTrial(trial);
- renderTrialBanner();
+ if(!plan.free){ toast("Plan gratuit activé"); return; }
+ free = {plan:planId, start:new Date().toISOString().slice(0,10), billing:billingCycle};
+ saveGratuit(free);
+ renderGratuitBanner();
  toast(`Essai gratuit - Devis en moins de 2 min de 14 jours démarré — ${plan.name} ${billingCycle==='annual'?'Annuel':''}`);
 }
 
@@ -2784,7 +2779,7 @@ function renderPlans(){
   ${saving?`<div class="save-tag">${saving}</div>`:''}
   
   <ul>${p.feats.map(f=>`<li>${escapeHtml(f)}</li>`).join("")}</ul>
-  ${p.id==='gratuit' ? `<button class="btn btn-secondary plan-cta" onclick="startTrial('${p.id}')">${escapeHtml(cta)}</button>` : `<a href="${mainLink}" target="_blank" rel="noopener" class="btn ${p.highlight?'btn-primary':'btn-secondary'} plan-cta" style="display:block;text-align:center;text-decoration:none;">${escapeHtml(cta)} ✅</a>`}
+  ${p.id==='gratuit' ? `<button class="btn btn-secondary plan-cta" onclick="startGratuit('${p.id}')">${escapeHtml(cta)}</button>` : `<a href="${mainLink}" target="_blank" rel="noopener" class="btn ${p.highlight?'btn-primary':'btn-secondary'} plan-cta" style="display:block;text-align:center;text-decoration:none;">${escapeHtml(cta)} ✅</a>`}
   ${p.id!=='gratuit'?`<div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;"><a href="${linkSumup}" target="_blank" style="background:#111;color:#fff;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;">SumUp</a><a href="${linkStripe}" target="_blank" style="background:#635BFF;color:#fff;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;">Stripe</a></div><a href="${linkPaypal}" target="_blank" style="background:#FFC439;color:#003087;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;display:block;margin-top:6px;font-weight:700;">PayPal</a>`:''}
  </div>`}).join("");
 }
@@ -2851,7 +2846,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
  fillClientFields();
  renderLines();
  fillPaySettings();
- renderTrialBanner();
+ renderGratuitBanner();
  const savedBilling = localStorage.getItem('df_billing_cycle');
  if(savedBilling){ billingCycle = savedBilling; 
  setTimeout(()=>{ 
@@ -2919,13 +2914,13 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
 <script>
 const CHAT_KB = [
- {k:["prix","tarif","combien","abonnement","starter","pro","39","9.90","annuel","mensuel"], a:"💳 **Nos tarifs alignés SumUp = Stripe :**<br><br>• **Gratuit 0€** : 3 devis + 2 factures/mois<br>• **Starter 9,90€/mois** ou **99€/an** (8,25€/mois, -20€)<br> → SumUp: QHGUGGU1<br> → Stripe: <a href='https://buy.stripe.com/00w8wPc86bFe01A2oee3e01' target='_blank'>Mensuel 9,90€</a> / <a href='https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03' target='_blank'>Annuel 99€</a><br><br>• **Expert 39€/mois** ou **390€/an** (32,50€/mois, -78€)<br> → SumUp: QK9G7UQ8<br> → Stripe: <a href='https://buy.stripe.com/7sY9AT4FE9x629I3sie3e00' target='_blank'>Mensuel 39€</a> / <a href='https://buy.stripe.com/28EeVd0po10A6pY3sie3e02' target='_blank'>Annuel 390€</a><br><br>🎁 14 jours d'essai gratuit + 2 mois offerts en annuel !", q:["Annuel ?","Voir Starter","Voir Expert"]},
+ {k:["prix","tarif","combien","abonnement","starter","pro","39","9.90","annuel","mensuel"], a:"💳 **Nos tarifs alignés SumUp = Stripe :**<br><br>• **Gratuit 0€** : 3 devis + 2 factures/mois<br>• **Starter 9,90€/mois** ou **99€/an** (8,25€/mois, -20€)<br> → SumUp: QHGUGGU1<br> → Stripe: <a href='https://buy.stripe.com/00w8wPc86bFe01A2oee3e01' target='_blank'>Mensuel 9,90€</a> / <a href='https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03' target='_blank'>Annuel 99€</a><br><br>• **Expert 39€/mois** ou **390€/an** (32,50€/mois, -78€)<br> → SumUp: QK9G7UQ8<br> → Stripe: <a href='https://buy.stripe.com/7sY9AT4FE9x629I3sie3e00' target='_blank'>Mensuel 39€</a> / <a href='https://buy.stripe.com/28EeVd0po10A6pY3sie3e02' target='_blank'>Annuel 390€</a><br><br>🎁 Gratuit + 2 mois offerts en annuel !", q:["Annuel ?","Voir Starter","Voir Expert"]},
  {k:["annuel","annuel","12 mois","1 an","390","99","economie","2 mois"], a:"📅 **Paiement annuel - 20% :**<br><br>• **Starter Annuel : 99€/an** au lieu de 118,80€<br> → Soit 8,25€/mois<br> → Économie 19,80€<br> → <a href='https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03' target='_blank'>Payer Starter Annuel 99€</a><br><br>• **PRO Annuel : 390€/an** au lieu de 468€<br> → Soit 32,50€/mois<br> → Économie 78€ + 2 mois offerts !<br> → <a href='https://buy.stripe.com/28EeVd0po10A6pY3sie3e02' target='_blank'>Payer PRO Annuel 390€</a><br><br>Bouton annuel ajouté en haut des tarifs : clique sur **Annuel -20%** !<br><br>💡 PayPal annuel :<br>• <br>• 0", q:["Activer annuel","Mensuel ?","Voir tarifs"]},
  {k:["sumup","qhguggu1","qiswwjy3","qk9g7uq8","lien","paiement","cb"], a:"💳 **Tes 3 liens SumUp :**<br><br>• **QHGUGGU1** = Starter 9,90€<br>• **QISWWJY3** = Ancien (19€) - non utilisé<br>• **QK9G7UQ8** = Expert 39€<br><br>Et Stripe est aligné :<br>• 00w8wPc86 = Starter 9,90€<br>• 7sY9AT4F = Expert 39€<br><br>Tout est déjà corrigé dans ton site !", q:["Vérifier tarifs","Stripe ?"]},
  {k:["stripe","00w8","7sy9"], a:"🔵 **Stripe - c'est corrigé !**<br><br>• **Starter 9,90€** = <code>00w8wPc86bFe01A2oee3e01</code> → 9,90€/mois<br>• **Expert 39€** = <code>7sY9AT4FE9x629I3sie3e00</code> → 39€/mois<br><br>Avant c'était inversé, maintenant c'est bon. Teste : clique sur les 2 liens, ils affichent le bon montant !", q:["Tester Expert 39€","Tester Starter 9,90€"]},
  {k:["devis","creer","generer","comment","marche","utiliser"], a:"🧾 **Comment créer un devis en moins de 2 min :**<br><br>1️⃣ Choisis ton secteur (peinture, plomberie, élec...)<br>2️⃣ La description se pré-remplit<br>3️⃣ Ajoute tes lignes : coût d'achat + prix de vente → marge calculée auto<br>4️⃣ Exporte en PDF + génère QR code pour encaisser l'acompte (CB ou PayPal)<br><br>Tu veux que je t'aide sur une étape ?", q:["Choisir secteur","Calcul marge","Exporter PDF"]},
  {k:["marge","calcul","cout","achat","vente"], a:"📊 **Calcul de marge auto :**<br><br>Tu rentres :<br>• Coût d'achat (ce que ça te coûte)<br>• Prix de vente (ce que tu factures)<br><br>Devis Flash calcule :<br>• Marge en € = Vente - Achat<br>• Marge en % = (Marge / Vente) × 100<br>• Acompte 30% auto<br><br>Tout est en temps réel !", q:["Exemple marge","Acompte ?"]},
- {k:["essai","gratuit","14 jours","trial","sans cb"], a:"🎁 **Essai gratuit - Devis en moins de 2 min 14 jours :**<br><br>• Sans carte bancaire<br>• Sans engagement<br>• Accès complet Starter ou Expert<br>• Tu peux annuler quand tu veux<br><br>Clique sur **Démarrer l'essai gratuit** sur le plan de ton choix !", q:["Démarrer essai","Voir tarifs"]},
+ {k:["essai","gratuit","14 jours","free","sans cb"], a:"🎁 **Essai gratuit - Devis en moins de 2 min 14 jours :**<br><br>• Sans carte bancaire<br>• Sans engagement<br>• Accès complet Starter ou Expert<br>• Tu peux annuler quand tu veux<br><br>Clique sur **Démarrer l'essai gratuit** sur le plan de ton choix !", q:["Démarrer essai","Voir tarifs"]},
  {k:["paypal",""], a:"🅿️ **PayPal :**<br><br>• Starter : <br>• Expert : <br><br>Ton PayPal.me est déjà configuré dans tout le site !", q:["SumUp ?","Stripe ?"]},
  {k:["aide","support","contact","bug","probleme"], a:"🆘 **Besoin d'aide ?**<br><br>• Pour les tarifs / paiement : vérifie SumUp = Stripe (maintenant aligné ✅)<br>• Pour créer un devis : va dans Générateur<br>• Pour un bug : dis-moi ce qui ne marche pas, je corrige direct<br><br>Tu es fondateur, tout est configuré sur !", q:["Signaler bug","Voir tarifs"]},
 ];
@@ -3014,10 +3009,10 @@ setTimeout(()=>{
 function activatePlanAuto(planId, billing){
  const plan = PLANS.find(p=>p.id===planId);
  if(!plan) return;
- trial = {plan:planId, start:new Date().toISOString().slice(0,10), billing:billing||'monthly', paid:true, active:true};
- saveTrial(trial);
+ free = {plan:planId, start:new Date().toISOString().slice(0,10), billing:billing||'monthly', paid:true, active:true};
+ saveGratuit(free);
  localStorage.setItem('devisFlash_sub_active', JSON.stringify({plan:planId, billing:billing, date:new Date().toISOString()}));
- renderTrialBanner();
+ renderGratuitBanner();
  toast(`✅ Plan ${plan.name} activé instantanément !`);
 }
 
@@ -3130,7 +3125,7 @@ document.addEventListener('click', function(e){
  </div>
  <div class="faq-item">
   <div class="app-h3">Devis Flash est-il vraiment gratuit ?</div>
-  <p>Oui, le plan Gratuit permet de créer 3 devis + 2 factures Factur-X par mois. Les plans Starter et Expert sont disponibles avec 14 jours d'essai gratuit sans carte bancaire.</p>
+  <p>Oui, le plan Gratuit permet de créer 3 devis + 2 factures Factur-X par mois. Les plans Starter et Expert sont disponibles avec Gratuit sans carte bancaire.</p>
  </div>
  <div class="faq-item">
   <div class="app-h3">Comment encaisser un acompte client ?</div>
@@ -3146,7 +3141,7 @@ document.addEventListener('click', function(e){
  </div>
  <div class="faq-item">
   <div class="app-h3">Puis-je annuler mon essai gratuit ?</div>
-  <p>Oui, 14 jours sans CB, sans engagement, annulable à tout moment.</p>
+  <p>Oui, gratuit sans CB, sans engagement.</p>
  </div>
  
 <div style="text-align:center; margin-top:24px;">
@@ -3254,7 +3249,7 @@ function initVoice(){
 }
 function toggleVoice(id){
  if(!isPaidPlan()){
- alert(currentLang==='en'?'Voice 7 languages available on Starter (9.90€/mo) & PRO (39€/mo). 14-day free trial. Contact: Devis Flash':'Vocale 7 langues dispo en Starter 9,90€/mo & PRO 39€/mo. Essai 14j. Contact affiliation: Devis Flash');
+ alert(currentLang==='en'?'Voice 7 languages available on Starter (9.90€/mo) & PRO (39€/mo). 14-day free free. Contact: Devis Flash':'Vocale 7 langues dispo en Starter 9,90€/mo & PRO 39€/mo. Essai 14j. Contact affiliation: Devis Flash');
  if(typeof showView==='function') showView('tarifs');
  return;
  }
@@ -3689,11 +3684,15 @@ window.transformerEnFactureElectronique = transformerEnFactureElectronique;
 </div>
 <label style="font-size:12px;font-weight:600;margin-top:12px;display:block">Email facturation</label>
 <input id="ent_email" placeholder="Devis Flash" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 12px">
-<label style="font-size:12px;font-weight:600">EmailJS Public Key (envoi PDF garanti)</label>
-<input id="ent_emailjs_key" placeholder="user_xxx" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 6px">
-<div style="display:flex;gap:8px;margin:4px 0 12px">
-<input id="ent_emailjs_service" placeholder="service_id (ex: service_abc)" style="flex:1;padding:8px;border:1px solid #e2e8f0;border-radius:8px;font-size:11px">
-<input id="ent_emailjs_template" placeholder="template_id" style="flex:1;padding:8px;border:1px solid #e2e8f0;border-radius:8px;font-size:11px">
+<!-- EmailJS config masqué - auto-configuré -->
+<div style="display:none">
+<input id="ent_emailjs_key" value="ekM4QRagcFRNTF097">
+<input id="ent_emailjs_service" value="DEVIS">
+<input id="ent_emailjs_template" value="template_6s5kpid">
+</div>
+<div style="margin:12px 0;padding:10px;background:#ECFDF5;border:1px solid #A7F3D0;border-radius:10px;font-size:11px;color:#065F46">
+✅ <b>Envoi PDF automatique activé</b> - Factur-X + Email garanti<br>
+<span style="font-size:10px;color:#047857">Configuration automatique - Aucune action requise</span>
 </div>
 <div style="display:flex;gap:8px;margin-top:16px">
 <button onclick="saveEntreprise()" style="flex:1;background:#2563eb;color:#fff;padding:12px;border-radius:10px;font-weight:700;border:0">💾 Enregistrer</button>
@@ -6385,7 +6384,7 @@ let supabaseClient=null;
 try{ supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);}catch(e){}
 window.supabaseClient=supabaseClient;
 async function hashEmail(s){const enc=new TextEncoder().encode(s.toLowerCase().trim());const buf=await crypto.subtle.digest('SHA-256',enc);return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
-window.checkTrialFraud=async function(email){if(!supabaseClient) return {allowed:true}; try{const fp=navigator.userAgent+screen.width; const {data}=await supabaseClient.from('trials').select('*').eq('email_hash',await hashEmail(email)).limit(1); if(data&&data.length>0) return {allowed:false, reason:'essai déjà utilisé'}; await supabaseClient.from('trials').insert({email_hash:await hashEmail(email),fingerprint:fp}); return {allowed:true};}catch(e){return {allowed:true}}};
+window.checkGratuitFraud=async function(email){if(!supabaseClient) return {allowed:true}; try{const fp=navigator.userAgent+screen.width; const {data}=await supabaseClient.from('frees').select('*').eq('email_hash',await hashEmail(email)).limit(1); if(data&&data.length>0) return {allowed:false, reason:'essai déjà utilisé'}; await supabaseClient.from('frees').insert({email_hash:await hashEmail(email),fingerprint:fp}); return {allowed:true};}catch(e){return {allowed:true}}};
 </script>
 <script src="https://js.stripe.com/v3/"></script>
 
@@ -6403,12 +6402,12 @@ window.checkTrialFraud=async function(email){if(!supabaseClient) return {allowed
 <script id="clean-fix-final">
 // --- PLANS CORRECT ---
 const PLANS = [
- {id:"gratuit", name:"GRATUIT", price:"0€", per:"/mois", priceMonthly:"0€", priceAnnual:"0€", perMonthly:"", perAnnual:"", trial:false, highlight:false,
+ {id:"gratuit", name:"GRATUIT", price:"0€", per:"/mois", priceMonthly:"0€", priceAnnual:"0€", perMonthly:"", perAnnual:"", free:false, highlight:false,
  feats:["3 devis + 2 factures / mois","Conforme Factur-X 2026","Numérotation légale","Archivage 10 ans","QR paiement inclus","Sans CB"], cta:"COMMENCER GRATUIT"},
  {id:"facturation", name:"FACTURATION ÉLECTRONIQUE", 
  priceMonthly:"4,90€", perMonthly:"/mois", annualTotal:49, monthlyTotal:58.8, saving:"OFFRE LANCEMENT - Jusqu au 31/12/26 puis 7.90€",
  priceAnnual:"49€", perAnnual:"/an", equivalent:"soit 4,08€/mois",
- trial:false, highlight:false, 
+ free:false, highlight:false, 
  payLink:"https://pay.sumup.com/b2c/Q2ANG5JE",
  payLinkAnnual:"https://pay.sumup.com/b2c/QTDUJ3X0",
  payLinkPaypal:"https://paypal.me/jmk930/4.90EUR",
@@ -6419,7 +6418,7 @@ const PLANS = [
  {id:"starter", name:"STARTER", 
  priceMonthly:"9,90€", perMonthly:"/mois", annualTotal:99, monthlyTotal:118.80, saving:"Le plus choisi - Économisez 19,80€",
  priceAnnual:"99€", perAnnual:"/an", equivalent:"soit 8,25€/mois",
- trial:false, highlight:true, 
+ free:false, highlight:true, 
  payLink:"https://pay.sumup.com/b2c/QHGUGGU1", 
  payLinkAnnual:"https://pay.sumup.com/b2c/QHGUGGU1",
  payLinkPaypal:"https://paypal.me/jmk930/9.90EUR",
@@ -6430,7 +6429,7 @@ const PLANS = [
  {id:"pro", name:"PRO", 
  priceMonthly:"39,00€", perMonthly:"/mois", annualTotal:390, monthlyTotal:468, saving:"Économisez 78€ • 2 mois offerts",
  priceAnnual:"390€", perAnnual:"/an", equivalent:"soit 32,50€/mois",
- trial:false, highlight:false, 
+ free:false, highlight:false, 
  payLink:"https://pay.sumup.com/b2c/QK9G7UQ8", 
  payLinkAnnual:"https://pay.sumup.com/b2c/QK9G7UQ8",
  payLinkPaypal:"https://paypal.me/jmk930/39EUR",
@@ -6475,7 +6474,7 @@ function renderPlans(){
   ${saving?`<div class="save-tag">${saving}</div>`:''}
   
   <ul>${p.feats.map(f=>`<li>${escapeHtml(f)}</li>`).join("")}</ul>
-  ${p.id==='gratuit' ? `<button class="btn btn-secondary plan-cta" onclick="startTrial('${p.id}')">${escapeHtml(cta)}</button>` : `<a href="${mainLink}" target="_blank" rel="noopener" class="btn ${p.highlight?'btn-primary':'btn-secondary'} plan-cta" style="display:block;text-align:center;text-decoration:none;">${escapeHtml(cta)} ✅</a>`}
+  ${p.id==='gratuit' ? `<button class="btn btn-secondary plan-cta" onclick="startGratuit('${p.id}')">${escapeHtml(cta)}</button>` : `<a href="${mainLink}" target="_blank" rel="noopener" class="btn ${p.highlight?'btn-primary':'btn-secondary'} plan-cta" style="display:block;text-align:center;text-decoration:none;">${escapeHtml(cta)} ✅</a>`}
   ${p.id!=='gratuit'?`<div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;"><a href="${linkSumup}" target="_blank" style="background:#111;color:#fff;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;">SumUp</a><a href="${linkStripe}" target="_blank" style="background:#635BFF;color:#fff;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;">Stripe</a></div><a href="${linkPaypal}" target="_blank" style="background:#FFC439;color:#003087;padding:8px;border-radius:8px;text-align:center;text-decoration:none;font-size:12px;display:block;margin-top:6px;font-weight:700;">PayPal</a>`:''}
  </div>`}).join("");
 }
@@ -6821,6 +6820,79 @@ window.onFieldChange = function(){ if(typeof _origOnFieldChange==='function') _o
     window.renderStock();
     if(window.renderStockReappro) window.renderStockReappro();
   }, 500);
+})();
+</script>
+
+
+<script>
+// PATCH - Empêche modal EmailJS de s'ouvrir sur PC tarifs
+(function(){
+  // Force fermeture au chargement
+  setTimeout(()=>{
+    const modal = document.getElementById('entrepriseModal');
+    if(modal) modal.style.display='none';
+  }, 500);
+
+  // Override showView pour fermer modal quand on va dans tarifs
+  const origShowView = window.showView;
+  if(origShowView){
+    window.showView = function(name){
+      const modal = document.getElementById('entrepriseModal');
+      if(modal && name==='tarifs'){
+        modal.style.display='none';
+        console.log('Tarifs view - modal EmailJS forcée fermée');
+      }
+      return origShowView.apply(this, arguments);
+    };
+  }
+
+  // Bloque l'ouverture auto si SIRET manquant sauf clic explicite sur bouton Mon entreprise
+  let userClickedEntreprise = false;
+  document.addEventListener('click', (e)=>{
+    const target = e.target;
+    if(target && (target.id==='btn-entreprise' || target.textContent.includes('Mon entreprise') || target.closest('#btn-entreprise'))){
+      userClickedEntreprise = true;
+      setTimeout(()=>{ userClickedEntreprise = false; }, 2000);
+    }
+  }, true);
+
+  const origOpen = window.openEntrepriseModal;
+  if(origOpen){
+    window.openEntrepriseModal = function(){
+      // Si on est dans tarifs et que ce n'est pas un clic utilisateur explicite, on bloque
+      const currentView = document.querySelector('.view[style*="display: block"]') || document.querySelector('.view:not([style*="display: none"])');
+      const isTarifs = window.location.hash.includes('tarifs') || (currentView && currentView.id==='view-tarifs') || document.getElementById('view-tarifs')?.style.display!=='none';
+      
+      // Si appel auto (pas de clic utilisateur), on vérifie si entreprise existe déjà
+      const ent = JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}');
+      const hasEnt = ent && ent.siret;
+      
+      // Si entreprise existe et qu'on est dans tarifs, on bloque l'auto-open
+      if(isTarifs && hasEnt && !userClickedEntreprise){
+        console.log('Bloqué ouverture auto entrepriseModal dans tarifs');
+        const modal = document.getElementById('entrepriseModal');
+        if(modal) modal.style.display='none';
+        return;
+      }
+      return origOpen.apply(this, arguments);
+    };
+  }
+
+  // Fermeture au clic sur tarif si modal ouverte
+  document.getElementById('view-tarifs')?.addEventListener('click', (e)=>{
+    // Si clic dans tarifs mais pas sur un bouton qui doit ouvrir entreprise, ferme le modal
+    if(!e.target.closest('#entrepriseModal')){
+      const modal = document.getElementById('entrepriseModal');
+      if(modal && modal.style.display==='flex'){
+        // Vérifie si le clic était sur un plan (pas sur config)
+        if(e.target.closest('.plans') || e.target.closest('#plansGrid')){
+          modal.style.display='none';
+        }
+      }
+    }
+  });
+
+  console.log('✅ Patch anti-modal EmailJS sur tarifs PC activé');
 })();
 </script>
 
