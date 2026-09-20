@@ -6,7 +6,6 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563EB">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTWCVEX2S0"></script>
@@ -17,7 +16,7 @@
  gtag('config', 'G-DTWCVEX2S0');
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2 Factures Gratuites - Devis en 2 min | Devis Flash</title>
+<title>Devis BTP en 2 min - Logiciel Devis BTP | Facture Électronique BTP 2026 Factur-X | Devis Flash</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <meta name="description" content="Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture électronique Factur-X conforme 2026. 3 devis/mois offerts.">
 <meta name="robots" content="index, follow">
@@ -25,12 +24,12 @@
 <link rel="canonical" href="https://www.devis-flash.fr/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Devis Flash">
-<meta property="og:title" content="2 Factures Gratuites - Devis BTP en 2 min | Devis Flash">
+<meta property="og:title" content="Devis BTP en 2 min - Logiciel Devis BTP | Facture Électronique BTP 2026 Factur-X | Devis Flash">
 <meta property="og:description" content="Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture électronique Factur-X conforme 2026.">
 <meta property="og:url" content="https://www.devis-flash.fr/">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2 Factures Gratuites - Devis BTP en 2 min | Devis Flash">
+<meta name="twitter:title" content="Devis BTP en 2 min - Logiciel Devis BTP | Facture Électronique BTP 2026 Factur-X | Devis Flash">
 <meta name="twitter:description" content="Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture Factur-X 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -456,7 +455,7 @@
 <style id="email-blue">a[href^="mailto:Devis Flash"]{color:#2563EB !important;font-weight:700 !important;text-decoration:none !important;} span.email-blue{color:#2563EB !important;font-weight:700 !important;}</style>
 <style>
 .quick-devis-fab{
- position:fixed; bottom:16px; right:24px; z-index:50;
+ position:fixed; bottom:16px; right:24px; z-index:50; display:none !important;
  background:linear-gradient(135deg,#2563EB,#1D4ED8);
  color:#fff; border:none; border-radius:50px;
  padding:14px 22px; font-weight:800; font-size:14px;
@@ -491,7 +490,7 @@
 .view.active{display:block !important;}
 #view-generateur.view.active{display:block !important;}
 .tabs{pointer-events:auto !important;}
-.tab-btn{pointer-events:auto !important; cursor:pointer !important; z-index:50;}
+.tab-btn{pointer-events:auto !important; cursor:pointer !important; z-index:50; display:none !important;}
 </style>
 <style>
 /* OPTIMISATION CENTRAGE SMARTPHONE + PC */
@@ -746,6 +745,33 @@ body:has(#view-stock.active) [class*="generate-devis"]{
  });
 })();
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Devis Flash",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type":"Offer","price":"0","priceCurrency":"EUR"},
+  "description": "Logiciel devis BTP gratuit, outil BTP et application BTP offline. Devis en 2 min, marge auto, QR acompte, facture électronique Factur-X conforme 2026.",
+  "keywords": "logiciel devis BTP, outil BTP, application BTP, facture BTP, Factur-X",
+  "url": "https://www.devis-flash.fr/",
+  "author": {"@type":"Organization","name":"Devis Flash"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Devis Flash est-il un outil BTP gratuit?","acceptedAnswer":{"@type":"Answer","text":"Oui, 3 devis BTP + 2 factures Factur-X par mois offerts. Starter 9,90€/mois pour 30 devis."}},
+    {"@type":"Question","name":"Quelle différence entre outil BTP et application BTP?","acceptedAnswer":{"@type":"Answer","text":"Outil BTP = version PC complète. Application BTP = version mobile chantier offline. Devis Flash fait les deux."}},
+    {"@type":"Question","name":"Devis Flash est-il conforme facture électronique 2026?","acceptedAnswer":{"@type":"Answer","text":"Oui, export Factur-X conforme réforme 2026-2027."}}
+  ]
+}
+</script>
+
 </head>
 <body>
 <div class="offline-ind" id="offline-ind">📴 Offline prêt — devis sauvés localement</div>
@@ -837,7 +863,8 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
  <section class="view active" id="view-generateur" data-view-id="generateur">
 <div class="gen-hero" style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:32px 20px;margin:0 0 24px 0;text-align:center;box-shadow:0 8px 30px rgba(15,23,42,.06)">
  <div style="display:inline-flex;background:#EFF4FF;border:1px solid #DBEAFE;color:#1D4ED8;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:14px"></div>
- <h1 style="font-family:Sora;font-size:28px;line-height:1.15;margin:0 auto 10px;max-width:560px;color:#0F172A">Crée un devis professionnel en moins de 2 minutes</h1>
+ <!-- H1 SEO OPTIMISE -->
+<h1>Crée un devis BTP professionnel en moins de 2 minutes</h1>
  <p style="font-size:14px;color:#475569;margin:0 auto 18px;max-width:520px;line-height:1.6">Votre client signe et paie l'acompte directement.</p>
  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px">
   <button onclick="document.getElementById('clientNom')?.focus(); window.scrollTo({top: document.getElementById('clientNom').offsetTop - 100, behavior:'smooth'})" style="background:#2563EB;color:#fff;border:0;padding:12px 20px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 4px 14px rgba(15,23,42,.2)">Essayer gratuitement →</button>
@@ -2764,12 +2791,10 @@ document.addEventListener('click', function(e){
  }
 });
 </script>
-<button class="quick-devis-fab no-print" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'}); showView('generateur');">
- ⚡ Générer un devis →
-</button>
+<!-- FAB removed on PC request -->
 <section class="landing-section" aria-labelledby="features-h2">
  <div class="landing-wrap">
- <h2 id="features-h2" class="sora">Pourquoi les artisans utilisent Devis Flash</h2>
+ <h2 id="features-h2" class="sora">Pourquoi les artisans choisissent Devis Flash : outil BTP & application BTP</h2>
  <div class="features-grid">
   <div class="feature-card">
   <div class="feature-emoji">📊</div>
@@ -2796,7 +2821,7 @@ document.addEventListener('click', function(e){
 </section>
 <section class="landing-section alt" aria-labelledby="how-h2">
  <div class="landing-wrap">
- <h2 id="how-h2" class="sora">Comment ça marche</h2>
+ <h2 id="how-h2" class="sora">Comment marche notre logiciel devis BTP ? Outil BTP en 3 étapes</h2>
  <div class="steps-grid">
   <div class="step-card"><div class="step-num">1</div><div class="app-h3">Choisissez votre secteur</div><p>La description et les prestations types se pré-remplissent automatiquement.</p></div>
   <div class="step-card"><div class="step-num">2</div><div class="app-h3">Ajustez vos lignes</div><p>Coût d'achat, prix de vente : la marge et l'acompte se calculent tout seuls.</p></div>
@@ -3348,11 +3373,7 @@ window.transformerEnFactureElectronique = transformerEnFactureElectronique;
 </div>
 <label style="font-size:12px;font-weight:600;margin-top:12px;display:block">Email facturation</label>
 <input id="ent_email" placeholder="Devis Flash" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin:4px 0 12px">
-<div style="display:none">
-<input id="ent_emailjs_key" value="ekM4QRagcFRNTF097">
-<input id="ent_emailjs_service" value="DEVIS">
-<input id="ent_emailjs_template" value="template_6s5kpid">
-</div>
+<!-- SEO keywords removed - integrated naturally in content -->
 <div style="margin:12px 0;padding:10px;background:#ECFDF5;border:1px solid #A7F3D0;border-radius:10px;font-size:11px;color:#065F46">
 ✅ <b>Envoi PDF automatique activé</b> - Factur-X + Email garanti<br>
 <span style="font-size:10px;color:#047857">Configuration automatique - Aucune action requise</span>
@@ -6584,5 +6605,6 @@ body.view-banque #btn-entreprise{
   console.log('✅ Fermeture OK - Bouton Fermer + clic fond + ESC');
 })();
 </script>
+<!-- SEO keywords removed - integrated naturally in content -->
 </body>
 </html>
