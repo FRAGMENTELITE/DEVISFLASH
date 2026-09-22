@@ -779,6 +779,74 @@ body:has(#view-stock.active) [class*="generate-devis"]{
 
 </head>
 <body>
+
+<style>
+#deviseDiscret {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 9999;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+#deviseDiscret:hover { opacity: 1; }
+#deviseDiscret select {
+  border: none;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+#deviseDiscret .icon { font-size: 12px; }
+@media (max-width: 768px){
+  #deviseDiscret { top: 8px; right: 8px; padding: 2px 6px; }
+}
+</style>
+<div id="deviseDiscret" title="Changer la devise Factur-X">
+  <span class="icon">🌍</span>
+  <select id="deviseSelect">
+    <option value="EUR">EUR €</option>
+    <option value="CHF">CHF</option>
+    <option value="USD">USD $</option>
+    <option value="GBP">GBP £</option>
+    <option value="CAD">CAD C$</option>
+    <option value="XOF">XOF</option>
+  </select>
+</div>
+<script>
+(function(){
+  const cur = localStorage.getItem('devisFlash_devise')||'EUR';
+  const sel = document.getElementById('deviseSelect');
+  if(sel){
+    sel.value=cur;
+    sel.addEventListener('change', e=>{
+      localStorage.setItem('devisFlash_devise', e.target.value);
+      // petite notif discrète
+      const d=document.createElement('div');
+      d.textContent='Devise: '+e.target.value+' ✓';
+      d.style.cssText='position:fixed;bottom:20px;right:20px;background:#0F172A;color:white;padding:6px 12px;border-radius:999px;font-size:11px;z-index:99999';
+      document.body.appendChild(d);
+      setTimeout(()=>d.remove(),1500);
+    });
+  }
+  // Force light
+  try{localStorage.removeItem('darkMode');}catch(e){}
+})();
+</script>
+
 <div class="offline-ind" id="offline-ind">📴 Offline prêt — devis sauvés localement</div>
 <header class="no-print" style="position:sticky;top:0;z-index:100;background:#FFFFFF;border-bottom:1px solid #E2E8F0;box-shadow:0 1px 3px rgba(0,0,0,0.05);padding-top:env(safe-area-inset-top, 0px)">
  <div class="header-inner">
@@ -3242,7 +3310,7 @@ async function generateDevisPDFBase64(id){
   ${hasSignature ? `<ram:AdditionalReferencedDocument><ram:IssuerAssignedID>${sigId}</ram:IssuerAssignedID><ram:URIID>signature.png</ram:URIID><ram:TypeCode>916</ram:TypeCode><ram:Name>Signature électronique client - ${d.client||''}</ram:Name><ram:AttachmentBinaryObject mimeCode="image/png" filename="signature.png">${d.signature.split(',')[1]||''}</ram:AttachmentBinaryObject></ram:AdditionalReferencedDocument>` : ''}
  </ram:ApplicableHeaderTradeAgreement>
  <ram:ApplicableHeaderTradeSettlement>
-  <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+  <ram:InvoiceCurrencyCode>${deviseCode}</ram:InvoiceCurrencyCode>
   <ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:GrandTotalAmount>${Number(d.venteTotal||0).toFixed(2)}</ram:GrandTotalAmount><ram:DuePayableAmount>${Number(d.venteTotal||0).toFixed(2)}</ram:DuePayableAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation>
   <ram:SpecifiedTradeSettlementPaymentMeans><ram:TypeCode>58</ram:TypeCode><ram:Information>${d.statutChantier||d.statut||'Envoyé'}${d.acompteRecu? ' - Acompte '+ (d.acompteMontant||0) +'€ encaissé':''}</ram:Information></ram:SpecifiedTradeSettlementPaymentMeans>
   <ram:IncludedNote><ram:Content>SHA256:${hash} VERIFY:${verifyUrl} SIGN:${signataire} ${hasSignature?'CLIENT-SIGNATURE-INCLUDED':''} TRESO:${d.acompteRecu?'ACOMPTE-ENCAISSE-'+(d.acompteMontant||0):'EN-ATTENTE'} STATUT:${d.statutChantier||d.statut}</ram:Content></ram:IncludedNote>
@@ -4836,11 +4904,11 @@ window.exportFacturX = function(devisId){
    <ram:BuyerTradeParty><ram:Name>${(devis.client||'Client').replace(/&/g,'&amp;')}</ram:Name></ram:BuyerTradeParty>
   </ram:ApplicableHeaderTradeAgreement>
   <ram:ApplicableHeaderTradeSettlement>
-   <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+   <ram:InvoiceCurrencyCode>${deviseCode}</ram:InvoiceCurrencyCode>
    <ram:ApplicableTradeTax><ram:TypeCode>VAT</ram:TypeCode><ram:RateApplicablePercent>${tva}</ram:RateApplicablePercent></ram:ApplicableTradeTax>
    <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
     <ram:LineTotalAmount>${totalHT.toFixed(2)}</ram:LineTotalAmount>
-    <ram:TaxTotalAmount currencyID="EUR">${totalTVA.toFixed(2)}</ram:TaxTotalAmount>
+    <ram:TaxTotalAmount currencyID="${deviseCode}">${totalTVA.toFixed(2)}</ram:TaxTotalAmount>
     <ram:GrandTotalAmount>${totalTTC.toFixed(2)}</ram:GrandTotalAmount>
    </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
   </ram:ApplicableHeaderTradeSettlement>
@@ -5038,6 +5106,9 @@ function injectTestFacture(){
 }
 async function exportPDFFacturXSimple(devisId){
  try{
+  const DEVISE_MAP={EUR:'EUR',CHF:'CHF',USD:'USD',GBP:'GBP',CAD:'CAD',XOF:'XOF'};
+  const curDev=localStorage.getItem('devisFlash_devise')||'EUR';
+  const deviseCode=DEVISE_MAP[curDev]||'EUR';
   const d=(state.factures||[]).find(x=>x.id===devisId) || {numero:'F20260001', client:'Client Test SARL', date:new Date().toISOString().slice(0,10)};
   const { PDFDocument, PDFName, PDFString, PDFNumber, PDFArray, PDFDict, StandardFonts } = PDFLib;
   const pdfDoc = await PDFDocument.create();
@@ -5049,7 +5120,7 @@ async function exportPDFFacturXSimple(devisId){
   page.drawText('123 rue de Paris 75001 Paris', {x:50, y:735, size:10, font:helvetica});
   page.drawText('Client: '+(d.client||'Client Test SARL'), {x:50, y:700, size:11, font:helvetica});
   page.drawText('Date: '+(d.date||new Date().toISOString().slice(0,10)), {x:50, y:685, size:11, font:helvetica});
-  page.drawText('Total HT: 1000.00 EUR - TVA 20%: 200.00 - TTC: 1200.00 EUR', {x:50, y:650, size:11, font:helvetica});
+  page.drawText('Total HT: 1000.00 ${deviseCode} - TVA 20%: 200.00 - TTC: 1200.00 ${deviseCode}', {x:50, y:650, size:11, font:helvetica});
   page.drawText('IBAN: FR7630004000050000123456789 - BIC: BNPAFRPP', {x:50, y:635, size:11, font:helvetica});
   page.drawText('Factur-X EN161 - XML integre - conforme Chorus Pro 2026', {x:50, y:610, size:10, font:helvetica});
   // XML valide
@@ -5062,7 +5133,7 @@ async function exportPDFFacturXSimple(devisId){
  <ram:IncludedSupplyChainTradeLineItem><ram:AssociatedDocumentLineDocument><ram:LineID>1</ram:LineID></ram:AssociatedDocumentLineDocument><ram:SpecifiedTradeProduct><ram:Name>Prestation peinture</ram:Name></ram:SpecifiedTradeProduct><ram:SpecifiedLineTradeAgreement><ram:GrossPriceProductTradePrice><ram:ChargeAmount>1000.00</ram:ChargeAmount></ram:GrossPriceProductTradePrice><ram:NetPriceProductTradePrice><ram:ChargeAmount>1000.00</ram:ChargeAmount></ram:NetPriceProductTradePrice></ram:SpecifiedLineTradeAgreement><ram:SpecifiedLineTradeDelivery><ram:BilledQuantity unitCode="C62">1.00</ram:BilledQuantity></ram:SpecifiedLineTradeDelivery><ram:SpecifiedLineTradeSettlement><ram:ApplicableTradeTax><ram:TypeCode>VAT</ram:TypeCode><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementLineMonetarySummation><ram:LineTotalAmount>1000.00</ram:LineTotalAmount></ram:SpecifiedTradeSettlementLineMonetarySummation></ram:SpecifiedLineTradeSettlement></ram:IncludedSupplyChainTradeLineItem>
  <ram:ApplicableHeaderTradeAgreement><ram:SellerTradeParty><ram:ID>10484045900010</ram:ID><ram:GlobalID schemeID="0002">10484045900010</ram:GlobalID><ram:Name>Devis Flash SAS</ram:Name><ram:PostalTradeAddress><ram:PostcodeCode>75001</ram:PostcodeCode><ram:LineOne>123 rue de Paris</ram:LineOne><ram:CityName>Paris</ram:CityName><ram:CountryID>FR</ram:CountryID></ram:PostalTradeAddress><ram:SpecifiedTaxRegistration><ram:ID schemeID="VA">FR12345678901</ram:ID></ram:SpecifiedTaxRegistration></ram:SellerTradeParty><ram:BuyerTradeParty><ram:ID>00000000000000</ram:ID><ram:Name>${(d.client||'Client Test').substring(0,50)}</ram:Name><ram:PostalTradeAddress><ram:PostcodeCode>75002</ram:PostcodeCode><ram:LineOne>1 rue Client</ram:LineOne><ram:CityName>Paris</ram:CityName><ram:CountryID>FR</ram:CountryID></ram:PostalTradeAddress></ram:BuyerTradeParty></ram:ApplicableHeaderTradeAgreement>
  <ram:ApplicableHeaderTradeDelivery><ram:ActualDeliverySupplyChainEvent><ram:OccurrenceDateTime><udt:DateTimeString format="102">${dateStr}</udt:DateTimeString></ram:OccurrenceDateTime></ram:ActualDeliverySupplyChainEvent></ram:ApplicableHeaderTradeDelivery>
- <ram:ApplicableHeaderTradeSettlement><ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode><ram:SpecifiedTradeSettlementPaymentMeans><ram:TypeCode>58</ram:TypeCode><ram:PayeePartyAccount><ram:IBANID>FR7630004000050000123456789</ram:IBANID></ram:PayeePartyAccount></ram:SpecifiedTradeSettlementPaymentMeans><ram:ApplicableTradeTax><ram:CalculatedAmount>200.00</ram:CalculatedAmount><ram:TypeCode>VAT</ram:TypeCode><ram:BasisAmount>1000.00</ram:BasisAmount><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:LineTotalAmount>1000.00</ram:LineTotalAmount><ram:TaxBasisTotalAmount>1000.00</ram:TaxBasisTotalAmount><ram:TaxTotalAmount>200.00</ram:TaxTotalAmount><ram:GrandTotalAmount>1200.00</ram:GrandTotalAmount><ram:DuePayableAmount>1200.00</ram:DuePayableAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation></ram:ApplicableHeaderTradeSettlement>
+ <ram:ApplicableHeaderTradeSettlement><ram:InvoiceCurrencyCode>${deviseCode}</ram:InvoiceCurrencyCode><ram:SpecifiedTradeSettlementPaymentMeans><ram:TypeCode>58</ram:TypeCode><ram:PayeePartyAccount><ram:IBANID>FR7630004000050000123456789</ram:IBANID></ram:PayeePartyAccount></ram:SpecifiedTradeSettlementPaymentMeans><ram:ApplicableTradeTax><ram:CalculatedAmount>200.00</ram:CalculatedAmount><ram:TypeCode>VAT</ram:TypeCode><ram:BasisAmount>1000.00</ram:BasisAmount><ram:CategoryCode>S</ram:CategoryCode><ram:RateApplicablePercent>20.00</ram:RateApplicablePercent></ram:ApplicableTradeTax><ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:LineTotalAmount>1000.00</ram:LineTotalAmount><ram:TaxBasisTotalAmount>1000.00</ram:TaxBasisTotalAmount><ram:TaxTotalAmount>200.00</ram:TaxTotalAmount><ram:GrandTotalAmount>1200.00</ram:GrandTotalAmount><ram:DuePayableAmount>1200.00</ram:DuePayableAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation></ram:ApplicableHeaderTradeSettlement>
  </rsm:SupplyChainTradeTransaction>
 </rsm:CrossIndustryInvoice>`;
   // Attach XML
