@@ -781,69 +781,31 @@ body:has(#view-stock.active) [class*="generate-devis"]{
 <body>
 
 <style>
-#deviseDiscret {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 9999;
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(6px);
-  border: 1px solid #E2E8F0;
-  border-radius: 20px;
-  padding: 3px 8px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  opacity: 0.85;
-  transition: opacity 0.2s;
-}
-#deviseDiscret:hover { opacity: 1; }
-#deviseDiscret select {
-  border: none;
-  background: transparent;
-  font-size: 11px;
-  font-weight: 600;
-  color: #475569;
-  outline: none;
-  cursor: pointer;
-  padding: 0;
-}
-#deviseDiscret .icon { font-size: 12px; }
-@media (max-width: 768px){
-  #deviseDiscret { top: 8px; right: 8px; padding: 2px 6px; }
-}
+#deviseDiscret{position:fixed;top:12px;right:12px;z-index:99999;background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:4px 10px;display:flex;align-items:center;gap:4px;font-size:12px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+#deviseDiscret select{border:none;background:transparent;font-weight:800;outline:none;cursor:pointer}
+@media(max-width:768px){#deviseDiscret{top:auto;bottom:16px;right:12px;padding:8px 14px;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,0.15)}}
 </style>
-<div id="deviseDiscret" title="Changer la devise Factur-X">
-  <span class="icon">🌍</span>
-  <select id="deviseSelect">
-    <option value="EUR">EUR €</option>
-    <option value="CHF">CHF</option>
-    <option value="USD">USD $</option>
-    <option value="GBP">GBP £</option>
-    <option value="CAD">CAD C$</option>
-    <option value="XOF">XOF</option>
-  </select>
-</div>
+<div id="deviseDiscret">🌍 <select id="deviseSelect"><option value="EUR">EUR €</option><option value="CHF">CHF</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="CAD">CAD C$</option><option value="XOF">XOF</option></select></div>
 <script>
 (function(){
-  const cur = localStorage.getItem('devisFlash_devise')||'EUR';
-  const sel = document.getElementById('deviseSelect');
-  if(sel){
-    sel.value=cur;
-    sel.addEventListener('change', e=>{
-      localStorage.setItem('devisFlash_devise', e.target.value);
-      // petite notif discrète
-      const d=document.createElement('div');
-      d.textContent='Devise: '+e.target.value+' ✓';
-      d.style.cssText='position:fixed;bottom:20px;right:20px;background:#0F172A;color:white;padding:6px 12px;border-radius:999px;font-size:11px;z-index:99999';
-      document.body.appendChild(d);
-      setTimeout(()=>d.remove(),1500);
-    });
-  }
-  // Force light
-  try{localStorage.removeItem('darkMode');}catch(e){}
+  const sel=document.getElementById('deviseSelect');
+  if(!sel) return;
+  sel.value=localStorage.getItem('devisFlash_devise')||'EUR';
+  sel.addEventListener('change', e=>{
+    localStorage.setItem('devisFlash_devise', e.target.value);
+    // Re-render tout ce qui existe
+    if(window.renderCatalogue) renderCatalogue();
+    if(window.renderApercu) renderApercu();
+    if(window.recalc) recalc();
+    if(window.renderStock) renderStock();
+    if(window.renderFactures) renderFactures();
+    if(window.renderDashboard) renderDashboard();
+    // Toast
+    const t=document.createElement('div');
+    t.textContent='✓ '+e.target.value;
+    t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;z-index:99999';
+    document.body.appendChild(t); setTimeout(()=>t.remove(),1200);
+  });
 })();
 </script>
 
@@ -1220,7 +1182,7 @@ window.renderStock=function(){
   const marge=stock.reduce((a,p)=>a+p.qte*(p.vente-p.achat),0);
   const alertes=stock.filter(p=>p.qte<=p.seuil).length;
   const set=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
-  set('stockValeur',valeur.toFixed(0)+'€'); set('stockMarge',marge.toFixed(0)+'€'); set('stockAlertes',alertes); set('stockCount',stock.length);
+  set('stockValeur',fmtEUR(valeur.toFixed(0))); set('stockMarge',fmtEUR(marge.toFixed(0))); set('stockAlertes',alertes); set('stockCount',stock.length);
   const tbody=document.getElementById('stockTable');
   if(tbody){
     tbody.innerHTML=filtered.map(p=>{
@@ -1232,9 +1194,9 @@ window.renderStock=function(){
         <td style="padding:10px;text-align:center"><span style="background:#F1F5F9;padding:3px 8px;border-radius:999px;font-size:11px">${escHtml(p.cat)}</span></td>
         <td style="padding:10px;text-align:center"><div style="display:flex;align-items:center;justify-content:center;gap:6px"><button onclick="stockModQte('${p.id}',-1)" style="width:32px;height:32px;border-radius:8px;border:1px solid #E2E8F0;background:#F8FAFC;cursor:pointer;font-weight:800">−</button><b style="min-width:28px;text-align:center;color:${isAl?'#DC2626':'#0F172A'}">${p.qte}</b><button onclick="stockModQte('${p.id}',1)" style="width:32px;height:32px;border-radius:8px;border:1px solid #BBF7D0;background:#DCFCE7;color:#15803D;cursor:pointer;font-weight:800">+</button></div></td>
         <td style="padding:10px;text-align:center">${p.seuil}</td>
-        <td style="padding:10px;text-align:center">${p.achat}€</td>
-        <td style="padding:10px;text-align:center"><b>${p.vente}€</b></td>
-        <td style="padding:10px;text-align:center"><span style="background:${pct>50?'#DCFCE7':'#FEF3C7'};padding:3px 6px;border-radius:6px;font-size:11px;font-weight:700">+${margeU}€</span></td>
+        <td style="padding:10px;text-align:center">${fmtEUR(p.achat)}</td>
+        <td style="padding:10px;text-align:center"><b>${fmtEUR(p.vente)}</b></td>
+        <td style="padding:10px;text-align:center"><span style="background:${pct>50?'#DCFCE7':'#FEF3C7'};padding:3px 6px;border-radius:6px;font-size:11px;font-weight:700">+${fmtEUR(margeU)}</span></td>
         <td style="padding:10px;text-align:center">${isAl?'<span style="background:#FECACA;color:#DC2626;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800">🔴 Alerte</span>':'<span style="background:#DCFCE7;color:#15803D;padding:3px 8px;border-radius:999px;font-size:11px">🟢 OK</span>'}</td>
         <td style="padding:10px;text-align:center"><button onclick="stockDel('${p.id}')" style="border:1px solid #E2E8F0;background:#fff;width:28px;height:28px;border-radius:8px;cursor:pointer">✕</button></td>
       </tr>`;
@@ -1247,7 +1209,7 @@ window.renderStock=function(){
       return `<div class="stock-card ${isAl?'alert':''}">
         <div style="display:flex;justify-content:space-between;gap:8px"><div><b style="font-size:14px">${escHtml(p.nom)}</b><br><span style="font-size:11px;color:#64748B">${escHtml(p.fournisseur)} • ${escHtml(p.cat)}</span></div><div style="display:flex;gap:6px;align-items:center"><span style="font-size:11px;padding:3px 8px;border-radius:999px;background:${isAl?'#FECACA;color:#991B1B':'#DCFCE7;color:#166534'}">${isAl?'Alerte':'OK'}</span><button onclick="stockDel('${p.id}')" style="width:28px;height:28px;border-radius:8px;border:1px solid #E2E8F0;background:#fff">✕</button></div></div>
         <div class="stepper-b"><button class="minus" onclick="stockModQte('${p.id}',-1)">−</button><div class="qty-pill"><b>${p.qte}</b><small>${escHtml(p.unite)}</small></div><button class="plus" onclick="stockModQte('${p.id}',1)">+</button></div>
-        <div style="display:flex;gap:6px;font-size:11px"><span style="background:#F8FAFC;border:1px solid #E2E8F0;padding:3px 8px;border-radius:999px">Achat ${p.achat}€</span><span style="background:#F0FDF4;border:1px solid #BBF7D0;padding:3px 8px;border-radius:999px;color:#15803D">Vente ${p.vente}€</span><span style="background:#ECFDF5;padding:3px 8px;border-radius:999px;font-weight:700;color:#065F46">+${(p.vente-p.achat).toFixed(1)}€</span><span style="color:#64748B">Seuil ${p.seuil}</span></div>
+        <div style="display:flex;gap:6px;font-size:11px"><span style="background:#F8FAFC;border:1px solid #E2E8F0;padding:3px 8px;border-radius:999px">Achat ${fmtEUR(p.achat)}</span><span style="background:#F0FDF4;border:1px solid #BBF7D0;padding:3px 8px;border-radius:999px;color:#15803D">Vente ${fmtEUR(p.vente)}</span><span style="background:#ECFDF5;padding:3px 8px;border-radius:999px;font-weight:700;color:#065F46">+${fmtEUR((p.vente-p.achat).toFixed(1))}</span><span style="color:#64748B">Seuil ${p.seuil}</span></div>
       </div>`;
     }).join('');
   }
@@ -1791,8 +1753,15 @@ function escapeHtml(s){
  return d.innerHTML;
 }
 function fmtEUR(n){
- return (Number(n)||0).toLocaleString("fr-FR", {minimumFractionDigits:2, maximumFractionDigits:2}) + " €";
+ const DEVISES={EUR:{s:'€',after:true},CHF:{s:'CHF',after:true},USD:{s:'$',after:false},GBP:{s:'£',after:false},CAD:{s:'C$',after:false},XOF:{s:'F CFA',after:true}};
+ const cur=localStorage.getItem('devisFlash_devise')||'EUR';
+ const d=DEVISES[cur]||DEVISES.EUR;
+ const num=(Number(n)||0).toLocaleString(cur==='USD'||cur==='GBP'?'en-US':'fr-FR', {minimumFractionDigits:2, maximumFractionDigits:2});
+ return d.after? `${num} ${d.s}` : `${d.s}${num}`;
 }
+function fmtDevise(n){ return fmtEUR(n); }
+window.fmtEUR=fmtEUR; window.fmtDevise=fmtEUR;
+
 function fmtDate(iso){
  if(!iso) return "—";
  const d = new Date(iso+"T00:00:00");
@@ -5106,9 +5075,8 @@ function injectTestFacture(){
 }
 async function exportPDFFacturXSimple(devisId){
  try{
-  const DEVISE_MAP={EUR:'EUR',CHF:'CHF',USD:'USD',GBP:'GBP',CAD:'CAD',XOF:'XOF'};
   const curDev=localStorage.getItem('devisFlash_devise')||'EUR';
-  const deviseCode=DEVISE_MAP[curDev]||'EUR';
+  const deviseCode=curDev;
   const d=(state.factures||[]).find(x=>x.id===devisId) || {numero:'F20260001', client:'Client Test SARL', date:new Date().toISOString().slice(0,10)};
   const { PDFDocument, PDFName, PDFString, PDFNumber, PDFArray, PDFDict, StandardFonts } = PDFLib;
   const pdfDoc = await PDFDocument.create();
@@ -5514,9 +5482,9 @@ body:not(:has(#view-generateur.active)) .gen-footer{display:block !important;} #
     <td style="padding:10px;text-align:center"><span style="background:#F1F5F9;padding:3px 8px;border-radius:999px;font-size:11px">${p.cat}</span></td>
     <td style="padding:10px;text-align:center"><div style="display:flex;align-items:center;justify-content:center;gap:6px"><button onclick="stockModQte('${p.id}',-1)" style="width:24px;height:24px;border-radius:6px;border:1px solid #E2E8F0;background:#fff;cursor:pointer">-</button><b style="min-width:28px;text-align:center;color:${isAlert?'#DC2626':'#0F172A'}">${p.qte}</b><button onclick="stockModQte('${p.id}',1)" style="width:24px;height:24px;border-radius:6px;border:1px solid #E2E8F0;background:#fff;cursor:pointer">+</button></div></td>
     <td style="padding:10px;text-align:center">${p.seuil}</td>
-    <td style="padding:10px;text-align:center">${p.achat}€</td>
-    <td style="padding:10px;text-align:center"><b>${p.vente}€</b></td>
-    <td style="padding:10px;text-align:center"><span style="background:${margePct>50?'#DCFCE7':'#FEF3C7'};padding:3px 6px;border-radius:6px;font-size:11px;font-weight:700">+${margeU}€ (${margePct}%)</span></td>
+    <td style="padding:10px;text-align:center">${fmtEUR(p.achat)}</td>
+    <td style="padding:10px;text-align:center"><b>${fmtEUR(p.vente)}</b></td>
+    <td style="padding:10px;text-align:center"><span style="background:${margePct>50?'#DCFCE7':'#FEF3C7'};padding:3px 6px;border-radius:6px;font-size:11px;font-weight:700">+${fmtEUR(margeU)} (${margePct}%)</span></td>
     <td style="padding:10px;text-align:center">${isAlert?'<span style="background:#FECACA;color:#DC2626;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800">🔴 Alerte</span>':'<span style="background:#DCFCE7;color:#15803D;padding:3px 8px;border-radius:999px;font-size:11px">🟢 OK</span>'}</td>
     <td style="padding:10px;text-align:center"><button onclick="stockEdit('${p.id}')" style="padding:4px 8px;border:1px solid #E2E8F0;border-radius:6px;background:#fff;cursor:pointer;font-size:11px">✏️</button> <button onclick="stockDel('${p.id}')" style="padding:4px 8px;border:1px solid #FECACA;border-radius:6px;background:#FEF2F2;cursor:pointer;font-size:11px">🗑️</button></td>
    </tr>`;
@@ -6281,8 +6249,8 @@ window.onFieldChange = function(){ if(typeof _origOnFieldChange==='function') _o
     const marge = stock.reduce((a,p)=>a+p.qte*(p.vente-p.achat),0);
     const alertes = stock.filter(p=>p.qte<=p.seuil).length;
     const set = (id,v)=>{ const e=document.getElementById(id); if(e) e.textContent=v; };
-    set('stockValeur',valeur.toFixed(0)+'€');
-    set('stockMarge',marge.toFixed(0)+'€');
+    set('stockValeur',fmtEUR(valeur.toFixed(0)));
+    set('stockMarge',fmtEUR(marge.toFixed(0)));
     set('stockAlertes',alertes);
     set('stockCount',stock.length);
     const tbody = document.getElementById('stockTable');
@@ -6296,9 +6264,9 @@ window.onFieldChange = function(){ if(typeof _origOnFieldChange==='function') _o
           <td style="padding:10px;text-align:center"><span style="background:#F1F5F9;padding:3px 8px;border-radius:999px;font-size:11px">${esc(p.cat)}</span></td>
           <td style="padding:10px;text-align:center"><div style="display:flex;align-items:center;justify-content:center;gap:6px"><button onclick="window.stockModQte('${p.id}',-1)" style="width:32px;height:32px;border-radius:8px;border:1px solid #E2E8F0;background:#F8FAFC;cursor:pointer;font-weight:800">−</button><b style="min-width:28px;text-align:center;color:${isAl?'#DC2626':'#0F172A'}">${p.qte}</b><button onclick="window.stockModQte('${p.id}',1)" style="width:32px;height:32px;border-radius:8px;border:1px solid #BBF7D0;background:#DCFCE7;color:#15803D;cursor:pointer;font-weight:800">+</button></div></td>
           <td style="padding:10px;text-align:center">${p.seuil}</td>
-          <td style="padding:10px;text-align:center">${p.achat}€</td>
-          <td style="padding:10px;text-align:center"><b>${p.vente}€</b></td>
-          <td style="padding:10px;text-align:center"><span style="background:${(p.vente-p.achat)>20?'#DCFCE7':'#FEF3C7'};padding:3px 6px;border-radius:6px;font-size:11px;font-weight:700">+${margeU}€</span></td>
+          <td style="padding:10px;text-align:center">${fmtEUR(p.achat)}</td>
+          <td style="padding:10px;text-align:center"><b>${fmtEUR(p.vente)}</b></td>
+          <td style="padding:10px;text-align:center"><span style="background:${(p.vente-p.achat)>20?'#DCFCE7':'#FEF3C7'};padding:3px 6px;border-radius:6px;font-size:11px;font-weight:700">+${fmtEUR(margeU)}</span></td>
           <td style="padding:10px;text-align:center">${isAl?'<span style="background:#FECACA;color:#DC2626;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800">🔴 Alerte</span>':'<span style="background:#DCFCE7;color:#15803D;padding:3px 8px;border-radius:999px;font-size:11px">🟢 OK</span>'}</td>
           <td style="padding:10px;text-align:center"><button onclick="if(window.stockDel) window.stockDel('${p.id}')" style="border:1px solid #E2E8F0;background:#fff;width:28px;height:28px;border-radius:8px;cursor:pointer">✕</button></td>
         </tr>`;
