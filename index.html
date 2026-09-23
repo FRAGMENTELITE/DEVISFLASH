@@ -366,59 +366,7 @@
  background:#fff; color:#fff;
  }
  .landing-cta h2{color:#fff; margin-bottom:22px;}
- /* ---------- Chatbot Devis Flash ---------- */
- .chatbot-btn{
- position:fixed; bottom:22px; right:22px; width:58px; height:58px;
- background:linear-gradient(135deg,#2563EB,#1D4ED8); color:#fff;
- border:none; border-radius:50%; box-shadow:0 8px 24px rgba(37,99,235,0.35);
- font-size:26px; cursor:pointer; z-index:90; display:flex; align-items:center; justify-content:center;
- transition:transform .2s, box-shadow .2s;
- }
- .chatbot-btn:hover{transform:scale(1.08); box-shadow:0 12px 32px rgba(37,99,235,0.45);}
- .chatbot-btn .notif{
- position:absolute; top:-2px; right:-2px; width:14px; height:14px;
- background:#EF4444; border-radius:50%; border:2px solid #fff;
- }
- .chat-window{
- position:fixed; bottom:90px; right:22px; width:360px; max-width:calc(100vw - 32px); height:480px;
- background:#fff; border:1px solid #E2E8F0; border-radius:18px;
- box-shadow:0 20px 60px rgba(15,23,42,0.18); z-index:9998;
- display:flex; flex-direction:column; overflow:hidden;
- transform:translateY(20px) scale(0.95); opacity:0; pointer-events:none;
- transition:all .28s cubic-bezier(.4,0,.2,1);
- }
- .chat-window.open{transform:translateY(0) scale(1); opacity:1; pointer-events:auto;}
- .chat-header{
- background:#fff; color:#fff; padding:14px 16px;
- display:flex; align-items:center; justify-content:space-between;
- }
- .chat-header .title{display:flex; align-items:center; gap:10px; font-weight:700; font-size:14px;}
- .chat-header .dot{width:8px; height:8px; background:#22C55E; border-radius:50%; box-shadow:0 0 0 3px rgba(34,197,94,0.25);}
- .chat-header button{background:rgba(255,255,255,0.12); border:none; color:#fff; width:28px; height:28px; border-radius:8px; cursor:pointer; font-size:16px;}
- .chat-messages{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; background:#FAFBFF;}
- .msg{max-width:82%; padding:10px 14px; border-radius:14px; font-size:13.5px; line-height:1.5; animation:msgIn .25s ease;}
- @keyframes msgIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
- .msg.bot{background:#fff; border:1px solid #E2E8F0; color:#0F172A; border-bottom-left-radius:4px;}
- .msg.user{background:#2563EB; color:#fff; align-self:flex-end; border-bottom-right-radius:4px;}
- .msg .time{font-size:10px; opacity:0.6; margin-top:4px;}
- .quick-replies{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;}
- .qr-btn{
- background:#EEF2FF; border:1px solid #C7D9FC; color:#1D4ED8; padding:6px 12px;
- border-radius:20px; font-size:12px; font-weight:600; cursor:pointer; transition:.15s;
- }
- .qr-btn:hover{background:#2563EB; color:#fff; border-color:#2563EB;}
- .chat-input-area{
- padding:12px; border-top:1px solid #E2E8F0; background:#fff;
- display:flex; gap:8px; align-items:center;
- }
- .chat-input-area input{
- flex:1; border:1px solid #E2E8F0; border-radius:10px; padding:10px 12px; font-size:13.5px; outline:none;
- }
- .chat-input-area input:focus{border-color:#2563EB; box-shadow:0 0 0 3px rgba(37,99,235,0.12);}
- .chat-input-area button{
- background:#2563EB; color:#fff; border:none; width:38px; height:38px; border-radius:10px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center;
- }
- .chat-input-area button:hover{background:#1D4ED8;}
+ 
  @media (max-width:480px){
  .chat-window{bottom:0; right:0; width:100%; height:100%; max-width:100%; border-radius:0; max-height:100vh;}
  .chatbot-btn{bottom:16px; right:16px;}
@@ -912,13 +860,13 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
  <div class="grid-2">
   <div>
   <div class="card">
-   <div class="app-h3">🏷️ Secteur d'activité</div>
+   <h3 class="app-h3">🏷️ Secteur d'activité</h3>
    <div class="sector-grid" id="sectorGrid"></div>
    <label>Description (générée, modifiable)</label>
    <textarea id="iaPhrase" oninput="onPhraseInput()"></textarea>
   </div>
   <div class="card">
-   <div class="app-h3">👤 Client</div>
+   <h3 class="app-h3">👤 Client</h3>
    <div class="form-grid">
    <div class="field" style="margin-bottom:0;"><label>Nom / raison sociale</label><input type="text" id="client" oninput="onFieldChange()"></div>
    <div class="field" style="margin-bottom:0;"><label>Adresse facturation *</label><input type="text" id="adresse" oninput="onFieldChange()" placeholder="12 rue de Paris, 75001"></div>
@@ -927,7 +875,7 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
    </div>
   </div>
   <div class="card">
-   <div class="app-h3">📦 Prestations</div>
+   <h3 class="app-h3">📦 Prestations</h3>
    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px 0">
    <button id="btnVocal" onclick="startVocalMainsLibres()" style="background:#fff;border:1px solid #E2E8F0;color:#0F172A;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px">🎤 Vocal mains libres</button>
    <label style="background:#fff;border:1px solid #E2E8F0;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px">📸 Photo ticket<input type="file" accept="image/*" style="display:none" onchange="handlePhotoMateriel(event)"></label>
@@ -955,7 +903,7 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
    <div class="totals-row main"><span>Total devis</span><span class="v" id="totVente">0,00 €</span></div>
   </div>
   <div class="card">
-   <div class="app-h3">💰 Paiement de l'acompte</div>
+   <h3 class="app-h3">💰 Paiement de l'acompte</h3>
    <div class="card-sub">Génère un QR à faire scanner par le client. 100% frontend — aucune donnée bancaire ne transite par ici.</div>
    <div class="pay-grid">
    <div class="pay-card card-cb">
@@ -975,7 +923,7 @@ header{position:sticky !important;top:0 !important;z-index:999 !important;backgr
    </div>
   </div>
   <div class="card" style="border:1px solid #10B981;">
-   <div class="app-h3">🏦 Coordonnées bancaires - Virement</div>
+   <h3 class="app-h3">🏦 Coordonnées bancaires - Virement</h3>
    <div class="card-sub">Affichées automatiquement sur le devis et la facture. Le client scanne le QR SEPA pour payer direct depuis sa banque.</div>
    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
    <div>
@@ -1317,7 +1265,7 @@ document.addEventListener('DOMContentLoaded',()=>setTimeout(renderStock,500));
   <div class="stat-card"><div class="label">CA facturé</div><div class="value" id="factCa">0 €</div></div>
   <div class="stat-card"><div class="label">En attente</div><div class="value" id="factAtt">0 €</div></div>
  </div>
- <div class="card"><div class="app-h3">Convertir un devis en facture en 1 clic</div><p style="font-size:13px;color:#64748B">Dans Historique, clique sur 🧾 Facturer. La facture reprend automatiquement client, lignes, TVA et génère un numéro F-2026-XXX + PDF + email.</p>
+ <div class="card"><h3 class="app-h3">Convertir un devis en facture en 1 clic</h3><p style="font-size:13px;color:#64748B">Dans Historique, clique sur 🧾 Facturer. La facture reprend automatiquement client, lignes, TVA et génère un numéro F-2026-XXX + PDF + email.</p>
  <div style="margin:12px 0;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:1px solid #C5FD;border-radius:10px;padding:10px 14px;display:flex;gap:8px;align-items:center;font-size:12px;color:#1E40AF"><span style="font-size:16px">📨</span><div><strong style="color:#1D4ED8">Facturation électronique 2026 - Obligatoire</strong> : toutes vos factures sont prêtes pour Chorus Pro / PPF. Format Factur-X (PDF + XML) à venir. Conforme art. L441-9.</div></div><div id="facturesList" style="margin-top:16px"></div></div>
  </section>
  <section class="view" id="view-banque" style="display:none; max-width:1180px; margin:0 auto; padding:0 24px;">
@@ -1326,7 +1274,7 @@ document.addEventListener('DOMContentLoaded',()=>setTimeout(renderStock,500));
   <div style="display:flex;gap:8px"><button class="btn btn-secondary btn-sm" onclick="connectBankMock()">🔗 Connecter</button><button class="btn btn-primary btn-sm" style="background:#10B981" onclick="simulatePayment()">💸 Simuler paiement</button></div>
  </div>
  <div class="stats-row" style="margin-bottom:16px"><div class="stat-card" style="border-left:4px solid #10B981"><div class="label">Solde</div><div class="value" id="bankBalance">—</div><div id="bankStatus">Non connecté</div></div><div class="stat-card"><div class="label">Payées</div><div class="value" id="bankPaid">0</div></div><div class="stat-card"><div class="label">En attente</div><div class="value" id="bankPending">0</div></div></div>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="card"><div class="app-h3">Transactions</div><div id="bankTransactions"></div></div><div class="card"><div class="app-h3">Rapprochement</div><div id="bankMatching"></div></div></div>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="card"><h3 class="app-h3">Transactions</h3><div id="bankTransactions"></div></div><div class="card"><h3 class="app-h3">Rapprochement</h3><div id="bankMatching"></div></div></div>
  </section>
  <section class="view" id="view-anti-oubli" style="display:none; max-width:1180px; margin:0 auto; padding:0 24px;">
  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:24px 0 16px 0">
@@ -1342,20 +1290,20 @@ document.addEventListener('DOMContentLoaded',()=>setTimeout(renderStock,500));
   <div style="display:flex;gap:8px"><button class="btn btn-secondary btn-sm" onclick="checkFiscalite()">🔍 Vérifier</button><button class="btn btn-primary btn-sm" style="background:#10B981" onclick="injectAidesInDevis()">✅ Intégrer</button></div>
  </div>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-  <div class="card"><div class="app-h3">🏠 Logement</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="field"><label>Type</label><select id="fiscLogement"><option>Maison</option><option>Appart</option></select></div><div class="field"><label>Année</label><select id="fiscAnnee"><option value="plus2">+2 ans</option><option value="moins2">-2 ans</option></select></div><div class="field"><label>Surface</label><input id="fiscSurface" type="number" value="90"></div><div class="field"><label>Revenus</label><select id="fiscRevenus"><option value="tres_modeste">Très modeste</option><option value="modeste" selected>Modeste</option><option value="intermediaire">Intermédiaire</option><option value="superieur">Supérieur</option></select></div></div></div>
-  <div class="card" style="background:#ECFDF5;border:1px solid #6EE7B7"><div class="app-h3">✅ Éligibilité</div><div id="fiscResult"></div></div>
+  <div class="card"><h3 class="app-h3">🏠 Logement</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="field"><label>Type</label><select id="fiscLogement"><option>Maison</option><option>Appart</option></select></div><div class="field"><label>Année</label><select id="fiscAnnee"><option value="plus2">+2 ans</option><option value="moins2">-2 ans</option></select></div><div class="field"><label>Surface</label><input id="fiscSurface" type="number" value="90"></div><div class="field"><label>Revenus</label><select id="fiscRevenus"><option value="tres_modeste">Très modeste</option><option value="modeste" selected>Modeste</option><option value="intermediaire">Intermédiaire</option><option value="superieur">Supérieur</option></select></div></div></div>
+  <div class="card" style="background:#ECFDF5;border:1px solid #6EE7B7"><h3 class="app-h3">✅ Éligibilité</h3><div id="fiscResult"></div></div>
  </div>
- <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px"><div class="card" style="border-left:4px solid #8B5CF6"><div class="app-h3">🏛️ MaPrimeRénov'</div><div id="mprCard"></div></div><div class="card" style="border-left:4px solid #2563EB"><div class="app-h3">💡 CEE</div><div id="ceeCard"></div></div><div class="card" style="border-left:4px solid #F59E0B"><div class="app-h3">📉 TVA</div><div id="tvaCard"></div></div></div>
- <div class="card" style="margin-top:16px"><div class="app-h3">📝 Mentions légales</div><div id="mentionsLegales" style="background:#F8FAFF;border:1px dashed #CBD5E1;padding:12px;font-size:11px;white-space:pre-wrap"></div></div>
+ <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px"><div class="card" style="border-left:4px solid #8B5CF6"><h3 class="app-h3">🏛️ MaPrimeRénov'</h3><div id="mprCard"></div></div><div class="card" style="border-left:4px solid #2563EB"><h3 class="app-h3">💡 CEE</h3><div id="ceeCard"></div></div><div class="card" style="border-left:4px solid #F59E0B"><h3 class="app-h3">📉 TVA</h3><div id="tvaCard"></div></div></div>
+ <div class="card" style="margin-top:16px"><h3 class="app-h3">📝 Mentions légales</h3><div id="mentionsLegales" style="background:#F8FAFF;border:1px dashed #CBD5E1;padding:12px;font-size:11px;white-space:pre-wrap"></div></div>
  </section>
  <section class="view" id="view-conformite" style="display:none; max-width:1180px; margin:0 auto; padding:0 24px;">
  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:24px 0 16px 0">
   <div class="app-h2" class="sora" style="margin:0;font-size:24px">⚖️ Conformité & Survie légale <span style="background:#DC2626;color:#fff;font-size:11px;padding:4px 8px;border-radius:20px">P1</span></div>
   <div style="display:flex;gap:8px"><button class="btn btn-secondary btn-sm" onclick="generateFacturX()">📄 Factur-X</button><button class="btn btn-primary btn-sm" style="background:#DC2626" onclick="checkConformite()">✅ Vérifier</button></div>
  </div>
- <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px"><div class="card" style="border-left:4px solid #DC2626"><div class="app-h3">📡 e-Invoicing 2026</div><div id="einvStatus"></div></div><div class="card" style="border-left:4px solid #2563EB"><div class="app-h3">🏛️ PPF / PDP</div><div id="ppfStatus"></div></div><div class="card" style="border-left:4px solid #10B981"><div class="app-h3">📚 Archivage 10 ans</div><div id="archStatus"></div></div></div>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px"><div class="card"><div class="app-h3">⏱️ Traçabilité</div><div id="traceTimeline"></div></div><div class="card"><div class="app-h3">📝 Mentions dynamiques</div><div id="mentionsDynamiques"></div><div style="margin-top:10px"><label>Corps métier</label><select id="metierConformite" onchange="updateMentionsDynamiques()" style="width:100%;padding:8px;border:1px solid #E2E8F0;border-radius:8px"><option value="peintre">Peintre</option><option value="macon">Maçon</option><option value="plombier">Plombier</option><option value="electricien">Électricien</option><option value="chauffagiste">Chauffagiste RGE</option></select></div></div></div>
- <div class="card" style="margin-top:16px;background:#FFFBEB;border:1px solid #FDE68A"><div class="app-h3">🔒 Archivage NF Z42-013</div><div id="archiveList"></div><button class="btn btn-secondary btn-sm" onclick="exportArchiveZIP()">⬇️ Export ZIP 10 ans</button></div>
+ <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px"><div class="card" style="border-left:4px solid #DC2626"><h3 class="app-h3">📡 e-Invoicing 2026</h3><div id="einvStatus"></div></div><div class="card" style="border-left:4px solid #2563EB"><h3 class="app-h3">🏛️ PPF / PDP</h3><div id="ppfStatus"></div></div><div class="card" style="border-left:4px solid #10B981"><h3 class="app-h3">📚 Archivage 10 ans</h3><div id="archStatus"></div></div></div>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px"><div class="card"><h3 class="app-h3">⏱️ Traçabilité</h3><div id="traceTimeline"></div></div><div class="card"><h3 class="app-h3">📝 Mentions dynamiques</h3><div id="mentionsDynamiques"></div><div style="margin-top:10px"><label>Corps métier</label><select id="metierConformite" onchange="updateMentionsDynamiques()" style="width:100%;padding:8px;border:1px solid #E2E8F0;border-radius:8px"><option value="peintre">Peintre</option><option value="macon">Maçon</option><option value="plombier">Plombier</option><option value="electricien">Électricien</option><option value="chauffagiste">Chauffagiste RGE</option></select></div></div></div>
+ <div class="card" style="margin-top:16px;background:#FFFBEB;border:1px solid #FDE68A"><h3 class="app-h3">🔒 Archivage NF Z42-013</h3><div id="archiveList"></div><button class="btn btn-secondary btn-sm" onclick="exportArchiveZIP()">⬇️ Export ZIP 10 ans</button></div>
  </section>
 <section class="view" id="view-abonnements" style="display:none;max-width:950px;margin:0 auto;padding:20px 16px">
  <div style="text-align:center;margin-bottom:24px">
@@ -1457,7 +1405,7 @@ window.applyPlanRestrictions = function(){
   <div class="faq-card" data-cat="abonnement" style="border:1px solid #BFDBFE; background:#EFF6FF; border-radius:12px; padding:16px; margin-bottom:12px; cursor:pointer;" onclick="this.classList.toggle('open')">
   <div class="app-h3" style="margin:0; display:flex; justify-content:space-between; align-items:center;">💳 C'est quoi la différence Abonnement vs Acompte ? <span>▼</span></div>
   <div class="faq-answer" style="display:none; margin-top:12px; color:#334155;">
-   <p><span style="font-weight:700"><span style="font-weight:600">Abonnement (vous → Devis Flash) :</span></span> Starter 9,90€/mois ou 99€/an, Expert 39€/mois ou 390€/an. C'est pour utiliser l'app.<br>
+   <p><h4 style="font-size:14px;font-weight:800;margin:12px 0 6px;color:#1E40AF;">Abonnement (vous → Devis Flash) :</h4> Starter 9,90€/mois ou 99€/an, Expert 39€/mois ou 390€/an. C'est pour utiliser l'app.<br>
    <strong>Acompte (client → vous) :</strong> Votre client vous paie 30% via QR Code. Vous touchez 100%, 0 commission Devis Flash.<br>
    <span style="font-size:12px; color:#64748B;">Paiement abonnement: SumUp / , Stripe, PayPal</span></p>
   </div>
@@ -1526,18 +1474,18 @@ window.applyPlanRestrictions = function(){
  <div class="landing-wrap" style="max-width:900px;margin:0 auto;padding:24px">
  <div class="app-h2" class="sora">Mentions légales - Édition 2026</div>
  <div class="card" style="font-size:13px;line-height:1.7;color:#334155">
-  <div class="app-h3">1. Éditeur</div>
+  <h3 class="app-h3">1. Éditeur</h3>
   <p><strong>Devis Flash</strong><br>
   Contact unique: <strong style="color:#2563EB">Devis Flash</strong><br>
   SIRET: en cours d'immatriculation<span style="display:inline-block;margin-top:8px;background:#F1F5F9;border:1px solid #E2E8F0;padding:6px 10px;border-radius:8px;font-size:12px;color:#475569">TVA non applicable - art.2 B du CGI</span></p>
-  <div class="app-h3">2. Hébergement</div>
+  <h3 class="app-h3">2. Hébergement</h3>
   <p>GitHub Pages - GitHub Inc. 88 Colin P Kelly Jr St, San Francisco, CA 94107 USA<br>
   Domaine: devis-flash.fr (OVH / Cloudflare)</p>
-  <div class="app-h3">3. Objet</div>
+  <h3 class="app-h3">3. Objet</h3>
   <p>Devis Flash est un générateur de devis 100% frontend pour artisans du BTP (10 secteurs: maçonnerie, peinture, plomberie, électricité, chauffagiste/PAC, climatisation, serrurier/plaquiste, solaire, nettoyage, jardinage, services, logistique). Les données sont stockées localement dans votre navigateur (localStorage). Aucune donnée n'est envoyée sur nos serveurs.</p>
-  <div class="app-h3">4. Propriété intellectuelle</div>
+  <h3 class="app-h3">4. Propriété intellectuelle</h3>
   <p>Tous les presets, calculs de marge, logos sont propriété de Devis Flash. Reproduction interdite sans autorisation.</p>
-  <div class="app-h3">5. Facturation électronique 2026</div>
+  <h3 class="app-h3">5. Facturation électronique 2026</h3>
   <p>Devis Flash génère des PDF conformes aux mentions légales obligatoires (art. L441-9 Code de commerce). 
   <div style="margin-top:10px;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:1px solid #6EE7B7;border-radius:10px;padding:12px">
   <span style="font-weight:700;display:inline-block">⚡ Facturation électronique 2026 obligatoire</span> Gratuit 3 devis + 2 factures/mois. Starter 9,90€/mois ou 99€/an = 30 devis/mois. PRO 39€/mois ou 390€/an = 100 devis/mois. 2 mois offerts en annuel. Paiement via SumUp, Stripe, PayPal. Sans engagement, résiliation à tout moment depuis <span style="color:#2563EB;font-weight:700">Devis Flash</span>.</p>
@@ -2710,193 +2658,15 @@ window.addEventListener('DOMContentLoaded', ()=>{
  });
 });
 </script>
-<button class="chatbot-btn" id="chatbotBtn"><span id="chatbotIcon">💬</span></button>
-<div class="chat-window" id="chatWindow">
- <div class="chat-header">
- <div class="title"> Devis Flash • Assistant</div>
- 
- </div>
- <div class="chat-messages" id="chatMessages"></div>
- <div class="chat-input-area">
- <input type="text" id="chatInput" placeholder="Pose ta question..." onkeydown="if(event.key==='Enter') sendChat()">
- <button onclick="sendChat()" aria-label="Envoyer">➤</button>
- </div>
-</div>
-<script>
-const CHAT_KB = [
- {k:["prix","tarif","combien","abonnement","starter","pro","39","9.90","annuel","mensuel"], a:"💳 **Nos tarifs alignés SumUp = Stripe :**<br><br>• **Gratuit 0€** : 3 devis + 2 factures/mois<br>• **Starter 9,90€/mois** ou **99€/an** (8,25€/mois, -20€)<br> → SumUp: QHGUGGU1<br> → Stripe: <a href='https://buy.stripe.com/00w8wPc86bFe01A2oee3e01' target='_blank'>Mensuel 9,90€</a> / <a href='https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03' target='_blank'>Annuel 99€</a><br><br>• **Expert 39€/mois** ou **390€/an** (32,50€/mois, -78€)<br> → SumUp: QK9G7UQ8<br> → Stripe: <a href='https://buy.stripe.com/7sY9AT4FE9x629I3sie3e00' target='_blank'>Mensuel 39€</a> / <a href='https://buy.stripe.com/28EeVd0po10A6pY3sie3e02' target='_blank'>Annuel 390€</a><br><br>🎁 Gratuit + 2 mois offerts en annuel !", q:["Annuel ?","Voir Starter","Voir Expert"]},
- {k:["annuel","annuel","12 mois","1 an","390","99","economie","2 mois"], a:"📅 **Paiement annuel - 20% :**<br><br>• **Starter Annuel : 99€/an** au lieu de 118,80€<br> → Soit 8,25€/mois<br> → Économie 19,80€<br> → <a href='https://buy.stripe.com/5kQ8wP1ts9x63dMfb0e3e03' target='_blank'>Payer Starter Annuel 99€</a><br><br>• **PRO Annuel : 390€/an** au lieu de 468€<br> → Soit 32,50€/mois<br> → Économie 78€ + 2 mois offerts !<br> → <a href='https://buy.stripe.com/28EeVd0po10A6pY3sie3e02' target='_blank'>Payer PRO Annuel 390€</a><br><br>Bouton annuel ajouté en haut des tarifs : clique sur **Annuel -20%** !<br><br>💡 PayPal annuel :<br>• <br>• 0", q:["Activer annuel","Mensuel ?","Voir tarifs"]},
- {k:["sumup","qhguggu1","qiswwjy3","qk9g7uq8","lien","paiement","cb"], a:"💳 **Tes 3 liens SumUp :**<br><br>• **QHGUGGU1** = Starter 9,90€<br>• **QISWWJY3** = Ancien (19€) - non utilisé<br>• **QK9G7UQ8** = Expert 39€<br><br>Et Stripe est aligné :<br>• 00w8wPc86 = Starter 9,90€<br>• 7sY9AT4F = Expert 39€<br><br>Tout est déjà corrigé dans ton site !", q:["Vérifier tarifs","Stripe ?"]},
- {k:["stripe","00w8","7sy9"], a:"🔵 **Stripe - c'est corrigé !**<br><br>• **Starter 9,90€** = <code>00w8wPc86bFe01A2oee3e01</code> → 9,90€/mois<br>• **Expert 39€** = <code>7sY9AT4FE9x629I3sie3e00</code> → 39€/mois<br><br>Avant c'était inversé, maintenant c'est bon. Teste : clique sur les 2 liens, ils affichent le bon montant !", q:["Tester Expert 39€","Tester Starter 9,90€"]},
- {k:["devis","creer","generer","comment","marche","utiliser"], a:"🧾 **Comment créer un devis en moins de 2 min :**<br><br>1️⃣ Choisis ton secteur (peinture, plomberie, élec...)<br>2️⃣ La description se pré-remplit<br>3️⃣ Ajoute tes lignes : coût d'achat + prix de vente → marge calculée auto<br>4️⃣ Exporte en PDF + génère QR code pour encaisser l'acompte (CB ou PayPal)<br><br>Tu veux que je t'aide sur une étape ?", q:["Choisir secteur","Calcul marge","Exporter PDF"]},
- {k:["marge","calcul","cout","achat","vente"], a:"📊 **Calcul de marge auto :**<br><br>Tu rentres :<br>• Coût d'achat (ce que ça te coûte)<br>• Prix de vente (ce que tu factures)<br><br>Devis Flash calcule :<br>• Marge en € = Vente - Achat<br>• Marge en % = (Marge / Vente) × 100<br>• Acompte 30% auto<br><br>Tout est en temps réel !", q:["Exemple marge","Acompte ?"]},
- {k:["essai","gratuit","14 jours","free","sans cb"], a:"🎁 **Essai gratuit - Devis en moins de 2 min 14 jours :**<br><br>• Sans carte bancaire<br>• Sans engagement<br>• Accès complet Starter ou Expert<br>• Tu peux annuler quand tu veux<br><br>Clique sur **Démarrer l'essai gratuit** sur le plan de ton choix !", q:["Démarrer essai","Voir tarifs"]},
- {k:["paypal",""], a:"🅿️ **PayPal :**<br><br>• Starter : <br>• Expert : <br><br>Ton PayPal.me est déjà configuré dans tout le site !", q:["SumUp ?","Stripe ?"]},
- {k:["aide","support","contact","bug","probleme"], a:"🆘 **Besoin d'aide ?**<br><br>• Pour les tarifs / paiement : vérifie SumUp = Stripe (maintenant aligné ✅)<br>• Pour créer un devis : va dans Générateur<br>• Pour un bug : dis-moi ce qui ne marche pas, je corrige direct<br><br>Tu es fondateur, tout est configuré sur !", q:["Signaler bug","Voir tarifs"]},
-];
-function getBotReply(text){
- const t = text.toLowerCase();
- for(let item of CHAT_KB){
- if(item.k.some(k=> t.includes(k))) return item;
- }
- return {a:"🤖 Je suis l'assistant Devis Flash !<br><br>Je peux t'aider sur :<br>• **Tarifs** (9,90€ / 39€)<br>• **SumUp & Stripe** (liens alignés)<br>• **Créer un devis**<br>• **Calcul de marge**<br>• **Essai gratuit - Devis en moins de 2 min**<br><br>Pose ta question !", q:["Tarifs ?","Créer devis","SumUp Stripe"]};
-}
-function addMsg(text, who){
- const box = document.getElementById('chatMessages');
- const div = document.createElement('div');
- div.className = `msg ${who}`;
- const time = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
- div.innerHTML = `${text}<div class='time'>${time}</div>`;
- box.appendChild(div);
- if(who==='bot'){
- const last = getLastBot();
- if(last && last.q){
-  const qrDiv = document.createElement('div');
-  qrDiv.className = 'quick-replies';
-  last.q.forEach(q=>{
-  const b = document.createElement('button');
-  b.className='qr-btn'; b.textContent=q;
-  b.onclick=()=>{ document.getElementById('chatInput').value=q; sendChat(); };
-  qrDiv.appendChild(b);
- });
-  box.appendChild(qrDiv);
- }
- }
- box.scrollTop = box.scrollHeight;
-}
-let lastBotItem = null;
-function getLastBot(){ return lastBotItem; }
-function sendChat(){
- const input = document.getElementById('chatInput');
- const txt = input.value.trim();
- if(!txt) return;
- addMsg(escapeHtml(txt), 'user');
- input.value='';
- setTimeout(()=>{
- const reply = getBotReply(txt);
- lastBotItem = reply;
- addMsg(reply.a, 'bot');
- }, 400);
-}
-let chatOpen = false;
-function toggleChat(){
- const win = document.getElementById('chatWindow');
- const btn = document.getElementById('chatbotBtn');
- const icon = document.getElementById('chatbotIcon');
- const notif = document.getElementById('chatNotif');
- chatOpen = !chatOpen;
- if(chatOpen){
- win.classList.add('open');
- icon.textContent='';
- notif.style.display='none';
- if(document.getElementById('chatMessages').children.length===0){
-  lastBotItem = {q:["Tarifs ?","Annuel ?","Créer devis"]};
-  addMsg("Salut ! 👋 Je suis l'assistant Devis Flash.<br><br>✅ Tarifs alignés :<br>• Starter 9,90€/mois ou 99€/an<br>• Expert 39€/mois ou 390€/an (-20%)<br><br>🆕 Nouveau : paiement annuel avec 2 mois offerts !<br><br>Comment je peux t'aider ?", 'bot');
- }
- document.getElementById('chatInput').focus();
- } else {
- win.classList.remove('open');
- icon.textContent='💬';
- }
-}
-document.getElementById('chatbotBtn').addEventListener('click', toggleChat);
-// Auto-open after 8s first visit
-setTimeout(()=>{
- if(!localStorage.getItem('df_chat_seen')){
- document.getElementById('chatNotif').style.display='block';
- }
-}, 3000);
-function activatePlanAuto(planId, billing){
- const plan = PLANS.find(p=>p.id===planId);
- if(!plan) return;
- free = {plan:planId, start:new Date().toISOString().slice(0,10), billing:billing||'monthly', paid:true, active:true};
- saveGratuit(free);
- localStorage.setItem('devisFlash_sub_active', JSON.stringify({plan:planId, billing:billing, date:new Date().toISOString()}));
- renderGratuitBanner();
- toast(`✅ Plan ${plan.name} activé instantanément !`);
-}
-function activateAndPayLink(planId, billing, method){
- const plan = PLANS.find(p=>p.id===planId);
- const isAnnual = billing==='annual';
- let link = '';
- if(method==='sumup') link = isAnnual ? plan.payLinkAnnual : plan.payLink;
- if(method==='stripe') link = isAnnual ? plan.payLinkStripeAnnual : plan.payLinkStripe;
- if(method==='paypal') link = isAnnual ? plan.payLinkPaypalAnnual : plan.payLinkPaypal;
- activatePlanAuto(planId, billing);
- if(link) window.open(link, '_blank');
-}
-function activateAndPay(planId, billing){
- const plan = PLANS.find(p=>p.id===planId);
- const isAnnual = billing==='annual' || (typeof billingCycle!=='undefined' && billingCycle==='annual');
- const link = isAnnual ? (plan.payLinkAnnual || plan.payLink) : plan.payLink;
- const paypalFallback = isAnnual ? plan.payLinkPaypalAnnual : plan.payLinkPaypal;
- // Activation auto immédiate (Option 1 - confiance pour lancement test)
- activatePlanAuto(planId, isAnnual?'annual':'monthly');
- // Ouvre paiement en arrière-plan
- window.open(link || paypalFallback, '_blank');
-}
-function renewWithStarter(){
- activateAndPay('starter', billingCycle);
-}
-function renewWithExpert(){
- activateAndPay('pro', billingCycle);
-}
-function renewSubscription(planId){
- activateAndPay(planId, billingCycle);
-}
-// Intercepte les clics sur les liens de paiement dans les cartes tarifaires pour auto-activation
-document.addEventListener('click', function(e){
- const a = e.target.closest('a.btn');
- if(!a) return;
- const href = a.getAttribute('href')||'';
- if(href.includes('sumup.com') || href.includes('paypal.me') || href.includes('stripe.com')){
- const card = a.closest('.plan-card');
- if(card){
-  const id = card.dataset.planId || (href.includes('9.90')||href.includes('99')?'starter':'pro');
-  // Ne pas bloquer l'ouverture, juste activer en parallèle
-  setTimeout(()=>{ 
-  const pid = card.getAttribute('data-plan') || (href.includes('99')||href.includes('9.90') ? 'starter' : 'pro');
-  if(pid) activatePlanAuto(pid, billingCycle);
-  }, 200);
- }
- }
-});
-</script>
-<!-- Bouton Générer un devis retiré -->
-<section class="landing-section" aria-labelledby="features-h2">
- <div class="landing-wrap">
- <h2 id="features-h2" class="sora">Pourquoi les artisans utilisent Devis Flash</h2>
- <div class="features-grid">
-  <div class="feature-card">
-  <div class="feature-emoji">📊</div>
-  <div class="app-h3">Marge calculée automatiquement</div>
-  <p>Coût, prix de vente, marge en % et acompte de 30% recalculés en temps réel à chaque ligne.</p>
-  </div>
-  <div class="feature-card">
-  <div class="feature-emoji">🏗️</div>
-  <div class="app-h3">12 métiers du BTP couverts</div>
-  <p>Maçonnerie, peinture, plomberie, électricité, chauffage/PAC, climatisation/froid, carrelage, menuiserie/charpente, isolation, serrurier/plaquiste, solaire, plasturgie : 12 métiers BTP purs. Édition 2026.</p>
-  </div>
-  <div class="feature-card">
-  <div class="feature-emoji">💳</div>
-  <div class="app-h3">Encaissement CB ou PayPal</div>
-  <p>Générez un QR code de paiement distinct par carte bancaire ou PayPal, sans commission prélevée par Devis Flash.</p>
-  </div>
-  <div class="feature-card">
-  <div class="feature-emoji">📄</div>
-  <div class="app-h3">Export PDF instantané</div>
-  <p>Un devis prêt à imprimer ou envoyer en PDF, avec votre logo et vos coordonnées.</p>
-  </div>
- </div>
- </div>
+
 </section>
 <section class="landing-section alt" aria-labelledby="how-h2">
  <div class="landing-wrap">
  <h2 id="how-h2" class="sora">Comment ça marche</h2>
  <div class="steps-grid">
-  <div class="step-card"><div class="step-num">1</div><div class="app-h3">Choisissez votre secteur</div><p>La description et les prestations types se pré-remplissent automatiquement.</p></div>
-  <div class="step-card"><div class="step-num">2</div><div class="app-h3">Ajustez vos lignes</div><p>Coût d'achat, prix de vente : la marge et l'acompte se calculent tout seuls.</p></div>
-  <div class="step-card"><div class="step-num">3</div><div class="app-h3">Envoyez et encaissez</div><p>PDF au client, QR code de paiement par carte ou PayPal pour l'acompte.</p></div>
+  <div class="step-card"><div class="step-num">1</div><h3 class="app-h3">Choisissez votre secteur</h3><p>La description et les prestations types se pré-remplissent automatiquement.</p></div>
+  <div class="step-card"><div class="step-num">2</div><h3 class="app-h3">Ajustez vos lignes</h3><p>Coût d'achat, prix de vente : la marge et l'acompte se calculent tout seuls.</p></div>
+  <div class="step-card"><div class="step-num">3</div><h3 class="app-h3">Envoyez et encaissez</h3><p>PDF au client, QR code de paiement par carte ou PayPal pour l'acompte.</p></div>
  </div>
  </div>
 </section>
@@ -2910,27 +2680,27 @@ document.addEventListener('click', function(e){
  <div class="landing-wrap landing-wrap-narrow">
  <h2 id="faq-h2" class="sora">FAQ - Logiciel devis BTP gratuit</h2>
  <div class="faq-item" style="background:#EFF6FF;border:1px solid #BFDBFE;">
-  <div class="app-h3">💳 Quelle est la différence entre abonnement et paiement d'acompte ?</div>
-  <p><span style="font-weight:700"><span style="font-weight:600">Abonnement (vous → Devis Flash) :</span></span> Vous payez Starter 9,90€/mois ou 99€/an, ou Expert 39€/mois ou 390€/an via SumUp, Stripe ou PayPal pour utiliser l'app.<br><br><strong>Acompte client (votre client → vous) :</strong> Votre client paie 30% de son devis via le QR Code généré sur le devis. Vous encaissez 100% directement, 0% commission Devis Flash. C'est DEUX flux séparés.</p>
+  <h3 class="app-h3">💳 Quelle est la différence entre abonnement et paiement d'acompte ?</h3>
+  <p><h4 style="font-size:14px;font-weight:800;margin:12px 0 6px;color:#1E40AF;">Abonnement (vous → Devis Flash) :</h4> Vous payez Starter 9,90€/mois ou 99€/an, ou Expert 39€/mois ou 390€/an via SumUp, Stripe ou PayPal pour utiliser l'app.<br><br><h4 style="font-size:14px;font-weight:800;margin:12px 0 6px;color:#1E40AF;">Acompte client (votre client → vous) :</h4> Votre client paie 30% de son devis via le QR Code généré sur le devis. Vous encaissez 100% directement, 0% commission Devis Flash. C'est DEUX flux séparés.</p>
  </div>
  <div class="faq-item">
-  <div class="app-h3">Devis Flash est-il vraiment gratuit ?</div>
+  <h3 class="app-h3">Devis Flash est-il vraiment gratuit ?</h3>
   <p>Oui, le plan Gratuit permet de créer 3 devis + 2 factures Factur-X par mois. Les plans Starter et Expert sont disponibles avec Gratuit sans carte bancaire.</p>
  </div>
  <div class="faq-item">
-  <div class="app-h3">Comment encaisser un acompte client ?</div>
+  <h3 class="app-h3">Comment encaisser un acompte client ?</h3>
   <p>Dans Générateur → Paiement de l'acompte, renseignez VOTRE lien SumUp / Stripe / PayPal.me (celui pour que VOS clients vous paient). Devis Flash génère un QR Code + logo personnalisé (Expert) + export comptable (PRO).</p>
  </div>
  <div class="faq-item">
-  <div class="app-h3">Que contient le plan Expert ?</div>
+  <h3 class="app-h3">Que contient le plan Expert ?</h3>
   <p>Tout Starter + QR encaissement automatique + Logo personnalisé sur PDF + Export comptable CSV.</p>
  </div>
  <div class="faq-item">
-  <div class="app-h3">Mes devis et mes données sont-ils sauvegardés ?</div>
+  <h3 class="app-h3">Mes devis et mes données sont-ils sauvegardés ?</h3>
   <p>Vos devis sont enregistrés localement dans votre navigateur. Export JSON disponible.</p>
  </div>
  <div class="faq-item">
-  <div class="app-h3">Puis-je annuler mon essai gratuit ?</div>
+  <h3 class="app-h3">Puis-je annuler mon essai gratuit ?</h3>
   <p>Oui, gratuit sans CB, sans engagement.</p>
  </div>
 <div style="text-align:center; margin-top:24px;">
@@ -3131,7 +2901,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   affCard.className='card';
   affCard.style.cssText='margin-top:18px;background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border:1px solid #FDE68A';
   affCard.innerHTML = `
-   <div class="app-h3">🤝 Affiliation 30% — Devis Flash</div>
+   <h3 class="app-h3">🤝 Affiliation 30% — Devis Flash</h3>
    <p style="font-size:13px;color:#92400E">Gagne 30% à vie sur chaque abonnement. Partage ton lien.</p>
    <label>Ton code</label><input id="aff-code" placeholder="Ex: " style="margin-bottom:10px">
    <label>Lien affilié</label><input id="aff-link" readonly style="margin-bottom:10px">
@@ -6689,5 +6459,185 @@ img,canvas{touch-action:auto!important;}
   console.log('✅ Fermeture OK - Bouton Fermer + clic fond + ESC');
 })();
 </script>
+<style>html,body{transform:none !important; filter:none !important; perspective:none !important;} #df-float{position:fixed !important; bottom:20px !important; right:20px !important; left:auto !important; top:auto !important;}</style>
+<!-- V13 - BOUTON VRAIMENT FLOTTANT 100% - INJECTION BODY -->
+<style>
+#df-float-root{
+  position:fixed !important;
+  bottom:0 !important;
+  right:0 !important;
+  width:0 !important;
+  height:0 !important;
+  z-index:2147483647 !important;
+  pointer-events:none !important;
+}
+#df-float{
+  position:fixed !important;
+  bottom:24px !important;
+  right:20px !important;
+  width:62px !important;
+  height:62px !important;
+  background:#25D366 !important;
+  border-radius:50% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  z-index:2147483647 !important;
+  box-shadow:0 6px 22px rgba(0,0,0,.35) !important;
+  border:3px solid #fff !important;
+  cursor:pointer !important;
+  pointer-events:auto !important;
+}
+#df-float svg{width:32px;height:32px;fill:#fff;pointer-events:none;display:block}
+#df-chat{
+  position:fixed !important;
+  bottom:92px !important;
+  right:16px !important;
+  width:300px !important;
+  max-width:calc(100vw - 24px) !important;
+  height:520px !important;
+  max-height:70vh !important;
+  background:#fff !important;
+  border-radius:18px !important;
+  box-shadow:0 15px 50px rgba(0,0,0,.35) !important;
+  z-index:2147483646 !important;
+  display:none !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+  font-family:Inter,sans-serif !important;
+}
+#df-chat.open{display:flex !important}
+#df-head{background:#0F5E4A;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;font-weight:800;flex-shrink:0}
+#df-head button{background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:18px;cursor:pointer}
+#df-msgs{flex:1;overflow-y:auto;padding:14px 10px;display:flex;flex-direction:column;gap:10px;background:#EFE7DD}
+.df-b{max-width:82%;padding:10px 13px;border-radius:14px;font-size:13.5px;box-shadow:0 1px 2px rgba(0,0,0,.1);white-space:pre-wrap;word-wrap:break-word}
+.df-b.bot{background:#fff;align-self:flex-start;border-top-left-radius:4px}
+.df-b.user{background:#DCF8C6;align-self:flex-end;border-top-right-radius:4px}
+#df-quick{display:flex;gap:6px;overflow-x:auto;padding:8px 10px;background:#F0F0F0;border-top:1px solid #e5e7eb;flex-shrink:0}
+.df-chip{white-space:nowrap;background:#fff;border:1.5px solid #e5e7eb;padding:7px 12px;border-radius:20px;font-size:11.5px;font-weight:700;cursor:pointer;flex-shrink:0}
+#df-input-area{display:flex;gap:8px;padding:10px;background:#F0F0F0;align-items:center;flex-shrink:0}
+#df-input{flex:1;border:none;background:#fff;border-radius:22px;padding:11px 14px;font-size:15px;outline:none}
+#df-send{width:42px;height:42px;background:#25D366;border:none;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+@media(max-width:480px){#df-float{bottom:16px !important;right:12px !important}#df-chat{right:8px !important;left:8px !important;width:auto !important;bottom:84px !important;height:65vh !important}}
+</style>
+
+<div id="df-float-root"></div>
+
+<script>
+(function(){
+  // Inject button at TOP LEVEL - outside any transformed container
+  function createUI(){
+    // Ensure root exists
+    var root = document.getElementById('df-float-root');
+    if(!root){
+      root = document.createElement('div');
+      root.id='df-float-root';
+      document.body.appendChild(root);
+    }
+
+    // Create floating button if not exists
+    if(!document.getElementById('df-float')){
+      var btn = document.createElement('button');
+      btn.id='df-float';
+      btn.type='button';
+      btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2a9.9 9.9 0 0 0-8.5 14.86L2 22l5.29-1.39a9.9 9.9 0 0 0 4.74 1.21h.01a9.9 9.9 0 0 0 7.01-16.91ZM12.03 20.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.13.82.83-3.05-.2-.31a8.12 8.12 0 0 1 6.63-12.33 8.1 8.1 0 0 1 5.73 2.37 8.09 8.09 0 0 1-5.73 13.81Zm4.45-5.97c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.4-1.33-1.64-.14-.24-.02-.37.1-.49.1-.1.24-.26.36-.4.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg>';
+      // Append directly to body, NOT inside any container
+      document.body.appendChild(btn);
+    }
+
+    if(!document.getElementById('df-chat')){
+      var chat = document.createElement('div');
+      chat.id='df-chat';
+      chat.innerHTML='<div id="df-head"><span>Devis Flash ⚡</span><button id="df-close" type="button">✕</button></div><div id="df-msgs"></div><div id="df-quick"></div><div id="df-input-area"><input id="df-input" placeholder="Pose ta question..." autocomplete="off" /><button id="df-send" type="button">➤</button></div>';
+      document.body.appendChild(chat);
+    }
+
+    initLogic();
+  }
+
+  function initLogic(){
+    var open=false, welcomed=false;
+    var chat=document.getElementById('df-chat');
+    var btn=document.getElementById('df-float');
+    var closeBtn=document.getElementById('df-close');
+    var sendBtn=document.getElementById('df-send');
+    var input=document.getElementById('df-input');
+    var msgs=document.getElementById('df-msgs');
+    var quick=document.getElementById('df-quick');
+
+    var FAQ=[
+      {k:["faire un devis","fais un devis","creer devis"], a:"**FAIRE UN DEVIS - Mode opératoire outil**\n\n1️⃣ Mon entreprise (⚙️) > SIRET + assurance\n2️⃣ Générateur > client\n3️⃣ Titre + lignes Catalogue + quantité\n4️⃣ Marge 25-35% + TVA 10% si +2 ans + Acompte 30%\n5️⃣ Générer PDF > QR 30% > Email\n⏱️ 2 min"},
+      {k:["mode emploi","mode operatoire outil","comment utiliser"], a:"**MODE D'EMPLOI + MODE OPÉRATOIRE OUTIL**\n\n1️⃣ Mon entreprise > SIRET + nom + adresse + TVA + assurance\n2️⃣ Catalogue > Ajouter produit\n3️⃣ Clients > Nouveau\n4️⃣ Générateur > Client > Titre > Lignes Catalogue > marge > TVA 10% > Acompte 30% > PDF\n5️⃣ Email + QR 30% > client paye\n6️⃣ Transformer en facture > Factur-X auto"},
+      {k:["devis flash"], a:"Devis Flash = devis/facture BTP en 2 min. 3 devis + 2 factures gratuits/mois. Marge auto, QR 30%, Factur-X 2026."},
+      {k:["tva"], a:"TVA: 10% maison +2 ans, 5,5% isolation, 20% neuve -2 ans."},
+      {k:["acompte"], a:"Acompte 30% max sans caution. QR Acompte > client paye CB."},
+      {k:["facture"], a:"Devis signé > Transformer en facture > F2026-001 > Factur-X auto."},
+      {k:["tarif","prix"], a:"Gratuit 3 devis + 2 factures. Starter 9,90€/mois (99€/an). Expert 39€/mois."}
+    ];
+
+    function rep(t){
+      var q=(t||"").toLowerCase().trim();
+      if(!q || q.length<=2 || /^(slt|salut|cc|bjr|bonjour|hi)$/.test(q)) return "slt tu a une question ?";
+      for(var i=0;i<FAQ.length;i++){ for(var j=0;j<FAQ[i].k.length;j++){ if(q.includes(FAQ[i].k[j])) return FAQ[i].a; } }
+      return "slt tu a une question ?";
+    }
+    function add(text, who){
+      var d=document.createElement('div'); d.className='df-b '+who; d.textContent=text; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
+    }
+    function showQuick(){
+      quick.innerHTML='';
+      ["Mode d'emploi Devis Flash","Faire un devis","TVA 10% ?","Tarifs"].forEach(function(c){
+        var b=document.createElement('button'); b.className='df-chip'; b.textContent=c; b.type='button';
+        b.onclick=function(){ input.value=c; send(); }; quick.appendChild(b);
+      });
+    }
+    function toggle(){
+      open=!open;
+      if(open){ chat.classList.add('open'); chat.style.display='flex'; if(!welcomed){ welcomed=true; setTimeout(function(){ add(rep("salut"),'bot'); showQuick(); }, 150); } }
+      else { chat.classList.remove('open'); chat.style.display='none'; }
+    }
+    function send(){
+      var txt=input.value.trim(); if(!txt) return;
+      add(txt,'user'); input.value='';
+      setTimeout(function(){ add(rep(txt),'bot'); showQuick(); if(txt.toLowerCase().includes("faire un devis") && window.showView) window.showView('generateur'); }, 300);
+    }
+
+    btn.onclick=toggle;
+    closeBtn.onclick=toggle;
+    sendBtn.onclick=send;
+    input.onkeydown=function(e){ if(e.key==='Enter'){ e.preventDefault(); send(); } };
+
+    // Force floating position on scroll/resize (Android fix)
+    function forceFloat(){
+      btn.style.position='fixed';
+      btn.style.bottom='20px';
+      btn.style.right='20px';
+      btn.style.display='flex';
+    }
+    window.addEventListener('scroll', forceFloat, {passive:true});
+    window.addEventListener('resize', forceFloat, {passive:true});
+    setInterval(forceFloat, 1000);
+  }
+
+  // Create immediately + after DOM ready
+  createUI();
+  document.addEventListener('DOMContentLoaded', createUI);
+  window.addEventListener('load', function(){ setTimeout(createUI, 200); });
+})();
+</script>
+
+<style id="df-small-fix">#df-float{width:44px!important;height:44px!important;bottom:90px!important;right:20px!important;border-width:2.5px!important}#df-float svg{width:16px!important;height:16px!important}#df-chat{bottom:145px!important;right:20px!important}@media(max-width:768px){#df-float{width:42px!important;height:42px!important;right:14px!important;bottom:calc(90px + env(safe-area-inset-bottom,0px))!important}#df-chat{bottom:calc(140px + env(safe-area-inset-bottom,0px))!important}}</style><script id="df-icon-fix">(function(){function setDots(){var b=document.getElementById('df-float');if(!b)return setTimeout(setDots,200);b.innerHTML='<svg viewBox="0 0 24 24" fill="white" style="width:16px;height:16px;display:block;"><circle cx="5.5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="18.5" cy="12" r="2.2"/></svg>';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setDots);else setDots();window.addEventListener('load',setDots);})();</script>
+<style id="df-small-fix">#df-float{width:44px!important;height:44px!important;bottom:90px!important;right:20px!important;border-width:2.5px!important}#df-float svg{width:16px!important;height:16px!important}#df-chat{bottom:145px!important;right:20px!important}@media(max-width:768px){#df-float{width:42px!important;height:42px!important;right:14px!important;bottom:calc(90px + env(safe-area-inset-bottom,0px))!important}#df-chat{bottom:calc(140px + env(safe-area-inset-bottom,0px))!important}}</style><script id="df-icon-fix">(function(){function setDots(){var b=document.getElementById('df-float');if(!b)return setTimeout(setDots,200);b.innerHTML='<svg viewBox="0 0 24 24" fill="white" style="width:16px;height:16px;display:block;"><circle cx="5.5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="18.5" cy="12" r="2.2"/></svg>';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setDots);else setDots();window.addEventListener('load',setDots);})();</script>
+
+<style id="df-narrow-fix">
+#df-chat{width:300px!important; max-width:320px!important;}
+@media(min-width:400px){
+ #df-chat{width:300px!important;}
+}
+@media(max-width:768px){
+ #df-chat{width:auto!important; left:12px!important; right:12px!important; max-width:none!important;}
+}
+</style>
+
 </body>
 </html>
