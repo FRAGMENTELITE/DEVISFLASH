@@ -2430,7 +2430,7 @@ async function exportDevisPDF(devisId){
   doc.setFontSize(7);
   const _plan=(localStorage.getItem('df_plan')||'gratuit').toLowerCase();
   const _isFree=_plan.includes('gratuit')||_plan===''||_plan==='free';
-  if(_isFree){ doc.setTextColor(148,163,184); doc.text('Devis cree avec Devis-Flash.fr - Conforme 2026 des 4,90€ pour retirer',15,287); doc.setTextColor(0,0,0); }
+  if(_isFree){ doc.setTextColor(148,163,184); doc.setFontSize(8); doc.text('Fait avec Devis Flash - devis-flash.fr',15,287); doc.setTextColor(0,0,0); }
   else { doc.text('Factur-X BASIC - Chorus Pro 2026 - Devis Flash - '+(ent.nom||''),15,287); }
   const fileName = 'Devis-'+(d.numero||Date.now())+'-Factur-X.pdf';
   // MOBILE FIX: detection
