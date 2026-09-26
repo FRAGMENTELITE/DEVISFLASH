@@ -6,15 +6,33 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563EB">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTWCVEX2S0"></script>
 <script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
- gtag('config', 'G-DTWCVEX2S0');
+// LAZY LOAD - Charge les grosses libs uniquement quand on en a besoin (gain 800ko initial)
+window.loadHeavyLibs = function(){
+  if(window._heavyLoaded) return;
+  window._heavyLoaded=true;
+  var libs=[
+    "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",
+    "https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"
+  ];
+  libs.forEach(function(src){ var s=document.createElement('script'); s.src=src; s.defer=true; document.head.appendChild(s); });
+};
+// Charge au clic sur Generateur ou apres 5s si besoin
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){ 
+    if(location.hash.includes('generateur') || location.hash.includes('facture')) window.loadHeavyLibs();
+  }, 2000);
+});
+</script>
+<script>
+// GTAG en differe - gagne 150ms sur LCP
+window.addEventListener('load', function(){ 
+  setTimeout(function(){
+    var g=document.createElement('script'); g.src='https://www.googletagmanager.com/gtag/js?id=G-DTWCVEX2S0'; g.async=true; document.head.appendChild(g);
+    window.dataLayer=window.dataLayer||[]; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config','G-DTWCVEX2S0');
+  }, 3000);
+});
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2 Factures Gratuites - Devis BTP en 2 min | Devis Flash</title>
@@ -34,7 +52,8 @@
 <meta name="twitter:title" content="2 Factures Gratuites - Devis BTP en 2 min | Devis Flash">
 <meta name="twitter:description" content="Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture Factur-X 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
  :root{
  --hide-lang:none;
@@ -57,11 +76,11 @@
  ::selection{background:var(--brand); color:#fff;}
  img{max-width:100%;}
  /* FIX selecteur langue derrière page */
- header{ z-index:90 !important; }
+ header{ z-index:90; }
  .header-inner{ position:relative; z-index:90; flex-wrap:wrap; gap:12px; }
- #lang-switcher{ position:relative; z-index:10000 !important; pointer-events:auto !important; }
- .lang-btn{ position:relative; z-index:10001 !important; pointer-events:auto !important; }
- .lang-switch{ position:relative; z-index:10000; }
+ #lang-switcher{ position:relative; z-index:95; pointer-events:auto; }
+ .lang-btn{ position:relative; z-index:96; pointer-events:auto; }
+ .lang-switch{ position:relative; z-index:95; }
  .tabs{ z-index:40; }
  .landing-hero{ position:relative; z-index:1; }
  /* ---------- Header ---------- */
@@ -88,7 +107,8 @@
  .tab-btn:hover:not(.active){color:var(--ink);}
  @media (max-width:760px){
  .header-inner{min-height:120px; padding:20px 16px 12px 16px;}
- .tabs{position:relative; bottom:auto; left:auto; right:auto; border-radius:12px; justify-content:flex-start; padding:4px; box-shadow:none; flex-wrap:wrap; overflow:hidden; max-height:60px;}
+ .tabs{position:relative; bottom:auto; left:auto; right:auto; border-radius:12px; justify-content:flex-start; padding:4px; box-shadow:none; flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden; max-height:none; scrollbar-width:none; -ms-overflow-style:none;}
+ .tabs::-webkit-scrollbar{display:none;}
  .tab-btn{flex-direction:row; gap:6px; font-size:12px; padding:8px 12px; white-space:nowrap;}
  body{padding-bottom:0;}
  }
@@ -1945,7 +1965,7 @@ function showBravo3Devis(){
   if(existing) existing.remove();
   var modal=document.createElement('div');
   modal.id='bravo3Modal';
-  modal.style.cssText='position:fixed;inset:0;background:rgba(15,23,42,0.65);backdrop-filter:blur(6px);z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s ease';
+  modal.style.cssText='position:fixed;inset:0;background:rgba(15,23,42,0.65);backdrop-filter:blur(6px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s ease';
   modal.innerHTML=`<div style="background:#fff;border-radius:20px;max-width:420px;width:100%;padding:28px 24px;box-shadow:0 24px 60px rgba(0,0,0,0.25);text-align:center;position:relative;animation:popIn .35s cubic-bezier(.34,1.56,.64,1)">
     <div style="width:64px;height:64px;background:linear-gradient(135deg,#10B981,#059669);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 16px">🎉</div>
     <h2 style="font-family:Sora,sans-serif;font-size:22px;font-weight:800;color:#0F172A;margin:0 0 8px;line-height:1.2">Bravo ! Tu as fait 3 devis.</h2>
@@ -2430,7 +2450,7 @@ async function exportDevisPDF(devisId){
   doc.setFontSize(7);
   const _plan=(localStorage.getItem('df_plan')||'gratuit').toLowerCase();
   const _isFree=_plan.includes('gratuit')||_plan===''||_plan==='free';
-  if(_isFree){ doc.setTextColor(148,163,184); doc.setFontSize(8); doc.text('Fait avec Devis Flash - devis-flash.fr',15,287); doc.setTextColor(0,0,0); }
+  if(_isFree){ doc.setTextColor(148,163,184); doc.text('Devis cree avec Devis-Flash.fr - Conforme 2026 des 4,90€ pour retirer',15,287); doc.setTextColor(0,0,0); }
   else { doc.text('Factur-X BASIC - Chorus Pro 2026 - Devis Flash - '+(ent.nom||''),15,287); }
   const fileName = 'Devis-'+(d.numero||Date.now())+'-Factur-X.pdf';
   // MOBILE FIX: detection
@@ -6548,7 +6568,7 @@ img,canvas{touch-action:auto!important;}
     if(!document.getElementById('df-chat')){
       var chat = document.createElement('div');
       chat.id='df-chat';
-      chat.innerHTML='<div id="df-head"><span>Devis Flash ⚡</span><button id="df-close" type="button">✕</button></div><div id="df-msgs"></div><div id="df-quick"></div><div id="df-input-area"><input id="df-input" placeholder="Pose ta question..." autocomplete="off" /><button id="df-send" type="button">➤</button></div>';
+      chat.innerHTML='<div id="df-head"><span>Devis Flash ⚡</span><button id="df-close" type="button" aria-label="Fermer">✕</button></div><div id="df-msgs" role="log" aria-live="polite"></div><div id="df-quick" role="group"></div><div id="df-input-area"><input id="df-input" placeholder="Posez votre question..." autocomplete="off" aria-label="Votre question" /><button id="df-send" type="button" aria-label="Envoyer">➤</button></div>';
       document.body.appendChild(chat);
     }
 
@@ -6577,12 +6597,12 @@ img,canvas{touch-action:auto!important;}
 
     function rep(t){
       var q=(t||"").toLowerCase().trim();
-      if(!q || q.length<=2 || /^(slt|salut|cc|bjr|bonjour|hi)$/.test(q)) return "slt tu a une question ?";
+      if(!q || q.length<=2 || /^(slt|salut|cc|bjr|bonjour|hi)$/.test(q)) return "Bonjour 👋 Je suis l'assistant Devis Flash. Posez votre question sur devis, TVA, factures ou Factur-X 2026.";
       for(var i=0;i<FAQ.length;i++){ for(var j=0;j<FAQ[i].k.length;j++){ if(q.includes(FAQ[i].k[j])) return FAQ[i].a; } }
-      return "slt tu a une question ?";
+      return "Bonjour 👋 Je suis l'assistant Devis Flash. Posez votre question sur devis, TVA, factures ou Factur-X 2026.";
     }
     function add(text, who){
-      var d=document.createElement('div'); d.className='df-b '+who; d.textContent=text; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
+      var d=document.createElement('div'); d.className='df-b '+who; var html=(text||'').replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>'); d.innerHTML=html; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
     }
     function showQuick(){
       quick.innerHTML='';
@@ -6607,16 +6627,20 @@ img,canvas{touch-action:auto!important;}
     sendBtn.onclick=send;
     input.onkeydown=function(e){ if(e.key==='Enter'){ e.preventDefault(); send(); } };
 
-    // Force floating position on scroll/resize (Android fix)
+    // Force floating position - fix Android + scroll
     function forceFloat(){
+      if(!btn) return;
       btn.style.position='fixed';
       btn.style.bottom='20px';
       btn.style.right='20px';
       btn.style.display='flex';
+      btn.style.zIndex='9998';
     }
+    window.addEventListener('load', forceFloat, {once:true});
     window.addEventListener('scroll', forceFloat, {passive:true});
     window.addEventListener('resize', forceFloat, {passive:true});
-    setInterval(forceFloat, 1000);
+    // Securite Android: re-force toutes les 2s si besoin (pas 1s pour perf)
+    setInterval(forceFloat, 2000);
   }
 
   // Create immediately + after DOM ready
@@ -6626,8 +6650,7 @@ img,canvas{touch-action:auto!important;}
 })();
 </script>
 
-<style id="df-small-fix">#df-float{width:44px!important;height:44px!important;bottom:90px!important;right:20px!important;border-width:2.5px!important}#df-float svg{width:16px!important;height:16px!important}#df-chat{bottom:145px!important;right:20px!important}@media(max-width:768px){#df-float{width:42px!important;height:42px!important;right:14px!important;bottom:calc(90px + env(safe-area-inset-bottom,0px))!important}#df-chat{bottom:calc(140px + env(safe-area-inset-bottom,0px))!important}}</style><script id="df-icon-fix">(function(){function setDots(){var b=document.getElementById('df-float');if(!b)return setTimeout(setDots,200);b.innerHTML='<svg viewBox="0 0 24 24" fill="white" style="width:16px;height:16px;display:block;"><circle cx="5.5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="18.5" cy="12" r="2.2"/></svg>';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setDots);else setDots();window.addEventListener('load',setDots);})();</script>
-<style id="df-small-fix">#df-float{width:44px!important;height:44px!important;bottom:90px!important;right:20px!important;border-width:2.5px!important}#df-float svg{width:16px!important;height:16px!important}#df-chat{bottom:145px!important;right:20px!important}@media(max-width:768px){#df-float{width:42px!important;height:42px!important;right:14px!important;bottom:calc(90px + env(safe-area-inset-bottom,0px))!important}#df-chat{bottom:calc(140px + env(safe-area-inset-bottom,0px))!important}}</style><script id="df-icon-fix">(function(){function setDots(){var b=document.getElementById('df-float');if(!b)return setTimeout(setDots,200);b.innerHTML='<svg viewBox="0 0 24 24" fill="white" style="width:16px;height:16px;display:block;"><circle cx="5.5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="18.5" cy="12" r="2.2"/></svg>';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setDots);else setDots();window.addEventListener('load',setDots);})();</script>
+<style id="df-small-fix">#df-float{width:48px!important;height:48px!important;bottom:90px!important;right:20px!important;border-width:2.5px!important;z-index:9998!important}#df-float svg{width:16px!important;height:16px!important}#df-chat{bottom:145px!important;right:20px!important}@media(max-width:768px){#df-float{width:42px!important;height:42px!important;right:14px!important;bottom:calc(90px + env(safe-area-inset-bottom,0px))!important}#df-chat{bottom:calc(140px + env(safe-area-inset-bottom,0px))!important}}</style><script id="df-icon-fix">(function(){function setDots(){var b=document.getElementById('df-float');if(!b)return setTimeout(setDots,200);b.innerHTML='<svg viewBox="0 0 24 24" fill="white" style="width:16px;height:16px;display:block;"><circle cx="5.5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="18.5" cy="12" r="2.2"/></svg>';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setDots);else setDots();window.addEventListener('load',setDots);})();</script>
 
 <style id="df-narrow-fix">
 #df-chat{width:300px!important; max-width:320px!important;}
@@ -6638,6 +6661,95 @@ img,canvas{touch-action:auto!important;}
  #df-chat{width:auto!important; left:12px!important; right:12px!important; max-width:none!important;}
 }
 </style>
+
+
+<!-- SEO SECTION 2026 - Optimisée E-E-A-T + FAQ Schema -->
+<section style="max-width:1180px;margin:60px auto 0 auto;padding:0 24px;">
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:32px;line-height:1.8;color:#334155;">
+    <h2 style="font-size:22px;margin:0 0 20px 0;color:#0F172A;font-family:'Sora',sans-serif;">Logiciel devis BTP gratuit : pourquoi Devis Flash est choisi par les artisans ?</h2>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin-top:24px;">
+      <div>
+        <h3 style="font-size:16px;margin:0 0 8px 0;color:#0F172A;">⚡ Devis professionnel en 2 minutes</h3>
+        <p style="margin:0;font-size:14.5px;">Devis Flash permet de créer un devis BTP professionnel en moins de 2 minutes. Catalogue de prix, calcul de marge automatique 25-35%, gestion TVA 10% pour rénovation +2 ans, 5,5% isolation et 20% neuf. Zéro ressaisie.</p>
+      </div>
+      <div>
+        <h3 style="font-size:16px;margin:0 0 8px 0;color:#0F172A;">💳 Acompte 30% par QR code</h3>
+        <p style="margin:0;font-size:14.5px;">Générez un QR code d'acompte 30% directement sur le devis. Votre client scanne et paye en CB. Paiement sécurisé, encaissement immédiat. Conforme loi acompte 30% max sans caution.</p>
+      </div>
+      <div>
+        <h3 style="font-size:16px;margin:0 0 8px 0;color:#0F172A;">🧾 Facture électronique Factur-X 2026</h3>
+        <p style="margin:0;font-size:14.5px;">Transformez vos devis signés en factures Factur-X conformes 2026 en 1 clic. Numérotation F2026-001 automatique. 3 devis et 2 factures offerts par mois. 100% dans le navigateur, rien à installer, données jamais sur un serveur.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;padding-top:24px;border-top:1px solid #F1F5F9;display:flex;flex-wrap:wrap;gap:12px;">
+      <span style="background:#EFF4FF;color:#2563EB;padding:6px 12px;border-radius:20px;font-size:12.5px;font-weight:600;">100% navigateur</span>
+      <span style="background:#ECFDF5;color:#065F46;padding:6px 12px;border-radius:20px;font-size:12.5px;font-weight:600;">RGPD - Données en local</span>
+      <span style="background:#FFFBEB;color:#D97706;padding:6px 12px;border-radius:20px;font-size:12.5px;font-weight:600;">Factur-X 2026</span>
+      <span style="background:#F1F5F9;color:#475569;padding:6px 12px;border-radius:20px;font-size:12.5px;font-weight:600;">3 devis gratuits / mois</span>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Devis Flash",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture électronique Factur-X conforme 2026. 3 devis/mois offerts. 100% dans le navigateur.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "description": "3 devis et 2 factures gratuits par mois"
+  },
+  "featureList": ["Devis BTP en 2 min", "Calcul marge auto 25-35%", "TVA 10% 5.5% 20%", "QR code acompte 30%", "Factur-X 2026", "100% navigateur"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment faire un devis BTP en 2 minutes avec Devis Flash ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1. Renseignez votre entreprise (SIRET, assurance), 2. Allez dans Générateur, choisissez votre client, 3. Ajoutez vos lignes depuis le catalogue, 4. Réglez marge 25-35% et TVA 10% si maison +2 ans, 5. Générez le PDF avec QR acompte 30% et envoyez par email. 2 minutes chrono."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle TVA appliquer sur un devis BTP ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TVA 10% pour rénovation maison de +2 ans, TVA 5,5% pour travaux d'isolation, TVA 20% pour construction neuve ou maison de -2 ans. Devis Flash calcule automatiquement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Devis Flash est-il conforme à la facture électronique 2026 ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, Devis Flash génère des factures Factur-X conformes à l'obligation 2026. Transformation devis signé en facture F2026-001 en 1 clic, avec QR code et archivage 10 ans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien coûte Devis Flash ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gratuit : 3 devis et 2 factures par mois. Starter à 9,90€/mois (99€/an) en illimité, Expert à 39€/mois avec suivi chantier. 100% dans le navigateur, sans abonnement caché."
+      }
+    }
+  ]
+}
+</script>
 
 </body>
 </html>
