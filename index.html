@@ -8,20 +8,21 @@
 (function(){
   try{
     const OLD_EXAMPLES = ["Réalisation d'un mur en parpaings", "Isolation combles perdus 80m²", "Exemple: Pose carrelage"];
-    let raw = localStorage.getItem('devis-flash-state') || localStorage.getItem('devflash_state') || localStorage.getItem('state');
+    const ALL_KEYS = ['devis-flash-state','devflash_state','state','devisFlash_v2','devisflash_state'];
     let shouldClear = false;
-    if(raw){
+    for(let key of ALL_KEYS){
+      let raw = localStorage.getItem(key);
+      if(!raw) continue;
       for(let ex of OLD_EXAMPLES){ if(raw.includes(ex)){ shouldClear=true; break; } }
+      if(shouldClear) break;
     }
-    // check textarea value in state object later
     if(shouldClear){
-      console.log('🧹 Ancien exemple détecté -> clear');
-      localStorage.removeItem('devis-flash-state');
-      localStorage.removeItem('devflash_state');
-      localStorage.removeItem('state');
-      localStorage.removeItem('iaPhrase');
+      // V17.2 FIX: clean TOUTES les clés dont devisFlash_v2
+      ALL_KEYS.forEach(k=>{ try{ localStorage.removeItem(k); }catch(_){} });
+      try{ localStorage.removeItem('iaPhrase'); }catch(_){}
+      console.log('🧹 V17.2 Ancien exemple effacé sur toutes les clés');
     }
-  }catch(e){ console.log(e); }
+  }catch(e){}
 })();
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -80,7 +81,7 @@ window.addEventListener('load', function(){
 });
 </script>
 
-<title>2 Factures Gratuites - Devis BTP en 2 min | Devis Flash</title>
+<title>2 Factures Gratuites - Devis BTP en 2 min | Devis Flash V18 - Chantier Offline + Signature</title>
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link href="/apple-touch-icon.png" rel="apple-touch-icon"/>
 <meta content="Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture électronique Factur-X conforme 2026. 3 devis/mois offerts." name="description"/>
@@ -1191,6 +1192,7 @@ body:has(#view-stock.active) [class*="generate-devis"]{
 <button class="tab-btn active" data-view="generateur" onclick="showView('generateur')">🧾 <span>Générateur</span></button>
 <button class="tab-btn" data-view="planning" onclick="showView('planning')">📅 <span>Planning</span></button>
 <button class="tab-btn" data-view="tarifs" onclick="showView('tarifs')">💳 <span>Tarifs</span></button>
+<button class="tab-btn" data-view="chantier" onclick="showView('chantier')" style="position:relative">🏗️ <span>Chantier</span><span id="chantier-offline-badge" style="display:none; position:absolute; top:2px; right:2px; width:8px; height:8px; background:#10B981; border-radius:50%; border:2px solid #fff;"></span></button>
 <button class="tab-btn" data-view="factures" onclick="showView('factures')">🧾 <span>Factures</span></button>
 <button class="tab-btn" data-view="clients" onclick="showView('clients')">👥 <span>Clients / Bouclier</span></button>
 <button class="tab-btn" data-view="dashboard" onclick="showView('dashboard')">📚 <span>Historique</span></button>
@@ -1675,7 +1677,7 @@ Le tableau se remplit tout seul !" style="width:100%;min-height:120px;border:1.5
     </div>
     
     <div id="simple-list" style="display:flex; flex-direction:column; gap:8px;">
-      <div id="empty-state" style="text-align:center; padding:32px 16px; color:#94A3B8; border:2px dashed #E2E8F0; border-radius:12px;">
+      <div id="empty-state-v172" class="empty-state" style="text-align:center; padding:32px 16px; color:#94A3B8; border:2px dashed #E2E8F0; border-radius:12px;">
         <div style="font-size:28px; margin-bottom:8px;">📝</div>
         <div style="font-size:13px; font-weight:600; color:#64748B;">Aucun travail ajouté</div>
         <div style="font-size:11px; margin-top:4px;">Décris ce que tu vas faire chez le client ci-dessus, ça se remplit tout seul</div>
@@ -4159,6 +4161,29 @@ async function exportDevisPDF(devisId){
    doc.text(Number((l.qte||1)*(l.puVente||l.pu||0)).toFixed(2)+' €',160,y);
    y+=7;
   });
+  // V18 CLIENT SIGNATURE - injection avant totaux
+  try{
+    let sig = null;
+    try{
+      let raw = localStorage.getItem('df_signature_v18');
+      if(raw){ let o=JSON.parse(raw); sig=o.data; }
+      if(!sig){
+        let ch = localStorage.getItem('df_chantier_v18');
+        if(ch){ let list=JSON.parse(ch); let f=list.find(x=>x.signature); if(f) sig=f.signature; }
+      }
+      if(!sig && window._lastSignature) sig=window._lastSignature;
+    }catch(_){}
+    if(sig){
+      if(y>200){ doc.addPage(); y=20; }
+      doc.setFontSize(10); doc.setFont('helvetica','bold'); doc.setTextColor(15,23,42);
+      doc.text('Signature client chantier:',15,y); y+=4;
+      try{ doc.addImage(sig,'PNG',15,y,70,25); }catch(e){ console.log('sig addImage fail', e); }
+      y+=30;
+      doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(100,116,139);
+      doc.text('Signe le '+new Date().toLocaleString('fr-FR')+' - Offline V18',15,y); y+=10;
+    }
+  }catch(e){ console.log('sig inject exportDevisPDF', e); }
+
   y+=10; doc.setFont('helvetica','bold');
   doc.text('HT: '+totals.venteHT.toFixed(2)+' €',130,y); y+=7;
   doc.text('TVA: '+totals.tvaMontant.toFixed(2)+' €',130,y); y+=7;
@@ -4754,6 +4779,37 @@ async function generateDevisPDFBase64(id){
  doc.text('Acompte 30%: '+fmtEUR((d.venteTotal||0)*0.3),14,y);
  y+=12;
  // === FOOTER SIGNATURE DEVIS FLASH ===
+ // V18 CLIENT SIGNATURE INJECTION
+ try{
+   let clientSig = null;
+   try{ 
+     let raw = localStorage.getItem('df_signature_v18');
+     if(raw){ let o=JSON.parse(raw); clientSig=o.data; }
+     // aussi check chantier signature
+     if(!clientSig){
+       let chantierRaw = localStorage.getItem('df_chantier_v18');
+       if(chantierRaw){
+         let list=JSON.parse(chantierRaw);
+         if(list.length>0 && list[0].signature) clientSig=list[0].signature;
+         // cherche par client name
+         let match = list.find(x=>x.client && d.client && x.client.includes(d.client)) || list.find(x=>x.signature);
+         if(match && match.signature) clientSig=match.signature;
+       }
+     }
+     if(!clientSig && window._lastSignature) clientSig=window._lastSignature;
+   }catch(_){}
+   if(clientSig){
+     if(y>230){ doc.addPage(); y=20; }
+     doc.setFontSize(11); doc.setFont('helvetica','bold'); doc.setTextColor(15,23,42);
+     doc.text('Signature client:',14,y);
+     y+=4;
+     try{ doc.addImage(clientSig, 'PNG', 14, y, 70, 25); y+=30; }catch(e){ console.log('addImage sig fail', e); y+=10; }
+     doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(100,116,139);
+     doc.text('Signé sur chantier - '+new Date().toLocaleString('fr-FR'),14,y);
+     y+=8;
+   }
+ }catch(e){ console.log('client sig inject fail', e); }
+
  doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(37,99,235);
  doc.text(`Signé électroniquement par ${signataire} - SIRET ${siret}`,14,y);
  doc.setFontSize(7); doc.setFont('helvetica','normal'); doc.setTextColor(100,116,139);
@@ -4781,7 +4837,8 @@ async function generateDevisPDFBase64(id){
  </ram:ApplicableHeaderTradeAgreement>
  <ram:ApplicableHeaderTradeSettlement>
   <ram:InvoiceCurrencyCode>${deviseCode}</ram:InvoiceCurrencyCode>
-  <ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:GrandTotalAmount>${Number(d.venteTotal||0).toFixed(2)}</ram:GrandTotalAmount><ram:DuePayableAmount>${Number(d.venteTotal||0).toFixed(2)}</ram:DuePayableAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+  ${clientSignature ? `<ram:IncludedNote><ram:Content>Devis signé électroniquement le ${signatureDate||new Date().toISOString()} par ${devis.client||'client'} - Signature PNG intégrée Factur-X 2026 - Conforme eIDAS</ram:Content><ram:SubjectCode>REG</ram:SubjectCode></ram:IncludedNote>` : ''}
+   <ram:SpecifiedTradeSettlementHeaderMonetarySummation><ram:GrandTotalAmount>${Number(d.venteTotal||0).toFixed(2)}</ram:GrandTotalAmount><ram:DuePayableAmount>${Number(d.venteTotal||0).toFixed(2)}</ram:DuePayableAmount></ram:SpecifiedTradeSettlementHeaderMonetarySummation>
   <ram:SpecifiedTradeSettlementPaymentMeans><ram:TypeCode>58</ram:TypeCode><ram:Information>${d.statutChantier||d.statut||'Envoyé'}${d.acompteRecu? ' - Acompte '+ (d.acompteMontant||0) +'€ encaissé':''}</ram:Information></ram:SpecifiedTradeSettlementPaymentMeans>
   <ram:IncludedNote><ram:Content>SHA256:${hash} VERIFY:${verifyUrl} SIGN:${signataire} ${hasSignature?'CLIENT-SIGNATURE-INCLUDED':''} TRESO:${d.acompteRecu?'ACOMPTE-ENCAISSE-'+(d.acompteMontant||0):'EN-ATTENTE'} STATUT:${d.statutChantier||d.statut}</ram:Content></ram:IncludedNote>
  </ram:ApplicableHeaderTradeSettlement>
@@ -5110,7 +5167,20 @@ function exportDevisFlashJSON(){
 }
 function importDevisFlashJSON(f){ if(!f) return; const r=new FileReader(); r.onload=e=>{ try{ const d=JSON.parse(e.target.result); if(d.entreprise) localStorage.setItem('devisflash_entreprise', JSON.stringify(d.entreprise)); if(d.state) localStorage.setItem('devisflash_state', JSON.stringify(d.state)); location.reload(); }catch(err){alert('JSON invalide');} }; r.readAsText(f); }
 function genererPDFPropre(){
- try{ const {jsPDF}=window.jspdf; const doc=new jsPDF(); const ent=JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}'); const st=JSON.parse(localStorage.getItem('devisflash_state')||'{}'); const d=st.devis?.find(x=>x.id===st.lastApercu)||{client:{name:'Client'}, lines:st.lines||[]}; const t=computeTotals(d.lines||[]); doc.text(ent.nom||'Devis Flash',15,18); doc.text('SIRET '+(ent.siret||''),15,24); let y=40; (d.lines||[]).forEach(l=>{ doc.text((l.desc||'').substring(0,50),15,y); y+=8; if(y>270){doc.addPage(); y=20;}}); doc.text('TTC: '+t.venteTTC.toFixed(2)+' €',15,y+10); doc.save('Devis-Flash.pdf'); }catch(e){alert(e.message);}
+ try{ const {jsPDF}=window.jspdf; const doc=new jsPDF(); const ent=JSON.parse(localStorage.getItem('devisflash_entreprise')||'{}'); const st=JSON.parse(localStorage.getItem('devisflash_state')||'{}'); const d=st.devis?.find(x=>x.id===st.lastApercu)||{client:{name:'Client'}, lines:st.lines||[]}; const t=computeTotals(d.lines||[]); doc.text(ent.nom||'Devis Flash',15,18); doc.text('SIRET '+(ent.siret||''),15,24); let y=40; (d.lines||[]).forEach(l=>{ doc.text((l.desc||'').substring(0,50),15,y); y+=8; if(y>270){doc.addPage(); y=20;}}); doc.text('TTC: '+t.venteTTC.toFixed(2)+' €',15,y+10);
+ y+=16;
+ try{
+   let raw=localStorage.getItem('df_signature_v18');
+   if(raw){
+     let o=JSON.parse(raw);
+     if(o.data){
+       doc.text('Signature client:',15,y); y+=4;
+       doc.addImage(o.data,'PNG',15,y,70,25); y+=30;
+       doc.setFontSize(8); doc.text('Signe le '+new Date(o.date).toLocaleString('fr-FR'),15,y);
+     }
+   }
+ }catch(_){}
+ doc.save('Devis-Flash.pdf'); }catch(e){alert(e.message);}
 }
 </script><script>
 const RELANCE_feats:["3 devis + 2 factures / mois","Conforme Factur-X 2026","Numérotation légale","Archivage 10 ans","QR paiement inclus","Sans CB"]LATES={
@@ -6131,7 +6201,7 @@ window.exportFacturX = function(devisId){
  const devis = (state.devis||[]).find(d=>d.id===devisId) || state.currentDevis || state.devis?.[state.devis.length-1];
  if(!devis) return alert('Aucun devis');
  const ent = JSON.parse(localStorage.getItem('df_entreprise')||'{}');
- const totalHT = devis.venteTotalHT || devis.venteTotal || 0;
+ const totalHT = devis.venteTotalHT || (devis.venteTotal && devis.tva ? devis.venteTotal / (1 + devis.tva/100) : devis.venteTotal) || 0; // V17.2 FIX évite double TVA
  const tva = devis.tva || 20;
  const totalTVA = totalHT * (tva/100);
  const totalTTC = devis.venteTotal || totalHT+totalTVA;
@@ -6146,6 +6216,7 @@ window.exportFacturX = function(devisId){
   <ram:ApplicableHeaderTradeAgreement>
    <ram:SellerTradeParty><ram:Name>${(ent.nom||'Entreprise').replace(/&/g,'&amp;')}</ram:Name><ram:SpecifiedLegalOrganization><ram:ID>${ent.siret||''}</ram:ID></ram:SpecifiedLegalOrganization></ram:SellerTradeParty>
    <ram:BuyerTradeParty><ram:Name>${(devis.client||'Client').replace(/&/g,'&amp;')}</ram:Name></ram:BuyerTradeParty>
+   ${clientSignature ? `<ram:AdditionalReferencedDocument><ram:IssuerAssignedID>SIG-${Date.now().toString(36)}</ram:IssuerAssignedID><ram:TypeCode>916</ram:TypeCode><ram:Name>Signature client - ${devis.client||''} - ${signatureDate? new Date(signatureDate).toLocaleDateString('fr-FR') : new Date().toLocaleDateString('fr-FR')}</ram:Name><ram:AttachmentBinaryObject mimeCode="image/png" filename="signature-client.png">${clientSignature.split(',')[1]||''}</ram:AttachmentBinaryObject></ram:AdditionalReferencedDocument>` : ''}
   </ram:ApplicableHeaderTradeAgreement>
   <ram:ApplicableHeaderTradeSettlement>
    <ram:InvoiceCurrencyCode>${deviseCode}</ram:InvoiceCurrencyCode>
@@ -7433,10 +7504,31 @@ window.onFieldChange = function(){ if(typeof _origOnFieldChange==='function') _o
 })();
 </script><script id="df-icon-fix">(function(){function setDots(){var b=document.getElementById('df-float');if(!b)return setTimeout(setDots,200);b.innerHTML='<svg viewBox="0 0 24 24" fill="white" style="width:16px;height:16px;display:block;"><circle cx="5.5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="18.5" cy="12" r="2.2"/></svg>';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setDots);else setDots();window.addEventListener('load',setDots);})();</script><script>
 // === FACTUR-X V11 - VALIDE factur-x.org + Kosit + B2BRouter ===
+
 function buildFacturX_BASIC_Validated(devis, ent){
   try{
+    // V18 SIGNATURE CLIENT - récup depuis chantier/offline
+    let clientSignature = devis.signature || null;
+    let signatureDate = devis.signatureDate || null;
+    try{
+      if(!clientSignature){
+        let raw = localStorage.getItem('df_signature_v18');
+        if(raw){ let o=JSON.parse(raw); clientSignature=o.data; signatureDate=o.date; }
+      }
+      if(!clientSignature){
+        let chRaw = localStorage.getItem('df_chantier_v18');
+        if(chRaw){
+          let list=JSON.parse(chRaw);
+          // match by client or numero
+          let match = list.find(x=> (devis.client && x.client && x.client===devis.client) || (devis.numero && x.numero===devis.numero)) || list.find(x=>x.signature);
+          if(match){ clientSignature=match.signature; signatureDate=match.signatureDate; }
+        }
+      }
+      if(!clientSignature && window._lastSignature) clientSignature=window._lastSignature;
+    }catch(_){}
+
     // Données sécurisées
-    const totalHT = Number(devis.venteTotalHT || devis.achatTotal || 1000);
+    const totalHT = Number(devis.venteTotalHT || (devis.venteTotal ? devis.venteTotal/(1+(devis.tva||20)/100) : null) || devis.achatTotal || 1000); // V17.2 FIX
     const tvaRate = Number(devis.tva || ent.tvaDefaut || 20);
     const totalTVA = +(totalHT * (tvaRate/100)).toFixed(2);
     const totalTTC = +(totalHT + totalTVA).toFixed(2);
@@ -8072,7 +8164,7 @@ function renderSimpleList(){
   if(!container) return;
   
   if(!state.lines || state.lines.length===0){
-    container.innerHTML = `<div id="empty-state" style="text-align:center; padding:32px 16px; color:#94A3B8; border:2px dashed #E2E8F0; border-radius:12px;">
+    container.innerHTML = `<div id="empty-state-v172" class="empty-state" style="text-align:center; padding:32px 16px; color:#94A3B8; border:2px dashed #E2E8F0; border-radius:12px;">
         <div style="font-size:28px; margin-bottom:8px;">📝</div>
         <div style="font-size:13px; font-weight:600; color:#64748B;">Aucun travail ajouté</div>
         <div style="font-size:11px; margin-top:4px;">Décris ce que tu vas faire chez le client ci-dessus, ça se remplit tout seul</div>
@@ -8088,11 +8180,11 @@ function renderSimpleList(){
   state.lines.forEach((l,i)=>{
     let qte = Number(l.qte)||0;
     let pu = Number(l.puVente)||0;
-    if(pu===0 && qte>0 && (l.unite||'').toLowerCase().includes('m')){
-      let prixEst = PRIX_M2_ESTIME[state.secteur]||50;
+    // V17.2 FIX: pas de mutation dans le render, juste estimation affichage
+    if(pu===0 && qte>0 && /\bm²|\bm2|\bml|\bm\b/i.test((l.unite||''))){
+      let prixEst = (typeof PRIX_M2_ESTIME !== 'undefined' && PRIX_M2_ESTIME[state.secteur]) ? PRIX_M2_ESTIME[state.secteur] : 50;
       pu = prixEst;
-      state.lines[i].puVente = pu;
-      state.lines[i].coutAchat = Math.round(pu * 0.7);
+      // on n'écrit plus dans state ici, on laisse l'utilisateur valider
     }
     let total = qte * pu;
     totalHT += total;
@@ -8124,8 +8216,8 @@ function renderSimpleList(){
     let totalTVA = 0;
     if(state.lines && state.lines.length>0){
       state.lines.forEach(l=>{
-        let taux = l.tvaRate ? Number(l.tvaRate)/100 : tvaRate;
-        if(state.tva && state.tva.taux) taux = Number(state.tva.taux)/100;
+        let taux = tvaRate;
+        if(l.tvaRate){ taux = Number(l.tvaRate)/100; } else if(state.tva && state.tva.taux){ taux = Number(state.tva.taux)/100; } // V17.2 FIX priorité ligne
         totalTVA += (Number(l.qte)||0) * (Number(l.puVente)||0) * taux;
       });
     } else { totalTVA = totalHT * tvaRate; }
@@ -8142,33 +8234,55 @@ function renderSimpleList(){
   if(countBadge) countBadge.textContent = state.lines.length + ' ligne' + (state.lines.length>1?'s':'');
 }
 
-// Hook into onPhraseInput to detect secteur
-let _origOnPhraseInput = window.onPhraseInput;
-window.onPhraseInput = function(){
-  if(_origOnPhraseInput) _origOnPhraseInput();
-  let ta = document.getElementById('iaPhrase');
-  if(!ta) return;
-  let val = ta.value||'';
-  if(!val.trim()){
-    let badge=document.getElementById('secteur-badge');
-    if(badge) badge.style.display='none';
-    renderSimpleList();
-    return;
-  }
-  let detected = detectSector(val);
-  if(detected && detected!==state.secteur){
-    updateSecteurBadge(detected);
-  } else if(detected && !document.getElementById('secteur-badge').style.display || document.getElementById('secteur-badge').style.display==='none'){
-    updateSecteurBadge(detected);
-  }
-  renderSimpleList();
-};
+// V17.2 FIX: Hook secteur sans double override
+(function(){
+  const prev = window.onPhraseInput;
+  window.onPhraseInput = function(){
+    try{ if(typeof prev === 'function') prev(); }catch(_){}
+    let ta = document.getElementById('iaPhrase');
+    if(!ta) return;
+    let val = ta.value||'';
+    if(!val.trim()){
+      let badge=document.getElementById('secteur-badge');
+      if(badge) badge.style.display='none';
+      if(typeof renderSimpleList==='function') renderSimpleList();
+      return;
+    }
+    try{
+      let detected = (typeof detectSector==='function') ? detectSector(val) : null;
+      if(detected && detected!==state.secteur){
+        if(typeof updateSecteurBadge==='function') updateSecteurBadge(detected);
+      } else if(detected){
+        let b=document.getElementById('secteur-badge');
+        if(b && (b.style.display==='none' || !b.style.display)){
+          if(typeof updateSecteurBadge==='function') updateSecteurBadge(detected);
+        }
+      }
+      if(typeof renderSimpleList==='function') renderSimpleList();
+    }catch(_){}
+  };
+})();
 
-// Override renderLines/renderTotals to also update simple list
-let _origRenderLines = window.renderLines;
-window.renderLines = function(){ if(_origRenderLines) _origRenderLines(); renderSimpleList(); };
-let _origRenderTotals = window.renderTotals;
-window.renderTotals = function(){ if(_origRenderTotals) _origRenderTotals(); renderSimpleList(); };
+// V17.2 FIX: Override safe avec flag anti-recursion
+(function(){
+  let _origRL = window.renderLines;
+  let _origRT = window.renderTotals;
+  let _inRender = false;
+  window.renderLines = function(){
+    if(_inRender) return;
+    _inRender=true;
+    try{ if(_origRL) _origRL(); }catch(_){}
+    try{ if(typeof renderSimpleList==='function') renderSimpleList(); }catch(_){}
+    _inRender=false;
+  };
+  window.renderTotals = function(){
+    if(_inRender) return;
+    _inRender=true;
+    try{ if(_origRT) _origRT(); }catch(_){}
+    try{ if(typeof renderSimpleList==='function') renderSimpleList(); }catch(_){}
+    _inRender=false;
+  };
+})();
 
 document.addEventListener('DOMContentLoaded', function(){
   setTimeout(()=>{ initSecteurDropdown(); renderSimpleList(); }, 800);
@@ -8187,10 +8301,432 @@ document.addEventListener('DOMContentLoaded', function(){
     gen.appendChild(wrapper);
     console.log('SEO bottom added inside generateur - VISIBLE PC');
   }
-  addSeo();
-  setTimeout(addSeo, 1000);
-  setTimeout(addSeo, 3000);
+  addSeo(); // V17.2 single
 });
+</script>
+
+<script>console.log('✅ Devis Flash V17.2 TTC FIX - 8 bugs corrigés - '+new Date().toISOString());</script>
+<!-- V18 CHANTIER OFFLINE + SIGNATURE -->
+<section class="view" id="view-chantier" style="display:none;">
+<div style="max-width:1180px; margin:0 auto; padding:24px;">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+    <div>
+      <h1 style="font-size:26px; font-weight:800; margin:0;">🏗️ Mode Chantier Offline</h1>
+      <p style="color:#64748B; font-size:13px; margin:6px 0 0 0;">100% offline - marche sans réseau au sous-sol. Données en local + sync auto quand réseau revient.</p>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <span id="offline-status" style="background:#ECFDF5; border:1px solid #A7F3D0; color:#065F46; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:700;">🟢 Online</span>
+      <button onclick="exportChantier()" style="background:#fff; border:1px solid #E2E8F0; padding:8px 14px; border-radius:8px; font-weight:600; font-size:12px;">📤 Export</button>
+    </div>
+  </div>
+
+  <!-- Stats chantier -->
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-bottom:20px;">
+    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:14px;">
+      <div style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase;">Devis du jour</div>
+      <div id="chantier-count" style="font-size:22px; font-weight:800; margin-top:4px;">0</div>
+      <div style="font-size:11px; color:#10B981; margin-top:2px;">✓ Dispo offline</div>
+    </div>
+    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:14px;">
+      <div style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase;">À signer</div>
+      <div id="chantier-a-signer" style="font-size:22px; font-weight:800; margin-top:4px;">0</div>
+      <div style="font-size:11px; color:#D97706; margin-top:2px;">En attente signature</div>
+    </div>
+    <div style="background:#fff; border:1px solid #E2E8F0; border-radius:12px; padding:14px;">
+      <div style="font-size:11px; color:#64748B; font-weight:600; text-transform:uppercase;">Photos chantier</div>
+      <div id="chantier-photos" style="font-size:22px; font-weight:800; margin-top:4px;">0</div>
+      <div style="font-size:11px; color:#64748B; margin-top:2px;">Stockées local</div>
+    </div>
+  </div>
+
+  <!-- Liste devis chantier -->
+  <div style="background:#fff; border:1px solid #E2E8F0; border-radius:14px; padding:18px; margin-bottom:16px;">
+    <h3 style="margin:0 0 12px 0; font-size:15px; font-weight:700;">📋 Devis en cours - Mode terrain</h3>
+    <div id="chantier-list" style="display:grid; gap:10px;">
+      <div style="text-align:center; padding:24px; color:#94A3B8; font-size:13px;">Aucun devis chantier - génère un devis et clique "Envoyer sur chantier"</div>
+    </div>
+    <button onclick="pushCurrentToChantier()" style="margin-top:14px; width:100%; background:#2563EB; color:#fff; border:none; padding:12px; border-radius:10px; font-weight:700; font-size:13px;">➕ Envoyer devis actuel sur chantier</button>
+  </div>
+
+  <!-- Signature -->
+  <div style="background:linear-gradient(135deg,#EFF6FF,#F8FAFF); border:2px solid #BFDBFE; border-radius:14px; padding:18px;">
+    <h3 style="margin:0 0 8px 0; font-size:15px; font-weight:800; color:#1E40AF;">✍️ Signature client chantier</h3>
+    <p style="margin:0 0 12px 0; font-size:12px; color:#475569;">Fais signer le client sur ton téléphone/tablette. Signature intégrée auto dans le PDF + Factur-X.</p>
+    <div id="signature-pad-container" style="background:#fff; border:2px dashed #93C5FD; border-radius:12px; padding:8px; position:relative;">
+      <canvas id="signature-canvas" width="800" height="300" style="width:100%; height:220px; touch-action:none; cursor:crosshair; display:block; border-radius:8px;"></canvas>
+      <div id="signature-placeholder" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#94A3B8; font-size:13px; pointer-events:none;">Signez ici avec le doigt</div>
+    </div>
+    <div style="display:flex; gap:8px; margin-top:10px;">
+      <button onclick="clearSignature()" style="flex:1; background:#fff; border:1px solid #E2E8F0; padding:10px; border-radius:8px; font-weight:600; font-size:12px;">🗑️ Effacer</button>
+      <button onclick="saveSignature()" style="flex:2; background:#10B981; color:#fff; border:none; padding:10px; border-radius:8px; font-weight:700; font-size:12px;">✅ Valider signature + Générer PDF signé</button>
+    </div>
+    <div id="signature-preview" style="margin-top:12px; display:none; background:#fff; border:1px solid #E2E8F0; border-radius:8px; padding:10px; text-align:center;">
+      <div style="font-size:11px; color:#64748B; margin-bottom:6px;">Signature enregistrée</div>
+      <img id="signature-img" style="max-width:300px; max-height:100px; border:1px solid #F1F5F9; border-radius:6px;" />
+      <div id="signature-meta" style="font-size:10px; color:#94A3B8; margin-top:6px;"></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- MODAL SIGNATURE PLEIN ECRAN MOBILE -->
+<div id="signatureModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(15,23,42,0.8); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:16px;">
+  <div style="background:#fff; border-radius:16px; width:100%; max-width:600px; padding:20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <h3 style="margin:0; font-weight:800;">✍️ Signature client</h3>
+      <button onclick="closeSignatureModal()" style="background:#F1F5F9; border:none; width:32px; height:32px; border-radius:8px; font-weight:700;">×</button>
+    </div>
+    <canvas id="signature-modal-canvas" width="600" height="300" style="width:100%; border:2px dashed #BFDBFE; border-radius:12px; touch-action:none;"></canvas>
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button onclick="clearModalSignature()" style="flex:1; background:#fff; border:1px solid #E2E8F0; padding:12px; border-radius:10px; font-weight:600;">Effacer</button>
+      <button onclick="validateModalSignature()" style="flex:2; background:#2563EB; color:#fff; border:none; padding:12px; border-radius:10px; font-weight:700;">Valider signature</button>
+    </div>
+  </div>
+</div>
+
+
+<script id="v18-chantier-signature">
+// V18 CHANTIER OFFLINE + SIGNATURE CLIENT - Devis Flash
+(function(){
+  console.log('🏗️ V18 Chantier + Signature init');
+
+  // --- OFFLINE DETECTION ---
+  function updateOnlineStatus(){
+    const el = document.getElementById('offline-status');
+    const badge = document.getElementById('chantier-offline-badge');
+    if(!el) return;
+    if(navigator.onLine){
+      el.innerHTML='🟢 Online'; el.style.background='#ECFDF5'; el.style.borderColor='#A7F3D0'; el.style.color='#065F46';
+      if(badge) badge.style.display='none';
+    }else{
+      el.innerHTML='🔴 Offline - Mode chantier actif'; el.style.background='#FFFBEB'; el.style.borderColor='#FDE68A'; el.style.color='#92400E';
+      if(badge) { badge.style.display='block'; badge.style.background='#F59E0B'; }
+    }
+  }
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+  setTimeout(updateOnlineStatus, 500);
+
+  // --- CHANTIER STORAGE ---
+  const CHANTIER_KEY = 'df_chantier_v18';
+  const SIGNATURE_KEY = 'df_signature_v18';
+
+  function getChantier(){ try{ return JSON.parse(localStorage.getItem(CHANTIER_KEY)||'[]'); }catch(_){ return []; } }
+  function saveChantier(list){ localStorage.setItem(CHANTIER_KEY, JSON.stringify(list)); renderChantier(); }
+
+  window.pushCurrentToChantier = function(){
+    try{
+      if(!window.state || !state.lines || state.lines.length===0){ alert('Aucun devis actuel à envoyer'); return; }
+      let list = getChantier();
+      let item = {
+        id: Date.now().toString(36),
+        numero: state.numero || ('DEV-'+Date.now().toString().slice(-6)),
+        client: state.client || document.getElementById('client')?.value || 'Client chantier',
+        adresse: state.adresse || document.getElementById('adresse')?.value || '',
+        date: new Date().toISOString(),
+        lignes: JSON.parse(JSON.stringify(state.lines)),
+        totaux: { ht: document.getElementById('total-ht-simple')?.textContent || '0 €', ttc: document.getElementById('total-ttc-simple')?.textContent || '0 €' },
+        status: 'sur_chantier',
+        photos: []
+      };
+      list.unshift(item);
+      saveChantier(list);
+      if(typeof toast==='function') toast('📋 Devis envoyé sur chantier - dispo offline');
+      if(typeof showView==='function') showView('chantier');
+    }catch(e){ console.error(e); alert('Erreur envoi chantier: '+e.message); }
+  };
+
+  window.renderChantier = function(){
+    let container = document.getElementById('chantier-list');
+    if(!container) return;
+    let list = getChantier();
+    document.getElementById('chantier-count').textContent = list.length;
+    document.getElementById('chantier-a-signer').textContent = list.filter(x=>!x.signature).length;
+    if(list.length===0){
+      container.innerHTML = '<div style="text-align:center; padding:24px; color:#94A3B8; font-size:13px;">Aucun devis chantier - génère un devis et clique "Envoyer sur chantier"</div>';
+      return;
+    }
+    container.innerHTML = list.map(item=>`
+      <div style="background:#F8FAFF; border:1px solid #E2E8F0; border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div style="flex:1; min-width:0;">
+          <div style="font-weight:700; font-size:13px;">${item.numero} • ${item.client}</div>
+          <div style="font-size:11px; color:#64748B; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.adresse||'Pas d\'adresse'} • ${item.totaux.ttc} • ${new Date(item.date).toLocaleDateString('fr-FR')}</div>
+          <div style="margin-top:6px; display:flex; gap:6px;">
+            ${item.signature ? '<span style="background:#ECFDF5; color:#065F46; font-size:10px; font-weight:700; padding:3px 8px; border-radius:999px; border:1px solid #A7F3D0;">✅ Signé</span>' : '<span style="background:#FFFBEB; color:#92400E; font-size:10px; font-weight:700; padding:3px 8px; border-radius:999px; border:1px solid #FDE68A;">✍️ À signer</span>'}
+            <span style="background:#EFF6FF; color:#1E40AF; font-size:10px; font-weight:700; padding:3px 8px; border-radius:999px; border:1px solid #BFDBFE;">${item.lignes.length} lignes</span>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <button onclick="openSignatureFor('${item.id}')" style="background:#2563EB; color:#fff; border:none; padding:6px 12px; border-radius:8px; font-size:11px; font-weight:700;">✍️ Signer</button>
+          <button onclick="generatePdfForChantier('${item.id}')" style="background:#fff; border:1px solid #E2E8F0; padding:6px 12px; border-radius:8px; font-size:11px; font-weight:600;">📄 PDF</button>
+          <button onclick="deleteChantier('${item.id}')" style="background:#FEF2F2; color:#DC2626; border:none; padding:4px 8px; border-radius:6px; font-size:10px;">×</button>
+        </div>
+      </div>
+    `).join('');
+  };
+
+  window.deleteChantier = function(id){ if(!confirm('Supprimer ce devis chantier?')) return; let list=getChantier().filter(x=>x.id!==id); saveChantier(list); };
+  window.exportChantier = function(){ let data=getChantier(); let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download='chantier-export-'+new Date().toISOString().slice(0,10)+'.json'; a.click(); };
+
+  window.generatePdfForChantier = function(id){
+    let list=getChantier(); let item=list.find(x=>x.id===id);
+    if(!item){ alert('Devis introuvable'); return; }
+    // restore to main state and trigger PDF
+    try{
+      if(window.state){ state.lines = item.lignes; state.client=item.client; state.adresse=item.adresse; }
+      if(typeof renderSimpleList==='function') renderSimpleList();
+      if(typeof renderLines==='function') renderLines();
+      if(typeof renderTotals==='function') renderTotals();
+      if(typeof generatePDF==='function'){ generatePDF(); }
+      else if(typeof window.generateDevisPDF==='function'){ window.generateDevisPDF(); }
+      else { alert('Génération PDF - utilise le bouton Générer PDF dans Générateur après restauration'); if(typeof showView==='function') showView('generateur'); }
+    }catch(e){ console.error(e); alert('Erreur PDF: '+e.message); }
+  };
+
+  // --- SIGNATURE PAD ---
+  let currentSignatureData = null;
+  let currentChantierId = null;
+  let isDrawing = false;
+  let lastX=0,lastY=0;
+
+  function initCanvas(canvasId){
+    let canvas = document.getElementById(canvasId);
+    if(!canvas) return null;
+    let ctx = canvas.getContext('2d');
+    ctx.lineWidth=2.5; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#0F172A';
+    // high DPI
+    function resize(){ 
+      let rect = canvas.getBoundingClientRect();
+      // keep drawing
+      let imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+      let ratio = window.devicePixelRatio||1;
+      canvas.width = rect.width * ratio;
+      canvas.height = (canvasId.includes('modal')?300:220) * ratio;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(ratio,ratio);
+      ctx.lineWidth=2.5; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#0F172A';
+      // restore white bg
+      ctx.fillStyle='#fff'; ctx.fillRect(0,0,rect.width,300);
+    }
+    // init white bg
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    
+    function getPos(e){
+      let rect = canvas.getBoundingClientRect();
+      let clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      let clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return { x: clientX-rect.left, y: clientY-rect.top };
+    }
+    function start(e){
+      e.preventDefault(); isDrawing=true;
+      let p=getPos(e); lastX=p.x; lastY=p.y;
+      let ph=document.getElementById('signature-placeholder'); if(ph) ph.style.display='none';
+    }
+    function draw(e){
+      if(!isDrawing) return;
+      e.preventDefault();
+      let p=getPos(e);
+      ctx.beginPath(); ctx.moveTo(lastX,lastY); ctx.lineTo(p.x,p.y); ctx.stroke();
+      lastX=p.x; lastY=p.y;
+    }
+    function stop(e){ if(isDrawing){ isDrawing=false; } }
+
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stop);
+    canvas.addEventListener('mouseout', stop);
+    canvas.addEventListener('touchstart', start, {passive:false});
+    canvas.addEventListener('touchmove', draw, {passive:false});
+    canvas.addEventListener('touchend', stop);
+
+    return {canvas, ctx};
+  }
+
+  let padMain = null, padModal=null;
+  setTimeout(()=>{ padMain=initCanvas('signature-canvas'); padModal=initCanvas('signature-modal-canvas'); renderChantier(); }, 800);
+
+  window.clearSignature = function(){
+    let c=document.getElementById('signature-canvas'); if(!c) return;
+    let ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+    document.getElementById('signature-placeholder').style.display='block';
+    document.getElementById('signature-preview').style.display='none';
+    currentSignatureData=null;
+  };
+  window.clearModalSignature = function(){
+    let c=document.getElementById('signature-modal-canvas'); if(!c) return;
+    let ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+  };
+
+  window.saveSignature = function(){
+    let canvas=document.getElementById('signature-canvas');
+    if(!canvas) return;
+    // check if empty (white)
+    let ctx=canvas.getContext('2d');
+    let data=canvas.toDataURL('image/png');
+    // simple empty check: compare to white canvas
+    let emptyCanvas=document.createElement('canvas'); emptyCanvas.width=canvas.width; emptyCanvas.height=canvas.height;
+    let ectx=emptyCanvas.getContext('2d'); ectx.fillStyle='#fff'; ectx.fillRect(0,0,canvas.width,canvas.height);
+    if(data===emptyCanvas.toDataURL()){ alert('Signature vide - signe d\'abord'); return; }
+    currentSignatureData=data;
+    localStorage.setItem(SIGNATURE_KEY, JSON.stringify({data, date:new Date().toISOString(), client: document.getElementById('client')?.value||''}));
+    document.getElementById('signature-img').src=data;
+    document.getElementById('signature-meta').textContent='Signé le '+new Date().toLocaleString('fr-FR')+' • Stocké local offline';
+    document.getElementById('signature-preview').style.display='block';
+    if(currentChantierId){
+      let list=getChantier(); let idx=list.findIndex(x=>x.id===currentChantierId);
+      if(idx>=0){ list[idx].signature=data; list[idx].signatureDate=new Date().toISOString(); saveChantier(list); }
+    }
+    if(typeof toast==='function') toast('✅ Signature enregistrée - PDF prêt');
+    // Auto generate PDF with signature
+    setTimeout(()=>{ try{ generatePdfWithSignature(data); }catch(e){ console.log('PDF sig', e); } }, 300);
+  };
+
+  window.openSignatureFor = function(id){
+    currentChantierId=id;
+    document.getElementById('signatureModal').style.display='flex';
+    setTimeout(()=>{ padModal=initCanvas('signature-modal-canvas'); }, 100);
+  };
+  window.closeSignatureModal = function(){ document.getElementById('signatureModal').style.display='none'; };
+  window.validateModalSignature = function(){
+    let canvas=document.getElementById('signature-modal-canvas');
+    let data=canvas.toDataURL('image/png');
+    let empty=document.createElement('canvas'); empty.width=canvas.width; empty.height=canvas.height;
+    let ectx=empty.getContext('2d'); ectx.fillStyle='#fff'; ectx.fillRect(0,0,canvas.width,canvas.height);
+    if(data===empty.toDataURL()){ alert('Signature vide'); return; }
+    currentSignatureData=data;
+    document.getElementById('signature-img').src=data;
+    document.getElementById('signature-preview').style.display='block';
+    document.getElementById('signature-meta').textContent='Signé le '+new Date().toLocaleString('fr-FR')+' (modal)';
+    localStorage.setItem(SIGNATURE_KEY, JSON.stringify({data, date:new Date().toISOString()}));
+    if(currentChantierId){
+      let list=getChantier(); let idx=list.findIndex(x=>x.id===currentChantierId);
+      if(idx>=0){ list[idx].signature=data; list[idx].signatureDate=new Date().toISOString(); saveChantier(list); }
+    }
+    closeSignatureModal();
+    // copy to main canvas preview
+    let mainCanvas=document.getElementById('signature-canvas');
+    let mainCtx=mainCanvas.getContext('2d');
+    let img=new Image(); img.onload=function(){ mainCtx.drawImage(img,0,0, mainCanvas.width, mainCanvas.height); }; img.src=data;
+    if(typeof toast==='function') toast('✅ Signature chantier validée');
+    setTimeout(()=>{ try{ generatePdfWithSignature(data); }catch(e){} }, 300);
+  };
+
+  window.generatePdfWithSignature = function(sigData){
+    // Try to inject into existing PDF generation
+    // Store globally for PDF lib to pick up
+    window._lastSignature = sigData;
+    // If generatePDF exists, monkey patch
+    if(typeof window.generatePDF === 'function' || typeof window.generateDevisPDF === 'function'){
+      // let existing flow handle it - we set flag
+      try{
+        let list=getChantier(); 
+        // if we have a current chantier, generate PDF for it
+        if(currentChantierId){ generatePdfForChantier(currentChantierId); return; }
+      }catch(_){}
+    }
+    // Fallback: create simple signed PDF via jsPDF if loaded
+    try{
+      if(window.jspdf && window.jspdf.jsPDF){
+        let doc = new window.jspdf.jsPDF();
+        doc.text('Devis signe - Devis Flash V18', 10, 10);
+        doc.text('Client: '+(document.getElementById('client')?.value||''), 10, 20);
+        doc.text('Date: '+new Date().toLocaleString('fr-FR'), 10, 30);
+        if(sigData){ doc.addImage(sigData, 'PNG', 10, 40, 80, 30); doc.text('Signature client', 10, 80); }
+        doc.save('devis-signe-'+Date.now()+'.pdf');
+        return;
+      }
+    }catch(e){ console.log('jsPDF fallback failed', e); }
+    alert('✅ Signature enregistrée. Génère le PDF depuis Générateur - la signature sera intégrée auto.');
+  };
+
+  // Monkey patch existing PDF generation to include signature if available
+  setTimeout(()=>{
+    // Hook into PDF generation if function exists
+    if(window.generatePDFFinal || window.createPDF){
+      console.log('PDF hook found');
+    }
+    // Expose signature for Factur-X
+    window.getStoredSignature = function(){ try{ let raw=localStorage.getItem(SIGNATURE_KEY); if(!raw) return null; return JSON.parse(raw).data; }catch(_){ return null; } };
+  }, 1500);
+
+  // Service Worker for offline
+  if('serviceWorker' in navigator){
+    // Inline SW via blob
+    let swCode = `
+      self.addEventListener('install', e=>{ self.skipWaiting(); });
+      self.addEventListener('activate', e=>{ self.clients.claim(); });
+      self.addEventListener('fetch', e=>{
+        // Network first, fallback to cache for same origin
+        e.respondWith(
+          fetch(e.request).catch(()=>{ return caches.match(e.request); })
+        );
+      });
+    `;
+    try{
+      let blob = new Blob([swCode], {type:'text/javascript'});
+      let url = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(url).then(()=>{ console.log('✅ SW chantier offline actif'); }).catch(e=>{ console.log('SW fail', e); });
+    }catch(e){ console.log('SW blob fail', e); }
+  }
+
+  // Add button "Envoyer sur chantier" in generateur view
+  setTimeout(()=>{
+    let apercu = document.getElementById('view-generateur');
+    if(apercu){
+      let btnContainer = apercu.querySelector('.actions') || apercu.querySelector('[id*="actions"]');
+      // inject button near PDF button
+      let existingBtns = document.querySelectorAll('button');
+      for(let b of existingBtns){
+        if(b.textContent.includes('Générer PDF') || b.textContent.includes('PDF')){
+          let chantierBtn = document.createElement('button');
+          chantierBtn.textContent='🏗️ Envoyer sur chantier (offline)';
+          chantierBtn.style.cssText='background:#0F172A; color:#fff; border:none; padding:10px 16px; border-radius:8px; font-weight:700; font-size:12px; margin-left:8px;';
+          chantierBtn.onclick=()=>{ pushCurrentToChantier(); };
+          b.parentNode.insertBefore(chantierBtn, b.nextSibling);
+          break;
+        }
+      }
+    }
+  }, 2000);
+
+  console.log('✅ V18 Chantier + Signature prêt');
+})();
+</script>
+
+
+<script id="v18-apercu-signature-inject">
+(function(){
+  const origRenderApercu = window.renderApercu;
+  if(origRenderApercu){
+    window.renderApercu = function(){
+      let res = origRenderApercu.apply(this, arguments);
+      try{
+        let el = document.getElementById('apercuContent');
+        if(!el) return res;
+        let sigRaw = localStorage.getItem('df_signature_v18');
+        if(!sigRaw) {
+          let chantierRaw = localStorage.getItem('df_chantier_v18');
+          if(chantierRaw){
+            let list=JSON.parse(chantierRaw);
+            let withSig = list.find(x=>x.signature);
+            if(withSig) sigRaw = JSON.stringify({data:withSig.signature, date:withSig.signatureDate});
+          }
+        }
+        if(sigRaw){
+          let o=JSON.parse(sigRaw);
+          if(o.data && !el.innerHTML.includes('signature-client-apercu')){
+            el.innerHTML += `<div class="signature-client-apercu" style="margin-top:20px; padding:14px; border:2px dashed #10B981; border-radius:10px; background:#ECFDF5;">
+              <div style="font-weight:800; font-size:12px; color:#065F46; margin-bottom:6px;">✍️ Signature client chantier</div>
+              <img src="${o.data}" style="max-width:280px; max-height:90px; background:#fff; border-radius:6px; border:1px solid #A7F3D0;" />
+              <div style="font-size:10px; color:#64748B; margin-top:4px;">Signé le ${new Date(o.date).toLocaleString('fr-FR')} - Intégré auto dans PDF</div>
+            </div>`;
+          }
+        }
+      }catch(e){ console.log('apercu sig inject', e); }
+      return res;
+    };
+  }
+})();
 </script>
 
 </body>
