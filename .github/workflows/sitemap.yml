@@ -1,0 +1,25 @@
+name: Generate sitemap
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate sitemap
+        run: node generate-sitemap.js
+      - name: Commit if changed
+        run: |
+          git config user.name "sitemap-bot"
+          git config user.email "bot@devis-flash.fr"
+          git add sitemap.xml
+          git diff --staged --quiet || (git commit -m "auto: update sitemap.xml" && git push)
