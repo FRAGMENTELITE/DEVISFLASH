@@ -35,9 +35,9 @@ a{color:var(--brand);text-decoration:none}
 .dot{width:10px;height:10px;border-radius:50%}
 .mock-card{background:var(--bg);border-radius:12px;padding:14px;border:1px solid var(--line)}
 .section{max-width:1120px;margin:0 auto;padding:40px 20px}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
-@media(max-width:860px){.features{grid-template-columns:1fr 1fr}}@media(max-width:540px){.features{grid-template-columns:1fr}}
-.card{border:1px solid var(--line);border-radius:18px;padding:20px;background:#fff;transition:.15s}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.features .card:last-child{grid-column:2}
+@media(max-width:860px){.features{grid-template-columns:1fr 1fr}.features .card:last-child{grid-column:1 / -1;max-width:360px;margin:0 auto;width:100%}}@media(max-width:540px){.features{grid-template-columns:1fr}.features .card:last-child{grid-column:auto;max-width:100%}}
+.card{border:1px solid var(--line);border-radius:18px;padding:20px;background:#fff;transition:.15s;display:block;text-decoration:none;color:inherit;cursor:pointer}
 .card:hover{border-color:#BFDBFE;box-shadow:0 8px 24px rgba(37,99,235,.08);transform:translateY(-2px)}
 .card .icon{width:38px;height:38px;border-radius:10px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:18px}
 .card h3{margin:12px 0 6px;font-size:16px}
@@ -92,12 +92,13 @@ a{color:var(--brand);text-decoration:none}
 <h2 style="font-size:26px;margin:0 0 8px">Fini les devis sous Word.</h2>
 <p style="color:var(--muted);margin:0;max-width:640px;line-height:1.5">Tu perds 45 min par devis, tu recalcules ta marge à la main, ta facture n'est pas conforme 2026. Devis Flash fait tout en 2 clics.</p>
 <div class="features">
-<div class="card"><div class="icon">⚡</div><h3>Devis en 2 min</h3><p>Catalogue BTP prêt, prix au m², ouvrages types. Tu cliques, ça chiffre.</p></div>
-<div class="card"><div class="icon">📈</div><h3>Marge auto</h3><p>Tu vois ta marge en temps réel. Plus de devis à perte.</p></div>
-<div class="card"><div class="icon">📦</div><h3>Stock intelligent</h3><p>Alertes ruptures, seuils, fournisseurs. Commande en 1 clic.</p></div>
-<div class="card"><div class="icon">🗓️</div><h3>Chantier & Planning</h3><p>Glisse tes chantiers, vois les chevauchements, anticipe.</p></div>
-<div class="card"><div class="icon">🧾</div><h3>Facture Factur-X 2026</h3><p>Conforme 2026, export PDF + XML, prête pour Chorus.</p></div>
-<div class="card"><div class="icon">💳</div><h3>QR acompte 30%</h3><p>QR code sur le devis pour encaisser l'acompte direct.</p></div>
+<a class="card" href="https://www.devis-flash.fr/#view-generateur"><div class="icon">⚡</div><h3>Devis en 2 min</h3><p>Catalogue BTP prêt, prix au m², ouvrages types. Tu cliques, ça chiffre.</p><div style="margin-top:10px;font-size:12px;color:#2563EB;font-weight:700">Essayer →</div></a>
+<a class="card" href="https://www.devis-flash.fr/#view-generateur"><div class="icon">📈</div><h3>Marge auto</h3><p>Tu vois ta marge en temps réel. Plus de devis à perte.</p><div style="margin-top:10px;font-size:12px;color:#2563EB;font-weight:700">Calculer →</div></a>
+<a class="card" href="https://www.devis-flash.fr/#view-stock"><div class="icon">📦</div><h3>Stock intelligent</h3><p>Alertes ruptures, seuils, fournisseurs. Commande en 1 clic.</p><div style="margin-top:10px;font-size:12px;color:#2563EB;font-weight:700">Voir stock →</div></a>
+<a class="card" href="https://www.devis-flash.fr/#view-chantier"><div class="icon">🗓️</div><h3>Chantier & Planning</h3><p>Glisse tes chantiers, vois les chevauchements, anticipe.</p><div style="margin-top:10px;font-size:12px;color:#2563EB;font-weight:700">Planning →</div></a>
+<a class="card" href="https://www.devis-flash.fr/#view-factures"><div class="icon">🧾</div><h3>Facture Factur-X 2026</h3><p>Conforme 2026, export PDF + XML, prête pour Chorus.</p><div style="margin-top:10px;font-size:12px;color:#2563EB;font-weight:700">Facturer →</div></a>
+<a class="card" href="https://www.devis-flash.fr/#view-generateur"><div class="icon">💳</div><h3>QR acompte 30%</h3><p>QR code sur le devis pour encaisser l'acompte direct.</p><div style="margin-top:10px;font-size:12px;color:#2563EB;font-weight:700">Encaisser →</div></a>
+<a class="card" href="https://www.devis-flash.fr/#view-simulateur" style="border:1.5px dashed #2563EB;background:linear-gradient(135deg,#EFF4FF,#F8FAFF)"><div class="icon" style="background:#DBEAFE">🧮</div><h3>Simulateur BTP</h3><p>Calcule ton prix de vente, marge, TVA, rentabilité chantier en 10s. Simulateur gratuit.</p><div style="margin-top:10px;font-size:12px;color:#fff;background:#2563EB;display:inline-block;padding:4px 10px;border-radius:20px;font-weight:700">Simuler →</div></a>
 </div>
 </section>
 
@@ -113,14 +114,23 @@ a{color:var(--brand);text-decoration:none}
 
 <section class="section center" style="padding-top:60px;padding-bottom:70px">
 <h2 style="font-size:32px;margin:0">Pensé par un artisan,<br>pour les artisans.</h2>
-<p style="color:var(--muted);max-width:580px;margin:12px auto 22px;line-height:1.6">Pas d'abonnement caché. 3 devis/mois offerts pour tester sans CB. Données 100% en local, pas revendues. Créé à Tremblay-en-France, pour le BTP.</p>
+<p style="color:var(--muted);max-width:580px;margin:12px auto 22px;line-height:1.6">Pas d'abonnement caché. 3 devis/mois offerts pour tester sans CB. Données 100% en local, pas revendues, pour le BTP.</p>
 <a class="btn btn-primary" style="padding:15px 26px;font-size:16px" href="https://www.devis-flash.fr/">Commencer gratuitement →</a>
 <div style="margin-top:14px;color:var(--muted);font-size:12px">Sans CB • 100% navigateur • RGPD • Factur-X 2026</div>
 </section>
 
 <footer class="footer">
 <div>Devis Flash © 2026 • Logiciel devis BTP gratuit pour artisans • <a href="https://www.devis-flash.fr/">devis-flash.fr</a> • Factur-X 2026 • 100% local</div>
+<div style="margin-top:10px;line-height:1.6">SIRET : 10484045900010 • Contact : <a href="mailto:devisflash93@gmail.com" style="color:#2563EB;font-weight:700">devisflash93@gmail.com</a></div>
 <div style="margin-top:8px"><a href="https://www.devis-flash.fr/#view-mentions" style="color:#94A3B8">Confidentialité RGPD</a> • <a href="https://www.devis-flash.fr/" style="color:#94A3B8">App</a></div>
 </footer>
+
+
+
+<div style="position:fixed;bottom:8px;right:8px;z-index:999;opacity:.22;width:14px;height:9px;display:flex;border-radius:1px;overflow:hidden;filter:saturate(.6)" title="FR">
+  <div style="flex:1;height:100%;background:#002395"></div>
+  <div style="flex:1;height:100%;background:#fff"></div>
+  <div style="flex:1;height:100%;background:#ED2939"></div>
+</div>
 </body>
 </html>
