@@ -40,7 +40,7 @@ for (const u of files) {
   if (u.includes('404') || u.toLowerCase().includes('sitemap')) continue;
   const priority = u === '/' ? '1.0' : '0.8';
   xml += `  <url>\n    <loc>${BASE}${u}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`;
-}
+}"/presentation/": { priority: "0.9", changefreq: "weekly" }
 xml += `</urlset>\n`;
 
 fs.writeFileSync('sitemap.xml', xml, 'utf-8');
