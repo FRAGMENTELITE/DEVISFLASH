@@ -1086,7 +1086,7 @@ transition:all .15s ease !important;
             <select id="simEtat" style="padding:12px;border:1.5px solid #E2E8F0;border-radius:12px;font-size:14px"><option>État actuel: Bon</option><option>État actuel: À rafraîchir</option><option>État actuel: Très dégradé</option></select>
           </div>
           <input id="simVille" type="text" placeholder="Ville / Code postal (ex: Paris 75)" style="padding:12px;border:1.5px solid #E2E8F0;border-radius:12px;font-size:14px">
-          <button onclick="simulerDevis()" style="background:#0F172A;color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer">⚡ Calculer mon estimation gratuite →</button>
+          <button type="button" onclick="simulerDevis()" style="background:#0F172A;color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer">⚡ Calculer mon estimation gratuite →</button>
           <div style="font-size:11px;color:#64748B;text-align:center">3 200 estimations ce mois • Aucune donnée vendue</div>
         </div>
         <div id="simResult" style="display:none;margin-top:14px;background:#F8FAFF;border:1px solid #BFDBFE;border-radius:14px;padding:14px"></div>
@@ -1241,7 +1241,7 @@ transition:all .15s ease !important;
 Contact unique: <strong style="color:#2563EB">Devis Flash</strong><br/>
 SIRET: en cours d'immatriculation<span style="display:inline-block;margin-top:8px;background:#F1F5F9;border:1px solid #E2E8F0;padding:6px 10px;border-radius:8px;font-size:12px;color:#475569">TVA non applicable - art.2 B du CGI</span></p><h3 class="app-h3">2. Hébergement</h3><p>GitHub Pages - GitHub Inc. 88 Colin P Kelly Jr St, San Francisco, CA 94107 USA<br/>
 Domaine: devis-flash.fr (OVH / Cloudflare)</p><h3 class="app-h3">3. Objet</h3><p>Devis Flash est un générateur de devis 100% frontend pour artisans du BTP (10 secteurs: maçonnerie, peinture, plomberie, électricité, chauffagiste/PAC, climatisation, serrurier/plaquiste, solaire, nettoyage, jardinage, services, logistique). Les données sont stockées localement dans votre navigateur (localStorage). Aucune donnée n'est envoyée sur nos serveurs.</p><h3 class="app-h3">4. Propriété intellectuelle</h3><p>Tous les presets, calculs de marge, logos sont propriété de Devis Flash. Reproduction interdite sans autorisation.</p><h3 class="app-h3">5. Facturation électronique 2026</h3><p>Devis Flash génère des PDF conformes aux mentions légales obligatoires (art. L441-9 Code de commerce).
-<div style="margin-top:10px;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:1px solid #6EE7B7;border-radius:10px;padding:12px"><span style="font-weight:700;display:inline-block">⚡ Facturation électronique 2026 obligatoire</span> Gratuit 3 devis + 2 factures/mois. Starter 9,90€/mois ou 99€/an = 30 devis/mois. PRO 39€/mois ou 390€/an = 100 devis/mois. 2 mois offerts en annuel. Paiement via SumUp, Stripe, PayPal. Sans engagement, résiliation à tout moment depuis <span style="color:#2563EB;font-weight:700">Devis Flash</span>.</div></p><p><strong>Article 2 - Essai:</strong> Gratuit sans carte bancaire. Au-delà, passage en gratuit limité.</p><p><strong>Article 3 - Acomptes clients:</strong> Le QR code CB/PayPal sur vos devis encaisse VOS clients. Devis Flash ne prend aucune commission (hors frais SumUp/Stripe/PayPal 1,5-1,9%). L'abonnement Devis Flash est distinct de l'acompte client.</p><p><strong>Article 4 - Remboursement:</strong> Droit de rétractation 14 jours pour les particuliers (art. L221-18). Remboursement intégral sur demande à <span style="color:#2563EB;font-weight:700">Devis Flash</span> si aucun devis PRO n'a été généré. Au-delà, pas de remboursement au prorata.</p><p><strong>Article 5 - Limitation:</strong> 100% frontend, Devis Flash ne peut être tenu responsable de perte de données navigateur, d'erreur de chiffrage ou de non-paiement d'un client final.</p><p><strong>Article 6 - Affiliation:</strong> Programme 30% à vie via code ref. Paiement des commissions le 10 du mois suivant si &gt;20€. Contact: <span style="color:#2563EB;font-weight:700">Devis Flash</span></p></div><div class="sora" style="margin-top:32px">Politique de confidentialité - RGPD</div><div class="card" style="font-size:13px;line-height:1.7;color:#334155"><p><strong>Données collectées:</strong> Aucune donnée envoyée à nos serveurs. Tout est en localStorage (devis, clients, paramètres). Seul Google Analytics (G-DTWCVEX2S0) collecte des stats anonymes (pages vues, clics affiliation).</p><p><strong>Cookies:</strong> Uniquement cookies techniques (préférence langue, essai, affiliation ref) + Google Analytics. Pas de pub.</p><p><strong>Vos droits RGPD:</strong> Accès, suppression, export JSON depuis l'app. Contact DPO: <span style="color:#2563EB;font-weight:700">Devis Flash</span>. Réponse sous 72h.</p><p><strong>Sous-traitants:</strong> SumUp (paiement), Stripe (paiement), PayPal (paiement), GitHub Pages (hébergement), Google (analytics). Tous conformes RGPD.</p><p><strong>Conservation:</strong> Devis stockés tant que vous ne videz pas votre navigateur. Essai 14 jours puis auto-passage gratuit.</p></div><div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-primary" onclick="showView('generateur')">Retour générateur</button><button class="btn" onclick="window.print()" style="background:#fff;border:1px solid #E2E8F0">Imprimer</button></div><p style="margin-top:16px;font-size:11px;color:#94A3B8">Dernière mise à jour: Août 2026 - Édition 2026 - Devis Flash • 10 secteurs</p></div></section><section class="view active" data-view-id="generateur" id="view-generateur"><div class="gen-hero" style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:32px 20px;margin:0 0 24px 0;text-align:center;box-shadow:0 8px 30px rgba(15,23,42,.06)"><div style="display:inline-flex;background:#EFF4FF;border:1px solid #DBEAFE;color:#1D4ED8;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:14px"></div><h1 style="font-family:Sora;font-size:28px;line-height:1.15;margin:0 auto 10px;max-width:560px;color:#0F172A">Crée un devis professionnel<br/>en moins de 2 minutes</h1><p style="display:none; visibility:hidden; height:0; overflow:hidden;">Logiciel Devis BTP gratuit pour artisans du bâtiment. Outil BTP et application BTP offline conforme Factur-X 2026. Idéal pour devis maçonnerie, peinture, plomberie, électricité. Logiciel Devis BTP Gratuit Factur-X 2026 Devis Flash</p><p style="font-size:14px;color:#475569;margin:0 auto 18px;max-width:520px;line-height:1.6">Votre client signe et paie l'acompte directement.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px"><button onclick="showView('tarifs')" style="background:#fff;color:#0F172A;border:1px solid #E2E8F0;padding:12px 20px;border-radius:12px;font-weight:600;font-size:14px;cursor:pointer">Voir les tarifs</button></div><div style="display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:12px;color:#64748B"><span>✓ Sans engagement</span><span>✓ Paiement CB &amp; PayPal distincts</span><span>✓ Données stockées localement</span></div></div><div class="card" id="card-secteur"><h3 class="app-h3">🏷️ Secteur d'activité</h3><div class="sector-grid" id="sectorGrid"></div></div><div class="card" id="card-client-apres" style="margin-top:16px;"><h3 class="app-h3">👤 Client</h3><div class="form-grid"><div class="field"><label>Nom / raison sociale</label><input id="client" oninput="onFieldChange()" type="text"/></div><div class="field"><label>Adresse facturation *</label><input id="adresse" oninput="onFieldChange()" type="text"/></div><div class="field"><label>Adresse chantier</label><input id="adresseChantier" oninput="onFieldChange()" type="text"/></div><div class="field"><label>Date</label><input id="dateDevis" oninput="onFieldChange()" type="date"/></div></div></div><div class="card" id="card-prestations" style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; overflow:hidden; padding:0; margin-top:16px;"><div id="secteur-badge" style="display:none; background:#EFF6FF; border-bottom:1px solid #BFDBFE; padding:8px 16px; align-items:center; justify-content:space-between;"><div style="display:flex; align-items:center; gap:8px;"><span id="secteur-emoji" style="font-size:14px;">🏗️</span><span style="font-size:12px; color:#1D4ED8; font-weight:600;">Métier: <span id="secteur-name" style="font-weight:800;">BTP/Maçonnerie</span></span></div><button onclick="document.getElementById('secteur-dropdown').style.display=document.getElementById('secteur-dropdown').style.display==='none'?'block':'none'" style="font-size:11px; padding:4px 8px; border:1px solid #93C5FD; background:#fff; border-radius:6px; color:#2563EB; font-weight:600;">Changer</button></div><div id="secteur-dropdown" style="display:none; background:#fff; border-bottom:1px solid #E2E8F0; padding:8px; max-height:200px; overflow-y:auto;"><div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;" id="secteur-dropdown-list"></div></div><div id="simple-view" style="padding:16px;"><div id="smartBlocNoteWrapper" style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:24px;padding:20px;margin:0 16px 20px 16px;box-shadow:0 8px 30px rgba(15,23,42,.06);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="display:flex;align-items:center;gap:10px;"><div style="width:36px;height:36px;background:#2563EB;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;">🏗️</div><div><div style="display:flex;align-items:center;gap:8px;"><span style="font-family:Sora,sans-serif;font-weight:800;font-size:16px;color:#0F172A;">Mode chantier</span><span style="background:#ECFDF5;border:1px solid #BBF7D0;color:#065F46;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:800;">ACTIF</span></div><div style="font-size:11px;color:#64748B;font-weight:500;">Écris ou dicte, le devis se crée tout seul</div></div></div><div style="display:flex;gap:6px;align-items:center;"><span id="presta-count-main" style="background:#2563EB;color:#fff;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:800;">0 prestation</span><span id="blocNoteTotal" style="background:#ECFDF5;border:1px solid #BBF7D0;color:#065F46;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:800;display:none;">0€</span><button id="btnClearBloc" onclick="if(window.clearAllBloc) clearAllBloc(); else { let s=document.getElementById('smartBlocNote'); if(s) s.value=''; if(typeof state!=='undefined'){state.lines=[]; state.iaPhrase=''; if(typeof saveState==='function') saveState(); if(typeof renderSimpleList==='function') renderSimpleList(); } }" type="button" style="background:#F8FAFF;border:1px solid #E2E8F0;color:#94A3B8;font-size:11px;font-weight:700;cursor:pointer;padding:5px 10px;border-radius:999px;margin-left:4px;">✕ Effacer</button></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;background:#F1F5F9;padding:4px;border-radius:14px;"><button id="modeEcrireBtn" onclick="setChantierMode('ecrire')" style="background:#fff;color:#0F172A;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;gap:6px;">✍️ Écrire</button><button id="modeParlerBtn" onclick="setChantierMode('parler')" style="background:transparent;color:#64748B;border:1px solid transparent;border-radius:10px;padding:10px 12px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">🎙️ Parler</button></div><div style="display:flex;flex-direction:column;gap:10px;"><textarea id="smartBlocNote" placeholder="Décris tes travaux ici..." style="width:100%;min-height:128px;border:1.5px solid #E2E8F0;border-radius:16px;padding:14px;font-size:14px;font-weight:500;line-height:1.6;resize:vertical;outline:none;background:#F8FAFF;"></textarea><div style="display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-wrap:wrap;"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;"><button id="btnVocal" title="Dicter" style="background:#2563EB;color:#fff;border:none;border-radius:999px;padding:9px 16px;font-size:12.5px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(0,0,0,.12);">🎤 Dicter</button><button id="btnEcouterDevis" title="Écouter" style="background:#fff;border:1.5px solid #E2E8F0;color:#0F172A;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;">🔊 Écouter</button><button id="btnStopVocal" title="Stop" style="background:#fff;border:1.5px solid #E2E8F0;color:#64748B;border-radius:999px;padding:8px 12px;font-size:12px;cursor:pointer;">⏹️ Stop</button></div></div></div><div style="margin-top:12px;"><div id="smartChips" style="display:flex;flex-wrap:wrap;gap:6px;"></div></div><div id="vocalResultLive" style="display:none;margin-top:12px;background:#FFFFFF;color:#0F172A;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px 16px;font-size:15px;font-weight:600;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,0.06);"></div><div id="blocLivePreview" style="display:flex;flex-direction:column;gap:6px;margin-top:12px;max-height:260px;overflow-y:auto;"></div></div><script>
+<div style="margin-top:10px;background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:1px solid #6EE7B7;border-radius:10px;padding:12px"><span style="font-weight:700;display:inline-block">⚡ Facturation électronique 2026 obligatoire</span> Gratuit 3 devis + 2 factures/mois. Starter 9,90€/mois ou 99€/an = 30 devis/mois. PRO 39€/mois ou 390€/an = 100 devis/mois. 2 mois offerts en annuel. Paiement via SumUp, Stripe, PayPal. Sans engagement, résiliation à tout moment depuis <span style="color:#2563EB;font-weight:700">Devis Flash</span>.</div></p><p><strong>Article 2 - Essai:</strong> Gratuit sans carte bancaire. Au-delà, passage en gratuit limité.</p><p><strong>Article 3 - Acomptes clients:</strong> Le QR code CB/PayPal sur vos devis encaisse VOS clients. Devis Flash ne prend aucune commission (hors frais SumUp/Stripe/PayPal 1,5-1,9%). L'abonnement Devis Flash est distinct de l'acompte client.</p><p><strong>Article 4 - Remboursement:</strong> Droit de rétractation 14 jours pour les particuliers (art. L221-18). Remboursement intégral sur demande à <span style="color:#2563EB;font-weight:700">Devis Flash</span> si aucun devis PRO n'a été généré. Au-delà, pas de remboursement au prorata.</p><p><strong>Article 5 - Limitation:</strong> 100% frontend, Devis Flash ne peut être tenu responsable de perte de données navigateur, d'erreur de chiffrage ou de non-paiement d'un client final.</p><p><strong>Article 6 - Affiliation:</strong> Programme 30% à vie via code ref. Paiement des commissions le 10 du mois suivant si &gt;20€. Contact: <span style="color:#2563EB;font-weight:700">Devis Flash</span></p></div><div class="sora" style="margin-top:32px">Politique de confidentialité - RGPD</div><div class="card" style="font-size:13px;line-height:1.7;color:#334155"><p><strong>Données collectées:</strong> Aucune donnée envoyée à nos serveurs. Tout est en localStorage (devis, clients, paramètres). Seul Google Analytics (G-DTWCVEX2S0) collecte des stats anonymes (pages vues, clics affiliation).</p><p><strong>Cookies:</strong> Uniquement cookies techniques (préférence langue, essai, affiliation ref) + Google Analytics. Pas de pub.</p><p><strong>Vos droits RGPD:</strong> Accès, suppression, export JSON depuis l'app. Contact DPO: <span style="color:#2563EB;font-weight:700">Devis Flash</span>. Réponse sous 72h.</p><p><strong>Sous-traitants:</strong> SumUp (paiement), Stripe (paiement), PayPal (paiement), GitHub Pages (hébergement), Google (analytics). Tous conformes RGPD.</p><p><strong>Conservation:</strong> Devis stockés tant que vous ne videz pas votre navigateur. Essai 14 jours puis auto-passage gratuit.</p></div><div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-primary" onclick="showView('generateur')">Retour générateur</button><button class="btn" onclick="window.print()" style="background:#fff;border:1px solid #E2E8F0">Imprimer</button></div><p style="margin-top:16px;font-size:11px;color:#94A3B8">Dernière mise à jour: Août 2026 - Édition 2026 - Devis Flash • 10 secteurs</p></div></section><section class="view active" data-view-id="generateur" id="view-generateur"><div class="gen-hero" style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:32px 20px;margin:0 0 24px 0;text-align:center;box-shadow:0 8px 30px rgba(15,23,42,.06)"><div style="display:inline-flex;background:#EFF4FF;border:1px solid #DBEAFE;color:#1D4ED8;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:14px"></div><h1 style="font-family:Sora;font-size:28px;line-height:1.15;margin:0 auto 10px;max-width:560px;color:#0F172A">Crée un devis professionnel<br/>en moins de 2 minutes</h1><p style="display:none; visibility:hidden; height:0; overflow:hidden;">Logiciel Devis BTP gratuit pour artisans du bâtiment. Outil BTP et application BTP offline conforme Factur-X 2026. Idéal pour devis maçonnerie, peinture, plomberie, électricité. Logiciel Devis BTP Gratuit Factur-X 2026 Devis Flash</p><p style="font-size:14px;color:#475569;margin:0 auto 18px;max-width:520px;line-height:1.6">Votre client signe et paie l'acompte directement.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px"><button onclick="showView('tarifs')" style="background:#fff;color:#0F172A;border:1px solid #E2E8F0;padding:12px 20px;border-radius:12px;font-weight:600;font-size:14px;cursor:pointer">Voir les tarifs</button></div><div style="display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:12px;color:#64748B"><span>✓ Sans engagement</span><span>✓ Paiement CB &amp; PayPal distincts</span><span>✓ Données stockées localement</span></div></div><div class="card" id="card-secteur"><h3 class="app-h3">🏷️ Secteur d'activité</h3><div class="sector-grid" id="sectorGrid"></div></div><div class="card" id="card-client-apres" style="margin-top:16px;"><h3 class="app-h3">👤 Client</h3><div class="form-grid"><div class="field"><label>Nom / raison sociale</label><input id="client" oninput="onFieldChange()" type="text"/></div><div class="field"><label>Adresse facturation *</label><input id="adresse" oninput="onFieldChange()" type="text"/></div><div class="field"><label>Adresse chantier</label><input id="adresseChantier" oninput="onFieldChange()" type="text"/></div><div class="field"><label>Date</label><input id="dateDevis" oninput="onFieldChange()" type="date"/></div></div></div><div class="card" id="card-prestations" style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; overflow:hidden; padding:0; margin-top:16px;"><div id="secteur-badge" style="display:none; background:#EFF6FF; border-bottom:1px solid #BFDBFE; padding:8px 16px; align-items:center; justify-content:space-between;"><div style="display:flex; align-items:center; gap:8px;"><span id="secteur-emoji" style="font-size:14px;">🏗️</span><span style="font-size:12px; color:#1D4ED8; font-weight:600;">Métier: <span id="secteur-name" style="font-weight:800;">BTP/Maçonnerie</span></span></div><button onclick="document.getElementById('secteur-dropdown').style.display=document.getElementById('secteur-dropdown').style.display==='none'?'block':'none'" style="font-size:11px; padding:4px 8px; border:1px solid #93C5FD; background:#fff; border-radius:6px; color:#2563EB; font-weight:600;">Changer</button></div><div id="secteur-dropdown" style="display:none; background:#fff; border-bottom:1px solid #E2E8F0; padding:8px; max-height:200px; overflow-y:auto;"><div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;" id="secteur-dropdown-list"></div></div><div id="simple-view" style="padding:16px;"><div id="smartBlocNoteWrapper" style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:24px;padding:20px;margin:0 16px 20px 16px;box-shadow:0 8px 30px rgba(15,23,42,.06);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="display:flex;align-items:center;gap:10px;"><div style="width:36px;height:36px;background:#2563EB;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;">🏗️</div><div><div style="display:flex;align-items:center;gap:8px;"><span style="font-family:Sora,sans-serif;font-weight:800;font-size:16px;color:#0F172A;">Mode chantier</span><span style="background:#ECFDF5;border:1px solid #BBF7D0;color:#065F46;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:800;">ACTIF</span></div><div style="font-size:11px;color:#64748B;font-weight:500;">Écris ou dicte, le devis se crée tout seul</div></div></div><div style="display:flex;gap:6px;align-items:center;"><span id="presta-count-main" style="background:#2563EB;color:#fff;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:800;">0 prestation</span><span id="blocNoteTotal" style="background:#ECFDF5;border:1px solid #BBF7D0;color:#065F46;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:800;display:none;">0€</span><button id="btnClearBloc" onclick="if(window.clearAllBloc) clearAllBloc();" type="button" style="background:#F8FAFF;border:1px solid #E2E8F0;color:#94A3B8;font-size:11px;font-weight:700;cursor:pointer;padding:5px 10px;border-radius:999px;margin-left:4px;">✕ Effacer</button></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;background:#F1F5F9;padding:4px;border-radius:14px;"><button id="modeEcrireBtn" onclick="setChantierMode('ecrire')" style="background:#fff;color:#0F172A;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;gap:6px;">✍️ Écrire</button><button id="modeParlerBtn" onclick="setChantierMode('parler')" style="background:transparent;color:#64748B;border:1px solid transparent;border-radius:10px;padding:10px 12px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">🎙️ Parler</button></div><div style="display:flex;flex-direction:column;gap:10px;"><textarea id="smartBlocNote" placeholder="Décris tes travaux ici..." style="width:100%;min-height:128px;border:1.5px solid #E2E8F0;border-radius:16px;padding:14px;font-size:14px;font-weight:500;line-height:1.6;resize:vertical;outline:none;background:#F8FAFF;"></textarea><div style="display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-wrap:wrap;"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;"><button id="btnVocal" title="Dicter" style="background:#2563EB;color:#fff;border:none;border-radius:999px;padding:9px 16px;font-size:12.5px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(0,0,0,.12);">🎤 Dicter</button><button id="btnEcouterDevis" title="Écouter" style="background:#fff;border:1.5px solid #E2E8F0;color:#0F172A;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer;">🔊 Écouter</button><button id="btnStopVocal" title="Stop" style="background:#fff;border:1.5px solid #E2E8F0;color:#64748B;border-radius:999px;padding:8px 12px;font-size:12px;cursor:pointer;">⏹️ Stop</button></div></div></div><div style="margin-top:12px;"><div id="smartChips" style="display:flex;flex-wrap:wrap;gap:6px;"></div></div><div id="vocalResultLive" style="display:none;margin-top:12px;background:#FFFFFF;color:#0F172A;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px 16px;font-size:15px;font-weight:600;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,0.06);"></div><div id="blocLivePreview" style="display:flex;flex-direction:column;gap:6px;margin-top:12px;max-height:260px;overflow-y:auto;"></div></div><script>
 (function(){
 window.setChantierMode = function(mode){
 var btnE = document.getElementById('modeEcrireBtn');
@@ -2191,10 +2191,30 @@ document.getElementById("dateDevis").value = state.date || new Date().toISOStrin
 function renderLines(){
 const el = document.getElementById("lineItems");
 if(!el) return;
-if(state.lines.length===0){
-el.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:32px;color:#94A3B8;font-size:13px;"><div style="font-size:28px;margin-bottom:8px;">📦</div>Aucun travail ajouté<br><span style="font-size:11px;">Clique + Ajouter une ligne</span></td></tr>';
-renderTotals();
-return;
+if(!state.lines || state.lines.length===0){
+  state.lines = [];
+  el.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:32px;color:#94A3B8;font-size:13px;"><div style="font-size:28px;margin-bottom:8px;">📦</div>Aucun travail ajouté<br><span style="font-size:11px;">Clique + Ajouter une ligne</span></td></tr>';
+  // FORCE TOTALS A ZERO QUAND VIDE
+  try{
+    const zeroT = {cout:0, venteHT:0, venteTTC:0, tvaMontant:0, tvaRate: (state && state.tvaRate)||20, tvaApplicable: state ? state.tvaApplicable!==false : true, marge:0, pct:0, acompte:0};
+    document.querySelectorAll('#totalsBox, [id="totalsBox"]').forEach(function(b){
+      b.innerHTML = `
+<div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px dashed #E2E8F0"><span style="color:#475569;">Total achat</span><strong>0,00 €</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px dashed #E2E8F0"><span style="color:#475569;">Total HT</span><strong>0,00 €</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 10px;background:#ECFDF5;border-radius:8px;border:1px solid #BBF7D0"><span style="font-weight:700">TVA ${zeroT.tvaRate}%</span><strong style="color:#065F46">0,00 €</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;background:#F8FAFC;padding:8px 10px;border-radius:8px;border:1px solid #E2E8F0"><span style="font-weight:600">Marge</span><span style="color:#065F46;font-weight:800">0,00 € (0.0%)</span></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;padding:10px;background:#FEF3C7;border-radius:8px;border:1.5px solid #FCD34D"><span>💳 Acompte 30%</span><strong style="color:#D97706">0,00 €</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:18px;font-weight:900;padding:14px 0;margin-top:8px;border-top:3px solid #2563EB;color:#0F172A"><span>💰 Total TTC</span><span style="color:#2563EB">0,00 €</span></div>
+`;
+    });
+    const ec = document.getElementById('totCout'); if(ec) ec.textContent='0,00 €';
+    const ev = document.getElementById('totVente'); if(ev) ev.textContent='0,00 €';
+    const em = document.getElementById('totMarge'); if(em) em.textContent='0,00 €';
+    const ep = document.getElementById('totPct'); if(ep) ep.textContent='0.0 %';
+    const ea = document.getElementById('totAcompte'); if(ea) ea.textContent='0,00 €';
+  }catch(e){}
+  if(typeof renderApercu==='function') renderApercu();
+  return;
 }
 el.innerHTML = state.lines.map((l,i)=>{
 const qte = Number(l.qte)||0;
@@ -6644,43 +6664,57 @@ else alert('Factur-X genere: '+totalTTC.toFixed(2)+' EUR TTC - Conforme Chorus P
 } catch(e){ console.error(e); alert('Erreur Factur-X: '+e.message); }
 }
 </script><script> function sanitizeText(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); } window.clearAllBloc = function(){ try{
-let smart = document.getElementById('smartBlocNote');
-let hidden = document.getElementById('iaPhrase');
-if(smart){ smart.value=''; smart.dispatchEvent(new Event('input')); }
-if(hidden) hidden.value='';
-if(window.state){
-window.state.lines=[];
-window.state.iaPhrase='';
-if(typeof saveState==='function') try{ saveState(); }catch(e){}
-if(typeof renderLines==='function') try{ renderLines(); }catch(e){}
-if(typeof renderSimpleList==='function') try{ renderSimpleList(); }catch(e){}
-if(typeof renderSmart==='function') try{ renderSmart(); }catch(e){}
-if(typeof recalc==='function') try{ recalc(); }catch(e){}
-if(typeof renderApercu==='function') try{ renderApercu(); }catch(e){}
-if(typeof renderTotals==='function') try{ renderTotals(); }catch(e){}
-}
-let b1=document.getElementById('presta-count');
-if(b1) b1.textContent='0 prestation';
-let b2=document.getElementById('presta-count-main');
-if(b2) b2.textContent='0 prestation';
-let tot=document.getElementById('blocNoteTotal');
-if(tot) tot.style.display='none';
-let pv=document.getElementById('blocLivePreview');
-if(pv) pv.innerHTML='';
-let simpleList=document.getElementById('simple-list');
-if(simpleList) simpleList.innerHTML='<div id="empty-state-v172-2-2" class="empty-state" style="text-align:center; padding:32px 16px; color:#94A3B8; border:2px dashed #E2E8F0; border-radius:12px;"><div style="font-size:28px; margin-bottom:8px;">📝</div><div style="font-size:13px; font-weight:600; color:#64748B;">Aucun travail ajouté</div></div>';
-let totauxSimple=document.getElementById('totaux-simple');
-if(totauxSimple) totauxSimple.style.display='none';
-if(window.toast) toast('🧹 Effacé');
-else alert('Effacé');
-}catch(e){ console.error('clearAllBloc error', e); alert('Erreur effacer: '+e.message); }
+  // FIX BUG double-clic : bloque le debounce/parse pendant le clear
+  window._isSyncing = true;
+  let smart = document.getElementById('smartBlocNote');
+  let hidden = document.getElementById('iaPhrase');
+  if(smart){ smart.value=''; }
+  if(hidden){ hidden.value=''; }
+  // vide l'état immédiatement
+  if(window.state){
+    window.state.lines=[];
+    window.state.iaPhrase='';
+    if(typeof saveState==='function') try{ saveState(); }catch(e){}
+  }
+  // force tous les rendus à zéro SANS repasser par input event
+  if(typeof renderLines==='function') try{ renderLines(); }catch(e){}
+  if(typeof renderSimpleList==='function') try{ renderSimpleList(); }catch(e){}
+  if(typeof renderSmart==='function') try{ renderSmart(); }catch(e){}
+  if(typeof recalc==='function') try{ recalc(); }catch(e){}
+  if(typeof renderApercu==='function') try{ renderApercu(); }catch(e){}
+  if(typeof renderTotals==='function') try{ renderTotals(); }catch(e){}
+  let b1=document.getElementById('presta-count');
+  if(b1) b1.textContent='0 prestation';
+  let b2=document.getElementById('presta-count-main');
+  if(b2) b2.textContent='0 prestation';
+  let tot=document.getElementById('blocNoteTotal');
+  if(tot){ tot.style.display='none'; tot.textContent='0€'; }
+  let pv=document.getElementById('blocLivePreview');
+  if(pv) pv.innerHTML='';
+  let simpleList=document.getElementById('simple-list');
+  if(simpleList) simpleList.innerHTML='<div id="empty-state-v172-2-2" class="empty-state" style="text-align:center; padding:32px 16px; color:#94A3B8; border:2px dashed #E2E8F0; border-radius:12px;"><div style="font-size:28px; margin-bottom:8px;">📝</div><div style="font-size:13px; font-weight:600; color:#64748B;">Aucun travail ajouté</div></div>';
+  let totauxSimple=document.getElementById('totaux-simple');
+  if(totauxSimple) totauxSimple.style.display='none';
+  // reset aussi les boxes totaux si présentes
+  try{
+    let tBox=document.getElementById('totalsBox');
+    if(tBox && typeof computeTotals==='function' && typeof fmtEUR==='function'){
+      let t=computeTotals([]);
+      // force affichage zéro
+      if(window.renderTotals) { /* déjà fait */ }
+    }
+  }catch(e){}
+  if(window.toast) toast('🧹 Effacé');
+  // libère le lock après le debounce (300ms + marge)
+  setTimeout(function(){ window._isSyncing=false; }, 500);
+}catch(e){ console.error('clearAllBloc error', e); window._isSyncing=false; alert('Erreur effacer: '+e.message); }
 };
 (function(){
 function bindClear(){
 let btn=document.getElementById('btnClearBloc');
 if(btn){
 if(!btn._bound){
-btn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); window.clearAllBloc(); });
+btn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); if(window._clearLock) return; window._clearLock=true; window.clearAllBloc(); setTimeout(function(){window._clearLock=false;},600); });
 btn._bound=true; }
 // Force clickable
 btn.style.pointerEvents='auto';
@@ -7344,20 +7378,35 @@ def('renderAntiOubliTab',function(){
 
 <script id="seo-simulateur-js">
 function simulerDevis(){
-  var type=document.getElementById('simType').value||'Rénovation';
-  var surf=parseFloat(document.getElementById('simSurface').value)||0;
-  var ville=document.getElementById('simVille').value||'France';
-  if(!surf){ alert('Entrez votre surface m²'); return; }
-  var prixM2 = 900; // standard
-  if(type.includes('légère')||type.includes('Peinture')) prixM2=350;
-  if(type.includes('Lourde')||type.includes('Toiture')||type.includes('Extension')) prixM2=1600;
-  var total = surf * prixM2;
-  var ttc = total * 1.2;
-  var el=document.getElementById('simResult');
-  el.style.display='block';
-  el.innerHTML = '<div style="font-weight:800;color:#0F172A">🏠 Estimation '+type+' - '+surf+'m² - '+ville+'</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div style="background:#F8FAFF;border:1px solid #E2E8F0;border-radius:10px;padding:10px;text-align:center"><div style="font-size:11px;color:#64748B">TOTAL HT</div><div style="font-size:20px;font-weight:900">'+total.toLocaleString('fr-FR')+'€</div></div><div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:10px;text-align:center"><div style="font-size:11px;color:#1D4ED8">TOTAL TTC (20%)</div><div style="font-size:20px;font-weight:900;color:#2563EB">'+ttc.toLocaleString('fr-FR')+'€</div></div></div><div style="font-size:11px;color:#475569;margin-top:10px;line-height:1.5">Détail: MO 45% • Matériaux 40% • Marge 15% • Base 3 200 chantiers. Écart moyen 8% vs devis final.<br><b>PDF détaillé par postes disponible.</b></div><div style="display:flex;gap:8px;margin-top:12px"><button onclick="showView('generateur')" style="flex:1;background:#0F172A;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:700;cursor:pointer">Créer le vrai devis →</button><button onclick="showView('prix-m2')" style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:10px;font-weight:700;cursor:pointer">Voir détail m²</button></div>';
-  if(typeof gtag==='function') gtag('event','simulateur_estimation',{surface:surf,type:type});
+  try{
+    var typeEl=document.getElementById('simType');
+    var surfEl=document.getElementById('simSurface');
+    var villeEl=document.getElementById('simVille');
+    var resEl=document.getElementById('simResult');
+    if(!typeEl||!surfEl||!villeEl||!resEl){ alert('Simulateur non chargé, recharge la page'); return; }
+    var type=typeEl.value||'Rénovation';
+    var surf=parseFloat(surfEl.value)||0;
+    var ville=villeEl.value||'France';
+    if(!surf || surf<=0){ alert('Entrez votre surface en m²'); surfEl.focus(); return; }
+    if(!type){ alert('Choisissez le type de travaux'); typeEl.focus(); return; }
+    var prixM2 = 900;
+    if(type.toLowerCase().includes('légère')||type.toLowerCase().includes('peinture')) prixM2=350;
+    if(type.toLowerCase().includes('lourde')||type.toLowerCase().includes('toiture')||type.toLowerCase().includes('extension')) prixM2=1600;
+    if(type.toLowerCase().includes('appartement')) prixM2=1100;
+    if(type.toLowerCase().includes('maison')) prixM2=950;
+    var total = Math.round(surf * prixM2);
+    var ttc = Math.round(total * 1.2);
+    resEl.style.display='block';
+    resEl.innerHTML = '<div style="font-weight:800;color:#0F172A">🏠 Estimation '+type+' - '+surf+'m² - '+ville+'</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div style="background:#F8FAFF;border:1px solid #E2E8F0;border-radius:10px;padding:10px;text-align:center"><div style="font-size:11px;color:#64748B">TOTAL HT</div><div style="font-size:20px;font-weight:900">'+total.toLocaleString('fr-FR')+'€</div></div><div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:10px;text-align:center"><div style="font-size:11px;color:#1D4ED8">TOTAL TTC (20%)</div><div style="font-size:20px;font-weight:900;color:#2563EB">'+ttc.toLocaleString('fr-FR')+'€</div></div></div><div style="font-size:11px;color:#475569;margin-top:10px;line-height:1.5">Détail indicatif: MO 45% • Matériaux 40% • Marge 15% • Base 3 200 chantiers. Écart moyen 8% vs devis final.<br><b>PDF détaillé par postes disponible dans le générateur.</b></div><div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button onclick="showView(\'generateur\')" style="flex:1;min-width:140px;background:#0F172A;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:700;cursor:pointer">Créer le vrai devis →</button><button onclick="if(typeof showView===\'function\') showView(\'prix-m2\')" style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:10px;font-weight:700;cursor:pointer">Voir détail m²</button></div>';
+    resEl.scrollIntoView({behavior:'smooth',block:'center'});
+    if(typeof gtag==='function'){ try{ gtag('event','simulateur_estimation',{surface:surf,type:type}); }catch(e){} }
+  }catch(e){
+    console.error('simulerDevis error', e);
+    alert('Erreur simulateur: '+(e.message||e));
+  }
 }
+
+
 </script>
 
 
@@ -7604,4 +7653,442 @@ function contactFounder(){
 }
 document.addEventListener('click',function(e){if(e.target.textContent && e.target.textContent.trim().toLowerCase().indexOf('contact protégé')>-1){e.preventDefault();contactFounder();}},true);
 </script>
+
+
+
+
+<script id="fix-bidirectionnel-total-sans-exemple">
+// FIX DEFINITIF: sans exemple + total bidirectionnel + qte qui bouge
+(function(){
+  // Ne jamais auto-injecter d'exemple
+  // Override renderLines
+  window.renderLines = function(){
+    const el = document.getElementById("lineItems");
+    if(!el) return;
+    if(!state.lines || state.lines.length===0){
+      el.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:32px;color:#94A3B8;font-size:13px;"><div style="font-size:28px;margin-bottom:8px;">📦</div>Aucun travail ajouté<br><span style="font-size:11px;">Clique + Ajouter une ligne</span></td></tr>';
+      try{
+        const zeroT = {cout:0, venteHT:0, venteTTC:0, tvaMontant:0, tvaRate: (state && state.tvaRate)||20, tvaApplicable: state ? state.tvaApplicable!==false : true, marge:0, pct:0, acompte:0};
+        document.querySelectorAll('#totalsBox, [id="totalsBox"]').forEach(function(b){
+          b.innerHTML = `
+<div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px dashed #E2E8F0"><span style="color:#475569;">Total achat</span><strong>0,00 €</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px dashed #E2E8F0"><span style="color:#475569;">Total HT</span><strong>0,00 €</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 10px;background:#ECFDF5;border-radius:8px;border:1px solid #BBF7D0"><span style="font-weight:700">TVA ${zeroT.tvaRate}%</span><strong style="color:#065F46">0,00 €</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;background:#F8FAFC;padding:8px 10px;border-radius:8px;border:1px solid #E2E8F0"><span style="font-weight:600">Marge</span><span style="color:#065F46;font-weight:800">0,00 € (0.0%)</span></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;padding:10px;background:#FEF3C7;border-radius:8px;border:1.5px solid #FCD34D"><span>💳 Acompte 30%</span><strong style="color:#D97706">0,00 €</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:18px;font-weight:900;padding:14px 0;margin-top:8px;border-top:3px solid #2563EB;color:#0F172A"><span>💰 Total TTC</span><span style="color:#2563EB">0,00 €</span></div>
+`;
+        });
+      }catch(e){}
+      if(typeof renderApercu==='function') renderApercu();
+      if(typeof renderTotals==='function') renderTotals();
+      return;
+    }
+    el.innerHTML = state.lines.map((l,i)=>{
+      const qte = Number(l.qte)||0;
+      const pu = Number(l.puVente)||0;
+      const total = qte*pu;
+      return `
+<tr class="presta-row" data-i="${i}" style="border-bottom:1px solid #E2E8F0;background:${i%2===0?'#ffffff':'#F8FAFF'};">
+<td data-col="designation" style="padding:8px;"><input type="text" value="${escapeHtml(l.designation)}" oninput="updateLine(${i},'designation',this.value)" placeholder="Désignation" style="width:100%;height:42px;border:1.5px solid #CBD5E1;border-radius:10px;padding:0 12px;font-size:14px;font-weight:600;outline:none;background:#fff;"></td>
+<td data-col="qte" style="padding:8px;text-align:center;"><div style="display:flex;align-items:center;justify-content:center;gap:2px;background:#fff;border:1.5px solid #E2E8F0;border-radius:10px;padding:2px;height:42px;"><button type="button" onclick="updateLine(${i},'qte',Math.max(0,(Number(state.lines[${i}].qte)||0)-1))" style="width:32px;height:34px;border:none;background:#F8FAFC;border-radius:7px;font-weight:800;cursor:pointer;">−</button><input type="number" class="qte-input" value="${qte}" min="0" step="0.5" oninput="updateLine(${i},'qte',this.value)" style="width:44px;border:none;background:transparent;text-align:center;font-weight:800;font-size:15px;outline:none;"><button type="button" onclick="updateLine(${i},'qte',(Number(state.lines[${i}].qte)||0)+1)" style="width:32px;height:34px;border:none;background:#EFF6FF;border-radius:7px;font-weight:800;cursor:pointer;color:#2563EB;">+</button></div></td>
+<td data-col="cout" style="padding:8px;text-align:center;"><input type="number" class="cout-input" value="${l.coutAchat}" min="0" step="0.1" oninput="updateLine(${i},'coutAchat',this.value)" placeholder="Coût" style="width:100%;height:42px;border:1.5px solid #E2E8F0;border-radius:10px;padding:0 8px;text-align:center;font-size:14px;font-weight:600;background:#fff;"></td>
+<td data-col="prix" style="padding:8px;text-align:center;"><input type="number" class="pu-input" value="${pu}" min="0" step="0.1" oninput="updateLine(${i},'puVente',this.value)" placeholder="PU" style="width:100%;height:42px;border:2px solid #93C5FD;background:#EFF6FF;border-radius:10px;padding:0 8px;text-align:center;font-weight:800;font-size:14px;color:#1D4ED8;"></td>
+<td data-col="total" style="padding:8px;text-align:center;"><input type="number" class="total-input" value="${total.toFixed(2)}" min="0" step="0.1" oninput="updateLine(${i},'total',this.value)" placeholder="Total" style="width:100%;height:42px;border:1.5px solid #BFDBFE;background:#fff;border-radius:10px;padding:0 8px;text-align:center;font-weight:900;font-size:14px;color:#0F172A;"></td>
+<td data-col="del" style="padding:8px;text-align:center;"><button type="button" onclick="removeLine(${i})" style="border:1.5px solid #E2E8F0;background:#fff;width:42px;height:42px;border-radius:10px;cursor:pointer;color:#94A3B8;font-weight:700;">✕</button></td>
+</tr>`;
+    }).join("");
+    if(typeof renderTotals==='function') renderTotals();
+    if(typeof renderApercu==='function') renderApercu();
+  };
+
+  window.updateLine = function(i, field, value){
+    if(!state.lines[i]) return;
+    if(field==="designation"){
+      state.lines[i][field]=value;
+      state.iaPhrase = state.lines.map(l=>l.designation).filter(Boolean).join("\n");
+      const ta = document.getElementById("iaPhrase");
+      if(ta) ta.value = state.iaPhrase;
+      if(typeof saveState==='function') saveState();
+      if(typeof renderApercu==='function') renderApercu();
+      return;
+    }
+    let num = value;
+    if(typeof value==='string') num = value.replace(',', '.');
+    num = Number(num);
+    if(isNaN(num)) num = 0;
+
+    if(field==="total"){
+      // BI-DIRECTIONNEL: total => recalcule puVente
+      const qte = Number(state.lines[i].qte)||0;
+      if(qte>0){
+        state.lines[i].puVente = num / qte;
+      } else {
+        // si qte=0, on met qte=1 et pu=total
+        state.lines[i].qte = 1;
+        state.lines[i].puVente = num;
+      }
+    } else {
+      state.lines[i][field]=num;
+    }
+
+    if(typeof saveState==='function') saveState();
+
+    // MAJ DOM sans re-render complet pour garder le focus
+    const rows = document.querySelectorAll('#lineItems tr.presta-row');
+    const row = rows[i];
+    if(row){
+      const l = state.lines[i];
+      const q = Number(l.qte)||0;
+      const pu = Number(l.puVente)||0;
+      const tot = q*pu;
+      const qInput = row.querySelector('.qte-input');
+      const puInput = row.querySelector('.pu-input');
+      const totInput = row.querySelector('.total-input');
+      // Ne pas écraser l'input en cours d'édition
+      if(field!=='qte' && qInput) qInput.value = q;
+      if(field!=='puVente' && puInput) puInput.value = pu.toFixed(2).replace(/\.00$/,'');
+      if(field!=='total' && totInput) totInput.value = tot.toFixed(2);
+      // Si on editait total, on met à jour pu
+      if(field==='total' && puInput) puInput.value = pu.toFixed(2);
+      if(field==='qte' && qInput && document.activeElement!==qInput) qInput.value = q;
+    }
+
+    if(typeof renderTotals==='function') renderTotals();
+    if(typeof renderApercu==='function') renderApercu();
+  };
+
+  // Nettoyage de l'ancien fix qui réinjectait l'exemple
+  console.log('✅ Fix bidirectionnel total appliqué - sans exemple');
+
+  // Premier rendu
+  setTimeout(function(){
+    if(typeof renderLines==='function') renderLines();
+  }, 100);
+})();
+</script>
+
+
+<script id="fix-formule-total">
+(function(){
+  function evalFormule(str){
+    if(!str) return 0;
+    // Nettoie: garde que chiffres opérateurs
+    let s = String(str).toLowerCase()
+      .replace(/€/g,'').replace(/euros?/g,'')
+      .replace(/m2/g,'').replace(/,/g,'.')
+      .replace(/[^0-9+\-*/().\s]/g,' ')
+      .trim();
+    // Si vide après nettoyage
+    if(!s) return 0;
+    // Remplace espaces multiples par +
+    // Essaye de coller les nombres séparés par espace comme addition? Non
+    // On garde que formule valide
+    try{
+      // Sécurité: que caractères autorisés
+      if(!/^[0-9+\-*/().\s\.]+$/.test(s)) return Number(str)||0;
+      // Evite injection
+      let res = Function('"use strict"; return ('+s+')')();
+      if(isNaN(res) || !isFinite(res)) return Number(str)||0;
+      return res;
+    }catch(e){
+      return Number(str)||0;
+    }
+  }
+  window.evalFormule = evalFormule;
+
+  // Override updateLine avec formule
+  const oldUpdate = window.updateLine;
+  window.updateLine = function(i, field, value){
+    if(!state.lines[i]) return;
+    if(field==="designation"){
+      state.lines[i][field]=value;
+      state.iaPhrase = state.lines.map(l=>l.designation).filter(Boolean).join("\n");
+      const ta = document.getElementById("iaPhrase");
+      if(ta) ta.value = state.iaPhrase;
+      if(typeof saveState==='function') saveState();
+      if(typeof renderApercu==='function') renderApercu();
+      // Auto-détection: si désignation contient genre "45m2 à 32€" on propose
+      const m = value.match(/(\d+[\.,]?\d*)\s*m2.*?(\d+[\.,]?\d*)\s*€/i);
+      if(m){
+        const surf = parseFloat(m[1].replace(',','.'));
+        const prix = parseFloat(m[2].replace(',','.'));
+        if(surf && prix){
+          // Ne pas écraser si déjà rempli, juste hint toast
+          if((Number(state.lines[i].qte)||0)===1 && (Number(state.lines[i].puVente)||0)<50){
+            // toast
+            if(typeof toast==='function') toast('💡 Détecté: '+surf+'m2 à '+prix+'€/m2 = '+(surf*prix)+'€ - Mets Qté='+surf+' PU='+prix);
+          }
+        }
+      }
+      return;
+    }
+    let num;
+    if(typeof value==='string' && /[+\-*/()]/.test(value)){
+      num = evalFormule(value);
+    } else {
+      let v = String(value).replace(',', '.');
+      num = Number(v);
+      if(isNaN(num)) num = evalFormule(value);
+    }
+    if(isNaN(num)) num = 0;
+
+    if(field==="total"){
+      const qte = Number(state.lines[i].qte)||0;
+      if(qte>0){
+        state.lines[i].puVente = num / qte;
+      } else {
+        state.lines[i].qte = 1;
+        state.lines[i].puVente = num;
+      }
+    } else {
+      state.lines[i][field]=num;
+    }
+
+    if(typeof saveState==='function') saveState();
+
+    const rows = document.querySelectorAll('#lineItems tr.presta-row');
+    const row = rows[i];
+    if(row){
+      const l = state.lines[i];
+      const q = Number(l.qte)||0;
+      const pu = Number(l.puVente)||0;
+      const tot = q*pu;
+      const qInput = row.querySelector('.qte-input');
+      const puInput = row.querySelector('.pu-input');
+      const totInput = row.querySelector('.total-input');
+      const coutInput = row.querySelector('.cout-input');
+      if(field!=='qte' && qInput && document.activeElement!==qInput) qInput.value = q;
+      if(field!=='puVente' && puInput && document.activeElement!==puInput) puInput.value = Number.isInteger(pu)?pu:pu.toFixed(2);
+      if(field!=='total' && totInput && document.activeElement!==totInput) totInput.value = Number.isInteger(tot)?tot:tot.toFixed(2);
+      if(field==='total' && puInput && document.activeElement!==puInput) puInput.value = Number.isInteger(pu)?pu:pu.toFixed(2);
+      if(field==='coutAchat' && coutInput && document.activeElement!==coutInput) {} // keep
+    }
+
+    if(typeof renderTotals==='function') renderTotals();
+    if(typeof renderApercu==='function') renderApercu();
+  };
+
+  // Patch renderLines pour inputs type text pour accepter formules
+  const oldRender = window.renderLines;
+  window.renderLines = function(){
+    const el = document.getElementById("lineItems");
+    if(!el) return;
+    if(!state.lines || state.lines.length===0){
+      el.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:32px;color:#94A3B8;font-size:13px;"><div style="font-size:28px;margin-bottom:8px;">📦</div>Aucun travail ajouté<br><span style="font-size:11px;">Clique + Ajouter une ligne</span></td></tr>';
+      if(typeof renderTotals==='function') renderTotals();
+      return;
+    }
+    el.innerHTML = state.lines.map((l,i)=>{
+      const qte = Number(l.qte)||0;
+      const pu = Number(l.puVente)||0;
+      const total = qte*pu;
+      return `
+<tr class="presta-row" data-i="${i}" style="border-bottom:1px solid #E2E8F0;background:${i%2===0?'#ffffff':'#F8FAFF'};">
+<td style="padding:8px;"><input type="text" value="${escapeHtml(l.designation)}" oninput="updateLine(${i},'designation',this.value)" placeholder="Désignation ex: Peinture 45m2..." style="width:100%;height:42px;border:1.5px solid #CBD5E1;border-radius:10px;padding:0 12px;font-size:14px;font-weight:600;outline:none;background:#fff;"></td>
+<td style="padding:8px;text-align:center;"><div style="display:flex;align-items:center;justify-content:center;gap:2px;background:#fff;border:1.5px solid #E2E8F0;border-radius:10px;padding:2px;height:42px;"><button type="button" onclick="updateLine(${i},'qte',Math.max(0,(Number(state.lines[${i}].qte)||0)-1))" style="width:32px;height:34px;border:none;background:#F8FAFC;border-radius:7px;font-weight:800;cursor:pointer;">−</button><input type="text" class="qte-input" value="${qte}" oninput="updateLine(${i},'qte',this.value)" placeholder="Qté ou formule ex: 45" style="width:54px;border:none;background:transparent;text-align:center;font-weight:800;font-size:14px;outline:none;"><button type="button" onclick="updateLine(${i},'qte',(Number(state.lines[${i}].qte)||0)+1)" style="width:32px;height:34px;border:none;background:#EFF6FF;border-radius:7px;font-weight:800;cursor:pointer;color:#2563EB;">+</button></div></td>
+<td style="padding:8px;text-align:center;"><input type="text" class="cout-input" value="${l.coutAchat}" oninput="updateLine(${i},'coutAchat',this.value)" placeholder="Coût" style="width:100%;height:42px;border:1.5px solid #E2E8F0;border-radius:10px;padding:0 8px;text-align:center;font-size:14px;font-weight:600;background:#fff;"></td>
+<td style="padding:8px;text-align:center;"><input type="text" class="pu-input" value="${pu}" oninput="updateLine(${i},'puVente',this.value)" placeholder="PU ou formule ex: 32" style="width:100%;height:42px;border:2px solid #93C5FD;background:#EFF6FF;border-radius:10px;padding:0 8px;text-align:center;font-weight:800;font-size:14px;color:#1D4ED8;"></td>
+<td style="padding:8px;text-align:center;"><input type="text" class="total-input" value="${Number.isInteger(total)?total:total.toFixed(2)}" oninput="updateLine(${i},'total',this.value)" placeholder="Total ou formule ex: 45*32+500+500" title="Tu peux taper 45*32+500+500" style="width:100%;height:42px;border:1.5px solid #BFDBFE;background:#fff;border-radius:10px;padding:0 8px;text-align:center;font-weight:900;font-size:14px;color:#0F172A;"></td>
+<td style="padding:8px;text-align:center;"><button type="button" onclick="removeLine(${i})" style="border:1.5px solid #E2E8F0;background:#fff;width:42px;height:42px;border-radius:10px;cursor:pointer;color:#94A3B8;font-weight:700;">✕</button></td>
+</tr>`;
+    }).join("");
+    if(typeof renderTotals==='function') renderTotals();
+    if(typeof renderApercu==='function') renderApercu();
+  };
+
+  // Ajoute 3 lignes d'exemple peinture pour ce devis précis
+  window.ajouterExemplePeinture = function(){
+    state.lines = [
+      {id:Math.random().toString(36).slice(2,9), designation:'Peinture murs + plafond blanc mat 2 couches - 45m2', qte:45, coutAchat:15, puVente:32, unite:'m2'},
+      {id:Math.random().toString(36).slice(2,9), designation:'Fourniture peinture blanche + préparation', qte:1, coutAchat:250, puVente:500, unite:'forfait'},
+      {id:Math.random().toString(36).slice(2,9), designation:'2 pots peinture bleu (fourniture + application)', qte:2, coutAchat:200, puVente:250, unite:'u'}
+    ];
+    saveState(); renderLines();
+    toast('✅ 3 lignes ajoutées = 45*32 + 500 + 2*250 = 2440€');
+  };
+
+  console.log('✅ Fix formule activé');
+  renderLines();
+})();
+</script>
+
+
+<script id="fix-single-line-compte">
+(function(){
+  function parseFloatFR(s){ return parseFloat(String(s).replace(',','.'))||0; }
+
+  function computeTotalSingleLine(text){
+    if(!text) return 0;
+    let t = text.toLowerCase();
+    let total = 0;
+    let details = [];
+    // Clone for cleaning
+    let work = t;
+
+    // 1. Cherche 45m2 * 32€/m2
+    let reM2 = /(\d+(?:[.,]\d+)?)\s*m2[^\d€]*?(\d+(?:[.,]\d+)?)\s*€\s*\/\s*m2/gi;
+    let m;
+    while((m=reM2.exec(t))!==null){
+      let surf = parseFloatFR(m[1]);
+      let prix = parseFloatFR(m[2]);
+      total += surf * prix;
+      details.push(surf+'m2 x '+prix+'€='+ (surf*prix)+'€');
+      work = work.replace(m[0], ' ');
+    }
+    // 2. Cherche aussi 45m2 à 32€ (sans /m2)
+    let reM2Simple = /(\d+(?:[.,]\d+)?)\s*m2[^\d€]{0,20}?(\d+(?:[.,]\d+)?)\s*€/gi;
+    // On ne recompte pas si déjà compté - on ne l'utilise que si total encore 0 et qu'il reste un € seul
+    // Pour éviter double compte, on ne l'applique que si work n'a pas déjà été utilisé
+
+    // 3. Reste: tous les € restants
+    // Pour chaque €, regarde si devant il y a "2 pots", "3 pots", etc.
+    let reEuro = /(?:(\d+(?:[.,]\d+)?)\s*(?:pots?|seaux?|bidons?|sacs?)\s*[^\d€]{0,15})?(\d+(?:[.,]\d+)?)\s*€/gi;
+    let seen = [];
+    let tempWork = work;
+    while((m=reEuro.exec(tempWork))!==null){
+      let qtePots = m[1] ? parseFloatFR(m[1]) : null;
+      let prix = parseFloatFR(m[2]);
+      if(!prix) continue;
+      // Evite de recompter le prix du m2 déjà pris si c'est le même nombre
+      // Si on a déjà total avec m2, et que ce prix = prix m2, on skip le premier € du m2
+      if(details.length>0 && details[0].includes(prix+'€') && seen.length===0){
+        // c'est probablement le 32€ du m2 déjà compté -> on le skip s'il est suivi de /m2 dans l'original? déjà retiré
+      }
+      let add = prix;
+      if(qtePots){
+        // Si phrase = "2 pots à 500€" -> est-ce 2x500 ou 500 total ?
+        // On considère que si qtePots>1 et que le texte contient "à" ou "@", c'est unitaire -> on multiplie
+        // Sinon si c'est "2 pots pour 500€", c'est total -> on ne multiplie pas
+        // Heuristique: si avant on a "à" ou "a" ou "@", on multiplie, sinon non
+        let before = tempWork.slice(Math.max(0,m.index-15), m.index);
+        if(before.includes('à') || before.includes(' a ') || before.includes('@')){
+          add = qtePots * prix;
+          details.push(qtePots+' pots x '+prix+'€='+add+'€');
+        } else {
+          details.push(qtePots+' pots = '+prix+'€');
+        }
+      } else {
+        details.push(prix+'€');
+      }
+      total += add;
+      seen.push(prix);
+    }
+
+    return {total, details};
+  }
+
+  window.computeTotalSingleLine = computeTotalSingleLine;
+
+  // Override du parseur multi pour gérer une seule ligne avec tout dedans
+  const oldParse = window.parseDescToLinesMulti;
+  window.parseDescToLinesMulti = function(text){
+    if(!text) return [];
+    // Si le texte ne contient qu'une seule ligne mais avec plusieurs €, on le traite comme 1 prestation globale
+    let rawLines = text.split(/\n+/).map(l=>l.trim()).filter(Boolean);
+    if(rawLines.length===1){
+      let single = rawLines[0];
+      // Si cette ligne contient 45m2 + 32€/m2 + 500€ + etc. (au moins 2 prix)
+      let euroCount = (single.match(/\d+\s*€/gi)||[]).length;
+      let hasM2 = /\d+\s*m2/i.test(single);
+      let hasPlus = /\+/.test(single);
+      if((hasM2 && euroCount>=2) || (euroCount>=2 && hasPlus) || euroCount>=3){
+        let comp = computeTotalSingleLine(single);
+        if(comp.total>0){
+          console.log('Single-line compute', comp);
+          return [{
+            designation: single.replace(/\s*\+\s*/g, ' + ').trim(),
+            qte: 1,
+            puVente: comp.total,
+            unite: 'forfait',
+            raw: single,
+            _details: comp.details
+          }];
+        }
+      }
+    }
+
+    // Sinon comportement normal mais amélioré: split sur + aussi
+    let res=[], last='';
+    rawLines.forEach(raw=>{
+      // split sur + , ; et + et "et" et "plus"
+      raw.split(/\s*,\s*|\s*;\s*|\s*\+\s*|\s+et\s+|\s+plus\s+/i).forEach(part=>{
+        if(!part.trim()) return;
+        // Si part contient encore 2 €, re-split sur €
+        let subParts = [];
+        let euroMatches = [...part.matchAll(/[^€]*\d+\s*€(?:\s*\/\s*m2)?[^€]*/gi)];
+        if(euroMatches.length>1){
+          // découpe chaque € en sous-part
+          let remaining = part;
+          euroMatches.forEach(mm=>{
+            // extrait jusqu'à €
+            let idx = remaining.indexOf(mm[0].slice(0,10));
+            // Simplification: push le match
+          });
+          // Pour l'instant on garde le split simple: chaque € devient une ligne si contient un prix
+          let temp = part;
+          let re = /(.*?\d+\s*€(?:\s*\/\s*m2)?)/gi;
+          let m;
+          while((m=re.exec(part))!==null){
+            if(m[1].trim().length>2) subParts.push(m[1].trim());
+          }
+          if(subParts.length===0) subParts=[part];
+        } else {
+          subParts=[part];
+        }
+
+        subParts.forEach(sp=>{
+          let p=window.smartParseOneUltra(sp.trim(), last);
+          if(p){
+            let sec= (typeof detectSectorForLine==='function') ? detectSectorForLine(sp) : null;
+            p.secteurDetecte=sec|| (window.state && state.secteur) || 'BTP/Maçonnerie';
+            if(p.designation.length>2) last=p.designation;
+            res.push(p);
+          }
+        });
+      });
+    });
+    return res;
+  };
+  window.parseDescToLines = window.parseDescToLinesMulti;
+  window.parseDescToLinesUltra = window.parseDescToLinesMulti;
+
+  // Override onPhraseInput pour toast explicatif
+  const oldOnPhrase = window.onPhraseInput;
+  window.onPhraseInput = function(){
+    if(window._isSyncing) return;
+    let ta=document.getElementById('iaPhrase')||document.getElementById('smartBlocNote');
+    if(!ta) return;
+    let val=ta.value||'';
+    if(!val.trim()){
+      window._isSyncing=true;
+      try{ state.iaPhrase=''; state.lines=[]; saveState(); if(window.renderLines) renderLines(); }finally{ setTimeout(()=>window._isSyncing=false,200);}
+      return;
+    }
+    window._isSyncing=true;
+    try{
+      state.iaPhrase=val;
+      let parsed=window.parseDescToLinesMulti(val);
+      if(parsed.length>0){
+        let nl=parsed.map((p,i)=>{
+          const ex=state.lines&&state.lines[i];
+          let pu=p.puVente>0?p.puVente:(ex?ex.puVente||0:0);
+          let q=p.qte||(ex?ex.qte:1);
+          let cout=ex?ex.coutAchat||0:0;
+          if(pu>0&&cout===0) cout=Math.round(pu*0.7);
+          return {id:ex?.id||Date.now()+i, designation:p.designation, qte:q, coutAchat:cout, puVente:pu, unite:p.unite||ex?.unite||'forfait', secteur:p.secteurDetecte};
+        });
+        state.lines=nl;
+        if(parsed.length===1 && parsed[0]._details){
+          if(typeof toast==='function') toast('✅ 1 ligne calculée: '+parsed[0]._details.join(' + ')+' = '+parsed[0].puVente+'€');
+        }
+      }
+      saveState(); if(window.renderLines) renderLines(); if(typeof renderApercu==='function') renderApercu();
+    }finally{ setTimeout(()=>window._isSyncing=false,200); }
+  };
+
+  console.log('✅ Fix single-line activé');
+})();
+</script>
+
 </body></html>
