@@ -16,12 +16,10 @@ function getHtmlFiles(dir, base = '') {
         urls.push(...getHtmlFiles(full, rel));
       } else if (file.endsWith('.html')) {
         let url = '/' + rel.replace(/\\/g, '/');
-        // index.html -> /
         if (file === 'index.html') {
           url = '/' + base.replace(/\\/g, '/') + '/';
           url = url.replace(/\/\//g, '/');
         } else {
-          // page.html -> /page/ pour éviter les 404 sur GitHub Pages
           url = '/' + rel.replace(/\\/g, '/').replace(/\.html$/, '/');
         }
         if (url === '//') url = '/';
@@ -38,9 +36,11 @@ const today = new Date().toISOString().split('T')[0];
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 for (const u of files) {
   if (u.includes('404') || u.toLowerCase().includes('sitemap')) continue;
-  const priority = u === '/' ? '1.0' : '0.8';
+  let priority = '0.8';
+  if (u === '/') priority = '1.0';
+  if (u === '/presentation/') priority = '0.9';
   xml += `  <url>\n    <loc>${BASE}${u}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`;
-}"/presentation/": { priority: "0.9", changefreq: "weekly" }
+}
 xml += `</urlset>\n`;
 
 fs.writeFileSync('sitemap.xml', xml, 'utf-8');
