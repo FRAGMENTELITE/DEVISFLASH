@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devis Flash - Devis BTP en 2 minutes | Logiciel gratuit artisan 2026</title>
+<meta name="description" content="Devis Flash: logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto, QR acompte 30%, facture électronique Factur-X conforme 2026. 3 devis/mois offerts. 100% navigateur, données en local.">
+<link rel="canonical" href="https://www.devis-flash.fr/">
+<meta property="og:title" content="Devis Flash - Devis BTP en 2 min">
+<meta property="og:description" content="Logiciel devis BTP gratuit. Factur-X 2026, marge auto, QR acompte.">
+<meta name="theme-color" content="#2563EB">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#2563EB;--brand2:#1D4ED8;--ink:#0F172A;--muted:#64748B;--line:#E2E8F0;--bg:#F8FAFF;--soft:#EFF4FF}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Sora',sans-serif;letter-spacing:-0.02em}
+a{color:var(--brand);text-decoration:none}
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.header-inner{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:20px;display:flex;align-items:center;gap:8px}
+.btn{border:0;border-radius:12px;padding:12px 20px;font-weight:700;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:.15s}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.25)}.btn-primary:hover{background:var(--brand2);transform:translateY(-1px)}
+.btn-secondary{background:#F1F5F9;color:var(--ink);border:1px solid var(--line)}
+.hero{max-width:1120px;margin:0 auto;padding:56px 20px 24px;display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:32px}}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:var(--soft);border:1px solid #DBEAFE;font-size:12px;font-weight:700;color:var(--brand);letter-spacing:.01em}
+.hero h1{font-size:46px;line-height:1.02;margin:18px 0 14px;font-weight:800}
+@media(max-width:600px){.hero h1{font-size:32px}}
+.hero p{color:var(--muted);font-size:17.5px;line-height:1.55;margin:0}
+.cta-row{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.trust{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+.trust span{background:#F8FAFF;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:600;color:#475569}
+.mock{background:#fff;border:1.5px solid var(--line);border-radius:20px;box-shadow:0 24px 80px rgba(15,23,42,.09),0 8px 24px rgba(15,23,42,.06);padding:16px;overflow:hidden}
+.mock-top{display:flex;gap:8px;margin-bottom:14px;align-items:center}
+.dot{width:10px;height:10px;border-radius:50%}
+.mock-card{background:var(--bg);border-radius:12px;padding:14px;border:1px solid var(--line)}
+.section{max-width:1120px;margin:0 auto;padding:40px 20px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+@media(max-width:860px){.features{grid-template-columns:1fr 1fr}}@media(max-width:540px){.features{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:18px;padding:20px;background:#fff;transition:.15s}
+.card:hover{border-color:#BFDBFE;box-shadow:0 8px 24px rgba(37,99,235,.08);transform:translateY(-2px)}
+.card .icon{width:38px;height:38px;border-radius:10px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:18px}
+.card h3{margin:12px 0 6px;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:13.8px;line-height:1.5}
+.workflow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+@media(max-width:720px){.workflow{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+.step strong{font-family:Sora;font-size:15px}
+.step p{color:var(--muted);font-size:13.5px;margin:6px 0 0;line-height:1.5}
+.center{text-align:center}
+.footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;color:var(--muted);font-size:12.5px;background:#fff}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="header-inner">
+<div class="logo">⚡ Devis Flash</div>
+<a class="btn btn-primary" href="https://www.devis-flash.fr/">Essayer gratuitement →</a>
+</div>
+</header>
+
+<section class="hero">
+<div>
+<div class="badge">✨ Factur-X conforme 2026 • 100% navigateur</div>
+<h1>Vos devis BTP en 2 minutes chrono.</h1>
+<p>Logiciel gratuit pour artisans. Catalogue BTP, calcul marge auto, QR acompte 30%, facture électronique Factur-X 2026. <strong>3 devis/mois offerts.</strong> Données 100% en local, pas revendues.</p>
+<div class="cta-row">
+<a class="btn btn-primary" href="https://www.devis-flash.fr/">Créer mon premier devis →</a>
+<a class="btn btn-secondary" href="https://www.devis-flash.fr/#view-generateur">Voir la démo</a>
+</div>
+<div class="trust">
+<span>🔒 RGPD - données en local</span>
+<span>🌐 100% navigateur</span>
+<span>✅ Factur-X 2026</span>
+<span>🎁 3 devis offerts</span>
+</div>
+</div>
+<div class="mock">
+<div class="mock-top"><div class="dot" style="background:#FB7185"></div><div class="dot" style="background:#FBBF24"></div><div class="dot" style="background:#34D399"></div><div style="margin-left:auto;font-size:11px;color:#94A3B8;font-family:monospace">devis-flash.fr • sécurisé</div></div>
+<div class="mock-card">
+<div style="display:flex;justify-content:space-between;font-family:monospace;font-size:12px"><span style="font-weight:700">DEVIS-2026-042</span><span style="color:var(--brand);background:#EFF4FF;padding:3px 8px;border-radius:20px;font-weight:700">Brouillon</span></div>
+<div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px"><div style="font-size:11px;color:#64748B">Client</div><div style="font-weight:700;font-size:13px;margin-top:2px">Dupont SAS</div><div style="height:6px;background:#E2E8F0;border-radius:6px;margin-top:8px;width:80%"></div></div>
+<div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px"><div style="font-size:11px;color:#64748B">Chantier</div><div style="font-weight:700;font-size:13px;margin-top:2px">Rénov. Paris 15e</div><div style="height:6px;background:#E2E8F0;border-radius:6px;margin-top:8px;width:60%"></div></div>
+</div>
+<div style="margin-top:14px;background:var(--brand);color:#fff;border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:11px;opacity:.8">Marge calculée auto</div><div style="font-weight:800;font-size:15px">32% • 4 850€ HT</div></div><div style="background:#fff;color:var(--brand);padding:6px 10px;border-radius:8px;font-weight:800;font-size:12px">QR 30%</div></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2 style="font-size:26px;margin:0 0 8px">Fini les devis sous Word.</h2>
+<p style="color:var(--muted);margin:0;max-width:640px;line-height:1.5">Tu perds 45 min par devis, tu recalcules ta marge à la main, ta facture n'est pas conforme 2026. Devis Flash fait tout en 2 clics.</p>
+<div class="features">
+<div class="card"><div class="icon">⚡</div><h3>Devis en 2 min</h3><p>Catalogue BTP prêt, prix au m², ouvrages types. Tu cliques, ça chiffre.</p></div>
+<div class="card"><div class="icon">📈</div><h3>Marge auto</h3><p>Tu vois ta marge en temps réel. Plus de devis à perte.</p></div>
+<div class="card"><div class="icon">📦</div><h3>Stock intelligent</h3><p>Alertes ruptures, seuils, fournisseurs. Commande en 1 clic.</p></div>
+<div class="card"><div class="icon">🗓️</div><h3>Chantier & Planning</h3><p>Glisse tes chantiers, vois les chevauchements, anticipe.</p></div>
+<div class="card"><div class="icon">🧾</div><h3>Facture Factur-X 2026</h3><p>Conforme 2026, export PDF + XML, prête pour Chorus.</p></div>
+<div class="card"><div class="icon">💳</div><h3>QR acompte 30%</h3><p>QR code sur le devis pour encaisser l'acompte direct.</p></div>
+</div>
+</section>
+
+<section class="section" style="background:var(--bg);border:1px solid var(--line);border-radius:24px">
+<h2 style="margin:0 0 4px">Comment ça marche</h2>
+<p style="color:var(--muted);margin:0 0 14px">3 étapes, pas de formation.</p>
+<div class="workflow">
+<div class="step"><strong>1. Catalogue</strong><p>Ajoute tes produits BTP une fois. Prix d'achat, coef, unité.</p></div>
+<div class="step"><strong>2. Devis</strong><p>Sélectionne, quantités, marge auto, signature client.</p></div>
+<div class="step"><strong>3. Facture 2026</strong><p>Passe en facture Factur-X, envoie par mail, QR acompte.</p></div>
+</div>
+</section>
+
+<section class="section center" style="padding-top:60px;padding-bottom:70px">
+<h2 style="font-size:32px;margin:0">Pensé par un artisan,<br>pour les artisans.</h2>
+<p style="color:var(--muted);max-width:580px;margin:12px auto 22px;line-height:1.6">Pas d'abonnement caché. 3 devis/mois offerts pour tester sans CB. Données 100% en local, pas revendues. Créé à Tremblay-en-France, pour le BTP.</p>
+<a class="btn btn-primary" style="padding:15px 26px;font-size:16px" href="https://www.devis-flash.fr/">Commencer gratuitement →</a>
+<div style="margin-top:14px;color:var(--muted);font-size:12px">Sans CB • 100% navigateur • RGPD • Factur-X 2026</div>
+</section>
+
+<footer class="footer">
+<div>Devis Flash © 2026 • Logiciel devis BTP gratuit pour artisans • <a href="https://www.devis-flash.fr/">devis-flash.fr</a> • Factur-X 2026 • 100% local</div>
+<div style="margin-top:8px"><a href="https://www.devis-flash.fr/#view-mentions" style="color:#94A3B8">Confidentialité RGPD</a> • <a href="https://www.devis-flash.fr/" style="color:#94A3B8">App</a></div>
+</footer>
+</body>
+</html>
