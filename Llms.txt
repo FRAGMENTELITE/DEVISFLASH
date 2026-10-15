@@ -1,0 +1,30 @@
+# Devis Flash 2026 - Logiciel Devis BTP Gratuit
+
+> Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto 25-35%, TVA auto 10%/5.5%/20%, QR acompte 30% SumUp/Stripe/PayPal, Factur-X 2026 conforme. 3 devis + 2 factures/mois gratuits.
+
+## Le plus important
+
+- [Générateur de devis BTP](https://www.devis-flash.fr/#generateur): Crée un devis professionnel en 2 minutes chrono. Catalogue travaux, marge auto, QR acompte.
+- [Simulateur de prix](https://www.devis-flash.fr/#simulateur): Estimation gratuite travaux rénovation maison.
+- [Guide prix au m2](https://www.devis-flash.fr/#prix-m2): Prix rénovation maison au m2 avec exemples devis réels.
+- [Factures Factur-X 2026](https://www.devis-flash.fr/#factures): Transforme devis signé en facture électronique conforme 2026 en 1 clic.
+
+## Comment faire un devis BTP en 2 minutes
+
+1. Renseigne entreprise: SIRET, assurance décennale, lien paiement.
+2. Choisis client: adresse auto-remplie.
+3. Ajoute travaux: écris en français naturel ou catalogue.
+4. Règle TVA: 10% maison +2 ans, 5.5% isolation, 20% neuf.
+5. Génère PDF avec QR acompte 30% et signature électronique gratuite.
+
+## Pourquoi Devis Flash
+
+- 100% navigateur, sans installation, sans carte bancaire
+- Gratuit: 3 devis + 2 factures/mois, Starter 9,90€/mois illimité
+- 4.8/5 sur 127 avis artisans
+- Conforme obligation facture électronique Factur-X 2026
+
+## Contact
+
+- Site: https://www.devis-flash.fr/
+- Email: devisflash93@gmail.com
