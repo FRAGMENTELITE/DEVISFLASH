@@ -6,11 +6,6 @@
 📦 **Version :** BTP PUR - 12 secteurs - Export Factur-X
 ✅ **Statut :** Bêta publique gratuite - En cours de mise en conformité facture électronique
 
-### Éditeur
-FRAGMENTELITE - EI - SIRET [TON SIRET] - [TON ADRESSE]
-Contact : contact@devis-flash.fr
-Hébergement site vitrine : 【entity-GitHub Pages¦canonical_name=GitHub】 (USA)
-
 ## 🎯 100% BTP - 12 secteurs
 
 1. BTP / Maçonnerie 🏗️
@@ -43,7 +38,7 @@ Hébergement site vitrine : 【entity-GitHub Pages¦canonical_name=GitHub】 (US
 - Factures importables dans votre PDP / logiciel comptable
 - Export comptable CSV
 
-### ⚠️ Limites actuelles (transparence)
+### ⚠️ Limites actuelles
 - Devis Flash n'est PAS une Plateforme de Dématérialisation Partenaire (PDP) immatriculée DGFiP
 - La transmission directe via PDP, obligatoire pour l'émission TPE à partir du 1er sept 2027, est prévue via partenaire (T1 2027)
 - Pas de coffre-fort d'archivage à valeur probante NF Z42-013 fourni par l'éditeur - archivage 10 ans à la charge de l'utilisateur
