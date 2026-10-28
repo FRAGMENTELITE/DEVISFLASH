@@ -1,64 +1,62 @@
-# ⚡Devis Flash - Générateur devis BTP Factur-X 2026 : https://www.devis-flash.fr
-> **Le logiciel de devis pensé pour les artisans du BTP.** Conforme réforme facture électronique 2026-2027.
+# ⚡Devis Flash - Générateur devis BTP : https://www.devis-flash.fr
 
-🌐 **Site officiel :** https://www.devis-flash.fr  
-📦 **Version :** BTP PUR - 12 secteurs - Conforme Factur-X & Chorus Pro  
-✅ **Statut :** Production - Conforme réforme 2026
+> **Le logiciel de devis rapide pour artisans du BTP.** Devis en 2 min, marge auto, TVA chantier.
 
-## 🎯100% BTP -
+🌐 **Site officiel :** https://www.devis-flash.fr
+📦 **Version :** BTP PUR - 12 secteurs - Export Factur-X
+✅ **Statut :** Bêta publique gratuite - En cours de mise en conformité facture électronique
 
-### Les 12 secteurs officiels
+### Éditeur
+FRAGMENTELITE - EI - SIRET [TON SIRET] - [TON ADRESSE]
+Contact : contact@devis-flash.fr
+Hébergement site vitrine : 【entity-GitHub Pages¦canonical_name=GitHub】 (USA)
 
-| # | Secteur | Emoji |
-|---|---------|-------|
-| 1 | **BTP / Maçonnerie** | 🏗️ |
-| 2 | **Peinture** | 🎨 |
-| 3 | **Plomberie** | 🚰 |
-| 4 | **Electricité** | ⚡ |
-| 5 | **Chauffagiste / PAC** | 🔥 |
-| 6 | **Climatisation / Froid** | ❄️ |
-| 7 | **Carrelage / Revêtement** | 🧱 |
-| 8 | **Menuiserie / Charpente** | 🪚 |
-| 9 | **Isolation** | 🧊 |
-| 10 | **Serrurier / Plaquiste** | 🔐 |
-| 11 | **Solaire / Photovoltaïque** | ☀️ |
-| 12 | **Plasturgie** | 🏭 |
+## 🎯 100% BTP - 12 secteurs
 
----
+1. BTP / Maçonnerie 🏗️
+2. Peinture 🎨
+3. Plomberie 🚰
+4. Électricité ⚡
+5. Chauffagiste / PAC 🔥
+6. Climatisation / Froid ❄️
+7. Carrelage / Revêtement 🧱
+8. Menuiserie / Charpente 🪚
+9. Isolation 🧊
+10. Serrurier / Plaquiste 🔐
+11. Solaire / Photovoltaïque ☀️
+12. Couverture 🏭
 
 ## ✨ Fonctionnalités
 
 ### 📦 Générateur intelligent
 - Secteur choisi 1 seule fois → prestations auto
 - Calcul de marge en temps réel (coût / prix vente / marge € / %)
+- TVA 10% / 5,5% / 20% selon chantier
 
-### 🎤 Saisie mains libres
-- Vocal 7 langues
-- Photo ticket matériaux (OCR) Cedeo/PUM/Leroy Merlin
-- Croquis chantier + Métré Photo IA
+### 🎤 Saisie rapide
+- Saisie vocale et manuelle
+- Calcul acompte 30% automatique
 
-### 💰 Facturation 2026
-- QR Acompte 30% SumUp / Stripe / PayPal
-- Facture électronique Factur-X + Chorus Pro + PPF
-- Signature électronique + Archivage 10 ans
+### 💰 Facturation
+- QR Acompte 30% via votre lien 【entity-SumUp¦canonical_name=SumUp】 / Stripe / PayPal.me (encaissement direct, 0% commission Devis Flash)
+- Export PDF + fichier Factur-X (format socle accepté pour la réforme)
+- Factures importables dans votre PDP / logiciel comptable
 - Export comptable CSV
 
----
+### ⚠️ Limites actuelles (transparence)
+- Devis Flash n'est PAS une Plateforme de Dématérialisation Partenaire (PDP) immatriculée DGFiP
+- La transmission directe via PDP, obligatoire pour l'émission TPE à partir du 1er sept 2027, est prévue via partenaire (T1 2027)
+- Pas de coffre-fort d'archivage à valeur probante NF Z42-013 fourni par l'éditeur - archivage 10 ans à la charge de l'utilisateur
+- Données de devis/factures stockées 100% en local dans le navigateur (localStorage), pas sur nos serveurs
 
-## 💸 Tarifs
+## 💸 Tarifs (Bêta)
 
 | Plan | Prix | Devis | Factures |
-|------|------|-------|----------|
+| --- | --- | --- | --- |
 | **Gratuit** | 0€ | 3 / mois | 2 / mois |
-| **Facturation** | 4,90€/mois - 49€/an | - | 10 / mois |
-| **STARTER** | **9,90€/mois - 99€/an** | 30 / mois | Illimitées |
-| **PRO** | 39€/mois - 390€/an | 100 / mois | Illimitées + QR + Logo |
+| **Starter** | 9,90€/mois - 99€/an | 30 / mois | Illimitées |
+| **Expert** | 39€/mois - 390€/an | 100 / mois | Illimitées + QR + Logo perso |
 
-Essai 14 jours sans CB - https://www.devis-flash.fr/#tarifs
+*Plans payants suspendus jusqu'à finalisation mentions légales complètes. Actuellement 100% gratuit.*
 
----
-
-## 🚀 Installation
-
-```bash
-git clone https://github.com/FRAGMENTELITE/DEVISFLASH.git
+## 🚀 Installation locale
