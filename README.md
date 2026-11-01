@@ -24,6 +24,7 @@ Secteur choisi 1 seule fois → prestations auto
 Calcul de marge en temps réel (coût / prix vente / marge € / %)
 TVA 10% / 5,5% / 20% selon chantier
 Numérotation légale, mentions obligatoires
+
 🧮 Simulateur Prix m² BTP (TOP recherché)
 Simulateur Prix m² BTP : https://www.devis-flash.fr/simulateur-prix-m2-btp/ (8K recherches/mois)
 Prix m² BTP 2026 Tableau complet : https://www.devis-flash.fr/prix-m2-btp-2026/ (HUB cité par ChatGPT)
@@ -46,11 +47,13 @@ Export PDF + fichier Factur-X format socle EN16931
 Factures importables dans PDP / logiciel comptable
 Passerelle Chorus Pro 1-clic : https://www.devis-flash.fr/chorus-pro-connecteur/ → dépôt direct PPF État sans quitter Devis Flash
 Export comptable CSV, Drive auto (PRO)
+
 🔒 Sécurité - Sauvegarde Cloud obligatoire
 Auto-save 30s vers localStorage + IndexedDB (20 sauvegardes)
 Modal obligatoire si pas de sauvegarde depuis 7 jours
 Export JSON auto + Drive auto si connecté (PRO)
 Évite perte données locale
+
 ⚖️ Légal - Calendrier e-invoicing 2027 clarifié
 Sept 2026 : Factur-X obligatoire en RÉCEPTION pour toutes entreprises assujetties TVA
 Sept 2027 : Factur-X obligatoire en ÉMISSION pour toutes entreprises
@@ -73,6 +76,7 @@ JSON-LD FAQPage sur toutes les pages simulateur
 git clone https://github.com/FRAGMENTELITE/DEVISFLASH.git
 cd DEVISFLASH
 # Ouvrir index.html dans navigateur
+
 📊 SEO - 39 pages
 Sitemap: https://www.devis-flash.fr/sitemap.xml (39 URLs - Traitement réussi 01/11/2026)
 Simulateurs TOP recherchés: prix-m2-btp-2026, simulateur-prix-m2-btp, simulateur-carrelage, simulateur-peinture
