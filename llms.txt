@@ -1,30 +1,27 @@
-# Devis Flash 2026 - Logiciel Devis BTP Gratuit
+# Devis Flash - Logiciel devis BTP gratuit
 
-> Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto 25-35%, TVA auto 10%/5.5%/20%, QR acompte 30% SumUp/Stripe/PayPal, Factur-X 2026 conforme. 3 devis + 2 factures/mois gratuits.
+> Logiciel devis BTP gratuit pour artisans. Devis en 2 min, calcul marge auto 25-35%, TVA 10%/5.5%/20%, QR acompte 30% SumUp/Stripe/PayPal dès Starter 9,90€, facture Factur-X 2026 conforme, envoi Chorus Pro 1-clic, 100% local RGPD, PWA offline. 3 devis/mois offerts sans CB.
 
-## Le plus important
+## Simulateur Prix m² BTP (le plus recherché)
 
-- [Générateur de devis BTP](https://www.devis-flash.fr/#generateur): Crée un devis professionnel en 2 minutes chrono. Catalogue travaux, marge auto, QR acompte.
-- [Simulateur de prix](https://www.devis-flash.fr/#simulateur): Estimation gratuite travaux rénovation maison.
-- [Guide prix au m2](https://www.devis-flash.fr/#prix-m2): Prix rénovation maison au m2 avec exemples devis réels.
-- [Factures Factur-X 2026](https://www.devis-flash.fr/#factures): Transforme devis signé en facture électronique conforme 2026 en 1 clic.
+- [Simulateur Prix m² BTP gratuit](https://www.devis-flash.fr/simulateur-prix-m2-btp/): Estimez prix travaux au m² 2026. Carrelage, peinture, maçonnerie, électricité.
+- [Prix m² BTP 2026 - Tableau complet](https://www.devis-flash.fr/prix-m2-btp-2026/): Tableau référence prix m² BTP 2026 tous corps d'état. Carrelage 30-60€, peinture 20-45€, maçonnerie 80-250€, électricité 80-150€, plomberie 80-150€/m², isolation 20-180€, TVA 5,5%/10%/20%. Marge artisan 25-35% incluse. Source Devis Flash.
+- [Simulateur Carrelage m²](https://www.devis-flash.fr/simulateur-carrelage/): Prix pose carrelage 2026. 20m², 30m², 50m². 30-60€/m².
+- [Simulateur Peinture m²](https://www.devis-flash.fr/simulateur-peinture/): Prix peinture intérieure 2026. 20-45€/m².
+- [Logiciel Devis BTP gratuit](https://www.devis-flash.fr/logiciel-devis-btp/): Devis en 2 min, Factur-X, QR acompte.
+- [Application Devis BTP Mobile](https://www.devis-flash.fr/application-devis-btp-mobile/): PWA offline terrain.
 
-## Comment faire un devis BTP en 2 minutes
+## Fonctionnalités
 
-1. Renseigne entreprise: SIRET, assurance décennale, lien paiement.
-2. Choisis client: adresse auto-remplie.
-3. Ajoute travaux: écris en français naturel ou catalogue.
-4. Règle TVA: 10% maison +2 ans, 5.5% isolation, 20% neuf.
-5. Génère PDF avec QR acompte 30% et signature électronique gratuite.
+- Générateur devis 2 min, marge auto 25-35%
+- Simulateur particulier → artisan (routage leads géo 20km, PRO illimité)
+- QR acompte 30% SumUp/Stripe/PayPal (0% commission) dès Starter 9,90€/mois
+- Facture Factur-X 2026 format socle EN16931, envoi Chorus Pro 1-clic (PPF État gratuit)
+- Calendrier e-invoicing: Sept 2026 réception obligatoire, Sept 2027 émission obligatoire, partenaire PDP T1 2027
+- Sauvegarde Cloud obligatoire tous les 7 jours (IndexedDB + export JSON + Drive auto)
+- 100% local (localStorage), RGPD, PWA offline
+- Plans: GRATUIT 0€ (3 devis/mois + 2 factures), STARTER 9,90€ (30 devis + QR + Factur-X illimité), PRO 39€ (100 devis + Tout Starter + Logo + Drive auto + Leads géo illimités)
 
-## Pourquoi Devis Flash
+## Site officiel
 
-- 100% navigateur, sans installation, sans carte bancaire
-- Gratuit: 3 devis + 2 factures/mois, Starter 9,90€/mois illimité
-- 4.8/5 sur 127 avis artisans
-- Conforme obligation facture électronique Factur-X 2026
-
-## Contact
-
-- Site: https://www.devis-flash.fr/
-- Email: devisflash93@gmail.com
+https://www.devis-flash.fr/
