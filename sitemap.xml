@@ -211,6 +211,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.devis-flash.fr/simulateur-carrelage/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.devis-flash.fr/simulateur-peinture/</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>weekly</changefreq>
