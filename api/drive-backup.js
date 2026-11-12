@@ -1,3 +1,4 @@
+// Vercel - /api/drive-backup - FICHIER 3/3 - A METTRE DANS api/drive-backup.js SEULEMENT
 // Vercel - /api/drive-backup - VRAIE sauvegarde Google Drive
 // POST -> sauvegarde, GET -> restauration
 // Le front envoie Authorization: Bearer <token Google de l'utilisateur>
@@ -103,57 +104,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Erreur serveur', detail: String(e?.message || e) });
   }
 }
-
-// Vercel - /api/health
-export default function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  return res.status(200).json({ ok: true, version: 'v2-vercel', message: 'API Devis Flash sur Vercel OK' });
-}
-
-// Vercel - /api/chorus
-export default function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN || '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  if (req.method === 'OPTIONS') return res.status(204).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Methode non autorisee' });
-  const body = req.body || {};
-  const errors = [];
-  if (!body.siret || !/^\d{14}$/.test(String(body.siret).replace(/\s/g, ''))) errors.push('SIRET invalide (14 chiffres)');
-  if (!body.numero) errors.push('Numero de facture manquant');
-  if (!body.client?.nom) errors.push('Nom client manquant');
-  if (!Array.isArray(body.lignes) || body.lignes.length === 0) errors.push('Au moins 1 ligne requise');
-  if (!body.totalTTC || Number(body.totalTTC) <= 0) errors.push('Total TTC invalide');
-  if (errors.length) return res.status(400).json({ error: 'Validation echouee', errors });
-  return res.status(200).json({
-    ok: true, mode: 'mock',
-    message: 'Facture validee cote serveur. Emission electronique obligatoire au 1er septembre 2027 pour PME/TPE/Artisans. Reception obligatoire depuis le 1er septembre 2026.',
-    facture: { numero: body.numero, totalTTC: body.totalTTC, client: body.client.nom },
-  });
-}
-
-{
-  "framework": null
-}
-
-// ===== A METTRE DANS TON HTML V9 - VERSION VERCEL (remplace la version Cloudflare) =====
-// Remplace ces 2 lignes dans ton HTML :
-// AVANT (Cloudflare) :
-// const WORKER_URL = 'https://devis-flash-worker.TON-NOM.workers.dev/api/chorus';
-// const API_BASE = 'https://devis-flash-worker.TON-NOM.workers.dev';
-//
-// APRES (Vercel - meme domaine que ton site, pas besoin de changer) :
-// const API_BASE = ''; // Vide = meme domaine que ton site Vercel, pas de CORS a gerer
-// const WORKER_URL = '/api/chorus';
-//
-// Et dans frontend-drive.js, remplace :
-// const API_BASE = 'https://devis-flash-worker.TON-NOM.workers.dev';
-// par :
-// const API_BASE = ''; // Vercel, meme domaine
-//
-// C'est tout. Plus besoin de TON-NOM, plus besoin de Cloudflare.
-// Ton front appelle /api/drive-backup sur ton propre domaine Vercel, Vercel repond.
-
-const API_BASE = ''; // Vercel
-const WORKER_URL = '/api/chorus';
-const GOOGLE_CLIENT_ID = 'TON_CLIENT_ID.apps.googleusercontent.com'; // <-- a creer sur console.cloud.google.com, voir README
