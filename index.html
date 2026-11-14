@@ -8941,7 +8941,7 @@ document.addEventListener('click',function(e){if(e.target.textContent && e.targe
 <script>function showView(name){document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');v.style.display='none';});var t=document.getElementById('view-'+name);if(t){t.classList.add('active');t.style.display='block';window.scrollTo(0,0);console.log('showView',name);}else{console.warn('view not found',name);}}function showViewFix(n){showView(n);}window.showView=showView;window.showViewFix=showViewFix;</script>
 <script>
 // ===== GOOGLE DRIVE BACKUP - VRAIE VERSION VERCEL (plus de simulation) =====
-const GOOGLE_CLIENT_ID = 'TON_CLIENT_ID.apps.googleusercontent.com'; // <-- remplace TON_CLIENT_ID par ton vrai ID Google (projet Devis Flash93) - gratuit
+const GOOGLE_CLIENT_ID = '467200287320-m7fsqonv51700876i7covhdb55n5q2d1.apps.googleusercontent.com; // <-- remplace TON_CLIENT_ID par ton vrai ID Google (projet Devis Flash93) - gratuit
 const API_BASE = ''; // Vercel, même domaine, pas de Cloudflare
 let DRIVE_TOKEN = localStorage.getItem('df_drive_token') || null;
 let DRIVE_TOKEN_EXP = Number(localStorage.getItem('df_drive_token_exp')||0);
