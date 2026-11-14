@@ -9636,11 +9636,9 @@ window.DF_LEGAL_CALENDAR = {
 <script id="df-chorus-1click">
 // [🔌 CHORUS PRO] Passerelle 1-clic Devis Flash → Chorus Pro
 (function(){
-  const const WORKER_URL = 'https://devis-flash-worker.TON-NOM.workers.dev/api/chorus'; // <-- REMPLACE TON-NOM par ton nom de Worker Cloudflare
-const API_BASE = 'https://devis-flash-worker.TON-NOM.workers.dev'; // <-- meme URL sans /api/chorus
-const CONFIG_WORKER_A_REMPLACER = API_BASE.includes('TON-NOM');
-if(CONFIG_WORKER_A_REMPLACER){ console.warn('⚠️ Devis Flash: remplace TON-NOM par ton vrai Worker dans le code (recherche TON-NOM). Chorus Pro et Drive passent par le Worker.'); } // <-- meme URL sans /api/chorus // À remplacer par ton Worker
-  
+  const WORKER_URL = '/api/chorus';
+const API_BASE = '';
+const CONFIG_WORKER_A_REMPLACER = false;
   async function generateFacturXBlob(){
     // Utilise la fonction existante de Devis Flash qui génère PDF Factur-X
     try{
