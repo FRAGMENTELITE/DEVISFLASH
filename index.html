@@ -3012,7 +3012,7 @@ el.innerHTML = `<div class="devis-row head" style="grid-template-columns:1fr 110
 const dot = MARGIN_COLORS_LIGHT[marginTier(d.margePct||0)];
 const statutColor = d.statut==='Payé' ? '#10B981' : d.statut==='Envoyé' ? '#2563EB' : '#64748B';
 return `
-<div class="devis-row" data-data-uid="${d.id}" id="devis-${d.id}" style="grid-template-columns:1fr 110px 90px 100px 90px 140px"><div><strong>${escapeHtml(d.client)}</strong><br><span style="font-size:11px;color:var(--ink-soft)">${escapeHtml(d.secteur)} • ${escapeHtml((d.iaPhrase||"").substring(0,40))}</span></div><div class="mono" style="font-size:11.5px; color:#475569;">${fmtDate(d.date)}</div><div><span style="font-size:11px;background:${statutColor}15;color:${statutColor};border:1px solid ${statutColor}30;padding:3px 8px;border-radius:20px;font-weight:700">${escapeHtml(d.statut||'Envoyé')}</span></div><div class="amt">${fmtEUR(d.venteTotal)}</div><div class="amt" style="color:${dot};font-weight:700">${(d.margePct||0).toFixed(0)}%<br><span style="font-size:10px;color:var(--ink-soft)">${fmtEUR(d.margeTotal||0)}</span></div><div class="row-actions" style="flex-wrap:wrap"><button class="icon-btn" onclick="openApercu('${d.id}')" title="Voir / PDF">👁️</button><button class="icon-btn" onclick="sendDevisEmail('${d.id}')" title="Envoyer par email">📧</button><button class="icon-btn" onclick="convertToFacture('${d.id}')" title="Facturer">🧾</button><button class="icon-btn" onclick="openRelanceModal('${d.id}','j3')"" title="Facturer">🧾</button><button class="icon-btn" onclick="restoreDevis('${d.id}')" title="Restaurer">↩️</button><button class="icon-btn" onclick="duplicateDevis('${d.id}')" title="Dupliquer">⧉</button><button class="icon-btn" onclick="deleteDevis('${d.id}')" title="Supprimer">🗑️</button></div></div>`;}).join("");
+<div class="devis-row" data-data-uid="${d.id}" id="devis-${d.id}" style="grid-template-columns:1fr 110px 90px 100px 90px 140px"><div><strong>${escapeHtml(d.client)}</strong><br><span style="font-size:11px;color:var(--ink-soft)">${escapeHtml(d.secteur)} • ${escapeHtml((d.iaPhrase||"").substring(0,40))}</span></div><div class="mono" style="font-size:11.5px; color:#475569;">${fmtDate(d.date)}</div><div><span style="font-size:11px;background:${statutColor}15;color:${statutColor};border:1px solid ${statutColor}30;padding:3px 8px;border-radius:20px;font-weight:700">${escapeHtml(d.statut||'Envoyé')}</span></div><div class="amt">${fmtEUR(d.venteTotal)}</div><div class="amt" style="color:${dot};font-weight:700">${(d.margePct||0).toFixed(0)}%<br><span style="font-size:10px;color:var(--ink-soft)">${fmtEUR(d.margeTotal||0)}</span></div><div class="row-actions" style="flex-wrap:wrap"><button class="icon-btn" onclick="openApercu('${d.id}')" title="Voir / PDF">👁️</button><button class="icon-btn" onclick="sendDevisEmail('${d.id}')" title="Envoyer par email">📧</button><button class="icon-btn" onclick="convertToFacture('${d.id}')" title="Facturer">🧾</button><button class="icon-btn" onclick="openRelanceModal('${d.id}','j3')" title="Facturer">🧾</button><button class="icon-btn" onclick="restoreDevis('${d.id}')" title="Restaurer">↩️</button><button class="icon-btn" onclick="duplicateDevis('${d.id}')" title="Dupliquer">⧉</button><button class="icon-btn" onclick="deleteDevis('${d.id}')" title="Supprimer">🗑️</button></div></div>`;}).join("");
 }
 function restoreDevis(id){
 const d = state.devis.find(x=>x.id===id);
@@ -3207,7 +3207,7 @@ const subject=encodeURIComponent('Facture '+f.numero+' - '+f.client);
 const body=encodeURIComponent(`Bonjour ${f.client},\n\nVeuillez trouver votre facture ${f.numero} du ${fmtDate(f.date)} d'un montant de ${fmtEUR(f.total)}.\nÉchéance : ${fmtDate(f.echeance)}\n\nMerci pour votre confiance.\n\nDevis Flash`);
 window.location.href=`mailto:${email}?subject=${subject}&body=${body}`;
 }
-async function sendEmailReal(){
+async async function sendEmailReal(){
 const to=document.getElementById('emailTo').value||'Devis Flash';
 const statusEl=document.getElementById('emailStatus');
 statusEl.textContent='⏳ Envoi via backend Vercel...'; statusEl.style.color='#2563EB';
@@ -8941,7 +8941,7 @@ document.addEventListener('click',function(e){if(e.target.textContent && e.targe
 <script>function showView(name){document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');v.style.display='none';});var t=document.getElementById('view-'+name);if(t){t.classList.add('active');t.style.display='block';window.scrollTo(0,0);console.log('showView',name);}else{console.warn('view not found',name);}}function showViewFix(n){showView(n);}window.showView=showView;window.showViewFix=showViewFix;</script>
 <script>
 // ===== GOOGLE DRIVE BACKUP - VRAIE VERSION VERCEL (plus de simulation) =====
-const GOOGLE_CLIENT_ID = 467200287320-m7fsqonv51700876i7covhdb55n5q2d1.apps.googleusercontent.com; // <-- remplace TON_CLIENT_ID par ton vrai ID Google (projet Devis Flash93) - gratuit
+const GOOGLE_CLIENT_ID = 'TON_CLIENT_ID.apps.googleusercontent.com'; // <-- remplace TON_CLIENT_ID par ton vrai ID Google (projet Devis Flash93) - gratuit
 const API_BASE = ''; // Vercel, même domaine, pas de Cloudflare
 let DRIVE_TOKEN = localStorage.getItem('df_drive_token') || null;
 let DRIVE_TOKEN_EXP = Number(localStorage.getItem('df_drive_token_exp')||0);
@@ -9806,6 +9806,60 @@ window.DF_LEGAL_CALENDAR = {
 </script>
 
 
+
+<script id="df-repondeur-FIX">
+/* FIX Répondeur : ces 6 fonctions n'existaient pas, donc tous les boutons du bloc étaient morts */
+(function(){
+  function el(id){return document.getElementById(id);}
+  function majUI(on){
+    var btn=el('btnRepondeurToggle'), st=el('repondeurStatus');
+    if(btn){ btn.textContent = on ? '🟢 ON — Je suis sur chantier' : '🔴 OFF — Je suis dispo'; btn.style.background = on ? '#10B981' : '#F59E0B'; }
+    if(st){ st.textContent = on ? 'Répondeur ACTIVÉ. Partage ton lien : le client décrit son projet + envoie ses photos, tu reçois un dossier dans Leads.' : 'Répondeur désactivé. Active-le quand tu es sur chantier : le client décrit son projet + envoie ses photos, tu reçois un dossier dans Leads.'; }
+  }
+  window.toggleRepondeur = function(){
+    var on = localStorage.getItem('df_repondeur_on') !== '1';
+    localStorage.setItem('df_repondeur_on', on ? '1' : '0');
+    majUI(on);
+    if(typeof toast==='function') toast(on ? '🟢 Répondeur ACTIVÉ — partage ton lien' : '🔴 Répondeur désactivé');
+    else alert(on ? 'Répondeur ACTIVÉ' : 'Répondeur désactivé');
+  };
+  window.copierLienRepondeur = function(){
+    var link = (el('repondeurLink') && el('repondeurLink').value) || 'https://devis-flash.fr/repondeur';
+    if(navigator.clipboard) navigator.clipboard.writeText(link).then(function(){ if(typeof toast==='function') toast('📋 Lien copié'); else alert('Lien copié'); }).catch(function(){ prompt('Copie ce lien :', link); });
+    else prompt('Copie ce lien :', link);
+  };
+  window.partagerRepondeurSMS = function(){
+    var link = (el('repondeurLink') && el('repondeurLink').value) || 'https://devis-flash.fr/repondeur';
+    var msg = 'Je suis sur chantier, je ne peux pas décrocher. Décris ton projet + envoie tes photos ici : ' + link;
+    window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+  };
+  window.envoyerDossierRepondeur = function(){
+    var nom=(el('repNom')||{}).value||'', tel=(el('repTel')||{}).value||'', ville=(el('repVille')||{}).value||'';
+    if(!nom.trim() || !tel.trim() || !ville.trim()){ alert('Remplis au moins Nom, Téléphone et Ville.'); return; }
+    var lead = { id:'rep-'+Date.now(), nom:nom.trim(), tel:tel.trim(), ville:ville.trim(), surface:(el('repSurface')||{}).value||'', type:(el('repType')||{}).value||'', desc:(el('repDesc')||{}).value||'', date:new Date().toISOString(), source:'Répondeur' };
+    try{ var leads=JSON.parse(localStorage.getItem('devisflash_leads')||'[]'); leads.unshift(lead); localStorage.setItem('devisflash_leads', JSON.stringify(leads)); }catch(e){}
+    if(typeof window.updateLeadsBadge==='function') window.updateLeadsBadge();
+    var res=el('repResult'); if(res){ res.style.display='block'; res.innerHTML='✅ Dossier reçu de <b>'+nom+'</b> — il est dans Leads ci-dessous. Rappelle-le ce soir.'; }
+    var list=el('leadsList'); if(list){ var card=document.createElement('div'); card.style.cssText='background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:12px'; card.innerHTML='<b>📞 '+nom+'</b> • '+ville+' • '+tel+'<br><span style="font-size:12px;color:#475569">'+(lead.type||'')+' '+(lead.surface?('• '+lead.surface+'m²'):'')+' — '+(lead.desc||'')+'</span>'; list.prepend(card); }
+    ['repNom','repTel','repVille','repSurface','repDesc'].forEach(function(id){ var f=el(id); if(f) f.value=''; });
+    if(typeof toast==='function') toast('✅ Dossier arrivé dans Leads');
+  };
+  window.rechercherSurMaps = function(){
+    var q=((el('mapsSearchInput')||{}).value||'').trim() || 'Villepinte';
+    var f=el('leadsMapFrame'); if(f) f.src='https://maps.google.com/maps?q='+encodeURIComponent(q)+'&t=&z=12&ie=UTF8&iwloc=&output=embed';
+    var s=el('mapsStatus'); if(s) s.textContent='Carte : '+q;
+  };
+  window.centrerCarteLeads = function(){
+    var f=el('leadsMapFrame'); if(f) f.src='https://maps.google.com/maps?q=Villepinte&t=&z=12&ie=UTF8&iwloc=&output=embed';
+    var s=el('mapsStatus'); if(s) s.textContent='Carte : Villepinte (par défaut)';
+  };
+  // Affiche le vrai état au chargement (ON/OFF mémorisé)
+  document.addEventListener('DOMContentLoaded', function(){ majUI(localStorage.getItem('df_repondeur_on')==='1'); });
+  setTimeout(function(){ majUI(localStorage.getItem('df_repondeur_on')==='1'); }, 500);
+  // Compteur photos
+  document.addEventListener('change', function(e){ if(e.target && e.target.id==='repPhotos'){ var info=el('repPhotosInfo'); if(info) info.textContent = e.target.files.length + ' photo(s) sélectionnée(s)'; } });
+})();
+</script>
 <script id="df-repondeur-mobile-js">
 window.goRepondeurMobile=function(btn){
   if(window.setActiveMobileNav) setActiveMobileNav(btn);
