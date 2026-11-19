@@ -1029,6 +1029,7 @@ window.setChantierMode = function(mode){
 var btnE = document.getElementById('modeEcrireBtn');
 var btnP = document.getElementById('modeParlerBtn');
 var ta = document.getElementById('smartBlocNote');
+if(!btnE||!btnP) return;
 if(mode==='parler'){
 btnP.style.background='#fff'; btnP.style.color='#0F172A'; btnP.style.border='1px solid #E2E8F0'; btnP.style.boxShadow='0 2px 8px rgba(0,0,0,.06)';
 btnE.style.background='transparent'; btnE.style.color='#64748B'; btnE.style.border='1px solid transparent'; btnE.style.boxShadow='none';
@@ -1152,14 +1153,14 @@ chipsContainer.appendChild(b);
 </div>
 <div style="margin-bottom:12px"><b style="font-size:15px">📥 Leads reçus du simulateur</b></div>
 <div id="leadsList" style="display:grid;gap:10px;max-height:600px;overflow:auto">
-<div style="text-align:center;padding:40px 20px;color:#94A3B8;font-size:13px">Aucun lead pour l'instant.<br><button onclick="showView('simulateur')" style="background:#2563EB;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer"></div>
+<div style="text-align:center;padding:40px 20px;color:#94A3B8;font-size:13px">Aucun lead pour l'instant.<br><button onclick="showView('simulateur')" style="background:#2563EB;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer">➕ Simuler un devis</button></div>
 </div>
 </div>
 <div style="display:grid;gap:16px">
 <div style="background:#ECFDF5;border:1px solid #BBF7D0;border-radius:16px;padding:16px">
 <b style="font-size:13px;color:#065F46">💾 Sauvegarde de vos données</b>
 <p style="font-size:12px;color:#065F46;margin:6px 0 10px 0;line-height:1.5">Téléchargez une copie de vos devis, factures, situations et leads, puis rangez-la où vous voulez (ex. votre Google Drive).</p>
-<button id="btnDriveConnect" onclick="connectGoogleDrive()" hidden style="display:none;width:100%;background:#fff;border:1.5px solid #10B981;color:#065F46;border-radius:10px;padding:10px;font-weight:700;cursor:pointer">🔗 Connecter Google Drive</button>
+<button id="btnDriveConnect" onclick="connectGoogleDrive()" style="display:block;width:100%;background:#fff;border:1.5px solid #10B981;color:#065F46;border-radius:10px;padding:10px;font-weight:700;cursor:pointer">🔗 Connecter Google Drive</button>
 <div id="driveStatus" style="font-size:11px;color:#065F46;margin-top:8px;display:none"></div>
 <button onclick="backupToDrive()" style="width:100%;margin-top:8px;background:#10B981;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:700;cursor:pointer" id="btnBackupNow">💾 Télécharger ma sauvegarde</button>
 </div>
@@ -2499,6 +2500,7 @@ let free = loadGratuit();
 function uid(){ return Math.random().toString(36).slice(2,9); }
 function toast(msg){
 const t = document.getElementById("toast");
+if(!t){ toastOffline(msg); return; }
 t.textContent = msg;
 t.classList.add("show");
 clearTimeout(t._timer);
@@ -3611,7 +3613,7 @@ const ind=document.getElementById('offline-ind'); if(ind){ind.textContent='📴 
 });
 }
 window.addEventListener('beforeinstallprompt', e=>{e.preventDefault(); deferredPrompt=e;});
-function toast(m){
+function toastOffline(m){
 let el=document.getElementById('offline-ind');
 if(!el){ el=document.createElement('div'); el.id='offline-ind'; el.className='offline-ind'; document.body.appendChild(el); }
 el.textContent=m; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),3500);
@@ -6789,9 +6791,8 @@ saveState(); if(window.renderLines) renderLines(); if(window.renderApercu) rende
 (function(){
 function createUI(){
 if(document.getElementById('df-float')) return;
-var root = document.createElement('div');
-root.id='df-float-root';
-document.body.appendChild(root);
+var root = document.getElementById('df-float-root');
+if(!root){ root = document.createElement('div'); root.id='df-float-root'; document.body.appendChild(root); }
 var btn = document.createElement('button');
 btn.id='df-float';
 btn.type='button';
@@ -8610,48 +8611,25 @@ if(st.id && st.id.includes('hide')){
 </script>
 <script>function showView(name){document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');v.style.display='none';});var t=document.getElementById('view-'+name);if(t){t.classList.add('active');t.style.display='block';window.scrollTo(0,0);}else{}}function showViewFix(n){showView(n);}window.showView=showView;window.showViewFix=showViewFix;</script>
 <script>
+
+var DRIVE_CLIENT_ID = '467200287320-m7fsqonv51700876i7covhdb55n5q2d1.apps.googleusercontent.com';
+var DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive.file';
+var _driveTokenClient=null, _driveToken=null, _driveTokenExpiry=0, _driveAutoTimer=null;
+function _driveLoadGIS(){return new Promise(function(res,rej){if(window.google&&google.accounts&&google.accounts.oauth2){res();return;}var s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.async=true;s.defer=true;s.onload=function(){res();};s.onerror=function(){rej(new Error('GIS'));};document.head.appendChild(s);});}
+function _driveGetToken(){return _driveLoadGIS().then(function(){return new Promise(function(resolve,reject){if(_driveToken&&Date.now()<_driveTokenExpiry-60000){resolve(_driveToken);return;}if(!_driveTokenClient){_driveTokenClient=google.accounts.oauth2.initTokenClient({client_id:DRIVE_CLIENT_ID,scope:DRIVE_SCOPE,callback:function(resp){if(resp&&resp.access_token){_driveToken=resp.access_token;_driveTokenExpiry=Date.now()+(Number(resp.expires_in||3600)*1000);resolve(_driveToken);}else reject(new Error('Token Drive refuse'));}});} _driveTokenClient.requestAccessToken({prompt:_driveToken?'':'consent'});});});}
+function _driveBuildBackup(){return {devis:localStorage.getItem('devis_flash_devis')||localStorage.getItem('devis')||'[]',factures:localStorage.getItem('devis_flash_factures')||'[]',clients:localStorage.getItem('devis_flash_clients')||'[]',simulations:localStorage.getItem('df_simulations')||'[]',leads:localStorage.getItem('df_leads')||'[]',date:new Date().toISOString(),version:'v2026-10-30'};}
+function _driveFindOrCreateFolder(token){return fetch('https://www.googleapis.com/drive/v3/files?q='+encodeURIComponent("name='Devis-Flash-Backup' and mimeType='application/vnd.google-apps.folder' and trashed=false")+'&fields=files(id,name)',{headers:{Authorization:'Bearer '+token}}).then(function(r){return r.json();}).then(function(j){if(j.files&&j.files.length)return j.files[0].id;return fetch('https://www.googleapis.com/drive/v3/files',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({name:'Devis-Flash-Backup',mimeType:'application/vnd.google-apps.folder'})}).then(function(r){return r.json();}).then(function(f){return f.id;});});}
+function _driveUploadBackup(token,silent){var data=_driveBuildBackup();var fileName='Devis-Flash-Backup-'+new Date().toISOString().split('T')[0]+'.json';return _driveFindOrCreateFolder(token).then(function(folderId){var metadata={name:fileName,mimeType:'application/json',parents:folderId?[folderId]:[]};var boundary='-------devisflash'+Date.now();var body='--'+boundary+'\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+JSON.stringify(metadata)+'\r\n--'+boundary+'\r\nContent-Type: application/json\r\n\r\n'+JSON.stringify(data,null,2)+'\r\n--'+boundary+'--';return fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'multipart/related; boundary='+boundary},body:body});}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error((j.error&&j.error.message)||('Drive HTTP '+r.status));return j;});}).then(function(){localStorage.setItem('df_last_backup',new Date().toISOString());var st=document.getElementById('driveStatus');if(st)st.innerHTML='✅ Dernière sauvegarde Drive : '+new Date().toLocaleString('fr-FR');if(!silent&&typeof toastOffline==='function')toastOffline('✅ Sauvegarde envoyée sur ton Google Drive');return true;});}
+function _driveDownloadLocal(silent){var data=_driveBuildBackup();var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});var url=URL.createObjectURL(blob);if(!silent){var a=document.createElement('a');a.href=url;a.download='Devis-Flash-Backup-'+new Date().toISOString().split('T')[0]+'.json';a.click();URL.revokeObjectURL(url);alert('✅ Sauvegarde téléchargée');}localStorage.setItem('df_last_backup',new Date().toISOString());}
 var DRIVE_CONNECTED = localStorage.getItem('df_drive_connected')==='1';
 function connectGoogleDrive(){
-var btn=document.getElementById('btnDriveConnect');
-var status=document.getElementById('driveStatus');
-var backupBtn=document.getElementById('btnBackupNow');
-if(btn) btn.textContent='⏳ Connexion...';
-setTimeout(()=>{
-localStorage.setItem('df_drive_connected','1');
-DRIVE_CONNECTED=true;
-if(btn){ btn.textContent='✅ Drive connecté'; btn.style.background='#ECFDF5'; }
-if(status){ status.style.display='block'; status.innerHTML='✅ Connecté : Devis Flash sauvegardera dans <b>/Devis-Flash-Backup/</b> sur votre Drive'; }
-if(backupBtn) backupBtn.style.display='block';
-setInterval(()=>{ if(DRIVE_CONNECTED) backupToDrive(true); }, 15*60*1000);
-alert('✅ Google Drive connecté !\n\nVos devis, factures et leads seront sauvegardés automatiquement dans /Devis-Flash-Backup/\n\n(Version actuelle : simulation locale + téléchargement JSON. Pour la vraie API Drive, on ajoutera gapi OAuth2 ensuite)');
-},900);
-if(typeof gtag==='function'){ try{ gtag('event','drive_connect'); }catch(e){} }
+var btn=document.getElementById('btnDriveConnect');var status=document.getElementById('driveStatus');var backupBtn=document.getElementById('btnBackupNow');
+if(btn)btn.textContent='⏳ Connexion Google...';
+if(location.protocol==='file:'){alert('⚠️ Drive ne marche pas en file://, ouvre en HTTPS.');if(btn)btn.textContent='🔗 Connecter Google Drive';return;}
+_driveGetToken().then(function(){localStorage.setItem('df_drive_connected','1');DRIVE_CONNECTED=true;if(btn){btn.textContent='✅ Drive connecté';btn.style.background='#ECFDF5';}if(status){status.style.display='block';status.innerHTML='✅ Connecté : sauvegardes dans <b>/Devis-Flash-Backup/</b> sur ton Drive';}if(backupBtn)backupBtn.style.display='block';if(_driveAutoTimer)clearInterval(_driveAutoTimer);_driveAutoTimer=setInterval(function(){if(DRIVE_CONNECTED)backupToDrive(true);},15*60*1000);return backupToDrive(true);}).catch(function(e){if(btn)btn.textContent='🔗 Connecter Google Drive';alert('❌ Connexion Drive impossible : '+(e&&e.message||e)+'\nVérifie ton origine dans Google Cloud.');});
 }
-function backupToDrive(silent){
-try{
-var data={
-devis: localStorage.getItem('devis_flash_devis')||localStorage.getItem('devis')||'[]',
-factures: localStorage.getItem('devis_flash_factures')||'[]',
-clients: localStorage.getItem('devis_flash_clients')||'[]',
-simulations: localStorage.getItem('df_simulations')||'[]',
-leads: localStorage.getItem('df_leads')||'[]',
-date: new Date().toISOString(),
-version: 'v2026-10-30'
-};
-var blob=new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
-var url=URL.createObjectURL(blob);
-if(!silent){
-var a=document.createElement('a'); a.href=url; a.download='Devis-Flash-Backup-'+new Date().toISOString().split('T')[0]+'.json'; a.click();
-URL.revokeObjectURL(url);
-alert('✅ Sauvegarde téléchargée\n\nFichier : Devis-Flash-Backup-'+new Date().toISOString().split('T')[0]+'.json\n\nÀ mettre dans votre dossier Google Drive /Devis-Flash-Backup/');
-}
-localStorage.setItem('df_last_backup', new Date().toISOString());
-var status=document.getElementById('driveStatus');
-if(status) status.innerHTML='✅ Dernière sauvegarde : '+new Date().toLocaleString('fr-FR')+' • '+Math.round(JSON.stringify(data).length/1024)+' Ko';
-}catch(e){  if(!silent) alert('Erreur sauvegarde: '+e.message); }
-}
-document.addEventListener('DOMContentLoaded', function(){
-if(localStorage.getItem('df_drive_connected')==='1'){
+function backupToDrivefunction backupToDrive(silent){try{if(DRIVE_CONNECTED){return _driveGetToken().then(function(tok){return _driveUploadBackup(tok,!!silent);}).catch(function(e){if(!silent)alert('⚠️ Envoi Drive échoué — téléchargement en secours.');_driveDownloadLocal(!!silent);});}else{_driveDownloadLocal(!!silent);return Promise.resolve(false);}}catch(e){if(!silent)alert('Erreur sauvegarde: '+e.message);return Promise.resolve(false);}}
+document.addEventListener('DOMContentLoaded', function(){if(localStorage.getItem('df_drive_connected')==='1'){
 var btn=document.getElementById('btnDriveConnect');
 var status=document.getElementById('driveStatus');
 var backupBtn=document.getElementById('btnBackupNow');
@@ -8695,7 +8673,7 @@ leads=sims.map(s=>({id:s.id,type:s.type,surface:s.surface,ville:s.ville,totalHT:
 }
 }
 if(leads.length===0){
-container.innerHTML='<div style="text-align:center;padding:40px 20px;color:#94A3B8;font-size:13px">Aucun lead pour l\'instant.<br><button onclick="showView(\'simulateur\')" style="background:#2563EB;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer"></div>';
+container.innerHTML='<div style="text-align:center;padding:40px 20px;color:#94A3B8;font-size:13px">Aucun lead pour l\'instant.<br><button onclick="showView(\'simulateur\')" style="background:#2563EB;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer">➕ Simuler un devis</button></div>';
 return;
 }
 var html='';
@@ -10204,4 +10182,70 @@ html,body{overflow-x:clip !important}
   });
 })();
 </script>
+<style id="df-align-generateur">
+/* ALIGNEMENT GENERATEUR : une seule colonne, meme largeur, meme gouttiere */
+#view-generateur{max-width:1180px !important;margin:0 auto !important;padding:0 24px 60px !important;box-sizing:border-box !important;}
+#view-generateur>.gen-hero,#view-generateur>.card,#view-generateur>div,#view-generateur>form{max-width:100% !important;width:100% !important;margin-left:0 !important;margin-right:0 !important;box-sizing:border-box !important;}
+#view-generateur>.gen-hero{margin:0 0 16px !important;}
+#view-generateur>.card{margin:0 0 16px !important;padding:22px !important;}
+#view-generateur #card-prestations{padding:0 !important;overflow:hidden !important;}
+#view-generateur #card-prestations>:not(#secteur-badge):not(#secteur-dropdown){padding-left:22px !important;padding-right:22px !important;box-sizing:border-box !important;}
+#view-generateur #card-prestations #df-row-total-chantier{padding-left:22px !important;padding-right:22px !important;}
+/* Grille Client : 2 colonnes alignees, champs meme hauteur */
+#view-generateur #card-client-apres .form-grid{display:grid !important;grid-template-columns:1fr 1fr !important;gap:12px !important;align-items:start !important;}
+#view-generateur #card-client-apres .field{display:flex !important;flex-direction:column !important;min-width:0 !important;}
+#view-generateur #card-client-apres .field label{display:block !important;min-height:20px !important;margin:0 0 6px !important;}
+#view-generateur #card-client-apres .field input{width:100% !important;height:44px !important;box-sizing:border-box !important;}
+/* Ligne Totaux + Banque : meme colonne droite de 380px, bords alignes */
+#view-generateur #card-prestations #df-row-total-chantier{display:grid !important;grid-template-columns:minmax(0,1fr) 380px !important;gap:16px !important;align-items:start !important;margin:0 0 16px !important;width:100% !important;}
+#view-generateur #card-prestations #df-row-total-chantier>*{min-width:0 !important;margin:0 !important;}
+#view-generateur>#df-bloc-banque-separe{display:flex !important;justify-content:flex-end !important;margin:0 0 16px !important;width:100% !important;}
+#view-generateur>#df-bloc-banque-separe #card-banque{width:380px !important;max-width:100% !important;margin:0 !important;box-sizing:border-box !important;}
+/* Cartes Materiel / Paiement : meme largeur, meme padding */
+#view-generateur #card-materiel,#view-generateur #card-paiement{width:100% !important;}
+@media(max-width:900px){
+ #view-generateur{padding:0 16px 40px !important;}
+ #view-generateur #card-client-apres .form-grid{grid-template-columns:1fr !important;}
+ #view-generateur #card-prestations #df-row-total-chantier{grid-template-columns:1fr !important;}
+ #view-generateur>#df-bloc-banque-separe{justify-content:stretch !important;}
+ #view-generateur>#df-bloc-banque-separe #card-banque{width:100% !important;}
+}
+</style>
+
+<style id="df-fix-largeur-reelle">
+/* CAUSE N°1 : le parent .page plafonnait tout a 1180px, meme si l'enfant faisait 100% */
+.page{max-width:1720px !important;padding-left:12px !important;padding-right:12px !important;}
+header .header-inner{max-width:1720px !important;padding-left:12px !important;padding-right:12px !important;}
+/* CAUSE N°2 : l'ancien bloc df-align-generateur re-plafonnait le generateur a 1180px -> on l'ecrase ici */
+#view-generateur{max-width:100% !important;width:100% !important;margin:0 !important;padding:0 !important;box-sizing:border-box !important;}
+#view-generateur>.gen-hero,#view-generateur>.card,#view-generateur>div,#view-generateur>form{max-width:100% !important;width:100% !important;margin-left:0 !important;margin-right:0 !important;box-sizing:border-box !important;}
+#view-generateur>.card{padding:20px 22px !important;margin:0 0 12px !important;}
+#view-generateur>.gen-hero{margin:0 0 12px !important;padding:20px !important;}
+#view-generateur>.gen-hero h1{max-width:none !important;}
+#view-generateur>.gen-hero p{max-width:720px !important;}
+/* CAUSE N°3 : colonnes fixes 380px + Client en 1 ou 2 colonnes -> vide au milieu */
+#view-generateur #card-client-apres .form-grid{display:grid !important;grid-template-columns:repeat(4,1fr) !important;gap:14px !important;}
+#view-generateur .sector-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr)) !important;gap:10px !important;}
+#view-generateur #card-prestations #df-row-total-chantier{grid-template-columns:minmax(0,1fr) 440px !important;gap:20px !important;margin:0 0 12px !important;}
+#view-generateur>#df-bloc-banque-separe #card-banque{width:440px !important;}
+/* HEADER : onglets remontes + Mon entreprise visible a droite */
+header .header-inner{padding:6px 12px 6px !important;gap:2px !important;min-height:0 !important;}
+header .brand img{height:48px !important;}
+header .tabs{margin-top:2px !important;padding:4px !important;}
+#btn-entreprise-header{display:inline-flex !important;align-items:center !important;gap:8px !important;background:#2563EB !important;border:2px solid #1D4ED8 !important;border-radius:999px !important;padding:9px 16px !important;color:#fff !important;font-size:13px !important;font-weight:800 !important;box-shadow:0 4px 14px rgba(37,99,235,.35) !important;}
+#btn-entreprise-header .hide-mobile{display:inline !important;color:#fff !important;font-weight:800 !important;}
+#btn-entreprise-header span:first-child{background:#fff !important;color:#2563EB !important;}
+.tabs .tab-btn[data-view="apercu"],.tabs .tab-btn[data-view="factures"]{background:#EFF6FF !important;border:1.5px solid #2563EB !important;color:#1D4ED8 !important;font-weight:800 !important;}
+@media(max-width:1100px){
+ #view-generateur #card-client-apres .form-grid{grid-template-columns:1fr 1fr !important;}
+ #view-generateur #card-prestations #df-row-total-chantier{grid-template-columns:1fr !important;}
+ #view-generateur>#df-bloc-banque-separe #card-banque{width:100% !important;}
+}
+@media(max-width:760px){
+ .page{padding-left:8px !important;padding-right:8px !important;}
+ header .brand img{height:42px !important;max-width:190px !important;}
+ #view-generateur #card-client-apres .form-grid{grid-template-columns:1fr !important;}
+ #view-generateur>.card{padding:16px 12px !important;}
+}
+</style>
 </body></html>
