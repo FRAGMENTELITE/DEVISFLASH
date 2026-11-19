@@ -1160,9 +1160,11 @@ chipsContainer.appendChild(b);
 <div style="background:#ECFDF5;border:1px solid #BBF7D0;border-radius:16px;padding:16px">
 <b style="font-size:13px;color:#065F46">💾 Sauvegarde de vos données</b>
 <p style="font-size:12px;color:#065F46;margin:6px 0 10px 0;line-height:1.5">Téléchargez une copie de vos devis, factures, situations et leads, puis rangez-la où vous voulez (ex. votre Google Drive).</p>
-<button id="btnDriveConnect" onclick="connectGoogleDrive()" style="display:block;width:100%;background:#fff;border:1.5px solid #10B981;color:#065F46;border-radius:10px;padding:10px;font-weight:700;cursor:pointer">🔗 Connecter Google Drive</button>
+<button id="btnDriveConnect" onclick="connectGoogleDrive()" style="display:block;width:100%;background:#fff;border:1.5px solid #10B981;color:#065F46;border-radius:10px;padding:10px;font-weight:700;cursor:pointer">🔗 Connecter Google Drive (auto — testeurs)</button>
 <div id="driveStatus" style="font-size:11px;color:#065F46;margin-top:8px;display:none"></div>
 <button onclick="backupToDrive()" style="width:100%;margin-top:8px;background:#10B981;color:#fff;border:none;border-radius:10px;padding:10px;font-weight:700;cursor:pointer" id="btnBackupNow">💾 Télécharger ma sauvegarde</button>
+<button onclick="window.open('https://drive.google.com/drive/my-drive','_blank')" style="width:100%;margin-top:8px;background:#fff;border:1.5px solid #2563EB;color:#1D4ED8;border-radius:10px;padding:10px;font-weight:700;cursor:pointer" id="btnOpenDrive">📂 Ouvrir mon Drive pour ranger le fichier</button>
+<p style="font-size:11px;color:#065F46;margin:8px 0 0 0;line-height:1.5">💡 <b>Pour tout le monde :</b> 1. Télécharge ta sauvegarde 2. Clique sur « Ouvrir mon Drive » 3. Glisse-dépose le fichier dans ton Drive. Aucun blocage Google.<br/>🔗 <b>Connexion auto :</b> réservée aux comptes testeurs (mode Test Google).</p>
 </div>
 </div>
 </div>
