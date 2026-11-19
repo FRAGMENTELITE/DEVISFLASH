@@ -8620,24 +8620,48 @@ function _driveGetToken(){return _driveLoadGIS().then(function(){return new Prom
 function _driveBuildBackup(){return {devis:localStorage.getItem('devis_flash_devis')||localStorage.getItem('devis')||'[]',factures:localStorage.getItem('devis_flash_factures')||'[]',clients:localStorage.getItem('devis_flash_clients')||'[]',simulations:localStorage.getItem('df_simulations')||'[]',leads:localStorage.getItem('df_leads')||'[]',date:new Date().toISOString(),version:'v2026-10-30'};}
 function _driveFindOrCreateFolder(token){return fetch('https://www.googleapis.com/drive/v3/files?q='+encodeURIComponent("name='Devis-Flash-Backup' and mimeType='application/vnd.google-apps.folder' and trashed=false")+'&fields=files(id,name)',{headers:{Authorization:'Bearer '+token}}).then(function(r){return r.json();}).then(function(j){if(j.files&&j.files.length)return j.files[0].id;return fetch('https://www.googleapis.com/drive/v3/files',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({name:'Devis-Flash-Backup',mimeType:'application/vnd.google-apps.folder'})}).then(function(r){return r.json();}).then(function(f){return f.id;});});}
 function _driveUploadBackup(token,silent){var data=_driveBuildBackup();var fileName='Devis-Flash-Backup-'+new Date().toISOString().split('T')[0]+'.json';return _driveFindOrCreateFolder(token).then(function(folderId){var metadata={name:fileName,mimeType:'application/json',parents:folderId?[folderId]:[]};var boundary='-------devisflash'+Date.now();var body='--'+boundary+'\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+JSON.stringify(metadata)+'\r\n--'+boundary+'\r\nContent-Type: application/json\r\n\r\n'+JSON.stringify(data,null,2)+'\r\n--'+boundary+'--';return fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'multipart/related; boundary='+boundary},body:body});}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error((j.error&&j.error.message)||('Drive HTTP '+r.status));return j;});}).then(function(){localStorage.setItem('df_last_backup',new Date().toISOString());var st=document.getElementById('driveStatus');if(st)st.innerHTML='✅ Dernière sauvegarde Drive : '+new Date().toLocaleString('fr-FR');if(!silent&&typeof toastOffline==='function')toastOffline('✅ Sauvegarde envoyée sur ton Google Drive');return true;});}
-function _driveDownloadLocal(silent){var data=_driveBuildBackup();var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});var url=URL.createObjectURL(blob);if(!silent){var a=document.createElement('a');a.href=url;a.download='Devis-Flash-Backup-'+new Date().toISOString().split('T')[0]+'.json';a.click();URL.revokeObjectURL(url);alert('✅ Sauvegarde téléchargée');}localStorage.setItem('df_last_backup',new Date().toISOString());}
+function _driveDownloadLocal(silent){var data=_driveBuildBackup();var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});var url=URL.createObjectURL(blob);if(!silent){var a=document.createElement('a');a.href=url;a.download='Devis-Flash-Backup-'+new Date().toISOString().split('T')[0]+'.json';a.style.display='none';document.body.appendChild(a);a.click();setTimeout(function(){try{a.remove();}catch(e){} URL.revokeObjectURL(url);},1000);alert('✅ Sauvegarde téléchargée');}localStorage.setItem('df_last_backup',new Date().toISOString());}
+function _driveShowStatus(html){var st=document.getElementById('driveStatus');if(st){st.style.display='block';st.innerHTML=html;}}
 var DRIVE_CONNECTED = localStorage.getItem('df_drive_connected')==='1';
 function connectGoogleDrive(){
-var btn=document.getElementById('btnDriveConnect');var status=document.getElementById('driveStatus');var backupBtn=document.getElementById('btnBackupNow');
+var btn=document.getElementById('btnDriveConnect');
 if(btn)btn.textContent='⏳ Connexion Google...';
-if(location.protocol==='file:'){alert('⚠️ Drive ne marche pas en file://, ouvre en HTTPS.');if(btn)btn.textContent='🔗 Connecter Google Drive';return;}
-_driveGetToken().then(function(){localStorage.setItem('df_drive_connected','1');DRIVE_CONNECTED=true;if(btn){btn.textContent='✅ Drive connecté';btn.style.background='#ECFDF5';}if(status){status.style.display='block';status.innerHTML='✅ Connecté : sauvegardes dans <b>/Devis-Flash-Backup/</b> sur ton Drive';}if(backupBtn)backupBtn.style.display='block';if(_driveAutoTimer)clearInterval(_driveAutoTimer);_driveAutoTimer=setInterval(function(){if(DRIVE_CONNECTED)backupToDrive(true);},15*60*1000);return backupToDrive(true);}).catch(function(e){if(btn)btn.textContent='🔗 Connecter Google Drive';alert('❌ Connexion Drive impossible : '+(e&&e.message||e)+'\nVérifie ton origine dans Google Cloud.');});
+if(location.protocol==='file:'){alert('⚠️ Drive ne marche pas en file://, ouvre en HTTPS (GitHub Pages).');if(btn)btn.textContent='🔗 Connecter Google Drive';return;}
+_driveGetToken().then(function(){
+  localStorage.setItem('df_drive_connected','1');DRIVE_CONNECTED=true;
+  if(btn){btn.textContent='✅ Drive connecté';btn.style.background='#ECFDF5';}
+  _driveShowStatus('✅ Connecté : sauvegardes dans <b>/Devis-Flash-Backup/</b> sur ton Drive');
+  var bb=document.getElementById('btnBackupNow'); if(bb)bb.style.display='block';
+  if(_driveAutoTimer)clearInterval(_driveAutoTimer);
+  _driveAutoTimer=setInterval(function(){if(DRIVE_CONNECTED)backupToDrive(true);},15*60*1000);
+  return backupToDrive(true);
+}).catch(function(e){
+  if(btn)btn.textContent='🔗 Connecter Google Drive';
+  _driveShowStatus('❌ Connexion Drive impossible : '+(e&&e.message||e)+'. Vérifie ton origine https://fragmentelite.github.io dans Google Cloud.');
+  alert('❌ Connexion Drive impossible : '+(e&&e.message||e)+'\n\nVérifie dans Google Cloud : Origines JavaScript autorisées = https://fragmentelite.github.io');
+});
 }
-function backupToDrivefunction backupToDrive(silent){try{if(DRIVE_CONNECTED){return _driveGetToken().then(function(tok){return _driveUploadBackup(tok,!!silent);}).catch(function(e){if(!silent)alert('⚠️ Envoi Drive échoué — téléchargement en secours.');_driveDownloadLocal(!!silent);});}else{_driveDownloadLocal(!!silent);return Promise.resolve(false);}}catch(e){if(!silent)alert('Erreur sauvegarde: '+e.message);return Promise.resolve(false);}}
+function backupToDrive(silent){
+try{
+  if(DRIVE_CONNECTED){
+    return _driveGetToken().then(function(tok){return _driveUploadBackup(tok,!!silent);}).catch(function(e){
+      if(!silent)alert('⚠️ Envoi Drive échoué ('+(e&&e.message||e)+') — je te télécharge le fichier en secours.');
+      _driveDownloadLocal(!!silent);
+    });
+  } else { _driveDownloadLocal(!!silent); return Promise.resolve(false); }
+}catch(e){ if(!silent)alert('Erreur sauvegarde: '+e.message); return Promise.resolve(false); }
+}
 document.addEventListener('DOMContentLoaded', function(){if(localStorage.getItem('df_drive_connected')==='1'){
 var btn=document.getElementById('btnDriveConnect');
 var status=document.getElementById('driveStatus');
 var backupBtn=document.getElementById('btnBackupNow');
-if(btn){ btn.textContent='✅ Drive connecté'; btn.style.background='#ECFDF5'; }
+if(btn){ btn.textContent='✅ Drive connecté'; btn.style.background='#ECFDF5'; btn.removeAttribute('hidden'); btn.style.display='block'; }
 if(status){ status.style.display='block'; var last=localStorage.getItem('df_last_backup'); status.innerHTML=last ? '✅ Dernière sauvegarde : '+new Date(last).toLocaleString('fr-FR') : '✅ Connecté : Prêt à sauvegarder'; }
 if(backupBtn) backupBtn.style.display='block';
 }
 });
+window.connectGoogleDrive=connectGoogleDrive;window.backupToDrive=backupToDrive;
+document.addEventListener('DOMContentLoaded',function(){var c=document.getElementById('btnDriveConnect');if(c&&!c.dataset.dfBound){c.dataset.dfBound='1';c.addEventListener('click',function(e){e.preventDefault();connectGoogleDrive();});}var b=document.getElementById('btnBackupNow');if(b&&!b.dataset.dfBound){b.dataset.dfBound='1';b.addEventListener('click',function(e){e.preventDefault();backupToDrive();});}});
 function addLeadFromSimulation(projectData, clientInfo){
 try{
 var leads=JSON.parse(localStorage.getItem('df_leads')||'[]');
