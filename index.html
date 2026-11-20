@@ -9998,20 +9998,23 @@ el.innerHTML = '<div class="df-tpl">'
 <script id="df-tabs-noir-fix">(function(){ function fixLeads(){ var b=document.querySelector('.tab-btn[data-view="leads"]'); if(b){ b.style.background=''; b.style.color=''; b.style.border=''; b.classList.add('df-leads-clean'); } } if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fixLeads); else fixLeads(); })();</script>
 <style id="df-tabs-noir-css">.tab-btn.df-leads-clean{background:#ECFDF5 !important;color:#047857 !important;border:2px solid #25D366 !important;}</style>
 <style id="df-no-doublon-v20">@media(max-width:760px){.tabs{display:flex !important;justify-content:stretch !important;gap:6px !important;overflow-x:hidden !important;padding:6px !important;} .tabs .tab-btn:not([data-view="generateur"]):not([data-view="factures"]):not([data-view="repondeur"]){display:none !important;} .tabs .tab-btn[data-view="generateur"],.tabs .tab-btn[data-view="factures"],.tabs .tab-btn[data-view="repondeur"]{display:inline-flex !important;flex:1 1 0 !important;justify-content:center !important;font-size:13px !important;} #mobile-bottom-nav{display:none !important;visibility:hidden !important;height:0 !important;pointer-events:none !important;}} @media(min-width:761px){#mobile-bottom-nav{display:none !important;}}</style>
-<style id="df-bank-align">#card-banque .df-bank-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;} #card-banque .df-bank-field{display:flex;flex-direction:column;} #card-banque .df-bank-field label{display:block;min-height:34px;line-height:1.3;margin:0 0 4px 0;} #card-banque input[type="text"]{width:100%;height:44px;box-sizing:border-box;} @media(max-width:760px){#card-banque .df-bank-row{grid-template-columns:1fr !important;} #card-banque .df-bank-field label{min-height:0 !important;} #card-banque .df-bank-check{margin-top:0 !important;}}</style><script id="v8-demo-free-teaser">
-/* V8 GRATUIT = DEMO TEASER : on voit + on teste, pour donner envie de passer a V8 Solo 10EUR.
-   FIX vs ancienne version :
-   - Avant : chaque event 'input' d'un slider = +1 au quota. Un seul glisser = 30-40 events = quota crame.
-     Maintenant : on compte 1 manipulation par interaction (sur 'change', pas sur 'input').
-   - Avant : le timer de 3 min tournait meme quand la V8 n'etait pas ouverte.
-     Maintenant : le temps ne compte QUE quand la vue V8 est active.
-   - Avant : clic + input pouvaient compter 2 fois la meme action.
-     Maintenant : anti-double-comptage 800ms par controle. */
+<style id="df-bank-align">#card-banque .df-bank-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;} #card-banque .df-bank-field{display:flex;flex-direction:column;} #card-banque .df-bank-field label{display:block;min-height:34px;line-height:1.3;margin:0 0 4px 0;} #card-banque input[type="text"]{width:100%;height:44px;box-sizing:border-box;} @media(max-width:760px){#card-banque .df-bank-row{grid-template-columns:1fr !important;} #card-banque .df-bank-field label{min-height:0 !important;} #card-banque .df-bank-check{margin-top:0 !important;}}</style><script id="v8-demo-free-teaser-v3">
+/* V8 GRATUIT = DEMO 1 MANIPULATION, BLOCAGE DUR.
+   - 1 seule manipulation (slider, preset, clic, DRAG canvas, molette = 1 manip)
+   - Apres : overlay reel qui recouvre la V8, controles disabled, canvas inerte.
+   - plan() en test EXACT (avant : indexOf('pro') debloquait 'professionnel', 'product'...) */
 (function(){
 var LIMIT_CHANGES=1;
 var LIMIT_ACTIVE_MS=3*60*1000;
 var lastCountAt=0, lastCountKey='';
-function plan(){var s=[localStorage.getItem('df_plan'),localStorage.getItem('devisflash_plan'),localStorage.getItem('plan')].join(' ').toLowerCase();if(s.indexOf('v8solo')>-1)return 'v8solo';if(s.indexOf('pro')>-1||s.indexOf('expert')>-1)return 'pro';if(s.indexOf('starter')>-1)return 'starter';return 'free';}
+function clean(v){return String(v||'').trim().toLowerCase();}
+function plan(){
+  var vals=[clean(localStorage.getItem('df_plan')),clean(localStorage.getItem('devisflash_plan')),clean(localStorage.getItem('plan'))];
+  if(vals.indexOf('v8solo')>-1)return 'v8solo';
+  if(vals.indexOf('pro')>-1||vals.indexOf('expert')>-1||vals.indexOf('pro-annual')>-1||vals.indexOf('pro-monthly')>-1)return 'pro';
+  if(vals.indexOf('starter')>-1)return 'starter';
+  return 'free';
+}
 function unlocked(){var pl=plan();return pl==='v8solo'||pl==='pro';}
 function used(){try{return parseInt(sessionStorage.getItem('df_v8_demo_used')||'0',10)||0;}catch(e){return 0;}}
 function setUsed(n){try{sessionStorage.setItem('df_v8_demo_used',String(n));}catch(e){}}
@@ -10023,47 +10026,93 @@ function expired(){if(!demoStarted())return false;if(used()>=LIMIT_CHANGES)retur
 function remaining(){return Math.max(0,LIMIT_CHANGES-used());}
 function countOnce(key){
   var now=Date.now();
-  if(key===lastCountKey && (now-lastCountAt)<800) return;
+  if(key===lastCountKey && (now-lastCountAt)<800) return false;
   lastCountKey=key; lastCountAt=now;
-  if(expired()) return;
-  setUsed(used()+1); ensureGate();
+  if(expired()) return false;
+  setUsed(used()+1); ensureGate(); return true;
+}
+function applyLock(v, locked){
+  var els=v.querySelectorAll('input,select,button,textarea');
+  els.forEach(function(el){
+    if(el.closest && el.closest('#v8-demo-gate')) return;
+    if(locked){ el.setAttribute('data-v8-was-disabled','1'); el.disabled=true; }
+    else if(el.getAttribute('data-v8-was-disabled')){ el.disabled=false; el.removeAttribute('data-v8-was-disabled'); }
+  });
+  var ov=document.getElementById('v8-lock-overlay');
+  if(locked){
+    if(!ov){
+      ov=document.createElement('div'); ov.id='v8-lock-overlay';
+      ov.style.cssText='position:absolute;inset:0;z-index:50;background:rgba(15,23,42,.55);backdrop-filter:blur(1px);display:flex;align-items:center;justify-content:center;cursor:pointer;text-align:center;padding:20px;';
+      ov.innerHTML='<div style="background:#fff;border-radius:16px;padding:20px;max-width:340px;box-shadow:0 20px 50px rgba(0,0,0,.35)"><div style="font-size:32px">🔒</div><div style="font-size:17px;font-weight:800;color:#0F172A;margin:8px 0">Aperçu terminé</div><div style="font-size:13px;color:#64748B">Tu as testé ta manipulation. Pour continuer en illimité, débloque la V8 3D.</div><div style="margin-top:14px;background:#F59E0B;color:#fff;border-radius:10px;padding:12px;font-weight:800">Débloquer V8 3D — 10€/mois</div><div style="font-size:11px;color:#94A3B8;margin-top:8px">Clique pour débloquer</div></div>';
+      ov.addEventListener('click',function(){ buyV8Solo(); });
+      v.style.position='relative'; v.appendChild(ov);
+    }
+    ov.style.display='flex';
+  } else if(ov){ ov.style.display='none'; }
 }
 function ensureGate(){
   var v=document.getElementById('view-v8'); if(!v)return;
   var g=document.getElementById('v8-demo-gate');
-  if(unlocked()){v.classList.remove('v8-lock','v8-demo'); if(g)g.remove(); return;}
+  if(unlocked()){v.classList.remove('v8-lock','v8-demo'); if(g)g.remove(); applyLock(v,false); return;}
   v.classList.add('v8-demo');
-  if(expired()) v.classList.add('v8-lock'); else v.classList.remove('v8-lock');
+  var lock=expired();
+  if(lock) v.classList.add('v8-lock'); else v.classList.remove('v8-lock');
+  applyLock(v, lock);
   if(!g){g=document.createElement('div'); g.id='v8-demo-gate'; g.style.cssText='position:sticky;bottom:0;z-index:60;background:#0F172A;color:#fff;border-radius:12px;padding:10px 14px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:16px'; v.appendChild(g);}
-  var left=remaining();
-  var msg=expired()
-    ? 'Apercu termine - tu as vu le potentiel de la V8 3D. Debloque l\'illimite pour continuer.'
-    : 'APERCU GRATUIT - demo : 1 seule manipulation pour tester - Export & envoi au devis reserves a V8 Solo';
-  g.innerHTML='<span style="color:#fff;font-weight:800;font-size:13px">'+msg+'</span><span style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" onclick="buyV8Solo()" style="background:#F59E0B;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:800;cursor:pointer">Debloquer V8 3D - V8 Solo 10EUR/mois</button><button type="button" onclick="showView(\'tarifs\')" style="background:#fff;color:#0F172A;border:none;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer">Voir les offres</button></span>';
+  var msg=lock
+    ? 'Aperçu terminé — 1 manipulation testée. Débloque l\'illimité pour continuer.'
+    : 'APERÇU GRATUIT — 1 seule manipulation pour tester — Export & envoi au devis réservés à V8 Solo';
+  g.innerHTML='<span style="color:#fff;font-weight:800;font-size:13px">'+msg+'</span><span style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" onclick="buyV8Solo()" style="background:#F59E0B;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:800;cursor:pointer">Débloquer V8 3D — V8 Solo 10€/mois</button><button type="button" onclick="showView(\'tarifs\')" style="background:#fff;color:#0F172A;border:none;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer">Voir les offres</button></span>';
 }
 function startDemoIfNeeded(){ if(unlocked())return; if(!demoStarted()){ demoStart(); } ensureGate(); }
 var _showView=window.showView;
 window.showView=function(n){ var r=typeof _showView==='function'?_showView.apply(this,arguments):undefined; if(n==='v8'||n==='v8r'||n==='generateur-v8') startDemoIfNeeded(); setTimeout(ensureGate,60); return r; };
 document.addEventListener('click',function(e){ var v=document.getElementById('view-v8'); if(v&&e.target.closest&&e.target.closest('[data-view="v8"],[data-view="v8r"]')) startDemoIfNeeded(); },true);
-document.addEventListener('change',function(e){ if(unlocked())return; var v=document.getElementById('view-v8'); if(!v||!v.contains(e.target))return; if(expired()){ensureGate();return;} var el=e.target; var key='change:'+(el.id||el.className||el.tagName); countOnce(key); },true);
+document.addEventListener('change',function(e){ if(unlocked())return; var v=document.getElementById('view-v8'); if(!v||!v.contains(e.target))return; if(expired()){ensureGate();return;} countOnce('change:'+(e.target.id||e.target.className||e.target.tagName)); },true);
+/* CANVAS = manipulation aussi : drag + molette + touch */
+function blockIfExpired(e){
+  if(unlocked()) return false;
+  var v=document.getElementById('view-v8'); if(!v||!v.contains(e.target)) return false;
+  if(expired()){ e.preventDefault(); e.stopPropagation(); ensureGate(); return true; }
+  return false;
+}
+document.addEventListener('mousedown',function(e){
+  if(blockIfExpired(e)) return;
+  var v=document.getElementById('view-v8'); if(!v||!v.contains(e.target)) return;
+  if(e.target && (e.target.id==='v8r-canvas' || e.target.closest('#v8r-canvas'))) countOnce('canvas-drag');
+},true);
+document.addEventListener('wheel',function(e){
+  if(blockIfExpired(e)) return;
+  var v=document.getElementById('view-v8'); if(!v||!v.contains(e.target)) return;
+  if(e.target && e.target.closest && e.target.closest('#v8r-canvas')) countOnce('canvas-wheel');
+},true);
+document.addEventListener('touchstart',function(e){
+  if(blockIfExpired(e)) return;
+  var v=document.getElementById('view-v8'); if(!v||!v.contains(e.target)) return;
+  if(e.target && e.target.closest && e.target.closest('#v8r-canvas')) countOnce('canvas-touch');
+},true);
 document.addEventListener('click',function(e){
   if(unlocked())return;
   var v=document.getElementById('view-v8'); if(!v||!v.classList.contains('active'))return;
   if(e.target.closest&&e.target.closest('#v8-demo-gate'))return;
+  if(e.target.closest&&e.target.closest('#v8-lock-overlay'))return;
   if(!e.target.closest||!e.target.closest('#view-v8'))return;
   var btn=e.target.closest?e.target.closest('#v8r-export,#v8r-add2'):null;
-  if(btn){ e.preventDefault(); e.stopPropagation(); alert('Export / Envoi au devis reserve a V8 Solo (10EUR/mois) ou PRO. En gratuit, tu peux juste tester l\'apercu.'); ensureGate(); return; }
+  if(btn){ e.preventDefault(); e.stopPropagation(); alert('Export / Envoi au devis réservé à V8 Solo (10€/mois) ou PRO. En gratuit, tu peux juste tester 1 manipulation.'); ensureGate(); return; }
   if(expired()){ e.preventDefault(); e.stopPropagation(); ensureGate(); return; }
   var hit=e.target.closest?e.target.closest('[data-v8r-preset],[data-v8r-vue],.v8r-tile,.v8r-chip,#v8r-rot,#v8r-toit,#v8r-echaf,#v8r-grille,#v8r-cotes,#v8r-ombres,#v8r-mesure,#v8r-mesure-clear,#v8r-full'):null;
-  if(hit){ var k='click:'+(hit.id||hit.getAttribute('data-v8r-preset')||hit.getAttribute('data-v8r-vue')||hit.className); countOnce(k); }
+  if(hit){ countOnce('click:'+(hit.id||hit.getAttribute('data-v8r-preset')||hit.getAttribute('data-v8r-vue')||hit.className)); }
 },true);
-setInterval(function(){ if(unlocked())return; var v=document.getElementById('view-v8'); if(v&&v.classList.contains('active')){ if(!demoStarted()) demoStart(); setActiveMs(activeMs()+1000); ensureGate(); } },1000);
+setInterval(function(){ if(unlocked()){ensureGate();return;} var v=document.getElementById('view-v8'); if(v&&v.classList.contains('active')){ if(!demoStarted()) demoStart(); setActiveMs(activeMs()+500); ensureGate(); } else { ensureGate(); } },500);
 window.buyV8Solo=function(){try{localStorage.setItem('df_plan_pending','v8solo');}catch(e){}window.open('https://pay.sumup.com/p/s/XL8XPDXG7G','_blank');};
 window.activateV8SoloPaid=function(){try{localStorage.setItem('df_plan','v8solo');localStorage.setItem('devisflash_plan','v8solo');}catch(e){}location.reload();};
-window.dfV8Unlocked=unlocked; window.dfV8DemoReset=function(){try{sessionStorage.removeItem('df_v8_demo_used');sessionStorage.removeItem('df_v8_demo_start');sessionStorage.removeItem('df_v8_demo_active_ms');}catch(e){} ensureGate();};
+window.dfV8Unlocked=unlocked;
+window.dfV8Debug=function(){return {plan:plan(), unlocked:unlocked(), used:used(), activeMs:activeMs(), expired:expired(), gate:!!document.getElementById('v8-demo-gate'), overlay:!!document.getElementById('v8-lock-overlay'), df_plan:localStorage.getItem('df_plan'), devisflash_plan:localStorage.getItem('devisflash_plan'), plan_key:localStorage.getItem('plan')};};
+window.dfV8DemoReset=function(){try{sessionStorage.removeItem('df_v8_demo_used');sessionStorage.removeItem('df_v8_demo_start');sessionStorage.removeItem('df_v8_demo_active_ms');}catch(e){} ensureGate();};
 document.addEventListener('DOMContentLoaded',function(){ensureGate();});
 })();</script>
-<style id="v8-lock-css">#view-v8.v8-demo #v8r-export,#view-v8.v8-demo #v8r-add2{opacity:.55;filter:grayscale(.3);}#view-v8.v8-lock input,#view-v8.v8-lock select,#view-v8.v8-lock button:not(#v8-demo-gate button){pointer-events:none !important;opacity:.65;}#view-v8.v8-lock #v8-demo-gate,#view-v8.v8-lock #v8-demo-gate button{pointer-events:auto !important;opacity:1 !important;}#view-v8.v8-lock{position:relative;}#view-v8.v8-lock::after{content:"";position:absolute;inset:0;z-index:5;cursor:not-allowed;background:transparent;pointer-events:none;}#view-v8.v8-lock #v8-demo-gate{position:relative;z-index:60;}</style>
+
+<style id="v8-lock-css">#view-v8.v8-demo #v8r-export,#view-v8.v8-demo #v8r-add2{opacity:.55;filter:grayscale(.3);}#view-v8.v8-lock input,#view-v8.v8-lock select,#view-v8.v8-lock button:not(#v8-demo-gate button){pointer-events:none !important;opacity:.65;}#view-v8.v8-lock #v8-demo-gate,#view-v8.v8-lock #v8-demo-gate button{pointer-events:auto !important;opacity:1 !important;}#view-v8.v8-lock{position:relative;}#view-v8.v8-lock::after{content:none;}#view-v8.v8-lock #v8-demo-gate{position:relative;z-index:60;}</style>
 
 
 <style id="df-total-chantier-dur">
